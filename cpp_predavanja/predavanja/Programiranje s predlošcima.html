@@ -1,0 +1,1635 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<!-- saved from url=(0090)https://web.math.pmf.unizg.hr/nastava/opepp/Slides/Predavanja/html-noslides/slides-11.html -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="hr"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="generator" content="AsciiDoc 8.6.9">
+<title>Programiranje s predlošcima</title>
+<style type="text/css">
+/* Shared CSS for AsciiDoc xhtml11 and html5 backends */
+
+/* Default font. */
+body {
+  font-family: Georgia,serif;
+}
+
+/* Title font. */
+h1, h2, h3, h4, h5, h6,
+div.title, caption.title,
+thead, p.table.header,
+#toctitle,
+#author, #revnumber, #revdate, #revremark,
+#footer {
+  font-family: Arial,Helvetica,sans-serif;
+}
+
+body {
+  margin: 1em 5% 1em 5%;
+}
+
+a {
+  color: blue;
+  text-decoration: underline;
+}
+a:visited {
+  color: fuchsia;
+}
+
+em {
+  font-style: italic;
+  color: navy;
+}
+
+strong {
+  font-weight: bold;
+  color: #083194;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #527bbd;
+  margin-top: 1.2em;
+  margin-bottom: 0.5em;
+  line-height: 1.3;
+}
+
+h1, h2, h3 {
+  border-bottom: 2px solid silver;
+}
+h2 {
+  padding-top: 0.5em;
+}
+h3 {
+  float: left;
+}
+h3 + * {
+  clear: left;
+}
+h5 {
+  font-size: 1.0em;
+}
+
+div.sectionbody {
+  margin-left: 0;
+}
+
+hr {
+  border: 1px solid silver;
+}
+
+p {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+ul, ol, li > p {
+  margin-top: 0;
+}
+ul > li     { color: #aaa; }
+ul > li > * { color: black; }
+
+.monospaced, code, pre {
+  font-family: "Courier New", Courier, monospace;
+  font-size: inherit;
+  color: navy;
+  padding: 0;
+  margin: 0;
+}
+pre {
+  white-space: pre-wrap;
+}
+
+#author {
+  color: #527bbd;
+  font-weight: bold;
+  font-size: 1.1em;
+}
+#email {
+}
+#revnumber, #revdate, #revremark {
+}
+
+#footer {
+  font-size: small;
+  border-top: 2px solid silver;
+  padding-top: 0.5em;
+  margin-top: 4.0em;
+}
+#footer-text {
+  float: left;
+  padding-bottom: 0.5em;
+}
+#footer-badges {
+  float: right;
+  padding-bottom: 0.5em;
+}
+
+#preamble {
+  margin-top: 1.5em;
+  margin-bottom: 1.5em;
+}
+div.imageblock, div.exampleblock, div.verseblock,
+div.quoteblock, div.literalblock, div.listingblock, div.sidebarblock,
+div.admonitionblock {
+  margin-top: 1.0em;
+  margin-bottom: 1.5em;
+}
+div.admonitionblock {
+  margin-top: 2.0em;
+  margin-bottom: 2.0em;
+  margin-right: 10%;
+  color: #606060;
+}
+
+div.content { /* Block element content. */
+  padding: 0;
+}
+
+/* Block element titles. */
+div.title, caption.title {
+  color: #527bbd;
+  font-weight: bold;
+  text-align: left;
+  margin-top: 1.0em;
+  margin-bottom: 0.5em;
+}
+div.title + * {
+  margin-top: 0;
+}
+
+td div.title:first-child {
+  margin-top: 0.0em;
+}
+div.content div.title:first-child {
+  margin-top: 0.0em;
+}
+div.content + div.title {
+  margin-top: 0.0em;
+}
+
+div.sidebarblock > div.content {
+  background: #ffffee;
+  border: 1px solid #dddddd;
+  border-left: 4px solid #f0f0f0;
+  padding: 0.5em;
+}
+
+div.listingblock > div.content {
+  border: 1px solid #dddddd;
+  border-left: 5px solid #f0f0f0;
+  background: #f8f8f8;
+  padding: 0.5em;
+}
+
+div.quoteblock, div.verseblock {
+  padding-left: 1.0em;
+  margin-left: 1.0em;
+  margin-right: 10%;
+  border-left: 5px solid #f0f0f0;
+  color: #888;
+}
+
+div.quoteblock > div.attribution {
+  padding-top: 0.5em;
+  text-align: right;
+}
+
+div.verseblock > pre.content {
+  font-family: inherit;
+  font-size: inherit;
+}
+div.verseblock > div.attribution {
+  padding-top: 0.75em;
+  text-align: left;
+}
+/* DEPRECATED: Pre version 8.2.7 verse style literal block. */
+div.verseblock + div.attribution {
+  text-align: left;
+}
+
+div.admonitionblock .icon {
+  vertical-align: top;
+  font-size: 1.1em;
+  font-weight: bold;
+  text-decoration: underline;
+  color: #527bbd;
+  padding-right: 0.5em;
+}
+div.admonitionblock td.content {
+  padding-left: 0.5em;
+  border-left: 3px solid #dddddd;
+}
+
+div.exampleblock > div.content {
+  border-left: 3px solid #dddddd;
+  padding-left: 0.5em;
+}
+
+div.imageblock div.content { padding-left: 0; }
+span.image img { border-style: none; vertical-align: text-bottom; }
+a.image:visited { color: white; }
+
+dl {
+  margin-top: 0.8em;
+  margin-bottom: 0.8em;
+}
+dt {
+  margin-top: 0.5em;
+  margin-bottom: 0;
+  font-style: normal;
+  color: navy;
+}
+dd > *:first-child {
+  margin-top: 0.1em;
+}
+
+ul, ol {
+    list-style-position: outside;
+}
+ol.arabic {
+  list-style-type: decimal;
+}
+ol.loweralpha {
+  list-style-type: lower-alpha;
+}
+ol.upperalpha {
+  list-style-type: upper-alpha;
+}
+ol.lowerroman {
+  list-style-type: lower-roman;
+}
+ol.upperroman {
+  list-style-type: upper-roman;
+}
+
+div.compact ul, div.compact ol,
+div.compact p, div.compact p,
+div.compact div, div.compact div {
+  margin-top: 0.1em;
+  margin-bottom: 0.1em;
+}
+
+tfoot {
+  font-weight: bold;
+}
+td > div.verse {
+  white-space: pre;
+}
+
+div.hdlist {
+  margin-top: 0.8em;
+  margin-bottom: 0.8em;
+}
+div.hdlist tr {
+  padding-bottom: 15px;
+}
+dt.hdlist1.strong, td.hdlist1.strong {
+  font-weight: bold;
+}
+td.hdlist1 {
+  vertical-align: top;
+  font-style: normal;
+  padding-right: 0.8em;
+  color: navy;
+}
+td.hdlist2 {
+  vertical-align: top;
+}
+div.hdlist.compact tr {
+  margin: 0;
+  padding-bottom: 0;
+}
+
+.comment {
+  background: yellow;
+}
+
+.footnote, .footnoteref {
+  font-size: 0.8em;
+}
+
+span.footnote, span.footnoteref {
+  vertical-align: super;
+}
+
+#footnotes {
+  margin: 20px 0 20px 0;
+  padding: 7px 0 0 0;
+}
+
+#footnotes div.footnote {
+  margin: 0 0 5px 0;
+}
+
+#footnotes hr {
+  border: none;
+  border-top: 1px solid silver;
+  height: 1px;
+  text-align: left;
+  margin-left: 0;
+  width: 20%;
+  min-width: 100px;
+}
+
+div.colist td {
+  padding-right: 0.5em;
+  padding-bottom: 0.3em;
+  vertical-align: top;
+}
+div.colist td img {
+  margin-top: 0.3em;
+}
+
+@media print {
+  #footer-badges { display: none; }
+}
+
+#toc {
+  margin-bottom: 2.5em;
+}
+
+#toctitle {
+  color: #527bbd;
+  font-size: 1.1em;
+  font-weight: bold;
+  margin-top: 1.0em;
+  margin-bottom: 0.1em;
+}
+
+div.toclevel0, div.toclevel1, div.toclevel2, div.toclevel3, div.toclevel4 {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+div.toclevel2 {
+  margin-left: 2em;
+  font-size: 0.9em;
+}
+div.toclevel3 {
+  margin-left: 4em;
+  font-size: 0.9em;
+}
+div.toclevel4 {
+  margin-left: 6em;
+  font-size: 0.9em;
+}
+
+span.aqua { color: aqua; }
+span.black { color: black; }
+span.blue { color: blue; }
+span.fuchsia { color: fuchsia; }
+span.gray { color: gray; }
+span.green { color: green; }
+span.lime { color: lime; }
+span.maroon { color: maroon; }
+span.navy { color: navy; }
+span.olive { color: olive; }
+span.purple { color: purple; }
+span.red { color: red; }
+span.silver { color: silver; }
+span.teal { color: teal; }
+span.white { color: white; }
+span.yellow { color: yellow; }
+
+span.aqua-background { background: aqua; }
+span.black-background { background: black; }
+span.blue-background { background: blue; }
+span.fuchsia-background { background: fuchsia; }
+span.gray-background { background: gray; }
+span.green-background { background: green; }
+span.lime-background { background: lime; }
+span.maroon-background { background: maroon; }
+span.navy-background { background: navy; }
+span.olive-background { background: olive; }
+span.purple-background { background: purple; }
+span.red-background { background: red; }
+span.silver-background { background: silver; }
+span.teal-background { background: teal; }
+span.white-background { background: white; }
+span.yellow-background { background: yellow; }
+
+span.big { font-size: 2em; }
+span.small { font-size: 0.6em; }
+
+span.underline { text-decoration: underline; }
+span.overline { text-decoration: overline; }
+span.line-through { text-decoration: line-through; }
+
+div.unbreakable { page-break-inside: avoid; }
+
+
+/*
+ * xhtml11 specific
+ *
+ * */
+
+div.tableblock {
+  margin-top: 1.0em;
+  margin-bottom: 1.5em;
+}
+div.tableblock > table {
+  border: 3px solid #527bbd;
+}
+thead, p.table.header {
+  font-weight: bold;
+  color: #527bbd;
+}
+p.table {
+  margin-top: 0;
+}
+/* Because the table frame attribute is overriden by CSS in most browsers. */
+div.tableblock > table[frame="void"] {
+  border-style: none;
+}
+div.tableblock > table[frame="hsides"] {
+  border-left-style: none;
+  border-right-style: none;
+}
+div.tableblock > table[frame="vsides"] {
+  border-top-style: none;
+  border-bottom-style: none;
+}
+
+
+/*
+ * html5 specific
+ *
+ * */
+
+table.tableblock {
+  margin-top: 1.0em;
+  margin-bottom: 1.5em;
+}
+thead, p.tableblock.header {
+  font-weight: bold;
+  color: #527bbd;
+}
+p.tableblock {
+  margin-top: 0;
+}
+table.tableblock {
+  border-width: 3px;
+  border-spacing: 0px;
+  border-style: solid;
+  border-color: #527bbd;
+  border-collapse: collapse;
+}
+th.tableblock, td.tableblock {
+  border-width: 1px;
+  padding: 4px;
+  border-style: solid;
+  border-color: #527bbd;
+}
+
+table.tableblock.frame-topbot {
+  border-left-style: hidden;
+  border-right-style: hidden;
+}
+table.tableblock.frame-sides {
+  border-top-style: hidden;
+  border-bottom-style: hidden;
+}
+table.tableblock.frame-none {
+  border-style: hidden;
+}
+
+th.tableblock.halign-left, td.tableblock.halign-left {
+  text-align: left;
+}
+th.tableblock.halign-center, td.tableblock.halign-center {
+  text-align: center;
+}
+th.tableblock.halign-right, td.tableblock.halign-right {
+  text-align: right;
+}
+
+th.tableblock.valign-top, td.tableblock.valign-top {
+  vertical-align: top;
+}
+th.tableblock.valign-middle, td.tableblock.valign-middle {
+  vertical-align: middle;
+}
+th.tableblock.valign-bottom, td.tableblock.valign-bottom {
+  vertical-align: bottom;
+}
+
+
+/*
+ * manpage specific
+ *
+ * */
+
+body.manpage h1 {
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+  border-top: 2px solid silver;
+  border-bottom: 2px solid silver;
+}
+body.manpage h2 {
+  border-style: none;
+}
+body.manpage div.sectionbody {
+  margin-left: 3em;
+}
+
+@media print {
+  body.manpage div#toc { display: none; }
+}
+.highlight .hll { background-color: #ffffcc }
+.highlight  { background: #f8f8f8; }
+.highlight .c { color: #408080; font-style: italic } /* Comment */
+.highlight .err { border: 1px solid #FF0000 } /* Error */
+.highlight .k { color: #008000; font-weight: bold } /* Keyword */
+.highlight .o { color: #666666 } /* Operator */
+.highlight .cm { color: #408080; font-style: italic } /* Comment.Multiline */
+.highlight .cp { color: #BC7A00 } /* Comment.Preproc */
+.highlight .c1 { color: #408080; font-style: italic } /* Comment.Single */
+.highlight .cs { color: #408080; font-style: italic } /* Comment.Special */
+.highlight .gd { color: #A00000 } /* Generic.Deleted */
+.highlight .ge { font-style: italic } /* Generic.Emph */
+.highlight .gr { color: #FF0000 } /* Generic.Error */
+.highlight .gh { color: #000080; font-weight: bold } /* Generic.Heading */
+.highlight .gi { color: #00A000 } /* Generic.Inserted */
+.highlight .go { color: #808080 } /* Generic.Output */
+.highlight .gp { color: #000080; font-weight: bold } /* Generic.Prompt */
+.highlight .gs { font-weight: bold } /* Generic.Strong */
+.highlight .gu { color: #800080; font-weight: bold } /* Generic.Subheading */
+.highlight .gt { color: #0040D0 } /* Generic.Traceback */
+.highlight .kc { color: #008000; font-weight: bold } /* Keyword.Constant */
+.highlight .kd { color: #008000; font-weight: bold } /* Keyword.Declaration */
+.highlight .kn { color: #008000; font-weight: bold } /* Keyword.Namespace */
+.highlight .kp { color: #008000 } /* Keyword.Pseudo */
+.highlight .kr { color: #008000; font-weight: bold } /* Keyword.Reserved */
+.highlight .kt { color: #B00040 } /* Keyword.Type */
+.highlight .m { color: #666666 } /* Literal.Number */
+.highlight .s { color: #BA2121 } /* Literal.String */
+.highlight .na { color: #7D9029 } /* Name.Attribute */
+.highlight .nb { color: #008000 } /* Name.Builtin */
+.highlight .nc { color: #0000FF; font-weight: bold } /* Name.Class */
+.highlight .no { color: #880000 } /* Name.Constant */
+.highlight .nd { color: #AA22FF } /* Name.Decorator */
+.highlight .ni { color: #999999; font-weight: bold } /* Name.Entity */
+.highlight .ne { color: #D2413A; font-weight: bold } /* Name.Exception */
+.highlight .nf { color: #0000FF } /* Name.Function */
+.highlight .nl { color: #A0A000 } /* Name.Label */
+.highlight .nn { color: #0000FF; font-weight: bold } /* Name.Namespace */
+.highlight .nt { color: #008000; font-weight: bold } /* Name.Tag */
+.highlight .nv { color: #19177C } /* Name.Variable */
+.highlight .ow { color: #AA22FF; font-weight: bold } /* Operator.Word */
+.highlight .w { color: #bbbbbb } /* Text.Whitespace */
+.highlight .mf { color: #666666 } /* Literal.Number.Float */
+.highlight .mh { color: #666666 } /* Literal.Number.Hex */
+.highlight .mi { color: #666666 } /* Literal.Number.Integer */
+.highlight .mo { color: #666666 } /* Literal.Number.Oct */
+.highlight .sb { color: #BA2121 } /* Literal.String.Backtick */
+.highlight .sc { color: #BA2121 } /* Literal.String.Char */
+.highlight .sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
+.highlight .s2 { color: #BA2121 } /* Literal.String.Double */
+.highlight .se { color: #BB6622; font-weight: bold } /* Literal.String.Escape */
+.highlight .sh { color: #BA2121 } /* Literal.String.Heredoc */
+.highlight .si { color: #BB6688; font-weight: bold } /* Literal.String.Interpol */
+.highlight .sx { color: #008000 } /* Literal.String.Other */
+.highlight .sr { color: #BB6688 } /* Literal.String.Regex */
+.highlight .s1 { color: #BA2121 } /* Literal.String.Single */
+.highlight .ss { color: #19177C } /* Literal.String.Symbol */
+.highlight .bp { color: #008000 } /* Name.Builtin.Pseudo */
+.highlight .vc { color: #19177C } /* Name.Variable.Class */
+.highlight .vg { color: #19177C } /* Name.Variable.Global */
+.highlight .vi { color: #19177C } /* Name.Variable.Instance */
+.highlight .il { color: #666666 } /* Literal.Number.Integer.Long */
+
+
+</style>
+<script type="text/javascript">
+/*<![CDATA[*/
+var asciidoc = {  // Namespace.
+
+/////////////////////////////////////////////////////////////////////
+// Table Of Contents generator
+/////////////////////////////////////////////////////////////////////
+
+/* Author: Mihai Bazon, September 2002
+ * http://students.infoiasi.ro/~mishoo
+ *
+ * Table Of Content generator
+ * Version: 0.4
+ *
+ * Feel free to use this script under the terms of the GNU General Public
+ * License, as long as you do not remove or alter this notice.
+ */
+
+ /* modified by Troy D. Hanson, September 2006. License: GPL */
+ /* modified by Stuart Rackham, 2006, 2009. License: GPL */
+
+// toclevels = 1..4.
+toc: function (toclevels) {
+
+  function getText(el) {
+    var text = "";
+    for (var i = el.firstChild; i != null; i = i.nextSibling) {
+      if (i.nodeType == 3 /* Node.TEXT_NODE */) // IE doesn't speak constants.
+        text += i.data;
+      else if (i.firstChild != null)
+        text += getText(i);
+    }
+    return text;
+  }
+
+  function TocEntry(el, text, toclevel) {
+    this.element = el;
+    this.text = text;
+    this.toclevel = toclevel;
+  }
+
+  function tocEntries(el, toclevels) {
+    var result = new Array;
+    var re = new RegExp('[hH]([1-'+(toclevels+1)+'])');
+    // Function that scans the DOM tree for header elements (the DOM2
+    // nodeIterator API would be a better technique but not supported by all
+    // browsers).
+    var iterate = function (el) {
+      for (var i = el.firstChild; i != null; i = i.nextSibling) {
+        if (i.nodeType == 1 /* Node.ELEMENT_NODE */) {
+          var mo = re.exec(i.tagName);
+          if (mo && (i.getAttribute("class") || i.getAttribute("className")) != "float") {
+            result[result.length] = new TocEntry(i, getText(i), mo[1]-1);
+          }
+          iterate(i);
+        }
+      }
+    }
+    iterate(el);
+    return result;
+  }
+
+  var toc = document.getElementById("toc");
+  if (!toc) {
+    return;
+  }
+
+  // Delete existing TOC entries in case we're reloading the TOC.
+  var tocEntriesToRemove = [];
+  var i;
+  for (i = 0; i < toc.childNodes.length; i++) {
+    var entry = toc.childNodes[i];
+    if (entry.nodeName.toLowerCase() == 'div'
+     && entry.getAttribute("class")
+     && entry.getAttribute("class").match(/^toclevel/))
+      tocEntriesToRemove.push(entry);
+  }
+  for (i = 0; i < tocEntriesToRemove.length; i++) {
+    toc.removeChild(tocEntriesToRemove[i]);
+  }
+
+  // Rebuild TOC entries.
+  var entries = tocEntries(document.getElementById("content"), toclevels);
+  for (var i = 0; i < entries.length; ++i) {
+    var entry = entries[i];
+    if (entry.element.id == "")
+      entry.element.id = "_toc_" + i;
+    var a = document.createElement("a");
+    a.href = "#" + entry.element.id;
+    a.appendChild(document.createTextNode(entry.text));
+    var div = document.createElement("div");
+    div.appendChild(a);
+    div.className = "toclevel" + entry.toclevel;
+    toc.appendChild(div);
+  }
+  if (entries.length == 0)
+    toc.parentNode.removeChild(toc);
+},
+
+
+/////////////////////////////////////////////////////////////////////
+// Footnotes generator
+/////////////////////////////////////////////////////////////////////
+
+/* Based on footnote generation code from:
+ * http://www.brandspankingnew.net/archive/2005/07/format_footnote.html
+ */
+
+footnotes: function () {
+  // Delete existing footnote entries in case we're reloading the footnodes.
+  var i;
+  var noteholder = document.getElementById("footnotes");
+  if (!noteholder) {
+    return;
+  }
+  var entriesToRemove = [];
+  for (i = 0; i < noteholder.childNodes.length; i++) {
+    var entry = noteholder.childNodes[i];
+    if (entry.nodeName.toLowerCase() == 'div' && entry.getAttribute("class") == "footnote")
+      entriesToRemove.push(entry);
+  }
+  for (i = 0; i < entriesToRemove.length; i++) {
+    noteholder.removeChild(entriesToRemove[i]);
+  }
+
+  // Rebuild footnote entries.
+  var cont = document.getElementById("content");
+  var spans = cont.getElementsByTagName("span");
+  var refs = {};
+  var n = 0;
+  for (i=0; i<spans.length; i++) {
+    if (spans[i].className == "footnote") {
+      n++;
+      var note = spans[i].getAttribute("data-note");
+      if (!note) {
+        // Use [\s\S] in place of . so multi-line matches work.
+        // Because JavaScript has no s (dotall) regex flag.
+        note = spans[i].innerHTML.match(/\s*\[([\s\S]*)]\s*/)[1];
+        spans[i].innerHTML =
+          "[<a id='_footnoteref_" + n + "' href='#_footnote_" + n +
+          "' title='View footnote' class='footnote'>" + n + "</a>]";
+        spans[i].setAttribute("data-note", note);
+      }
+      noteholder.innerHTML +=
+        "<div class='footnote' id='_footnote_" + n + "'>" +
+        "<a href='#_footnoteref_" + n + "' title='Return to text'>" +
+        n + "</a>. " + note + "</div>";
+      var id =spans[i].getAttribute("id");
+      if (id != null) refs["#"+id] = n;
+    }
+  }
+  if (n == 0)
+    noteholder.parentNode.removeChild(noteholder);
+  else {
+    // Process footnoterefs.
+    for (i=0; i<spans.length; i++) {
+      if (spans[i].className == "footnoteref") {
+        var href = spans[i].getElementsByTagName("a")[0].getAttribute("href");
+        href = href.match(/#.*/)[0];  // Because IE return full URL.
+        n = refs[href];
+        spans[i].innerHTML =
+          "[<a href='#_footnote_" + n +
+          "' title='View footnote' class='footnote'>" + n + "</a>]";
+      }
+    }
+  }
+},
+
+install: function(toclevels) {
+  var timerId;
+
+  function reinstall() {
+    asciidoc.footnotes();
+    if (toclevels) {
+      asciidoc.toc(toclevels);
+    }
+  }
+
+  function reinstallAndRemoveTimer() {
+    clearInterval(timerId);
+    reinstall();
+  }
+
+  timerId = setInterval(reinstall, 500);
+  if (document.addEventListener)
+    document.addEventListener("DOMContentLoaded", reinstallAndRemoveTimer, false);
+  else
+    window.onload = reinstallAndRemoveTimer;
+}
+
+}
+asciidoc.install();
+/*]]>*/
+</script>
+</head>
+<body class="article">
+<div id="header">
+<h1>Programiranje s predlošcima</h1>
+<span id="author">Mladen Jurak</span><br>
+<span id="revnumber">version 2.0,</span>
+<span id="revdate">2018-02</span>
+</div>
+<div id="content">
+<div class="sect1">
+<h2 id="_klase_obiljezja_traits_classes">Klase obilježja (traits classes)</h2>
+<div class="sectionbody">
+<div class="paragraph"><p><strong>Primjer</strong>:
+  Napisati predložak funkcije za sumiranje elemenata u spremniku. Uz zadan pokazivač
+  na prvi element spremnika i pokazivač na jedno mjesto iza zadnjeg elementa treba prosumirati
+  sve elemente.</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="c1">// Prva verzija algoritma.</span>
+<span class="cp">#ifndef ACCUM_H</span>
+<span class="cp">#define ACCUM_H</span>
+
+
+<span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+<span class="n">T</span> <span class="n">accum</span><span class="p">(</span><span class="n">T</span> <span class="k">const</span><span class="o">*</span> <span class="n">begin</span><span class="p">,</span> <span class="n">T</span> <span class="k">const</span><span class="o">*</span> <span class="n">end</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">T</span> <span class="n">total</span> <span class="o">=</span> <span class="n">T</span><span class="p">();</span>  <span class="c1">// T() kreira nul vrijednost</span>
+    <span class="k">while</span><span class="p">(</span><span class="n">begin</span> <span class="o">!=</span> <span class="n">end</span><span class="p">){</span>
+        <span class="n">total</span> <span class="o">+=</span> <span class="o">*</span><span class="n">begin</span><span class="p">;</span>
+        <span class="o">++</span><span class="n">begin</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">total</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="cp">#endif</span>
+</pre></div></div></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_primjer_glavni_program">Primjer - glavni program:</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">"accum1.h"</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="c1">// Cjelobrojni niz</span>
+    <span class="kt">int</span> <span class="n">num</span><span class="p">[]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span> <span class="p">,</span><span class="mi">5</span> <span class="p">,</span><span class="mi">6</span><span class="p">};</span>
+
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Srednja vrijednost niza je "</span>
+              <span class="o">&lt;&lt;</span> <span class="n">accum</span><span class="p">(</span><span class="n">num</span><span class="p">,</span> <span class="n">num</span><span class="o">+</span><span class="mi">6</span><span class="p">)</span><span class="o">/</span><span class="mi">6</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+
+    <span class="c1">// Znakovne vrijednosti</span>
+    <span class="kt">char</span> <span class="n">name</span><span class="p">[]</span><span class="o">=</span><span class="s">"templates"</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">len</span> <span class="o">=</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">name</span><span class="p">)</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Srednja vrijednost niza je "</span>
+              <span class="o">&lt;&lt;</span> <span class="n">accum</span><span class="p">(</span><span class="o">&amp;</span><span class="n">name</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="o">&amp;</span><span class="n">name</span><span class="p">[</span><span class="n">len</span><span class="p">])</span><span class="o">/</span><span class="n">len</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Na naše iznenađenje izlaz programa će biti</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="n">Srednja</span> <span class="n">vrijednost</span> <span class="n">niza</span> <span class="n">je</span> <span class="mi">3</span>
+<span class="n">Srednja</span> <span class="n">vrijednost</span> <span class="n">niza</span> <span class="n">je</span> <span class="o">-</span><span class="mi">5</span>
+</pre></div></div></div>
+<div class="paragraph"><p><strong>Problem</strong> je u tome što <code>accum</code>  u drugom slučaju vraća tip <code>char</code>
+  koji je suviše mali za čuvanje sume svih znakova.</p></div>
+<div class="paragraph"><p><strong>Rješenje 1</strong>.  Uvođenju
+  novog template parametra za povratni tip algoritma (ali, povratni tip se ne može automatski deducirati)
+  koji će se morati eksplicitno zadavati.</p></div>
+<div class="paragraph"><p><strong>Rješenje 2</strong>. Uspostaviti   vezu između tipa <code>T</code> s kojim je algoritam instanciran
+  i tipa koji treba koristiti za povratnu vrijednost. Tip povratne vrijednosti je
+  ovdje shvaćen kao obilježje (trait) tipa <code>T</code>.</p></div>
+<div class="paragraph"><p>Formirajmo stoga predložak klase <code>AccumTraits</code> koja će sadržavati samo
+  <code>typedef</code>  koji daje tip povratne vrijednosti <code>AccT</code> za zadani tip <code>T</code>.
+  U općem slučaju <code>AccT=T</code>, no u raznim posebnim slučajevima tu vrijednost mijenjamo
+  specijalizacijom predloška klase.</p></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_klase_obiljezja">Klase obilježja</h2>
+<div class="sectionbody">
+<div class="paragraph"><p><strong>Klase obilježja</strong> (<em>traits</em> classes) donose informacije o tipovima.</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="c1">// Klasa obilježja tipa T i njene specijalizacije</span>
+<span class="cp">#ifndef ACUUM_TRAITS_H</span>
+<span class="cp">#define ACUUM_TRAITS_H</span>
+
+<span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+<span class="k">class</span> <span class="nc">AccumTraits</span><span class="p">{</span>
+    <span class="k">public</span><span class="o">:</span>
+        <span class="k">typedef</span> <span class="n">T</span> <span class="n">AccT</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="c1">// Eksplicitne specijalizacije</span>
+<span class="k">template</span> <span class="o">&lt;&gt;</span>
+<span class="k">class</span> <span class="nc">AccumTraits</span><span class="o">&lt;</span><span class="kt">char</span><span class="o">&gt;</span><span class="p">{</span>
+    <span class="k">public</span><span class="o">:</span>
+        <span class="k">typedef</span> <span class="kt">int</span> <span class="n">AccT</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="k">template</span> <span class="o">&lt;&gt;</span>
+<span class="k">class</span> <span class="nc">AccumTraits</span><span class="o">&lt;</span><span class="kt">short</span><span class="o">&gt;</span><span class="p">{</span>
+    <span class="k">public</span><span class="o">:</span>
+        <span class="k">typedef</span> <span class="kt">int</span> <span class="n">AccT</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="k">template</span> <span class="o">&lt;&gt;</span>
+<span class="k">class</span> <span class="nc">AccumTraits</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">{</span>
+    <span class="k">public</span><span class="o">:</span>
+        <span class="k">typedef</span> <span class="kt">long</span> <span class="n">AccT</span><span class="p">;</span>
+<span class="p">};</span>
+<span class="c1">// i tako dalje za ostale tipove</span>
+
+<span class="cp">#endif</span>
+</pre></div></div></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_nova_verzija_algoritma">Nova verzija algoritma:</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="c1">// Druga verzija algoritma.</span>
+<span class="cp">#ifndef ACCUM_2_H</span>
+<span class="cp">#define ACCUM_2_H</span>
+
+<span class="cp">#include</span> <span class="cpf">"accumtraits1.h"</span><span class="cp"></span>
+
+<span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+<span class="kr">inline</span>
+<span class="k">typename</span> <span class="n">AccumTraits</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;::</span><span class="n">AccT</span> <span class="n">accum</span><span class="p">(</span><span class="n">T</span> <span class="k">const</span><span class="o">*</span> <span class="n">begin</span><span class="p">,</span> <span class="n">T</span> <span class="k">const</span><span class="o">*</span> <span class="n">end</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">typedef</span> <span class="k">typename</span> <span class="n">AccumTraits</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;::</span><span class="n">AccT</span>  <span class="n">AccT</span><span class="p">;</span>  <span class="c1">// pokrata</span>
+
+    <span class="n">AccT</span> <span class="n">total</span> <span class="o">=</span> <span class="n">AccT</span><span class="p">();</span> <span class="c1">// AccT() kreira nul vrijednost</span>
+    <span class="k">while</span><span class="p">(</span><span class="n">begin</span> <span class="o">!=</span> <span class="n">end</span><span class="p">){</span>
+        <span class="n">total</span> <span class="o">+=</span> <span class="o">*</span><span class="n">begin</span><span class="p">;</span>
+        <span class="o">++</span><span class="n">begin</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">total</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Program sada korektno ispisuje</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="n">Srednja</span> <span class="n">vrijednost</span> <span class="n">niza</span> <span class="n">je</span> <span class="mi">3</span>
+<span class="n">Srednja</span> <span class="n">vrijednost</span> <span class="n">niza</span> <span class="n">je</span> <span class="mi">108</span>
+</pre></div></div></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_klase_obiljezja_nastavak">Klase obilježja - nastavak</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Klase obilježja ne sadrže samo <strong>tipove</strong> već mogu sadržavati i <strong>vrijednosti</strong>.
+  <em>Primjer</em>: inicijalizacija varijable
+  <code>total</code> u algoritmu.</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="c1">// Klasa obilježja tipa T i njene specijalizacije</span>
+<span class="cp">#ifndef ACUUM_TRAITS_2_H</span>
+<span class="cp">#define ACUUM_TRAITS_2_H</span>
+
+<span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+<span class="k">class</span> <span class="nc">AccumTraits</span><span class="p">{</span>
+    <span class="k">public</span><span class="o">:</span>
+        <span class="k">typedef</span> <span class="n">T</span> <span class="n">AccT</span><span class="p">;</span>
+        <span class="k">static</span> <span class="n">AccT</span> <span class="nf">zero</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="n">T</span><span class="p">();</span> <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="k">template</span> <span class="o">&lt;&gt;</span>
+<span class="k">class</span> <span class="nc">AccumTraits</span><span class="o">&lt;</span><span class="kt">char</span><span class="o">&gt;</span><span class="p">{</span>
+    <span class="k">public</span><span class="o">:</span>
+        <span class="k">typedef</span> <span class="kt">int</span> <span class="n">AccT</span><span class="p">;</span>
+        <span class="k">static</span> <span class="n">AccT</span> <span class="nf">zero</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="mi">0</span><span class="p">;</span> <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="k">template</span> <span class="o">&lt;&gt;</span>
+<span class="k">class</span> <span class="nc">AccumTraits</span><span class="o">&lt;</span><span class="kt">short</span><span class="o">&gt;</span><span class="p">{</span>
+    <span class="k">public</span><span class="o">:</span>
+        <span class="k">typedef</span> <span class="kt">int</span> <span class="n">AccT</span><span class="p">;</span>
+        <span class="k">static</span> <span class="n">AccT</span> <span class="nf">zero</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="mi">0</span><span class="p">;</span> <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="c1">// i tako dalje za ostale tipove</span>
+
+<span class="cp">#endif</span>
+</pre></div></div></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_nastavak">Nastavak</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Algoritam korigiramo na sljedeći način:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="c1">// Treća verzija algoritma.</span>
+<span class="cp">#ifndef ACCUM_3_H</span>
+<span class="cp">#define ACCUM_3_H</span>
+
+<span class="cp">#include</span> <span class="cpf">"accumtraits2.h"</span><span class="cp"></span>
+
+<span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+<span class="kr">inline</span>
+<span class="k">typename</span> <span class="n">AccumTraits</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;::</span><span class="n">AccT</span> <span class="n">accum</span><span class="p">(</span><span class="n">T</span> <span class="k">const</span><span class="o">*</span> <span class="n">begin</span><span class="p">,</span> <span class="n">T</span> <span class="k">const</span><span class="o">*</span> <span class="n">end</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">typedef</span> <span class="k">typename</span> <span class="n">AccumTraits</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;::</span><span class="n">AccT</span>  <span class="n">AccT</span><span class="p">;</span>  <span class="c1">// pokrata</span>
+
+    <span class="n">AccT</span> <span class="n">total</span> <span class="o">=</span> <span class="n">AccumTraits</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;::</span><span class="n">zero</span><span class="p">();</span> <span class="c1">// kreira nul vrijednost</span>
+    <span class="k">while</span><span class="p">(</span><span class="n">begin</span> <span class="o">!=</span> <span class="n">end</span><span class="p">){</span>
+        <span class="n">total</span> <span class="o">+=</span> <span class="o">*</span><span class="n">begin</span><span class="p">;</span>
+        <span class="o">++</span><span class="n">begin</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">total</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="cp">#endif</span>
+</pre></div></div></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_nastavak_2">Nastavak</h2>
+<div class="sectionbody">
+<div class="paragraph"><p><strong>Fleksibilniji način</strong> konstrukcije predloška funkcije <code>accum</code> bi bio onaj
+  u kome bi klasa obilježja bila dana kao parametar funkcije, pri čemu bi
+  parametru dali defaultnu vrijednost:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">"accumtraits2.h"</span><span class="cp"></span>
+
+<span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="p">,</span>
+          <span class="k">typename</span> <span class="n">AT</span> <span class="o">=</span> <span class="n">AccumTraits</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span>
+          <span class="o">&gt;</span>
+<span class="kr">inline</span>
+<span class="k">typename</span> <span class="n">AT</span><span class="o">::</span><span class="n">AccT</span> <span class="n">accum</span><span class="p">(</span><span class="n">T</span> <span class="k">const</span><span class="o">*</span> <span class="n">begin</span><span class="p">,</span> <span class="n">T</span> <span class="k">const</span><span class="o">*</span> <span class="n">end</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">typedef</span> <span class="k">typename</span> <span class="n">AT</span><span class="o">::</span><span class="n">AccT</span>  <span class="n">AccT</span><span class="p">;</span>  <span class="c1">// pokrata</span>
+
+    <span class="n">AccT</span> <span class="n">total</span> <span class="o">=</span> <span class="n">AT</span><span class="o">::</span><span class="n">zero</span><span class="p">();</span> <span class="c1">// kreira nul vrijednost</span>
+    <span class="k">while</span><span class="p">(</span><span class="n">begin</span> <span class="o">!=</span> <span class="n">end</span><span class="p">){</span>
+        <span class="n">total</span> <span class="o">+=</span> <span class="o">*</span><span class="n">begin</span><span class="p">;</span>
+        <span class="o">++</span><span class="n">begin</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">total</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div></div></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_akcijske_klase_em_policy_classes_em">Akcijske klase <em>(Policy classes)</em></h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Naš  algoritam veže akumulaciju uz sumaciju, no mogli bismo zamisliti
+  drukčiju primjenu <code>accum()</code> algoritma.  On bi mogao, naprimjer,
+  računati produkt brojeva umjesto sume. Da bismo to omogućili uvest ćemo novi
+  parametar koji će predstavljati klasu koja zna koju operaciju treba izvršiti.</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="c1">//  Verzija algoritma koja je parametrizirana klasom obilježja i</span>
+<span class="c1">//  akcijskom klasom</span>
+<span class="cp">#include</span> <span class="cpf">"accumtraits2.h"</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">"policy1.h"</span><span class="cp"></span>
+
+<span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="p">,</span>
+          <span class="k">typename</span> <span class="n">Policy</span> <span class="o">=</span> <span class="n">SumPolicy</span><span class="p">,</span>
+          <span class="k">typename</span> <span class="n">AT</span> <span class="o">=</span> <span class="n">AccumTraits</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span>
+          <span class="o">&gt;</span>
+<span class="kr">inline</span>
+<span class="k">typename</span> <span class="n">AT</span><span class="o">::</span><span class="n">AccT</span> <span class="n">accum</span><span class="p">(</span><span class="n">T</span> <span class="k">const</span><span class="o">*</span> <span class="n">begin</span><span class="p">,</span> <span class="n">T</span> <span class="k">const</span><span class="o">*</span> <span class="n">end</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">typedef</span> <span class="k">typename</span> <span class="n">AT</span><span class="o">::</span><span class="n">AccT</span>  <span class="n">AccT</span><span class="p">;</span>  <span class="c1">// pokrata</span>
+
+    <span class="n">AccT</span> <span class="n">total</span> <span class="o">=</span> <span class="n">AT</span><span class="o">::</span><span class="n">zero</span><span class="p">();</span> <span class="c1">// kreira nul vrijednost</span>
+    <span class="k">while</span><span class="p">(</span><span class="n">begin</span> <span class="o">!=</span> <span class="n">end</span><span class="p">){</span>
+        <span class="c1">// Neka akcijska klasa izvrši odgovarajuću operaciju</span>
+        <span class="n">Policy</span><span class="o">::</span><span class="n">accumulate</span><span class="p">(</span><span class="n">total</span><span class="p">,</span> <span class="o">*</span><span class="n">begin</span><span class="p">);</span>
+        <span class="o">++</span><span class="n">begin</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">total</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div></div></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_nastavak_3">Nastavak</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Različite akcijske klase su vrlo jednostavne i nude samo jednu statičku metodu <code>accumulate</code>.</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="cp">#ifndef POLICY_1_H</span>
+<span class="cp">#define POLICY_1_H</span>
+
+<span class="k">struct</span> <span class="n">SumPolicy</span><span class="p">{</span>
+    <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T1</span><span class="p">,</span> <span class="k">typename</span> <span class="n">T2</span><span class="o">&gt;</span>
+        <span class="k">static</span> <span class="kt">void</span> <span class="n">accumulate</span><span class="p">(</span><span class="n">T1</span><span class="o">&amp;</span> <span class="n">total</span><span class="p">,</span> <span class="n">T2</span> <span class="k">const</span><span class="o">&amp;</span> <span class="n">value</span><span class="p">){</span> <span class="n">total</span> <span class="o">+=</span> <span class="n">value</span><span class="p">;</span> <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="k">struct</span> <span class="n">MultPolicy</span><span class="p">{</span>
+    <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T1</span><span class="p">,</span> <span class="k">typename</span> <span class="n">T2</span><span class="o">&gt;</span>
+        <span class="k">static</span> <span class="kt">void</span> <span class="n">accumulate</span><span class="p">(</span><span class="n">T1</span><span class="o">&amp;</span> <span class="n">total</span><span class="p">,</span> <span class="n">T2</span> <span class="k">const</span><span class="o">&amp;</span> <span class="n">value</span><span class="p">){</span> <span class="n">total</span> <span class="o">*=</span> <span class="n">value</span><span class="p">;</span> <span class="p">}</span>
+<span class="p">};</span>
+<span class="cp">#endif</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Ipak naš kod neće funkcionirati korektno s multiplikacijom kao operacijom - dobiveni rezultat je
+  uvijek nula. Razlog je u tome što je inicijalna vrijednost uvijek nula pa je produkt nula.
+  To dolazi do interakcije iz među klasa obilježja i akcija koju treba riješiti na neki način.
+  Jedna od mogućnosti je da inicijalnu vrijednost pri akumulaciji zadamo kao parametar funkcije
+  s defaultnom vrijednošću.</p></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_nastavak_4">Nastavak</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">"accumtraits2.h"</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">"policy1.h"</span><span class="cp"></span>
+
+<span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="p">,</span>
+          <span class="k">typename</span> <span class="n">Policy</span> <span class="o">=</span> <span class="n">SumPolicy</span><span class="p">,</span>
+          <span class="k">typename</span> <span class="n">AT</span> <span class="o">=</span> <span class="n">AccumTraits</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span>
+          <span class="o">&gt;</span>
+<span class="kr">inline</span>
+<span class="k">typename</span> <span class="n">AT</span><span class="o">::</span><span class="n">AccT</span> <span class="n">accum</span><span class="p">(</span><span class="n">T</span> <span class="k">const</span><span class="o">*</span> <span class="n">begin</span><span class="p">,</span> <span class="n">T</span> <span class="k">const</span><span class="o">*</span> <span class="n">end</span><span class="p">,</span> <span class="n">T</span> <span class="n">init</span> <span class="o">=</span> <span class="n">AT</span><span class="o">::</span><span class="n">zero</span><span class="p">())</span>
+<span class="p">{</span>
+    <span class="k">typedef</span> <span class="k">typename</span> <span class="n">AT</span><span class="o">::</span><span class="n">AccT</span>  <span class="n">AccT</span><span class="p">;</span>  <span class="c1">// pokrata</span>
+
+    <span class="n">AccT</span> <span class="n">total</span> <span class="o">=</span> <span class="n">init</span><span class="p">;</span>
+    <span class="k">while</span><span class="p">(</span><span class="n">begin</span> <span class="o">!=</span> <span class="n">end</span><span class="p">){</span>
+        <span class="c1">// Neka akcijska klasa izvrši odgovarajuću operaciju</span>
+        <span class="n">Policy</span><span class="o">::</span><span class="n">accumulate</span><span class="p">(</span><span class="n">total</span><span class="p">,</span> <span class="o">*</span><span class="n">begin</span><span class="p">);</span>
+        <span class="o">++</span><span class="n">begin</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">total</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Sada će kod</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="c1">// Cjelobrojni niz</span>
+<span class="kt">int</span> <span class="n">num</span><span class="p">[]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span> <span class="p">,</span><span class="mi">5</span> <span class="p">,</span><span class="mi">6</span><span class="p">};</span>
+
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Umnožak svih clanova je "</span>
+          <span class="o">&lt;&lt;</span> <span class="n">accum</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="n">MultPolicy</span><span class="o">&gt;</span><span class="p">(</span><span class="n">num</span><span class="p">,</span> <span class="n">num</span><span class="o">+</span><span class="mi">6</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+
+<span class="c1">// Znakovne vrijednosti</span>
+<span class="kt">char</span> <span class="n">name</span><span class="p">[]</span><span class="o">=</span><span class="s">"templates"</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">len</span> <span class="o">=</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">name</span><span class="p">)</span> <span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Srednja vrijednost niza je "</span>
+          <span class="o">&lt;&lt;</span> <span class="n">accum</span><span class="p">(</span><span class="o">&amp;</span><span class="n">name</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="o">&amp;</span><span class="n">name</span><span class="p">[</span><span class="n">len</span><span class="p">])</span><span class="o">/</span><span class="n">len</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+</pre></div></div></div>
+<div class="paragraph"><p>korektno ispisati</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="n">Umno</span><span class="err">ž</span><span class="n">ak</span> <span class="n">svih</span> <span class="n">clanova</span> <span class="n">je</span> <span class="mi">720</span>
+<span class="n">Srednja</span> <span class="n">vrijednost</span> <span class="n">niza</span> <span class="n">je</span> <span class="mi">108</span>
+</pre></div></div></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_sfinae_substitution_failure_is_not_an_error">SFINAE (substitution-failure-is-not-an-error)</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>SFINAE je princip koji omogućava preopterećenje predložaka funkcija ali ujedno i
+  neke specifične tehnike programiranja. Princip se sastoji u sljedećem:</p></div>
+<div class="paragraph"><p>Kada prevodilac pokušava
+  instancirati funkciju iz više preopterećenih predložaka supstitucija parametra u neke od predložaka
+  dovodi  do neuspjeha. Taj neuspjeh nije grešaka već prevodilac nastavlja sa sljedećim predloškom,
+  dok ne uspije instancirati traženu funkciju.</p></div>
+<div class="paragraph"><p><strong>Primjena</strong>: identificiramo da li zadani tip ima podtip <code>X</code>.</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="k">typedef</span> <span class="kt">char</span> <span class="n">RT1</span><span class="p">;</span>
+<span class="k">typedef</span> <span class="k">struct</span><span class="p">{</span> <span class="kt">char</span> <span class="n">a</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span> <span class="p">}</span> <span class="n">RT2</span><span class="p">;</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Zatim definiramo dva predloška funkcije: prvi uzima pokazivač na konstantan podtip <code>X</code>
+ dok drugi uzima sve vrste argumenta (<code>...</code>) — to je C-verzija funkcije s proizvoljnim brojem argumenataza korištenje
+ vidi <a href="http://www.cplusplus.com/reference/cstdarg/">www.cplusplus.com/reference/cstdarg/</a>.</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span> <span class="n">RT1</span> <span class="n">test</span><span class="p">(</span><span class="k">typename</span> <span class="n">T</span><span class="o">::</span><span class="n">X</span> <span class="k">const</span><span class="o">*</span><span class="p">);</span>
+<span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span> <span class="n">RT2</span> <span class="n">test</span><span class="p">(...);</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Definirajmo jedan tip koji ima podtip  <code>X</code>.</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="k">struct</span> <span class="n">VVV</span><span class="p">{</span>
+    <span class="k">typedef</span> <span class="kt">int</span> <span class="n">X</span><span class="p">;</span>
+   <span class="c1">// ..</span>
+<span class="p">};</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">test</span><span class="o">&lt;</span><span class="n">VVV</span><span class="o">&gt;</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>   <span class="c1">// ispisuje 1</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">test</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>  <span class="c1">// ispisuje 2</span>
+
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Kod funkcionira na sljedeći način:</p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+prevodilac treba odabrati koji će funkcijski predložak  instancirati
+    na osnovu parametra (<code>0</code>) koji je tipa <code>const int</code>.
+</p>
+</li>
+<li>
+<p>
+Takav se parametar može konvertirati u
+    pokazivač na <code>const T::X</code> (naravno kao tip <code>T</code> ima podtip <code>X</code>).
+</p>
+</li>
+<li>
+<p>
+Ta konverzija je slabija od
+konverzije koja je potrebna za funkciju koja uzima proizvoljne parametre (<code>...</code>).
+</p>
+</li>
+</ul></div>
+<div class="paragraph"><p>To znači da će
+prevodilac preferirati <code>test</code> koji vraća <code>RT1</code> ukoliko <code>T</code> ima podtip <code>X</code>.</p></div>
+<div class="paragraph"><p>Time smo dobili tehniku kojom možemo provjeriti  (za vrijeme kompilacije) da li neki tip
+ima podtip <code>X</code> (<code>sizeof</code> daje 1) ili nema (<code>sizeof</code> daje 2).
+Kao sljedeći korak možemo definirati makro:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="cp">#define type_has_memeber_type_X(T) \</span>
+<span class="cp">    (sizeof(test&lt;T&gt;(0)) == 1)</span>
+</pre></div></div></div>
+<div class="paragraph"><p>i koristiti ga na sljedeći način,</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="n">type_has_memeber_type_X</span><span class="p">(</span><span class="kt">double</span><span class="p">);</span> <span class="c1">// daje 0=false</span>
+<span class="n">type_has_memeber_type_X</span><span class="p">(</span><span class="n">VVV</span><span class="p">);</span> <span class="c1">// daje 1=true</span>
+</pre></div></div></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_prepoznavanje_klasa">Prepoznavanje klasa</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Pomoću pokazane tehnike napisat ćemo kod koji prepoznaje je li zadani tip klasa (korisnički tip) ili nije.</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+<span class="k">class</span> <span class="nc">IsClassType</span><span class="p">{</span>
+    <span class="k">private</span><span class="o">:</span>
+        <span class="k">typedef</span> <span class="kt">char</span> <span class="n">One</span><span class="p">;</span>
+        <span class="k">typedef</span> <span class="k">struct</span> <span class="p">{</span> <span class="kt">char</span> <span class="n">a</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span> <span class="p">}</span> <span class="n">Two</span><span class="p">;</span>
+        <span class="c1">// "int C::*" je pokazivač na varijablu članicu klase C tipa int</span>
+        <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">C</span><span class="o">&gt;</span> <span class="k">static</span> <span class="n">One</span> <span class="n">test</span><span class="p">(</span><span class="kt">int</span> <span class="n">C</span><span class="o">::*</span><span class="p">);</span>
+        <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">C</span><span class="o">&gt;</span> <span class="k">static</span> <span class="n">Two</span> <span class="n">test</span><span class="p">(...);</span>
+    <span class="k">public</span><span class="o">:</span>
+        <span class="k">enum</span> <span class="p">{</span> <span class="n">Yes</span> <span class="o">=</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">IsClassType</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;::</span><span class="n">test</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span> <span class="o">==</span> <span class="mi">1</span> <span class="p">};</span>
+        <span class="k">enum</span> <span class="p">{</span> <span class="n">No</span> <span class="o">=</span> <span class="o">!</span><span class="n">Yes</span> <span class="p">};</span>
+<span class="p">};</span>
+
+<span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+<span class="kt">void</span> <span class="n">check</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">IsClassType</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;::</span><span class="n">Yes</span><span class="p">)</span> <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Klasa</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+    <span class="k">else</span>                    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Nije klasa</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// Verzija s dedukcijom parametra</span>
+<span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+<span class="kt">void</span> <span class="n">check</span><span class="p">(</span><span class="n">T</span><span class="p">)</span>
+<span class="p">{</span> <span class="n">check</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">();</span> <span class="p">}</span>
+</pre></div></div></div>
+<div class="paragraph"><p><strong>Napomena</strong>. O pokazivaču na varijablu članicu klase (i operatorima <code>.*</code>, <code>-&gt;*</code>) vidi
+<a href="http://en.cppreference.com/w/cpp/language/pointer">en.cppreference.com/w/cpp/language/pointer</a>.</p></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_primjena">Primjena:</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">"isclass.h"</span><span class="cp"></span>
+<span class="k">struct</span> <span class="n">MyStruct</span><span class="p">{</span> <span class="p">};</span>
+<span class="k">class</span> <span class="nc">MyClass</span><span class="p">{</span> <span class="p">};</span>
+<span class="k">union</span> <span class="n">MyUnion</span><span class="p">{</span> <span class="p">};</span>
+<span class="kt">void</span> <span class="nf">myfun</span><span class="p">(){}</span>
+<span class="k">enum</span> <span class="n">MyEnum</span> <span class="p">{</span> <span class="n">e1</span> <span class="p">};</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"int: "</span><span class="p">;</span> <span class="n">check</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">();</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"MyStruct: "</span><span class="p">;</span> <span class="n">check</span><span class="o">&lt;</span><span class="n">MyStruct</span><span class="o">&gt;</span><span class="p">();</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"MyClass : "</span><span class="p">;</span> <span class="n">check</span><span class="o">&lt;</span><span class="n">MyClass</span> <span class="o">&gt;</span><span class="p">();</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"MyUnion : "</span><span class="p">;</span> <span class="n">check</span><span class="o">&lt;</span><span class="n">MyUnion</span> <span class="o">&gt;</span><span class="p">();</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"MyEnum  : "</span><span class="p">;</span> <span class="n">check</span><span class="o">&lt;</span><span class="n">MyEnum</span>  <span class="o">&gt;</span><span class="p">();</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"myfun   : "</span><span class="p">;</span> <span class="n">check</span><span class="p">(</span><span class="n">myfun</span><span class="p">);</span>
+
+    <span class="n">MyClass</span> <span class="n">c</span><span class="p">;</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"MyClass : "</span><span class="p">;</span> <span class="n">check</span><span class="p">(</span><span class="n">c</span><span class="p">);</span>
+
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div></div></div>
+<div class="paragraph"><p>daje ispis</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="o">:</span> <span class="n">Nije</span> <span class="n">klasa</span>
+<span class="nl">MyStruct</span><span class="p">:</span> <span class="n">Klasa</span>
+<span class="nl">MyClass</span> <span class="p">:</span> <span class="n">Klasa</span>
+<span class="nl">MyUnion</span> <span class="p">:</span> <span class="n">Klasa</span>
+<span class="nl">MyEnum</span>  <span class="p">:</span> <span class="n">Nije</span> <span class="n">klasa</span>
+<span class="nl">myfun</span>   <span class="p">:</span> <span class="n">Nije</span> <span class="n">klasa</span>
+<span class="nl">MyClass</span> <span class="p">:</span> <span class="n">Klasa</span>
+</pre></div></div></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_podrska_za_manipulacije_s_tipovim_u_stl_u">Podrška za manipulacije s tipovim u STL-u</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>U datoteci zaglavlja <code>&lt;type_traits&gt;</code>  nalaze se razne metode za rad sa tipovima.
+Na primjer, ako imamo</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="k">struct</span> <span class="n">A</span><span class="p">{</span>
+  <span class="kt">int</span> <span class="n">x_</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="k">union</span> <span class="n">B</span><span class="p">{</span>
+<span class="p">};</span>
+</pre></div></div></div>
+<div class="paragraph"><p>onda možemo ispitivati razna svojstva tipova:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">is_class</span><span class="o">&lt;</span><span class="n">A</span><span class="o">&gt;::</span><span class="n">value</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>                 <span class="c1">// 1</span>
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">is_class</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;::</span><span class="n">value</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>            <span class="c1">// 0</span>
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">is_class</span><span class="o">&lt;</span><span class="n">B</span><span class="o">&gt;::</span><span class="n">value</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>                 <span class="c1">// 0</span>
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">is_union</span><span class="o">&lt;</span><span class="n">B</span><span class="o">&gt;::</span><span class="n">value</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>                 <span class="c1">// 1</span>
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">is_default_constructible</span><span class="o">&lt;</span><span class="n">A</span><span class="o">&gt;::</span><span class="n">value</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span> <span class="c1">// 1</span>
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">has_virtual_destructor</span><span class="o">&lt;</span><span class="n">A</span><span class="o">&gt;::</span><span class="n">value</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>   <span class="c1">// 0</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Postoje i brojne druge metode za ispitivanje tipova.
+Druge funkcije manipuliraju s tipovima. Na primjer,</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+<span class="k">struct</span> <span class="n">TT</span><span class="p">{</span>
+  <span class="k">using</span>  <span class="n">NoRef</span> <span class="o">=</span> <span class="k">typename</span> <span class="n">std</span><span class="o">::</span><span class="n">remove_reference</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;::</span><span class="n">type</span><span class="p">;</span>
+  <span class="k">using</span>  <span class="n">Base</span> <span class="o">=</span> <span class="k">typename</span> <span class="n">std</span><span class="o">::</span><span class="n">remove_cv</span><span class="o">&lt;</span><span class="n">NoRef</span><span class="o">&gt;::</span><span class="n">type</span><span class="p">;</span>  <span class="c1">// remove const i volatile</span>
+  <span class="k">using</span>  <span class="n">Pointer</span> <span class="o">=</span>  <span class="n">Base</span> <span class="o">*</span><span class="p">;</span>
+  <span class="k">using</span>  <span class="n">PointerToConst</span> <span class="o">=</span> <span class="k">const</span> <span class="n">Base</span> <span class="o">*</span><span class="p">;</span>
+<span class="p">};</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Dobit ćemo:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="k">typeid</span><span class="p">(</span><span class="n">TT</span><span class="o">&lt;</span><span class="k">const</span> <span class="kt">int</span> <span class="o">&amp;&gt;::</span><span class="n">Pointer</span><span class="p">).</span><span class="n">name</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>        <span class="c1">// Pi</span>
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="k">typeid</span><span class="p">(</span><span class="n">TT</span><span class="o">&lt;</span><span class="k">const</span> <span class="kt">int</span> <span class="o">&amp;&gt;::</span><span class="n">PointerToConst</span><span class="p">).</span><span class="n">name</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span> <span class="c1">// PKi</span>
+</pre></div></div></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_onemogucavanje_predlozaka_pomocu_code_std_enable_if_lt_gt_code">Onemogućavanje predložaka pomoću <code>std::enable_if&lt;&gt;</code></h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Pomoću <code>std::enable_if&lt;&gt;</code> (zaglavlje <code>&lt;type_traits&gt;</code>) možemo onemogućiti generiranje funkcije iz predložka u nekim situacijama.
+<code>std::enable_if&lt;&gt;</code> je parametrizirana struktura sa dva parametra predloška:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="k">template</span><span class="o">&lt;</span> <span class="kt">bool</span> <span class="n">B</span><span class="p">,</span> <span class="k">class</span> <span class="nc">T</span> <span class="o">=</span> <span class="kt">void</span> <span class="o">&gt;</span>
+<span class="k">struct</span> <span class="n">enable_if</span><span class="p">;</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Ako je <code>B</code> jednak <code>true</code> onda je <code>std::enable_if&lt;true,T&gt;::type = T</code>. Ako je  <code>B</code> jednak <code>false</code> onda  <code>std::enable_if&lt;true,T&gt;::type</code>
+ne postoji.</p></div>
+<div class="paragraph"><p>Pomoću <code>std::enable_if&lt;&gt;</code> možemo spriječiti da prevodilac instancira predložak u nekim slučajevima.</p></div>
+<div class="paragraph"><p>Primjer:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+<span class="k">typename</span> <span class="n">std</span><span class="o">::</span><span class="n">enable_if</span><span class="o">&lt;</span><span class="p">(</span><span class="k">sizeof</span><span class="p">(</span><span class="n">T</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">4</span><span class="p">),</span> <span class="n">T</span><span class="o">&gt;::</span><span class="n">type</span> <span class="n">f</span><span class="p">(</span><span class="n">T</span> <span class="n">x</span><span class="p">){</span>
+  <span class="k">return</span> <span class="n">x</span><span class="o">*</span><span class="n">x</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="n">f</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">){</span>
+  <span class="k">return</span> <span class="n">x</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// ...</span>
+
+<span class="kt">char</span>  <span class="n">c</span> <span class="o">=</span> <span class="sc">'a'</span><span class="p">;</span>
+<span class="kt">int</span>   <span class="n">x</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span>
+<span class="kt">long</span>  <span class="n">y</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span>
+
+<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="s">" : "</span> <span class="o">&lt;&lt;</span> <span class="n">f</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span> <span class="c1">// int f(int)</span>
+<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="s">" : "</span> <span class="o">&lt;&lt;</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span> <span class="c1">// int f(int)</span>
+<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">y</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="s">" : "</span> <span class="o">&lt;&lt;</span> <span class="n">f</span><span class="p">(</span><span class="n">y</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span> <span class="c1">// instancira long f(long)</span>
+</pre></div></div></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_crtp_curiously_recurring_template_pattern">CRTP (Curiously Recurring Template Pattern)</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Ova se tehnika sastoji u tome da izvedena klase pošalje samu sebe kao template-parametra
+baznoj klasi koja se generira iz predloška klase. Na primjer,</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+
+<span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+<span class="k">class</span> <span class="nc">Base</span> <span class="p">{</span>
+    <span class="k">public</span><span class="o">:</span>
+        <span class="n">Base</span><span class="p">()</span> <span class="o">:</span> <span class="n">px</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="p">{}</span>
+        <span class="n">Base</span><span class="p">(</span><span class="n">T</span><span class="o">*</span> <span class="n">p</span><span class="p">)</span> <span class="o">:</span> <span class="n">px</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="p">{}</span>
+        <span class="n">T</span> <span class="o">*</span>  <span class="n">px</span><span class="p">;</span>  <span class="c1">// T će biti nepotpuni tip i stoga</span>
+                  <span class="c1">// možemo koristiti samo reference i</span>
+                  <span class="c1">// pokazivače na T</span>
+       <span class="c1">// ...</span>
+<span class="p">};</span>
+
+<span class="c1">// Klasa samu sebe šalje baznoj klasi kao parametar.</span>
+<span class="k">class</span> <span class="nc">Derived</span> <span class="o">:</span> <span class="k">public</span> <span class="n">Base</span><span class="o">&lt;</span><span class="n">Derived</span><span class="o">&gt;</span>
+<span class="p">{</span>
+    <span class="k">public</span><span class="o">:</span>
+        <span class="c1">// Inicijalizira pokazivač u Base svojom adresom</span>
+        <span class="n">Derived</span><span class="p">()</span> <span class="o">:</span> <span class="n">Base</span><span class="o">&lt;</span><span class="n">Derived</span><span class="o">&gt;</span><span class="p">(</span><span class="k">this</span><span class="p">),</span> <span class="n">n</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="p">{}</span>
+        <span class="kt">int</span> <span class="n">n</span><span class="p">;</span>
+    <span class="c1">// ...</span>
+<span class="p">};</span>
+</pre></div></div></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_brojanje_instanci_klase">Brojanje instanci klase:</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Jedna moguća primjena ove tehnike je u brojanju instanci pojedine klase.
+To je moguće postići pomoću statičke varijable te modificiranjem konstruktora,
+konstruktora kopije i destruktora kako bi se pratio broj instanci. Umjesto
+da takav kod implementiramo u svakoj klasi možemo ga faktorizirati u baznu klasu.</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="cp">#ifndef OBJ_CNT_H</span>
+<span class="cp">#define OBJ_CNT_H</span>
+
+<span class="cp">#include</span> <span class="cpf">&lt;cstddef&gt;</span><span class="cp"></span>
+
+
+<span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+<span class="k">class</span> <span class="nc">ObjectCounter</span> <span class="p">{</span>
+    <span class="k">private</span><span class="o">:</span>
+        <span class="k">static</span> <span class="kt">size_t</span> <span class="n">cnt</span><span class="p">;</span>
+    <span class="k">protected</span><span class="o">:</span>
+        <span class="n">ObjectCounter</span><span class="p">(){</span> <span class="o">++</span><span class="n">cnt</span><span class="p">;</span> <span class="p">}</span>
+        <span class="n">ObjectCounter</span><span class="p">(</span><span class="n">ObjectCounter</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="k">const</span> <span class="o">&amp;</span><span class="p">){</span> <span class="o">++</span><span class="n">cnt</span><span class="p">;</span> <span class="p">}</span>
+        <span class="o">~</span><span class="n">ObjectCounter</span><span class="p">()</span> <span class="p">{</span><span class="o">--</span><span class="n">cnt</span><span class="p">;</span> <span class="p">}</span>
+    <span class="k">public</span><span class="o">:</span>
+        <span class="k">static</span> <span class="kt">size_t</span> <span class="n">count</span><span class="p">()</span> <span class="p">{</span><span class="k">return</span> <span class="n">cnt</span><span class="p">;</span> <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+<span class="kt">size_t</span> <span class="n">ObjectCounter</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;::</span><span class="n">cnt</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="cp">#endif</span>
+</pre></div></div></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_nastavak_5">Nastavak</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Izvedena klasa i mali test program su dani ovdje.</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">"obj-cnt.h"</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+
+<span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+<span class="k">class</span> <span class="nc">A</span> <span class="o">:</span> <span class="k">public</span> <span class="n">ObjectCounter</span><span class="o">&lt;</span><span class="n">A</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="o">&gt;</span>
+<span class="p">{</span>
+    <span class="k">public</span><span class="o">:</span>
+        <span class="n">T</span> <span class="n">i</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+<span class="kt">void</span> <span class="n">f</span><span class="p">(</span><span class="n">A</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">a</span><span class="p">)</span> <span class="c1">// prijenos kopiranjem</span>
+<span class="p">{</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span>  <span class="n">A</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;::</span><span class="n">count</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+
+
+<span class="kt">int</span> <span class="n">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">A</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span>    <span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">,</span><span class="n">k</span><span class="p">;</span>
+    <span class="n">A</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="n">y</span><span class="p">;</span>
+    <span class="n">A</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="o">*</span> <span class="n">px</span> <span class="o">=</span> <span class="k">new</span> <span class="n">A</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="p">();</span>
+
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">A</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;::</span><span class="n">count</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">A</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;::</span><span class="n">count</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+    <span class="n">f</span><span class="p">(</span><span class="n">z</span><span class="p">);</span>
+    <span class="k">delete</span> <span class="n">px</span><span class="p">;</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">A</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;::</span><span class="n">count</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Ispis je</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="mi">3</span>
+<span class="mi">4</span>
+<span class="mi">5</span>
+<span class="mi">3</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Uočimo da bazna klasa mora biti parametrizirana izvedenom klasom čak ako i ne koristi taj parametar.
+U suprotnom bi naime bazna klasa brojala instance svih klasa koje su iz nje izvedene.</p></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_metaprogramiranje_predloscima_em_template_metaprogramming_em">Metaprogramiranje predlošcima (<em>template metaprogramming</em>)</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Metaprogramiranje predstavlja "programiranje programa".
+To znači pisanje koda koji će generirati kod koji će se
+izvršavati na računalu. Ono je omogućeno predlošcima jer
+oni predstavljaju "program" koji prevodilac prevodi u kod
+koji će biti izvršen.</p></div>
+<div class="paragraph"><p><strong>Primjer:</strong> računanje potencije broja 3 — rekurzivno, za vrijeme kompilacije.</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="cp">#ifndef POW_3_H</span>
+<span class="cp">#define POW_3_H</span>
+
+<span class="k">template</span> <span class="o">&lt;</span><span class="kt">int</span> <span class="n">N</span><span class="o">&gt;</span>
+<span class="k">struct</span> <span class="n">Pow3</span><span class="p">{</span>
+     <span class="k">enum</span> <span class="p">{</span><span class="n">result</span> <span class="o">=</span> <span class="mi">3</span> <span class="o">*</span> <span class="n">Pow3</span><span class="o">&lt;</span><span class="n">N</span><span class="o">-</span><span class="mi">1</span><span class="o">&gt;::</span><span class="n">result</span><span class="p">};</span>
+<span class="p">};</span>
+
+<span class="c1">// puna specijalizacija za N=0</span>
+<span class="k">template</span> <span class="o">&lt;&gt;</span>
+<span class="k">struct</span> <span class="n">Pow3</span><span class="o">&lt;</span><span class="mi">0</span><span class="o">&gt;</span><span class="p">{</span>
+    <span class="k">enum</span> <span class="p">{</span> <span class="n">result</span> <span class="o">=</span> <span class="mi">1</span> <span class="p">};</span>
+<span class="p">};</span>
+<span class="cp">#endif</span>
+</pre></div></div></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">"pow3.h"</span><span class="cp"></span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Pow3<b>&lt;4&gt;</b>::result = "</span> <span class="o">&lt;&lt;</span> <span class="n">Pow3</span><span class="o">&lt;</span><span class="mi">4</span><span class="o">&gt;::</span><span class="n">result</span>
+              <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Prevodilac će izvršiti sljedeći račun:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="n">Pow3</span><span class="o">&lt;</span><span class="mi">4</span><span class="o">&gt;::</span><span class="n">result</span> <span class="o">=</span> <span class="mi">3</span><span class="o">*</span> <span class="n">Pow3</span><span class="o">&lt;</span><span class="mi">3</span><span class="o">&gt;::</span><span class="n">result</span>
+                <span class="o">=</span> <span class="mi">3</span><span class="o">*</span> <span class="mi">3</span><span class="o">*</span> <span class="n">Pow3</span><span class="o">&lt;</span><span class="mi">2</span><span class="o">&gt;::</span><span class="n">result</span>
+                <span class="o">=</span> <span class="mi">3</span><span class="o">*</span> <span class="mi">3</span><span class="o">*</span> <span class="mi">3</span><span class="o">*</span> <span class="n">Pow3</span><span class="o">&lt;</span><span class="mi">1</span><span class="o">&gt;::</span><span class="n">result</span>
+                <span class="o">=</span> <span class="mi">3</span><span class="o">*</span> <span class="mi">3</span><span class="o">*</span> <span class="mi">3</span><span class="o">*</span> <span class="mi">3</span><span class="o">*</span> <span class="n">Pow3</span><span class="o">&lt;</span><span class="mi">0</span><span class="o">&gt;::</span><span class="n">result</span>
+                <span class="o">=</span> <span class="mi">3</span><span class="o">*</span> <span class="mi">3</span><span class="o">*</span> <span class="mi">3</span><span class="o">*</span> <span class="mi">3</span><span class="o">*</span>  <span class="mi">1</span>
+</pre></div></div></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_primjer_loop_unrolling">Primjer: loop unrolling</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Numerički kod vrlo često radi s petljama u kojima se računaju elementarne operacije nad
+vektorima. Na primjer, skalarni produkt bismo prirodno implementirali na ovaj način:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="c1">// Standardna implementacija skalarnog produkta</span>
+<span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+<span class="kr">inline</span>
+<span class="n">T</span> <span class="n">dot_prod</span><span class="p">(</span><span class="kt">int</span> <span class="n">dim</span><span class="p">,</span> <span class="n">T</span><span class="o">*</span><span class="n">a</span><span class="p">,</span> <span class="n">T</span><span class="o">*</span><span class="n">b</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">T</span> <span class="n">result</span> <span class="o">=</span><span class="n">T</span><span class="p">();</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="n">dim</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="n">result</span> <span class="o">+=</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">*</span><span class="n">b</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+    <span class="k">return</span> <span class="n">result</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Problem s takvom implementacijom je u efikasnosti koda kojom dominira brzina dohvaćanja elemenata
+iz memorije. Pokazuje se da je kod efikasniji ako se petlja "razmota", odnosno da je</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="n">result</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">b</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">a</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">*</span><span class="n">b</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>  <span class="o">+</span> <span class="n">a</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">*</span><span class="n">b</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>  <span class="o">+</span> <span class="n">a</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span><span class="o">*</span><span class="n">b</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span>  <span class="o">+</span> <span class="n">a</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span><span class="o">*</span><span class="n">b</span><span class="p">[</span><span class="mi">5</span><span class="p">];</span>
+</pre></div></div></div>
+<div class="paragraph"><p>efikasnije od</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="mi">6</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="n">result</span> <span class="o">+=</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">*</span><span class="n">b</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Pokažimo kako taj efekt možemo postići pomoću metaprogramiranja.</p></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_nastavak_6">Nastavak</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="cp">#ifndef LOOP_H</span>
+<span class="cp">#define LOOP_H</span>
+
+<span class="k">template</span> <span class="o">&lt;</span><span class="kt">int</span> <span class="n">DIM</span><span class="p">,</span> <span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+<span class="k">struct</span> <span class="n">DotProduct</span><span class="p">{</span>
+    <span class="k">static</span> <span class="n">T</span> <span class="n">result</span><span class="p">(</span><span class="n">T</span><span class="o">*</span> <span class="n">a</span><span class="p">,</span> <span class="n">T</span><span class="o">*</span><span class="n">b</span><span class="p">){</span>
+        <span class="k">return</span> <span class="o">*</span><span class="n">a</span> <span class="o">*</span> <span class="o">*</span><span class="n">b</span> <span class="o">+</span> <span class="n">DotProduct</span><span class="o">&lt;</span><span class="n">DIM</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">T</span><span class="o">&gt;::</span><span class="n">result</span><span class="p">(</span><span class="n">a</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">b</span><span class="o">+</span><span class="mi">1</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="c1">// parcijalna specijalizacija</span>
+<span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+<span class="k">struct</span> <span class="n">DotProduct</span><span class="o">&lt;</span><span class="mi">1</span><span class="p">,</span><span class="n">T</span><span class="o">&gt;</span><span class="p">{</span>
+    <span class="k">static</span> <span class="n">T</span> <span class="n">result</span><span class="p">(</span><span class="n">T</span><span class="o">*</span> <span class="n">a</span><span class="p">,</span> <span class="n">T</span><span class="o">*</span><span class="n">b</span><span class="p">){</span>
+        <span class="k">return</span> <span class="o">*</span><span class="n">a</span> <span class="o">*</span> <span class="o">*</span><span class="n">b</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="c1">// Parametriziran funkcija (dedukcija parametara predloška)</span>
+<span class="k">template</span> <span class="o">&lt;</span><span class="kt">int</span> <span class="n">DIM</span><span class="p">,</span> <span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+<span class="kr">inline</span>
+<span class="n">T</span> <span class="n">dot_product</span><span class="p">(</span><span class="n">T</span><span class="o">*</span> <span class="n">a</span><span class="p">,</span> <span class="n">T</span><span class="o">*</span><span class="n">b</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="n">DotProduct</span><span class="o">&lt;</span><span class="n">DIM</span><span class="p">,</span><span class="n">T</span><span class="o">&gt;::</span><span class="n">result</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="cp">#endif</span>
+</pre></div></div></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_objasnjenje">Objašnjenje:</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Sada, na primjer,  <code>dot_product&lt;3&gt;(a,b);</code>
+povlači sljedeću instancijaciju:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="n">DotProduct</span><span class="o">&lt;</span><span class="mi">3</span><span class="p">,</span><span class="n">T</span><span class="o">&gt;::</span><span class="n">result</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">)</span>
+<span class="o">=</span> <span class="o">*</span><span class="n">a</span> <span class="o">*</span> <span class="o">*</span><span class="n">b</span> <span class="o">+</span> <span class="n">DotProduct</span><span class="o">&lt;</span><span class="mi">2</span><span class="p">,</span><span class="n">T</span><span class="o">&gt;::</span><span class="n">result</span><span class="p">(</span><span class="n">a</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">b</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+<span class="o">=</span> <span class="o">*</span><span class="n">a</span> <span class="o">*</span> <span class="o">*</span><span class="n">b</span> <span class="o">+</span> <span class="o">*</span><span class="p">(</span><span class="n">a</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="o">*</span><span class="p">(</span><span class="n">b</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">DotProduct</span><span class="o">&lt;</span><span class="mi">1</span><span class="p">,</span><span class="n">T</span><span class="o">&gt;::</span><span class="n">result</span><span class="p">(</span><span class="n">a</span><span class="o">+</span><span class="mi">2</span><span class="p">,</span><span class="n">b</span><span class="o">+</span><span class="mi">2</span><span class="p">)</span>
+<span class="o">=</span> <span class="o">*</span><span class="n">a</span> <span class="o">*</span> <span class="o">*</span><span class="n">b</span> <span class="o">+</span> <span class="o">*</span><span class="p">(</span><span class="n">a</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="o">*</span><span class="p">(</span><span class="n">b</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="o">*</span><span class="p">(</span><span class="n">a</span><span class="o">+</span><span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="o">*</span><span class="p">(</span><span class="n">b</span><span class="o">+</span><span class="mi">2</span><span class="p">)</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Ovdje je dan test program koji ispituje efikasnost nove implementacije u odnosu na standardnu.</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="n">a</span><span class="p">[]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">};</span>
+    <span class="kt">int</span> <span class="n">b</span><span class="p">[]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">};</span>
+
+    <span class="kt">clock_t</span> <span class="n">start</span><span class="p">,</span> <span class="n">finish</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">result</span> <span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">MAX</span> <span class="o">=</span> <span class="mi">1000000</span><span class="p">;</span>
+
+    <span class="n">start</span> <span class="o">=</span> <span class="n">clock</span><span class="p">();</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span> <span class="n">MAX</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">dot_prod</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="n">finish</span> <span class="o">=</span> <span class="n">clock</span><span class="p">();</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="p">(</span><span class="kt">double</span><span class="p">)</span> <span class="p">(</span><span class="n">finish</span> <span class="o">-</span> <span class="n">start</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+
+    <span class="n">result</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="n">start</span> <span class="o">=</span> <span class="n">clock</span><span class="p">();</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span> <span class="n">MAX</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">dot_product</span><span class="o">&lt;</span><span class="mi">6</span><span class="o">&gt;</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="n">finish</span> <span class="o">=</span> <span class="n">clock</span><span class="p">();</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="p">(</span><span class="kt">double</span><span class="p">)</span> <span class="p">(</span><span class="n">finish</span> <span class="o">-</span> <span class="n">start</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div></div></div>
+</div>
+</div>
+</div>
+
+<div id="footer">
+<div id="footer-text">
+Version 2.0<br>
+Zadnja izmjena
+ 2019-06-07 20:15:16 CEST
+</div>
+</div>
+
+
+</body></html>

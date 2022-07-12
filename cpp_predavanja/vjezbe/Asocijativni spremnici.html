@@ -1,0 +1,2891 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<!-- saved from url=(0088)https://web.math.pmf.unizg.hr/nastava/opepp/Slides/Vjezbe/html-noslides/vjezbe-asoc.html -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="hr"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="generator" content="AsciiDoc 8.6.9">
+<title>Asocijativni spremnici</title>
+<style type="text/css">
+/* Shared CSS for AsciiDoc xhtml11 and html5 backends */
+
+/* Default font. */
+body {
+  font-family: Georgia,serif;
+}
+
+/* Title font. */
+h1, h2, h3, h4, h5, h6,
+div.title, caption.title,
+thead, p.table.header,
+#toctitle,
+#author, #revnumber, #revdate, #revremark,
+#footer {
+  font-family: Arial,Helvetica,sans-serif;
+}
+
+body {
+  margin: 1em 5% 1em 5%;
+}
+
+a {
+  color: blue;
+  text-decoration: underline;
+}
+a:visited {
+  color: fuchsia;
+}
+
+em {
+  font-style: italic;
+  color: navy;
+}
+
+strong {
+  font-weight: bold;
+  color: #083194;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #527bbd;
+  margin-top: 1.2em;
+  margin-bottom: 0.5em;
+  line-height: 1.3;
+}
+
+h1, h2, h3 {
+  border-bottom: 2px solid silver;
+}
+h2 {
+  padding-top: 0.5em;
+}
+h3 {
+  float: left;
+}
+h3 + * {
+  clear: left;
+}
+h5 {
+  font-size: 1.0em;
+}
+
+div.sectionbody {
+  margin-left: 0;
+}
+
+hr {
+  border: 1px solid silver;
+}
+
+p {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+ul, ol, li > p {
+  margin-top: 0;
+}
+ul > li     { color: #aaa; }
+ul > li > * { color: black; }
+
+.monospaced, code, pre {
+  font-family: "Courier New", Courier, monospace;
+  font-size: inherit;
+  color: navy;
+  padding: 0;
+  margin: 0;
+}
+pre {
+  white-space: pre-wrap;
+}
+
+#author {
+  color: #527bbd;
+  font-weight: bold;
+  font-size: 1.1em;
+}
+#email {
+}
+#revnumber, #revdate, #revremark {
+}
+
+#footer {
+  font-size: small;
+  border-top: 2px solid silver;
+  padding-top: 0.5em;
+  margin-top: 4.0em;
+}
+#footer-text {
+  float: left;
+  padding-bottom: 0.5em;
+}
+#footer-badges {
+  float: right;
+  padding-bottom: 0.5em;
+}
+
+#preamble {
+  margin-top: 1.5em;
+  margin-bottom: 1.5em;
+}
+div.imageblock, div.exampleblock, div.verseblock,
+div.quoteblock, div.literalblock, div.listingblock, div.sidebarblock,
+div.admonitionblock {
+  margin-top: 1.0em;
+  margin-bottom: 1.5em;
+}
+div.admonitionblock {
+  margin-top: 2.0em;
+  margin-bottom: 2.0em;
+  margin-right: 10%;
+  color: #606060;
+}
+
+div.content { /* Block element content. */
+  padding: 0;
+}
+
+/* Block element titles. */
+div.title, caption.title {
+  color: #527bbd;
+  font-weight: bold;
+  text-align: left;
+  margin-top: 1.0em;
+  margin-bottom: 0.5em;
+}
+div.title + * {
+  margin-top: 0;
+}
+
+td div.title:first-child {
+  margin-top: 0.0em;
+}
+div.content div.title:first-child {
+  margin-top: 0.0em;
+}
+div.content + div.title {
+  margin-top: 0.0em;
+}
+
+div.sidebarblock > div.content {
+  background: #ffffee;
+  border: 1px solid #dddddd;
+  border-left: 4px solid #f0f0f0;
+  padding: 0.5em;
+}
+
+div.listingblock > div.content {
+  border: 1px solid #dddddd;
+  border-left: 5px solid #f0f0f0;
+  background: #f8f8f8;
+  padding: 0.5em;
+}
+
+div.quoteblock, div.verseblock {
+  padding-left: 1.0em;
+  margin-left: 1.0em;
+  margin-right: 10%;
+  border-left: 5px solid #f0f0f0;
+  color: #888;
+}
+
+div.quoteblock > div.attribution {
+  padding-top: 0.5em;
+  text-align: right;
+}
+
+div.verseblock > pre.content {
+  font-family: inherit;
+  font-size: inherit;
+}
+div.verseblock > div.attribution {
+  padding-top: 0.75em;
+  text-align: left;
+}
+/* DEPRECATED: Pre version 8.2.7 verse style literal block. */
+div.verseblock + div.attribution {
+  text-align: left;
+}
+
+div.admonitionblock .icon {
+  vertical-align: top;
+  font-size: 1.1em;
+  font-weight: bold;
+  text-decoration: underline;
+  color: #527bbd;
+  padding-right: 0.5em;
+}
+div.admonitionblock td.content {
+  padding-left: 0.5em;
+  border-left: 3px solid #dddddd;
+}
+
+div.exampleblock > div.content {
+  border-left: 3px solid #dddddd;
+  padding-left: 0.5em;
+}
+
+div.imageblock div.content { padding-left: 0; }
+span.image img { border-style: none; vertical-align: text-bottom; }
+a.image:visited { color: white; }
+
+dl {
+  margin-top: 0.8em;
+  margin-bottom: 0.8em;
+}
+dt {
+  margin-top: 0.5em;
+  margin-bottom: 0;
+  font-style: normal;
+  color: navy;
+}
+dd > *:first-child {
+  margin-top: 0.1em;
+}
+
+ul, ol {
+    list-style-position: outside;
+}
+ol.arabic {
+  list-style-type: decimal;
+}
+ol.loweralpha {
+  list-style-type: lower-alpha;
+}
+ol.upperalpha {
+  list-style-type: upper-alpha;
+}
+ol.lowerroman {
+  list-style-type: lower-roman;
+}
+ol.upperroman {
+  list-style-type: upper-roman;
+}
+
+div.compact ul, div.compact ol,
+div.compact p, div.compact p,
+div.compact div, div.compact div {
+  margin-top: 0.1em;
+  margin-bottom: 0.1em;
+}
+
+tfoot {
+  font-weight: bold;
+}
+td > div.verse {
+  white-space: pre;
+}
+
+div.hdlist {
+  margin-top: 0.8em;
+  margin-bottom: 0.8em;
+}
+div.hdlist tr {
+  padding-bottom: 15px;
+}
+dt.hdlist1.strong, td.hdlist1.strong {
+  font-weight: bold;
+}
+td.hdlist1 {
+  vertical-align: top;
+  font-style: normal;
+  padding-right: 0.8em;
+  color: navy;
+}
+td.hdlist2 {
+  vertical-align: top;
+}
+div.hdlist.compact tr {
+  margin: 0;
+  padding-bottom: 0;
+}
+
+.comment {
+  background: yellow;
+}
+
+.footnote, .footnoteref {
+  font-size: 0.8em;
+}
+
+span.footnote, span.footnoteref {
+  vertical-align: super;
+}
+
+#footnotes {
+  margin: 20px 0 20px 0;
+  padding: 7px 0 0 0;
+}
+
+#footnotes div.footnote {
+  margin: 0 0 5px 0;
+}
+
+#footnotes hr {
+  border: none;
+  border-top: 1px solid silver;
+  height: 1px;
+  text-align: left;
+  margin-left: 0;
+  width: 20%;
+  min-width: 100px;
+}
+
+div.colist td {
+  padding-right: 0.5em;
+  padding-bottom: 0.3em;
+  vertical-align: top;
+}
+div.colist td img {
+  margin-top: 0.3em;
+}
+
+@media print {
+  #footer-badges { display: none; }
+}
+
+#toc {
+  margin-bottom: 2.5em;
+}
+
+#toctitle {
+  color: #527bbd;
+  font-size: 1.1em;
+  font-weight: bold;
+  margin-top: 1.0em;
+  margin-bottom: 0.1em;
+}
+
+div.toclevel0, div.toclevel1, div.toclevel2, div.toclevel3, div.toclevel4 {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+div.toclevel2 {
+  margin-left: 2em;
+  font-size: 0.9em;
+}
+div.toclevel3 {
+  margin-left: 4em;
+  font-size: 0.9em;
+}
+div.toclevel4 {
+  margin-left: 6em;
+  font-size: 0.9em;
+}
+
+span.aqua { color: aqua; }
+span.black { color: black; }
+span.blue { color: blue; }
+span.fuchsia { color: fuchsia; }
+span.gray { color: gray; }
+span.green { color: green; }
+span.lime { color: lime; }
+span.maroon { color: maroon; }
+span.navy { color: navy; }
+span.olive { color: olive; }
+span.purple { color: purple; }
+span.red { color: red; }
+span.silver { color: silver; }
+span.teal { color: teal; }
+span.white { color: white; }
+span.yellow { color: yellow; }
+
+span.aqua-background { background: aqua; }
+span.black-background { background: black; }
+span.blue-background { background: blue; }
+span.fuchsia-background { background: fuchsia; }
+span.gray-background { background: gray; }
+span.green-background { background: green; }
+span.lime-background { background: lime; }
+span.maroon-background { background: maroon; }
+span.navy-background { background: navy; }
+span.olive-background { background: olive; }
+span.purple-background { background: purple; }
+span.red-background { background: red; }
+span.silver-background { background: silver; }
+span.teal-background { background: teal; }
+span.white-background { background: white; }
+span.yellow-background { background: yellow; }
+
+span.big { font-size: 2em; }
+span.small { font-size: 0.6em; }
+
+span.underline { text-decoration: underline; }
+span.overline { text-decoration: overline; }
+span.line-through { text-decoration: line-through; }
+
+div.unbreakable { page-break-inside: avoid; }
+
+
+/*
+ * xhtml11 specific
+ *
+ * */
+
+div.tableblock {
+  margin-top: 1.0em;
+  margin-bottom: 1.5em;
+}
+div.tableblock > table {
+  border: 3px solid #527bbd;
+}
+thead, p.table.header {
+  font-weight: bold;
+  color: #527bbd;
+}
+p.table {
+  margin-top: 0;
+}
+/* Because the table frame attribute is overriden by CSS in most browsers. */
+div.tableblock > table[frame="void"] {
+  border-style: none;
+}
+div.tableblock > table[frame="hsides"] {
+  border-left-style: none;
+  border-right-style: none;
+}
+div.tableblock > table[frame="vsides"] {
+  border-top-style: none;
+  border-bottom-style: none;
+}
+
+
+/*
+ * html5 specific
+ *
+ * */
+
+table.tableblock {
+  margin-top: 1.0em;
+  margin-bottom: 1.5em;
+}
+thead, p.tableblock.header {
+  font-weight: bold;
+  color: #527bbd;
+}
+p.tableblock {
+  margin-top: 0;
+}
+table.tableblock {
+  border-width: 3px;
+  border-spacing: 0px;
+  border-style: solid;
+  border-color: #527bbd;
+  border-collapse: collapse;
+}
+th.tableblock, td.tableblock {
+  border-width: 1px;
+  padding: 4px;
+  border-style: solid;
+  border-color: #527bbd;
+}
+
+table.tableblock.frame-topbot {
+  border-left-style: hidden;
+  border-right-style: hidden;
+}
+table.tableblock.frame-sides {
+  border-top-style: hidden;
+  border-bottom-style: hidden;
+}
+table.tableblock.frame-none {
+  border-style: hidden;
+}
+
+th.tableblock.halign-left, td.tableblock.halign-left {
+  text-align: left;
+}
+th.tableblock.halign-center, td.tableblock.halign-center {
+  text-align: center;
+}
+th.tableblock.halign-right, td.tableblock.halign-right {
+  text-align: right;
+}
+
+th.tableblock.valign-top, td.tableblock.valign-top {
+  vertical-align: top;
+}
+th.tableblock.valign-middle, td.tableblock.valign-middle {
+  vertical-align: middle;
+}
+th.tableblock.valign-bottom, td.tableblock.valign-bottom {
+  vertical-align: bottom;
+}
+
+
+/*
+ * manpage specific
+ *
+ * */
+
+body.manpage h1 {
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+  border-top: 2px solid silver;
+  border-bottom: 2px solid silver;
+}
+body.manpage h2 {
+  border-style: none;
+}
+body.manpage div.sectionbody {
+  margin-left: 3em;
+}
+
+@media print {
+  body.manpage div#toc { display: none; }
+}
+.highlight .hll { background-color: #ffffcc }
+.highlight  { background: #f8f8f8; }
+.highlight .c { color: #408080; font-style: italic } /* Comment */
+.highlight .err { border: 1px solid #FF0000 } /* Error */
+.highlight .k { color: #008000; font-weight: bold } /* Keyword */
+.highlight .o { color: #666666 } /* Operator */
+.highlight .cm { color: #408080; font-style: italic } /* Comment.Multiline */
+.highlight .cp { color: #BC7A00 } /* Comment.Preproc */
+.highlight .c1 { color: #408080; font-style: italic } /* Comment.Single */
+.highlight .cs { color: #408080; font-style: italic } /* Comment.Special */
+.highlight .gd { color: #A00000 } /* Generic.Deleted */
+.highlight .ge { font-style: italic } /* Generic.Emph */
+.highlight .gr { color: #FF0000 } /* Generic.Error */
+.highlight .gh { color: #000080; font-weight: bold } /* Generic.Heading */
+.highlight .gi { color: #00A000 } /* Generic.Inserted */
+.highlight .go { color: #808080 } /* Generic.Output */
+.highlight .gp { color: #000080; font-weight: bold } /* Generic.Prompt */
+.highlight .gs { font-weight: bold } /* Generic.Strong */
+.highlight .gu { color: #800080; font-weight: bold } /* Generic.Subheading */
+.highlight .gt { color: #0040D0 } /* Generic.Traceback */
+.highlight .kc { color: #008000; font-weight: bold } /* Keyword.Constant */
+.highlight .kd { color: #008000; font-weight: bold } /* Keyword.Declaration */
+.highlight .kn { color: #008000; font-weight: bold } /* Keyword.Namespace */
+.highlight .kp { color: #008000 } /* Keyword.Pseudo */
+.highlight .kr { color: #008000; font-weight: bold } /* Keyword.Reserved */
+.highlight .kt { color: #B00040 } /* Keyword.Type */
+.highlight .m { color: #666666 } /* Literal.Number */
+.highlight .s { color: #BA2121 } /* Literal.String */
+.highlight .na { color: #7D9029 } /* Name.Attribute */
+.highlight .nb { color: #008000 } /* Name.Builtin */
+.highlight .nc { color: #0000FF; font-weight: bold } /* Name.Class */
+.highlight .no { color: #880000 } /* Name.Constant */
+.highlight .nd { color: #AA22FF } /* Name.Decorator */
+.highlight .ni { color: #999999; font-weight: bold } /* Name.Entity */
+.highlight .ne { color: #D2413A; font-weight: bold } /* Name.Exception */
+.highlight .nf { color: #0000FF } /* Name.Function */
+.highlight .nl { color: #A0A000 } /* Name.Label */
+.highlight .nn { color: #0000FF; font-weight: bold } /* Name.Namespace */
+.highlight .nt { color: #008000; font-weight: bold } /* Name.Tag */
+.highlight .nv { color: #19177C } /* Name.Variable */
+.highlight .ow { color: #AA22FF; font-weight: bold } /* Operator.Word */
+.highlight .w { color: #bbbbbb } /* Text.Whitespace */
+.highlight .mf { color: #666666 } /* Literal.Number.Float */
+.highlight .mh { color: #666666 } /* Literal.Number.Hex */
+.highlight .mi { color: #666666 } /* Literal.Number.Integer */
+.highlight .mo { color: #666666 } /* Literal.Number.Oct */
+.highlight .sb { color: #BA2121 } /* Literal.String.Backtick */
+.highlight .sc { color: #BA2121 } /* Literal.String.Char */
+.highlight .sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
+.highlight .s2 { color: #BA2121 } /* Literal.String.Double */
+.highlight .se { color: #BB6622; font-weight: bold } /* Literal.String.Escape */
+.highlight .sh { color: #BA2121 } /* Literal.String.Heredoc */
+.highlight .si { color: #BB6688; font-weight: bold } /* Literal.String.Interpol */
+.highlight .sx { color: #008000 } /* Literal.String.Other */
+.highlight .sr { color: #BB6688 } /* Literal.String.Regex */
+.highlight .s1 { color: #BA2121 } /* Literal.String.Single */
+.highlight .ss { color: #19177C } /* Literal.String.Symbol */
+.highlight .bp { color: #008000 } /* Name.Builtin.Pseudo */
+.highlight .vc { color: #19177C } /* Name.Variable.Class */
+.highlight .vg { color: #19177C } /* Name.Variable.Global */
+.highlight .vi { color: #19177C } /* Name.Variable.Instance */
+.highlight .il { color: #666666 } /* Literal.Number.Integer.Long */
+
+
+</style>
+<script type="text/javascript">
+/*<![CDATA[*/
+var asciidoc = {  // Namespace.
+
+/////////////////////////////////////////////////////////////////////
+// Table Of Contents generator
+/////////////////////////////////////////////////////////////////////
+
+/* Author: Mihai Bazon, September 2002
+ * http://students.infoiasi.ro/~mishoo
+ *
+ * Table Of Content generator
+ * Version: 0.4
+ *
+ * Feel free to use this script under the terms of the GNU General Public
+ * License, as long as you do not remove or alter this notice.
+ */
+
+ /* modified by Troy D. Hanson, September 2006. License: GPL */
+ /* modified by Stuart Rackham, 2006, 2009. License: GPL */
+
+// toclevels = 1..4.
+toc: function (toclevels) {
+
+  function getText(el) {
+    var text = "";
+    for (var i = el.firstChild; i != null; i = i.nextSibling) {
+      if (i.nodeType == 3 /* Node.TEXT_NODE */) // IE doesn't speak constants.
+        text += i.data;
+      else if (i.firstChild != null)
+        text += getText(i);
+    }
+    return text;
+  }
+
+  function TocEntry(el, text, toclevel) {
+    this.element = el;
+    this.text = text;
+    this.toclevel = toclevel;
+  }
+
+  function tocEntries(el, toclevels) {
+    var result = new Array;
+    var re = new RegExp('[hH]([1-'+(toclevels+1)+'])');
+    // Function that scans the DOM tree for header elements (the DOM2
+    // nodeIterator API would be a better technique but not supported by all
+    // browsers).
+    var iterate = function (el) {
+      for (var i = el.firstChild; i != null; i = i.nextSibling) {
+        if (i.nodeType == 1 /* Node.ELEMENT_NODE */) {
+          var mo = re.exec(i.tagName);
+          if (mo && (i.getAttribute("class") || i.getAttribute("className")) != "float") {
+            result[result.length] = new TocEntry(i, getText(i), mo[1]-1);
+          }
+          iterate(i);
+        }
+      }
+    }
+    iterate(el);
+    return result;
+  }
+
+  var toc = document.getElementById("toc");
+  if (!toc) {
+    return;
+  }
+
+  // Delete existing TOC entries in case we're reloading the TOC.
+  var tocEntriesToRemove = [];
+  var i;
+  for (i = 0; i < toc.childNodes.length; i++) {
+    var entry = toc.childNodes[i];
+    if (entry.nodeName.toLowerCase() == 'div'
+     && entry.getAttribute("class")
+     && entry.getAttribute("class").match(/^toclevel/))
+      tocEntriesToRemove.push(entry);
+  }
+  for (i = 0; i < tocEntriesToRemove.length; i++) {
+    toc.removeChild(tocEntriesToRemove[i]);
+  }
+
+  // Rebuild TOC entries.
+  var entries = tocEntries(document.getElementById("content"), toclevels);
+  for (var i = 0; i < entries.length; ++i) {
+    var entry = entries[i];
+    if (entry.element.id == "")
+      entry.element.id = "_toc_" + i;
+    var a = document.createElement("a");
+    a.href = "#" + entry.element.id;
+    a.appendChild(document.createTextNode(entry.text));
+    var div = document.createElement("div");
+    div.appendChild(a);
+    div.className = "toclevel" + entry.toclevel;
+    toc.appendChild(div);
+  }
+  if (entries.length == 0)
+    toc.parentNode.removeChild(toc);
+},
+
+
+/////////////////////////////////////////////////////////////////////
+// Footnotes generator
+/////////////////////////////////////////////////////////////////////
+
+/* Based on footnote generation code from:
+ * http://www.brandspankingnew.net/archive/2005/07/format_footnote.html
+ */
+
+footnotes: function () {
+  // Delete existing footnote entries in case we're reloading the footnodes.
+  var i;
+  var noteholder = document.getElementById("footnotes");
+  if (!noteholder) {
+    return;
+  }
+  var entriesToRemove = [];
+  for (i = 0; i < noteholder.childNodes.length; i++) {
+    var entry = noteholder.childNodes[i];
+    if (entry.nodeName.toLowerCase() == 'div' && entry.getAttribute("class") == "footnote")
+      entriesToRemove.push(entry);
+  }
+  for (i = 0; i < entriesToRemove.length; i++) {
+    noteholder.removeChild(entriesToRemove[i]);
+  }
+
+  // Rebuild footnote entries.
+  var cont = document.getElementById("content");
+  var spans = cont.getElementsByTagName("span");
+  var refs = {};
+  var n = 0;
+  for (i=0; i<spans.length; i++) {
+    if (spans[i].className == "footnote") {
+      n++;
+      var note = spans[i].getAttribute("data-note");
+      if (!note) {
+        // Use [\s\S] in place of . so multi-line matches work.
+        // Because JavaScript has no s (dotall) regex flag.
+        note = spans[i].innerHTML.match(/\s*\[([\s\S]*)]\s*/)[1];
+        spans[i].innerHTML =
+          "[<a id='_footnoteref_" + n + "' href='#_footnote_" + n +
+          "' title='View footnote' class='footnote'>" + n + "</a>]";
+        spans[i].setAttribute("data-note", note);
+      }
+      noteholder.innerHTML +=
+        "<div class='footnote' id='_footnote_" + n + "'>" +
+        "<a href='#_footnoteref_" + n + "' title='Return to text'>" +
+        n + "</a>. " + note + "</div>";
+      var id =spans[i].getAttribute("id");
+      if (id != null) refs["#"+id] = n;
+    }
+  }
+  if (n == 0)
+    noteholder.parentNode.removeChild(noteholder);
+  else {
+    // Process footnoterefs.
+    for (i=0; i<spans.length; i++) {
+      if (spans[i].className == "footnoteref") {
+        var href = spans[i].getElementsByTagName("a")[0].getAttribute("href");
+        href = href.match(/#.*/)[0];  // Because IE return full URL.
+        n = refs[href];
+        spans[i].innerHTML =
+          "[<a href='#_footnote_" + n +
+          "' title='View footnote' class='footnote'>" + n + "</a>]";
+      }
+    }
+  }
+},
+
+install: function(toclevels) {
+  var timerId;
+
+  function reinstall() {
+    asciidoc.footnotes();
+    if (toclevels) {
+      asciidoc.toc(toclevels);
+    }
+  }
+
+  function reinstallAndRemoveTimer() {
+    clearInterval(timerId);
+    reinstall();
+  }
+
+  timerId = setInterval(reinstall, 500);
+  if (document.addEventListener)
+    document.addEventListener("DOMContentLoaded", reinstallAndRemoveTimer, false);
+  else
+    window.onload = reinstallAndRemoveTimer;
+}
+
+}
+asciidoc.install();
+/*]]>*/
+</script>
+</head>
+<body class="article">
+<div id="header">
+<h1>Asocijativni spremnici</h1>
+<span id="author">Mladen Jurak</span><br>
+<span id="revnumber">version 2.1,</span>
+<span id="revdate">2019-03</span>
+</div>
+<div id="content">
+<div class="sect1">
+<h2 id="_asocijativni_nasuprot_sekvencijalnim_spremnicima">Asocijativni nasuprot sekvencijalnim spremnicima</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Asocijativni spremnici spremaju i dohvaćaju elemente <strong>prema ključu</strong> koji je pridružen elementu i
+nije nužno aritmetičkog tipa.</p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+Sekvencijali spremnici predstavljaju uređene kolekcije. Mjesto na kojem se nalazi neki
+element u spremniku ovisi o mjestu na kojem je ubacivan u spremnik, a ne o vrijednosti elementa.
+</p>
+</li>
+<li>
+<p>
+Asocijativni spremnici predstavljaju sortirane kolekcije kod kojih položaj elementa u spremniku
+ovisi o njegovoj <em>vrijednosti</em>, a ne o mjestu na kojem je ubacivan.
+Oni nam dozvoljavaju da efikasno dohvatimo element prema njegovom ključu.
+</p>
+</li>
+</ul></div>
+<div class="paragraph"><p>Dva osnovna tipa asocijativnih spremnika su <em>map</em> i <em>set</em>.  <em>Map</em> se sastoji
+od parova "ključ — vrijednost". <em>Set</em> se sastoji
+samo od ključeva.</p></div>
+<div class="paragraph"><p>Objekti tipa <em>map</em> i <em>set</em>  mogu  sadržavati najviše jedan element s danim ključem.
+Ako želimo spremiti
+više elemenata s istim ključem onda koristimo <em>multimap</em> i <em>multiset</em>.</p></div>
+<div class="tableblock">
+<table rules="all" width="100%" frame="border" cellspacing="0" cellpadding="4">
+<caption class="title">Tabela 1. Asocijativni spremnici</caption>
+<colgroup><col width="50%">
+<col width="50%">
+</colgroup><tbody>
+<tr>
+<td align="left" valign="top"><p class="table"><code>map</code></p></td>
+<td align="left" valign="top"><p class="table">Asocijativno polja</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>set</code></p></td>
+<td align="left" valign="top"><p class="table">Skup</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>multimap</code></p></td>
+<td align="left" valign="top"><p class="table">Asocijativno polja s ponavljanjem ključeva</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>multiset</code></p></td>
+<td align="left" valign="top"><p class="table">Skup s ponavljanjem ključeva</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="paragraph"><p>Postoje još i <strong>neuređeni (asocijativni) spremnici</strong> koji također dozvoljavaju da se element efikasno
+dohvati prema njegovom ključu. Kod ovih spremnika pozicija elementa u spremniku
+nije važna i kroz životni vijek spremnika
+može se  mijenjati.  Pozicija elementa ne ovisi niti o mjestu ubacivanja niti o vrijednosti elementa.
+Jedino je važno je li element u spremniku ili nije. Neuređeni spremnici su sljedeći:</p></div>
+<div class="tableblock">
+<table rules="all" width="100%" frame="border" cellspacing="0" cellpadding="4">
+<caption class="title">Tabela 2. Neuređeni spremnici</caption>
+<colgroup><col width="50%">
+<col width="50%">
+</colgroup><tbody>
+<tr>
+<td align="left" valign="top"><p class="table"><code>unordered_map</code></p></td>
+<td align="left" valign="top"><p class="table">Asocijativno polja</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>unordered_set</code></p></td>
+<td align="left" valign="top"><p class="table">Skup</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>unordered_multimap</code></p></td>
+<td align="left" valign="top"><p class="table">Asocijativno polja s ponavljanjem ključeva</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>unordered_multiset</code></p></td>
+<td align="left" valign="top"><p class="table">Skup s ponavljanjem ključeva</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_pomocna_klasa_std_pair">Pomoćna klasa std::pair</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Par (<code>std::pair</code>) je pomoćni tip deklariran je u zaglavlju <code>&lt;utility&gt;</code>.</p></div>
+<div class="paragraph"><p>Tip <code>std::pair</code> sadrži dva podatka (dvije varijable) općenito različitih tipova koji čine (uređeni) par.</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;utility&gt; // Za pair</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;string&gt;</span><span class="cp"></span>
+
+<span class="n">std</span><span class="o">::</span><span class="n">pair</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">,</span> <span class="kt">int</span><span class="o">&gt;</span> <span class="n">ime_i_broj</span><span class="p">(</span><span class="s">"XCmp"</span><span class="p">,</span> <span class="mi">12345000</span><span class="p">);</span>
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Ime    = "</span> <span class="o">&lt;&lt;</span> <span class="n">ime_i_broj</span><span class="p">.</span><span class="n">first</span><span class="p">;</span>
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">", broj = "</span> <span class="o">&lt;&lt;</span> <span class="n">ime_i_broj</span><span class="p">.</span><span class="n">second</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+</pre></div></div></div>
+<div class="ulist"><ul>
+<li>
+<p>
+Konstruktor uzima dva argumenta kojima inicijalizira par.
+</p>
+</li>
+<li>
+<p>
+Konstruktor bez argumenata vrši incijalizaciju nulama, odnosno pozivom konstruktora bez argumenata na elementima para.
+</p>
+</li>
+<li>
+<p>
+Elementi se dohvaćaju kao <code>first</code> i <code>second</code> (javne varijable u klasi <code>std::pair&lt;T1,T2&gt;</code>).
+</p>
+</li>
+<li>
+<p>
+Parove je moguće kopirati, pridruživati i uspoređivati ako su kompatiblinih tipova.
+</p>
+</li>
+</ul></div>
+<div class="paragraph"><p>Radi uniformnosti pristupa elementi se mogu dohvatiti istom sintaksom kao i kod <code>tuple</code> spremnika:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="k">auto</span> <span class="n">x</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">get</span><span class="o">&lt;</span><span class="mi">0</span><span class="o">&gt;</span><span class="p">(</span><span class="n">ime_i_broj</span><span class="p">);</span>  <span class="c1">// isto što i x = ime_i_broj.first</span>
+<span class="k">auto</span> <span class="n">y</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">get</span><span class="o">&lt;</span><span class="mi">1</span><span class="o">&gt;</span><span class="p">(</span><span class="n">ime_i_broj</span><span class="p">);</span>  <span class="c1">// isto što i y = ime_i_broj.second</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Funcija <code>std::make_pair</code> kreira par iz zadane dvije vrijednosti i pri tome deducira tipove
+elemenata para iz inicijalizacijskih vrijednosti.</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="k">auto</span> <span class="n">par</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">make_pair</span><span class="p">(</span><span class="s">"ggg"</span><span class="p">,</span> <span class="mf">1.2</span><span class="p">);</span>
+  <span class="c1">// par je tipa std::pair&lt;const char*, double&gt;</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Tipovi podataka koje <code>std::pair</code> drži mogu biti i reference te konstantne reference. Na primjer,</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="n">std</span><span class="o">::</span><span class="n">pair</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&amp;</span><span class="p">,</span><span class="kt">int</span><span class="o">&amp;&gt;</span> <span class="n">par3</span><span class="p">{</span><span class="n">i</span><span class="p">,</span><span class="n">i</span><span class="p">};</span>
+<span class="n">par3</span><span class="p">.</span><span class="n">first</span><span class="o">++</span><span class="p">;</span>
+<span class="n">par3</span><span class="p">.</span><span class="n">second</span><span class="o">++</span><span class="p">;</span>
+<span class="n">assert</span><span class="p">(</span><span class="n">i</span> <span class="o">==</span> <span class="mi">2</span><span class="p">);</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Funcija <code>std::make_pair</code> će prepoznati tip podataka kao referencu (konstantnu referencu) ako podatak
+zamotamo u <code>std::ref()</code> (odnosno <code>std::cref()</code>) koji su definirani u zaglavlju <code>&lt;functional&gt;</code>. Na primjer,</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;functional&gt;</span><span class="cp"></span>
+<span class="p">...</span>
+<span class="c1">// deducira std::pair&lt;int const &amp;, int const &amp;&gt;</span>
+<span class="k">auto</span> <span class="n">par4</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">make_pair</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">cref</span><span class="p">(</span><span class="n">i</span><span class="p">),</span> <span class="n">std</span><span class="o">::</span><span class="n">cref</span><span class="p">(</span><span class="n">i</span><span class="p">));</span>
+<span class="n">par4</span><span class="p">.</span><span class="n">first</span><span class="o">--</span><span class="p">;</span> <span class="c1">// greška, referenca je konstantna</span>
+</pre></div></div></div>
+<div class="sect2">
+<h3 id="_konstrukcija_po_dijelovima">Konstrukcija po dijelovima</h3>
+<div class="paragraph"><p>Konačno, postoji i konstruktor koji elemente para ne kopira iz inicijalizacijskih vrijednosti
+već ih konstruira pozivajući odgovarajućih konstruktora. Argumenti tog konstruktora para se interpretiraju
+kao argumenti konstruktora prvog, odnosno drugog člana para. Argumenti ovog konstruktora imaju
+drukčije značenja od argumenata ostalih konstruktora pa stoga on dobiva dodatni argument
+<code>std::piecewise_construct</code> koji služi samo da ga razlikuje od ostalih konstruktora.</p></div>
+<div class="tableblock">
+<table rules="all" width="100%" frame="border" cellspacing="0" cellpadding="4">
+<caption class="title">Tabela 3. Konstruktor</caption>
+<colgroup><col width="50%">
+<col width="50%">
+</colgroup><tbody>
+<tr>
+<td align="left" valign="top"><p class="table"><code>std::pair&lt;T1,T2&gt; p(std::piecewise_construct, t1,t2)</code></p></td>
+<td align="left" valign="top"><p class="table">Konstrukcija para u kojem se prvi član para konstruira pozivom
+njegovog konstruktora s argumentima u <code>t1</code>, a drugi par se konstruira pozivom njegovog konstruktora s argumentima u <code>t2</code>.
+Varijable <code>t1</code> i <code>t2</code> su tipa <code>tuple</code>.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="paragraph"><p>U varijabli <code>t1</code> se nalaze argumenti konstruktora za tip <code>T1</code>, a u varijabli <code>t2</code> se nalaze argumenti konstruktora za tip <code>T2</code>.
+Tip <code>tuple</code> koji se ovdje koristi je generalizacija para i može čuvati proizvoljan broj vrijednosti različitih tipova.
+Na primjer,</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;tuple&gt;</span><span class="cp"></span>
+
+<span class="k">struct</span> <span class="n">X</span><span class="p">{</span>
+    <span class="n">X</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="p">,</span> <span class="kt">char</span> <span class="n">c</span><span class="p">,</span> <span class="kt">float</span> <span class="n">f</span><span class="p">)</span> <span class="o">:</span> <span class="n">mi</span><span class="p">(</span><span class="n">i</span><span class="p">),</span> <span class="n">mc</span><span class="p">(</span><span class="n">c</span><span class="p">),</span> <span class="n">mf</span><span class="p">(</span><span class="n">f</span><span class="p">)</span> <span class="p">{}</span>
+    <span class="kt">int</span>   <span class="n">mi</span><span class="p">;</span>
+    <span class="kt">char</span>  <span class="n">mc</span><span class="p">;</span>
+    <span class="kt">float</span> <span class="n">mf</span><span class="p">;</span>
+<span class="p">};</span>
+<span class="p">...</span>
+
+<span class="n">std</span><span class="o">::</span><span class="n">tuple</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span><span class="kt">char</span><span class="p">,</span><span class="kt">float</span><span class="o">&gt;</span> <span class="n">a</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="sc">'a'</span><span class="p">,</span><span class="mf">2.0f</span><span class="p">),</span> <span class="n">b</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="sc">'b'</span><span class="p">,</span><span class="mf">3.0f</span><span class="p">);</span> <span class="c1">// argumenti konstruktora za tip X</span>
+<span class="n">std</span><span class="o">::</span><span class="n">pair</span><span class="o">&lt;</span><span class="n">X</span><span class="p">,</span><span class="n">X</span><span class="o">&gt;</span> <span class="n">par5</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">piecewise_construct</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">);</span>
+
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">par5</span><span class="p">.</span><span class="n">first</span><span class="p">.</span><span class="n">mc</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span> <span class="c1">// 'a'</span>
+</pre></div></div></div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_pomocna_klasa_code_std_tuple_code">Pomoćna klasa <code>std::tuple</code></h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Tip <code>std::tuple</code>  je generaliracija tipa <code>std::pair</code> i predstavlja uređenu n-torku. On može držati proizvoljan ali fiksan broj
+vrijednosti različitih tipova koji se zadaju kao parametri predloška. Na primjer,</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;tuple&gt;</span><span class="cp"></span>
+
+<span class="n">std</span><span class="o">::</span><span class="n">tuple</span><span class="o">&lt;</span><span class="kt">double</span><span class="p">,</span><span class="kt">int</span><span class="p">,</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;</span> <span class="n">t1</span><span class="p">;</span> <span class="c1">// inicijalizacijama "nulama"</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Objekt <code>t1</code> čuva tri vrijednosti redom tipa <code>double</code>, <code>int</code> i <code>std::string</code>; konstruktor bez argumenata vrši <em>vrijednosnu inicijalizaciju</em>
+(inicijalizacija nulama).</p></div>
+<div class="paragraph"><p>U sljedećem primjeru <code>std::tuple</code> drži dvije vrijednosti inicijalizirane u konstruktoru:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;complex&gt;</span><span class="cp"></span>
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="o">::</span><span class="n">complex_literals</span><span class="p">;</span>
+
+<span class="n">std</span><span class="o">::</span><span class="n">tuple</span><span class="o">&lt;</span><span class="kt">double</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">complex</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;&gt;</span> <span class="n">t2</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="n">i</span><span class="p">);</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Vrijednosti se mogu dohvatiti pomoću funkcije <code>std::get</code> koja uzima indeks pozicije komponente:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">get</span><span class="o">&lt;</span><span class="mi">1</span><span class="o">&gt;</span><span class="p">(</span><span class="n">t2</span><span class="p">)</span> <span class="o">=</span> <span class="mf">3.0</span><span class="o">+</span><span class="mi">4</span><span class="n">i</span><span class="p">;</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Funkcija <code>std::make_tuple</code> kreira <code>tuple</code> deducirajući tipove iz argumenata kojima se inicijaliziraju.</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="k">auto</span> <span class="n">t3</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">make_tuple</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mf">2.0</span><span class="p">,</span><span class="sc">'v'</span><span class="p">);</span>  <span class="c1">// kreira std::tuple&lt;int, double, char&gt;</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Kao i kod tipa <code>std::pair</code> pojedini tipovi u <code>std::tuple</code> mogu biti reference. Funkcija
+<code>std::make_tuple</code> će deducirati referencu na tip (konstantnu referencu na tip) ako argument
+zamotamo u <code>std::ref</code> (u <code>std::cref</code>) iz zaglavlja <code>&lt;functional&gt;</code>.</p></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_code_std_set_code_i_code_std_multiset_code"><code>std::set</code> i <code>std::multiset</code></h2>
+<div class="sectionbody">
+<div class="paragraph"><p><code>std::set</code> i <code>std::multiset</code> su spremnici koji automatski sortiraju svoje elemente po
+nekom kriteriju sortiranja. <code>std::set</code> ne dozvoljava postojanje jednakih elemenata dok
+<code>std::multiset</code> dozvoljava.</p></div>
+<div class="paragraph"><p>Nema metode koje podrazumijevaju poziciju elementa:   <code>push_back</code>, <code>push_front</code>, <code>front</code>, <code>back</code>,
+<code>pop_front</code> i <code>pop_back</code>.</p></div>
+<div class="paragraph"><p>Da bismo koristili <code>std::set</code> ili <code>std::multiset</code> moramo uključiti <code>&lt;set&gt;</code> zaglavlja.</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;set&gt;</span><span class="cp"></span>
+
+<span class="n">std</span><span class="o">::</span><span class="n">set</span><span class="o">&lt;</span><span class="kt">char</span><span class="o">&gt;</span> <span class="n">znakovi</span><span class="p">;</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Spremnici <code>std::set</code> i <code>std::multiset</code> su predlošci klasa as tri parametra predloška:
+tip elementa <code>T</code>, operator uspoređivanja <code>Compare</code> i alokator <code>Allocator</code>.
+Zadnja dva parametra imaju predodređene vrijednosti tako da najčešće zadajemo samo
+prvi argument predloška (koji je obavezan).</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="p">,</span> <span class="k">typename</span> <span class="n">Compare</span> <span class="o">=</span> <span class="n">less</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">,</span> <span class="k">typename</span> <span class="n">Allocator</span> <span class="o">=</span> <span class="n">allocator</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="o">&gt;</span> <span class="k">class</span> <span class="nc">set</span><span class="p">;</span>
+<span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="p">,</span> <span class="k">typename</span> <span class="n">Compare</span> <span class="o">=</span> <span class="n">less</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">,</span> <span class="k">typename</span> <span class="n">Allocator</span> <span class="o">=</span> <span class="n">allocator</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="o">&gt;</span> <span class="k">class</span> <span class="nc">multiset</span><span class="p">;</span>
+</pre></div></div></div>
+<div class="sect2">
+<h3 id="_konstruktori">Konstruktori</h3>
+<div class="paragraph"><p>Kod konstrukcije zadajemo tip ključa kao parametar predloška.</p></div>
+<div class="tableblock">
+<table rules="all" width="100%" frame="border" cellspacing="0" cellpadding="4">
+<caption class="title">Tabela 4. Konstruktori za set i multiset</caption>
+<colgroup><col width="30%">
+<col width="70%">
+</colgroup><thead>
+<tr>
+<th align="left" valign="top">  Operacija </th>
+<th align="left" valign="top"> Značenje</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left" valign="top"><p class="table"><code>set&lt;K&gt; c</code></p></td>
+<td align="left" valign="top"><p class="table">Dodijeljeni konstruktor; kreira prazan <code>set</code> objekt nazvan <code>c</code> s ključem tipa <code>K</code></p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>set&lt;K&gt; c(op)</code></p></td>
+<td align="left" valign="top"><p class="table">Kreira prazan skup s operatorom uspoređivanja <code>op</code></p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>set&lt;K&gt; c(c2)</code></p></td>
+<td align="left" valign="top"><p class="table">Konstruktor kopije. Kreira <code>c</code> kao kopiju od <code>c2</code>. <code>c</code> i <code>c2</code> moraju imati isti tip ključa</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>set&lt;K&gt; c = c2</code></p></td>
+<td align="left" valign="top"><p class="table">Konstruktor kopije</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>set&lt;K&gt; c(rv)</code></p></td>
+<td align="left" valign="top"><p class="table">Konstruktor kopije premještanjem</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>set&lt;K&gt; c = rv</code></p></td>
+<td align="left" valign="top"><p class="table">Konstruktor kopije premještanjem</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>set&lt;K&gt; c(b, e)</code></p></td>
+<td align="left" valign="top"><p class="table">Kreira <code>c</code> kao kopiju  elemenata iz raspona određenog iteratorima  <code>b</code> i <code>e</code>.
+ Elementi moraju imati tip koji se dade konvertirati u tip <code>K</code>.</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>set&lt;K&gt; c(beg,end)</code></p></td>
+<td align="left" valign="top"><p class="table">Kreira skup   inicijaliziran elementima iz raspona <code>[beg,end)</code></p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>set&lt;K&gt; c(beg,end,op)</code></p></td>
+<td align="left" valign="top"><p class="table">Kreira skup   inicijaliziran elementima iz raspona <code>[beg,end)</code> i
+s operatorom uspoređivanja <code>op</code></p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>set&lt;K&gt; c(initlist)</code></p></td>
+<td align="left" valign="top"><p class="table">Kreira skup   inicijaliziran elementima iz inicijalizacijske  liste <code>initlist</code></p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>set&lt;K&gt; c = initlist</code></p></td>
+<td align="left" valign="top"><p class="table">Kreira skup   inicijaliziran elementima iz inicijalizacijske  liste <code>initlist</code></p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>c.~set()</code></p></td>
+<td align="left" valign="top"><p class="table">Destruktor</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="paragraph"><p>Spremnik <code>multiset&lt;K&gt;</code> ima iste konstruktore.</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;set&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;string&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;vector&gt;</span><span class="cp"></span>
+
+<span class="c1">// ...</span>
+<span class="n">vector</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span> <span class="n">vec</span><span class="p">{</span><span class="s">"n"</span><span class="p">,</span> <span class="s">"p"</span><span class="p">,</span> <span class="s">"a"</span><span class="p">,</span> <span class="s">"q"</span><span class="p">,</span> <span class="s">"k"</span><span class="p">,</span> <span class="s">"i"</span><span class="p">};</span>
+<span class="n">multiset</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span> <span class="n">st</span><span class="p">(</span><span class="n">vec</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">vec</span><span class="p">.</span><span class="n">end</span><span class="p">());</span>
+ <span class="c1">// set sadrži elemente a,i,k,n,p,q</span>
+</pre></div></div></div>
+<div class="ulist"><ul>
+<li>
+<p>
+Oba spremnika, <code>std::set</code> i <code>std::multiset</code> imaju dva parametra predloška pri čemu drugi ima
+predodređenu vrijednost. Drugi parametar predloška je <strong>operator uspoređivanja</strong> i jednak
+je operatoru <code>&lt;</code> (<code>std::less&lt;K&gt;</code>) ako se ne zada eksplicitno. Ponekad taj parametar želimo
+zadati eksplicitno. Na primjer,
+</p>
+</li>
+</ul></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;set&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;string&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;vector&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;functional&gt; // za std::greater</span><span class="cp"></span>
+
+<span class="c1">// ...</span>
+<span class="n">vector</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span> <span class="n">vec</span><span class="p">{</span><span class="s">"n"</span><span class="p">,</span> <span class="s">"p"</span><span class="p">,</span> <span class="s">"a"</span><span class="p">,</span> <span class="s">"q"</span><span class="p">,</span> <span class="s">"k"</span><span class="p">,</span> <span class="s">"i"</span><span class="p">};</span>
+<span class="n">set</span><span class="o">&lt;</span><span class="n">string</span><span class="p">,</span> <span class="n">greater</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;&gt;</span> <span class="n">st</span><span class="p">(</span><span class="n">vec</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">vec</span><span class="p">.</span><span class="n">end</span><span class="p">());</span>
+ <span class="c1">// set sadrži elemente q,p,n,k,i,a</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Predložak klase <code>std::greater&lt;T&gt;</code> je funkcijski objekt definiran u zaglavlju <code>&lt;functional&gt;</code>
+koji implementira operator <code>&gt;</code> za tip <code>T</code>.</p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+Dva konstrutora koji uzimaju operator uspoređivanja <code>op</code> mogu se koristiti samo ako je tip
+operatora uspoređivanja eksplicitno dan kao parametar predloška i <code>op</code> je tog tipa. Primjer
+ćemo vidjeti kasnije.
+</p>
+</li>
+<li>
+<p>
+Konstruktor kopije kopira sve elemente spremnika u novi spremnik i pored toga radi i kopiju
+operatora uspoređivanja.
+</p>
+</li>
+</ul></div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_operator_usporeivanja">Operator uspoređivanja</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Svaki operator uspoređivanja mora biti <em>nerefleksivan</em>, <em>antisimetričan</em> i <em>tranzitivan</em>:</p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+Nerefleksivnost:  x &lt; x je uvijek laž;
+</p>
+</li>
+<li>
+<p>
+Antisimetrija: x &lt; y implicira da nije y &lt; x;
+</p>
+</li>
+<li>
+<p>
+Tranzitivnost: x &lt; y  i y &lt; z implicira  x &lt; z;
+</p>
+</li>
+</ul></div>
+<div class="paragraph"><p>Operator koji zadovoljava gornje aksiome naziva se strogim parcijalnim uređajem i prirodno definira
+<strong>relaciju ekvivalencije</strong>:</p></div>
+<div class="paragraph"><p><strong>x eq y</strong>  ako i samo ako je <strong>!(x &lt; y) &amp; !(y &lt; x)</strong></p></div>
+<div class="paragraph"><p>Relacija ekvivalencije mora biti refleksivna ( x eq x je uvijek istina), simetrična ( x eq y implicira da nije y eq x)
+i tranzitivna (x eq y  i y eq z implicira  x eq z). Refleksivnost i simetrija slijede iz svojstava relacije &lt;
+dok tranzitivnost postuliramo kao <em>četvrti aksiom</em>:</p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+relacija eq definirana pomoću operatora uspoređivanja &lt; mora biti tranzitivna.
+        Tada operacija &lt; predstavlja tzv. <em>strogi slabi uređaj</em> (eng. <em>strict weak ordering</em>).
+</p>
+</li>
+</ul></div>
+<div class="admonitionblock">
+<table><tbody><tr>
+<td class="icon">
+<div class="title">Napomena</div>
+</td>
+<td class="content">Asocijativni spremnici ne koriste operator == za određivanje jednakosti elementa, već samo operator  &lt;,
+  odnosno <em>umjesto jednakosti oni provjeravaju ekvivalenciju</em>!</td>
+</tr></tbody></table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_nalazenje_elemenata">Nalaženje elemenata</h2>
+<div class="sectionbody">
+<div class="paragraph"><p><code>std::set</code> koristimo kada nam je važno efikasno nalaženje elementa u spremniku. Zbog toga što su
+elementi u spremniku sortirani kompleksnost metoda za nalaženje elemenata je logaritamska.</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="n">vector</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span> <span class="n">vec</span><span class="p">{</span><span class="s">"n"</span><span class="p">,</span> <span class="s">"p"</span><span class="p">,</span> <span class="s">"a"</span><span class="p">,</span> <span class="s">"q"</span><span class="p">,</span> <span class="s">"k"</span><span class="p">,</span> <span class="s">"i"</span><span class="p">,</span> <span class="s">"q"</span><span class="p">};</span>
+<span class="n">set</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span> <span class="n">st</span><span class="p">(</span><span class="n">vec</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">vec</span><span class="p">.</span><span class="n">end</span><span class="p">());</span>
+
+<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">st</span><span class="p">.</span><span class="n">count</span><span class="p">(</span><span class="s">"q"</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span> <span class="c1">// vraća 0 ili 1</span>
+<span class="k">auto</span> <span class="n">it</span> <span class="o">=</span> <span class="n">st</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="s">"q"</span><span class="p">);</span> <span class="c1">// vraća poziciju elementa ili end()</span>
+<span class="k">if</span><span class="p">(</span><span class="n">it</span> <span class="o">!=</span> <span class="n">st</span><span class="p">.</span><span class="n">end</span><span class="p">())</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="o">*</span><span class="n">it</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+
+<span class="k">auto</span> <span class="n">it_l</span> <span class="o">=</span> <span class="n">st</span><span class="p">.</span><span class="n">lower_bound</span><span class="p">(</span><span class="s">"k"</span><span class="p">);</span>
+<span class="k">auto</span> <span class="n">it_u</span> <span class="o">=</span> <span class="n">st</span><span class="p">.</span><span class="n">upper_bound</span><span class="p">(</span><span class="s">"k"</span><span class="p">);</span>
+<span class="n">copy</span><span class="p">(</span><span class="n">it_l</span><span class="p">,</span><span class="n">it_u</span><span class="p">,</span> <span class="n">ostream_iterator</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span><span class="p">(</span><span class="n">cout</span><span class="p">,</span><span class="s">","</span><span class="p">));</span> <span class="c1">// q,</span>
+<span class="n">out</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+
+<span class="k">auto</span> <span class="n">it_er</span> <span class="o">=</span> <span class="n">st</span><span class="p">.</span><span class="n">equal_range</span><span class="p">(</span><span class="s">"k"</span><span class="p">);</span>
+<span class="n">assert</span><span class="p">(</span><span class="n">it_l</span> <span class="o">==</span> <span class="n">it_er</span><span class="p">.</span><span class="n">first</span><span class="p">);</span>
+<span class="n">assert</span><span class="p">(</span><span class="n">it_u</span> <span class="o">==</span> <span class="n">it_er</span><span class="p">.</span><span class="n">second</span><span class="p">);</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Metode članice klase <code>std::set</code> su efikasnije od odgovarajućih algoritama.</p></div>
+<div class="tableblock">
+<table rules="all" width="100%" frame="border" cellspacing="0" cellpadding="4">
+<colgroup><col width="20%">
+<col width="80%">
+</colgroup><tbody>
+<tr>
+<td align="left" valign="top"><p class="table">Operacija</p></td>
+<td align="left" valign="top"><p class="table">Značenje</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>s.count(e)</code></p></td>
+<td align="left" valign="top"><p class="table">Vraća broj pojavljivanja elementa <code>e</code> u spremniku <code>s</code>.</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>s.find(e)</code></p></td>
+<td align="left" valign="top"><p class="table">Vraća iterator na element <code>e</code>, ako takav postoji u spremniku, ili vraća <em>end()</em>-iterator.</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>s.lower_bound(e)</code></p></td>
+<td align="left" valign="top"><p class="table">Vraća iterator koji referira na prvi element &gt;= <code>e</code>.</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>s.upper_bound(e)</code></p></td>
+<td align="left" valign="top"><p class="table">Vraća iterator koji referira na prvi element &gt; <code>e</code>.</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>s.equal_range(e)</code></p></td>
+<td align="left" valign="top"><p class="table">Vraća par iteratora od kojih je prvi  <code>s.lower_bound(e)</code>, a drugi <code>s.upper_bound(e)</code>.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="ulist"><ul>
+<li>
+<p>
+<code>s.lower_bound(e) == s.upper_bound(e)</code> znači da element nije nađen.
+</p>
+</li>
+<li>
+<p>
+Ako je element nađen, onda  <code>s.lower_bound(e)</code> pokazuje na njega, a   <code>s.upper_bound(e)</code> pokazuje na prvi
+  veći element ili <code>end()</code>.
+</p>
+</li>
+</ul></div>
+<div class="paragraph"><p><code>std::multiset</code> zadržava višestruke kopije elemenata.</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="n">vector</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span> <span class="n">vec</span><span class="p">{</span><span class="s">"n"</span><span class="p">,</span> <span class="s">"p"</span><span class="p">,</span> <span class="s">"a"</span><span class="p">,</span> <span class="s">"q"</span><span class="p">,</span> <span class="s">"k"</span><span class="p">,</span> <span class="s">"i"</span><span class="p">,</span> <span class="s">"q"</span><span class="p">};</span>
+<span class="n">multiset</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span> <span class="n">mst</span><span class="p">(</span><span class="n">vec</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">vec</span><span class="p">.</span><span class="n">end</span><span class="p">());</span>  <span class="c1">// a,i,k,n,p,q,q,</span>
+<span class="k">auto</span> <span class="n">mit_er</span> <span class="o">=</span> <span class="n">mst</span><span class="p">.</span><span class="n">equal_range</span><span class="p">(</span><span class="s">"q"</span><span class="p">);</span>
+<span class="n">copy</span><span class="p">(</span><span class="n">mit_er</span><span class="p">.</span><span class="n">first</span><span class="p">,</span> <span class="n">mit_er</span><span class="p">.</span><span class="n">second</span><span class="p">,</span>
+     <span class="n">ostream_iterator</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span><span class="p">(</span><span class="n">cout</span><span class="p">,</span><span class="s">","</span><span class="p">));</span> <span class="c1">// q,q</span>
+<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</pre></div></div></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_ubacivanje_elemenata">Ubacivanje elemenata</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Ubacivanje u <code>std::set</code> vrši se metodom <code>insert</code>. Metodi  <code>insert</code> možemo dati vrijednost ili raspon iteratora
+koji određuje elemente koje treba ubaciti.</p></div>
+<div class="tableblock">
+<table rules="all" width="100%" frame="border" cellspacing="0" cellpadding="4">
+<colgroup><col width="30%">
+<col width="70%">
+</colgroup><tbody>
+<tr>
+<td align="left" valign="top"><p class="table">Operacija</p></td>
+<td align="left" valign="top"><p class="table">Značenje</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>s.insert(e)</code></p></td>
+<td align="left" valign="top"><p class="table">Ubacuje vrijednost  <code>e</code> u spremnik. Vraća par iteratora i <code>bool</code> vrijednosti ako je <em>s</em> <em>std::set</em>,
+odnosno samo iterator na ubačeni element ako je <em>s</em> <em>std::multiset</em>.</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>s.insert(beg, end)</code></p></td>
+<td align="left" valign="top"><p class="table"><code>beg</code> i <code>end</code> su iteratori koji određuju raspon elemenata koje ubacujemo u spremnik.
+Ne vraća ništa (tipa <code>void</code>).</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>s.insert(initlist)</code></p></td>
+<td align="left" valign="top"><p class="table">Ubacuje kopiju inicijalizacijske liste <code>initlist</code> u spremnik.
+Ne vraća ništa (tipa <code>void</code>).</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="ulist"><ul>
+<li>
+<p>
+Za <code>std::set</code> ove funkcije ubacuju element u spremnik samo ako ekvivalentni element već nije u njemu.
+Za prvu verzija funkcije povratna vrijednost je <code>std::pair&lt;iterator, bool&gt;</code>. Ako je element već u spremniku
+<code>bool</code> vrijednost je <code>false</code>, a  <code>iterator</code> pokazuje na nađeni element, odnosno na element koji je spriječio ubacivanje;
+ ako element nije u spremniku  <code>bool</code> vrijednost je <code>true</code>, a  <code>iterator</code> pokazuje na novo ubačeni element.
+</p>
+</li>
+<li>
+<p>
+Za <code>std::multiset</code> povratna vrijednost  prve verzije funkcije <code>insert</code> je iterator na ubačeni element jer će
+element u svakom slučaju biti ubačen. Pri tome će relativni poredak ekvivalentnih elemenata biti poštovan i novi
+element će biti ubačen na kraj niza ekvivalentnih elemenata.
+</p>
+</li>
+</ul></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="c1">// st sadrži a,i,k,n,p,q</span>
+<span class="n">list</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span> <span class="n">li</span><span class="p">{</span><span class="s">"n"</span><span class="p">,</span><span class="s">"m"</span><span class="p">,</span><span class="s">"o"</span><span class="p">};</span>
+<span class="n">st</span><span class="p">.</span><span class="n">insert</span><span class="p">(</span><span class="n">li</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">li</span><span class="p">.</span><span class="n">end</span><span class="p">());</span>  <span class="c1">// st sadrži a,i,k,m,n,o,p,q</span>
+<span class="k">auto</span> <span class="n">iit</span> <span class="o">=</span> <span class="n">st</span><span class="p">.</span><span class="n">insert</span><span class="p">(</span><span class="s">"o"</span><span class="p">);</span> <span class="c1">// ubacujemo element koji već postoji</span>
+<span class="n">assert</span><span class="p">(</span> <span class="o">*</span><span class="n">iit</span><span class="p">.</span><span class="n">first</span> <span class="o">==</span> <span class="s">"o"</span><span class="p">);</span>
+<span class="n">assert</span><span class="p">(</span><span class="n">iit</span><span class="p">.</span><span class="n">second</span> <span class="o">==</span> <span class="nb">false</span><span class="p">);</span>  <span class="c1">// nije došlo do ubacivanja.</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Metoda <code>insert</code> u spremniku  <code>std::multiset</code>  uvijek ubacuje element (jer dozvoljava duplikate) te je
+stoga povratni tip prve verzije metode samo iterator na ubačeni element.</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="c1">// mst sadrži a,i,k,n,p,q,q,</span>
+<span class="n">mst</span><span class="p">.</span><span class="n">insert</span><span class="p">(</span><span class="n">li</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">li</span><span class="p">.</span><span class="n">end</span><span class="p">());</span> <span class="c1">// mst sadrži a,i,k,m,n,n,o,p,q,q</span>
+<span class="k">auto</span> <span class="n">imit</span> <span class="o">=</span> <span class="n">mst</span><span class="p">.</span><span class="n">insert</span><span class="p">(</span><span class="s">"o"</span><span class="p">);</span> <span class="c1">// mst sadrži a,i,k,m,n,n,o,o,p,q,q</span>
+<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Element o je ubačen na "</span> <span class="o">&lt;&lt;</span> <span class="n">distance</span><span class="p">(</span><span class="n">mst</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">imit</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="s">". mjesto."</span>
+     <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>  <span class="c1">// Element o je ubačen na 8. mjesto.</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Postoji još jedna verzija <code>insert</code> metode koja je ista za  <em>std::set</em> i  <em>std::multiset</em>.</p></div>
+<div class="tableblock">
+<table rules="all" width="100%" frame="border" cellspacing="0" cellpadding="4">
+<colgroup><col width="30%">
+<col width="70%">
+</colgroup><tbody>
+<tr>
+<td align="left" valign="top"><p class="table">Operacija</p></td>
+<td align="left" valign="top"><p class="table">Značenje</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>s.insert(pos, e)</code></p></td>
+<td align="left" valign="top"><p class="table">Ubacuje vrijednost  <code>e</code> u spremnik. Koristi iterator <code>pos</code> kao sugestiju gdje
+početi tražiti poziciju za ubacivanje. Vraća iterator na ubačeni element ili element koji je spriječio ubacivanje.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="paragraph"><p>Ova metoda ima istu signaturu kao i  <code>insert</code> metode u sekvencijalnim spremnicima. Ako se unaprijed zna
+pozicija ubacivanja onada ima konstantnu složenost.</p></div>
+<div class="paragraph"><p>Postoje i odgovarajuće <strong>emplace</strong> metode:</p></div>
+<div class="tableblock">
+<table rules="all" width="100%" frame="border" cellspacing="0" cellpadding="4">
+<colgroup><col width="30%">
+<col width="70%">
+</colgroup><tbody>
+<tr>
+<td align="left" valign="top"><p class="table">Operacija</p></td>
+<td align="left" valign="top"><p class="table">Značenje</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>s.emplace(args...)</code></p></td>
+<td align="left" valign="top"><p class="table">Ubacuje u spremnik element konstruiran pomoću <code>args</code> (argumenti konstruktor).
+Vraća par iteratora i <code>bool</code> vrijednosti ako je <em>s</em> <em>std::set</em>,
+odnosno samo iterator na ubačeni element ako je <em>s</em> <em>std::multiset</em>.</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>c.emplace_hint(pos,args...)</code></p></td>
+<td align="left" valign="top"><p class="table">Ubacuje u spremnik element konstruiran pomoću <code>args</code> (argumenti konstruktor).
+Vraća iterator na ubačeni element ili element koji je spriječio ubacivanje. Iterator <code>pos</code> je sugestija gdje
+treba tražiti poziciju za ubacivanje.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_brisanje_elemenata">Brisanje elemenata</h2>
+<div class="sectionbody">
+<div class="tableblock">
+<table rules="all" width="100%" frame="border" cellspacing="0" cellpadding="4">
+<colgroup><col width="20%">
+<col width="80%">
+</colgroup><tbody>
+<tr>
+<td align="left" valign="top"><p class="table"><code>s.erase(e)</code></p></td>
+<td align="left" valign="top"><p class="table">Briše sve element jednake  <code>e</code> iz <code>s</code>. Vraća   broj izbrisanih elemenata.</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>s.erase(p)</code></p></td>
+<td align="left" valign="top"><p class="table">Briše element na koji referira iterator <code>p</code> iz <code>s</code>. Vraća sljedeću poziciju.</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>s.erase(b, e)</code></p></td>
+<td align="left" valign="top"><p class="table">Briše sve elemente u rasponu koji određuje par iteratora <code>b</code> i <code>e</code>.
+ Vraća sljedeću poziciju.</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>s.clear()</code></p></td>
+<td align="left" valign="top"><p class="table">Obriši sve elemente.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="paragraph"><p>Na primjer,</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="c1">// mst = {a,i,k,m,n,n,p,q,q,q}</span>
+<span class="k">auto</span> <span class="n">it1</span> <span class="o">=</span> <span class="n">mst</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="s">"n"</span><span class="p">);</span>
+<span class="k">auto</span> <span class="n">it2</span> <span class="o">=</span> <span class="n">mst</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="s">"q"</span><span class="p">);</span>
+<span class="k">auto</span> <span class="n">it3</span> <span class="o">=</span> <span class="n">mst</span><span class="p">.</span><span class="n">erase</span><span class="p">(</span><span class="n">it1</span><span class="p">,</span> <span class="n">it2</span><span class="p">);</span> <span class="c1">// mst = {a,i,k,m,q,q,q}</span>
+<span class="n">assert</span><span class="p">(</span><span class="o">*</span><span class="n">it3</span> <span class="o">==</span> <span class="s">"q"</span><span class="p">);</span>
+<span class="n">mst</span><span class="p">.</span><span class="n">clear</span><span class="p">();</span>            <span class="c1">// obriši sve elemente</span>
+<span class="n">assert</span><span class="p">(</span><span class="n">mst</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">==</span> <span class="mi">0</span><span class="p">);</span>
+<span class="n">assert</span><span class="p">(</span><span class="n">mst</span><span class="p">.</span><span class="n">empty</span><span class="p">());</span>
+</pre></div></div></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_iteratori_i_ostalo">Iteratori i ostalo</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Spremnici  <em>std::set</em> i <em>std::multiset</em> nude iteratore kao i sekvencijalni spremnici
+s tom razlikom da su iteratori samo dvosmjerni (nisu izravnog pristupa).</p></div>
+<div class="paragraph"><p>Kroz iteratore <strong>ne možemo mijenjati elemente</strong> jer se promjenom elementa mijenja njegov
+položaj u spremniku.</p></div>
+<div class="tableblock">
+<table rules="all" width="100%" frame="border" cellspacing="0" cellpadding="4">
+<caption class="title">Tabela 5. Iteratori</caption>
+<colgroup><col width="20%">
+<col width="80%">
+</colgroup><thead>
+<tr>
+<th align="left" valign="top"> Operacija </th>
+<th align="left" valign="top"> Značenje</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left" valign="top"><p class="table"><code>c.begin()</code></p></td>
+<td align="left" valign="top"><p class="table">Vraća iterator na poziciju prvog elementa</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>c.end()</code></p></td>
+<td align="left" valign="top"><p class="table">Vraća iterator na poziciju iza zadnjeg elementa</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>c.cbegin()</code></p></td>
+<td align="left" valign="top"><p class="table">Vraća konstantan iterator na poziciju prvog elementa</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>c.cend()</code></p></td>
+<td align="left" valign="top"><p class="table">Vraća konstantan iterator na poziciju iza zadnjeg elementa</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>c.rbegin()</code></p></td>
+<td align="left" valign="top"><p class="table">Vraća reverzni iterator na poziciju prvog elementa reverznog niza</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>c.rend()</code></p></td>
+<td align="left" valign="top"><p class="table">Vraća reverzni iterator na poziciju iza zadnjeg elementa reverznog niza</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>c.crbegin()</code></p></td>
+<td align="left" valign="top"><p class="table">Vraća konstantan reverzni iterator  na poziciju prvog elementa reverznog niza</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>c.crend()</code></p></td>
+<td align="left" valign="top"><p class="table">Vraća  konstantan reverzni iterator na poziciju iza zadnjeg elementa reverznog niza</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="paragraph"><p>Kao i kod sekvencijalnih spremnika imamo standardne nemodificirajuće metode.</p></div>
+<div class="tableblock">
+<table rules="all" width="100%" frame="border" cellspacing="0" cellpadding="4">
+<caption class="title">Tabela 6. Nemodificirajuće metode</caption>
+<colgroup><col width="20%">
+<col width="80%">
+</colgroup><thead>
+<tr>
+<th align="left" valign="top">  Operacija </th>
+<th align="left" valign="top"> Značenje</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left" valign="top"><p class="table"><code>c.empty()</code></p></td>
+<td align="left" valign="top"><p class="table">Vraća <code>true</code> ako je lista  prazna, a inače <code>false</code></p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>c.size()</code></p></td>
+<td align="left" valign="top"><p class="table">Vraća broj elemenata u listi</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>c.max_size()</code></p></td>
+<td align="left" valign="top"><p class="table">Vraća maksimalni mogući broj elemenata u listi</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>c1 == c2</code></p></td>
+<td align="left" valign="top"><p class="table">Vraća <code>true</code> ako je <code>c1</code> jednak <code>c2</code> (zove  == na svakom elementu)</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>c1 != c2</code></p></td>
+<td align="left" valign="top"><p class="table">Vraća <code>true</code> ako <code>c1</code> nije jednak <code>c2</code> (isto što i <code>!(c1==c2)</code>)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="paragraph"><p>Operacije nad čitavim spremnikom podrazumijevaju da su spremnici istog tipa.
+To znači da imaju iste parametre predloška: tip elementa i <strong>tip operatora uspoređivanja</strong>.</p></div>
+<div class="tableblock">
+<table rules="all" width="100%" frame="border" cellspacing="0" cellpadding="4">
+<caption class="title">Tabela 7. Operacije na čitavom spremniku</caption>
+<colgroup><col width="20%">
+<col width="80%">
+</colgroup><thead>
+<tr>
+<th align="left" valign="top"> Operacija </th>
+<th align="left" valign="top"> Značenje</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left" valign="top"><p class="table"><code>c = c2</code></p></td>
+<td align="left" valign="top"><p class="table">Pridruži sve elemente spremika <code>c2</code> spremniku <code>c</code></p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>c = rv</code></p></td>
+<td align="left" valign="top"><p class="table">Pridruži premještanjem sve elemente spremika <code>c2</code> spremniku <code>c</code></p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>c = initlist</code></p></td>
+<td align="left" valign="top"><p class="table">Pridruži sve elemente inicijalizacijske liste <code>initlist</code> spremniku <code>c</code></p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>c1.swap(c2)</code></p></td>
+<td align="left" valign="top"><p class="table">Zamjeni sadržaj spremnika <code>c1</code> i <code>c2</code></p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>swap(c1,c2)</code></p></td>
+<td align="left" valign="top"><p class="table">Zamjeni sadržaj spremnika <code>c1</code> i <code>c2</code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="paragraph"><p>Operator uspoređivanja je dio spremnika i možemo ga dohvatiti pomoću dvije metode:</p></div>
+<div class="tableblock">
+<table rules="all" width="100%" frame="border" cellspacing="0" cellpadding="4">
+<colgroup><col width="20%">
+<col width="80%">
+</colgroup><thead>
+<tr>
+<th align="left" valign="top"> Operacija </th>
+<th align="left" valign="top"> Značenje</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left" valign="top"><p class="table"><code>c.key_comp()</code></p></td>
+<td align="left" valign="top"><p class="table">Vraća objekt koji predstavlja operator uspoređivanja spremnika.</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>c.value_comp()</code></p></td>
+<td align="left" valign="top"><p class="table">Ima posve isti efekt kao i <code>key_comp()</code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_code_std_map_code_i_code_std_multimap_code"><code>std::map</code> i <code>std::multimap</code></h2>
+<div class="sectionbody">
+<div class="paragraph"><p><code>std::map&lt;Key,T&gt;</code>  i <code>std::multimap&lt;Key,T&gt;</code>
+su kolekcije uređenih parova <em>(ključ, vrijednost)</em>. <em>Ključ</em>
+služi za identifikaciju i dohvat elementa, a <em>vrijednost</em> je vrijednost elementa.</p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+Elementi u <code>std::map</code>  i <code>std::multimap</code> su sortirani prema ključu.
+</p>
+</li>
+<li>
+<p>
+Predodređeni kriterij sortiranja je <code>std::less&lt;Key&gt;</code> no moguće ga je zadati i eksplicitno.
+Kriterij uspoređivanja mora zadovoljavati uvjete strogog slabog uređaja (eng. <em>strict weak ordering</em>).
+</p>
+</li>
+<li>
+<p>
+<code>std::map</code> ne dozvoljava postojanje više parova s istim ključem u spremniku,
+  dok <code>std::multimap</code> dozvoljava.
+</p>
+</li>
+<li>
+<p>
+Spremnici <code>std::map</code> i <code>std::multimap</code> su (najčešće) implementirani  kao
+  balansirana binarna stabla.
+</p>
+</li>
+<li>
+<p>
+Nema metode koje podrazumijevaju poziciju elementa:   <code>push_back</code>, <code>push_front</code>, <code>front</code>, <code>back</code>,
+ <code>pop_front</code> i <code>pop_back</code>.
+</p>
+</li>
+</ul></div>
+<div class="paragraph"><p>Spremnik <code>std::map&lt;Key, Value&gt;</code> jes sličan spremniku <code>std::set</code> koji drži
+tip  <code>std::pair&lt;const Key, Value&gt;</code>, a sortiranje se vrši prema ključu (koji je zato
+konstantan).</p></div>
+<div class="paragraph"><p>Spremnici <code>std::map</code> i <code>std::multimap</code> su predlošci klasa as četiri parametra predloška: tip ključa <code>Key</code>,
+tip vrijednosti <code>T</code>, operator uspoređivanja <code>Compare</code> i alokator <code>Allocator</code>.
+Zadnja dva parametra imaju predodređene vrijednosti tako da najčešće zadajemo samo
+prva dva argumenta predloška (koji su obavezni).</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">Key</span><span class="p">,</span> <span class="k">typename</span> <span class="n">T</span><span class="p">,</span> <span class="k">typename</span> <span class="n">Compare</span> <span class="o">=</span> <span class="n">less</span><span class="o">&lt;</span><span class="n">Key</span><span class="o">&gt;</span><span class="p">,</span>
+                                    <span class="k">typename</span> <span class="n">Allocator</span> <span class="o">=</span> <span class="n">allocator</span><span class="o">&lt;</span><span class="n">pair</span><span class="o">&lt;</span><span class="k">const</span> <span class="n">Key</span><span class="p">,</span><span class="n">T</span><span class="o">&gt;</span> <span class="o">&gt;</span> <span class="o">&gt;</span> <span class="k">class</span> <span class="nc">map</span><span class="p">;</span>
+<span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">Key</span><span class="p">,</span> <span class="k">typename</span> <span class="n">T</span><span class="p">,</span> <span class="k">typename</span> <span class="n">Compare</span> <span class="o">=</span> <span class="n">less</span><span class="o">&lt;</span><span class="n">Key</span><span class="o">&gt;</span><span class="p">,</span>
+                                    <span class="k">typename</span> <span class="n">Allocator</span> <span class="o">=</span> <span class="n">allocator</span><span class="o">&lt;</span><span class="n">pair</span><span class="o">&lt;</span><span class="k">const</span> <span class="n">Key</span><span class="p">,</span><span class="n">T</span><span class="o">&gt;</span> <span class="o">&gt;</span> <span class="o">&gt;</span> <span class="k">class</span> <span class="nc">multimap</span><span class="p">;</span>
+</pre></div></div></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_konstrukcija_code_std_map_code_objekta">Konstrukcija <code>std::map</code> objekta</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Da bismo koristili <code>std::map</code> ili <code>std::multimap</code> moramo uključiti <code>&lt;map&gt;</code> zaglavlja.
+<code>std::map</code> i <code>std::multimap</code> su predlošci klasa čiji je prvi parametar tip ključa,
+a drugi tip vrijednosti:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;map&gt;</span><span class="cp"></span>
+
+<span class="n">std</span><span class="o">::</span><span class="n">map</span><span class="o">&lt;</span><span class="kt">char</span><span class="p">,</span> <span class="kt">int</span><span class="o">&gt;</span> <span class="n">kod</span><span class="p">;</span> <span class="c1">// ključ je tipa char, vrijednost je tipa int.</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Načini konstruiranja spremnika dani su u sljedećoj tabeli:</p></div>
+<div class="tableblock">
+<table rules="all" width="100%" frame="border" cellspacing="0" cellpadding="4">
+<colgroup><col width="30%">
+<col width="70%">
+</colgroup><tbody>
+<tr>
+<td align="left" valign="top"><p class="table">Operacija</p></td>
+<td align="left" valign="top"><p class="table">Značenje</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>map&lt;Key, Value&gt; m;</code></p></td>
+<td align="left" valign="top"><p class="table">Dodijeljeni konstruktor; kreira prazan <code>map</code> objekt nazvan <code>m</code> s ključem tipa <code>const k</code> i vrijednosti tipa <code>v</code>.</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>map&lt;K&gt; m(op)</code></p></td>
+<td align="left" valign="top"><p class="table">Kreira prazan skup s operatorom uspoređivanja <code>op</code></p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>map&lt;Key, Value&gt; m(m2);</code></p></td>
+<td align="left" valign="top"><p class="table">Konstruktor kopije.  Kreira <code>m</code> kao kopiju od <code>m2</code>. <code>m</code> i <code>m2</code> moraju imati isti tip ključa i vrijednosti.</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>map&lt;Key, Value&gt; m = m2</code></p></td>
+<td align="left" valign="top"><p class="table">Konstruktor kopije</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>map&lt;Key, Value&gt; m(rv)</code></p></td>
+<td align="left" valign="top"><p class="table">Konstruktor kopije premještanjem</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>map&lt;Key, Value&gt; m = rv</code></p></td>
+<td align="left" valign="top"><p class="table">Konstruktor kopije premještanjem</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>map&lt;Key, Value&gt; m(b, e);</code></p></td>
+<td align="left" valign="top"><p class="table">Kreira <code>m</code> kao kopiju  elemenata iz raspona određenog iteratorima  <code>b</code> i <code>e</code>.
+                                Elementi moraju imati tip koji se dade konvertirati u <code>std::pair&lt;const Key, Value&gt;</code>.</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>map&lt;Key, Value&gt; m(b, e, op)</code></p></td>
+<td align="left" valign="top"><p class="table">Kreira <code>m</code> s operatorom uspoređivanja <code>op</code> kao kopiju  elemenata iz raspona određenog iteratorima  <code>b</code> i <code>e</code>.</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>map&lt;Key, Value&gt; m(initlist)</code></p></td>
+<td align="left" valign="top"><p class="table">Kreira <code>m</code>  inicijaliziran elementima iz inicijalizacijske  liste <code>initlist</code></p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>map&lt;Key, Value&gt; m = initlist</code></p></td>
+<td align="left" valign="top"><p class="table">Kreira <code>m</code>   inicijaliziran elementima iz inicijalizacijske  liste <code>initlist</code></p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>m.~set()</code></p></td>
+<td align="left" valign="top"><p class="table">Destruktor</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="ulist"><ul>
+<li>
+<p>
+Spremnik   <code>std::multimap</code> ima iste konstruktore.
+</p>
+</li>
+<li>
+<p>
+Tipovi ključa i vrijednosti moraju se moći <em>kopirati</em> ili <em>premještati</em>.
+</p>
+</li>
+<li>
+<p>
+Tip ključa  mora biti takav da je na njemu dobro definiran <em>operator &lt;</em>.
+  Taj se operator koristi za uspoređivanje elemenata i mora imati svojstva <em>strogog slabog uređaja</em>.
+</p>
+</li>
+<li>
+<p>
+Korisnik ima mogućnost definirati svoj operator uspoređivanja.
+</p>
+</li>
+</ul></div>
+<div class="paragraph"><p>U sljedećem primjeru <code>std::map</code>  konstruiramo iz  inicijalizacijske liste:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;map&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;string&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;iomanip&gt;  // za manupulator setprecision</span><span class="cp"></span>
+
+<span class="c1">// pod windowsima trebamo ovaj "define" za matematičke konstante</span>
+<span class="cp">#define _USE_MATH_DEFINES</span>
+<span class="cp">#include</span> <span class="cpf">&lt;cmath&gt;</span><span class="cp"></span>
+
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+  <span class="n">map</span><span class="o">&lt;</span><span class="n">string</span><span class="p">,</span> <span class="kt">double</span><span class="o">&gt;</span> <span class="n">konstante</span><span class="p">{</span>
+              <span class="p">{</span><span class="s">"sqrt2"</span><span class="p">,</span> <span class="n">M_SQRT2</span><span class="p">},</span> <span class="p">{</span><span class="s">"pi"</span><span class="p">,</span> <span class="n">M_PI</span><span class="p">},</span> <span class="p">{</span><span class="s">"e"</span><span class="p">,</span> <span class="n">M_E</span><span class="p">},</span> <span class="p">{</span><span class="s">"log_2e"</span><span class="p">,</span> <span class="n">M_LOG2E</span><span class="p">},</span>
+              <span class="p">{</span> <span class="s">"log_10e"</span><span class="p">,</span> <span class="n">M_LOG10E</span><span class="p">},</span> <span class="p">{</span><span class="s">"ln2"</span><span class="p">,</span> <span class="n">M_LN2</span><span class="p">},</span> <span class="p">{</span><span class="s">"ln10"</span><span class="p">,</span> <span class="n">M_LN10</span><span class="p">}</span>
+                                     <span class="p">};</span>
+  <span class="k">for</span><span class="p">(</span><span class="k">auto</span> <span class="nl">x</span> <span class="p">:</span> <span class="n">konstante</span><span class="p">)</span>
+        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">setw</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">x</span><span class="p">.</span><span class="n">first</span> <span class="o">&lt;&lt;</span> <span class="s">" = "</span> <span class="o">&lt;&lt;</span> <span class="n">setprecision</span><span class="p">(</span><span class="mi">16</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">x</span><span class="p">.</span><span class="n">second</span> <span class="o">&lt;&lt;</span> <span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+
+    <span class="c1">// ...</span>
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Kod daje ispis:</p></div>
+<div class="listingblock">
+<div class="content">
+<pre><code>         e = 2.718281828459045
+      ln10 = 2.302585092994046
+       ln2 = 0.6931471805599453
+   log_10e = 0.4342944819032518
+    log_2e = 1.442695040888963
+        pi = 3.141592653589793
+     sqrt2 = 1.414213562373095</code></pre>
+</div></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_nalazenje_elementa">Nalaženje elementa</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Za nalaženje elementa imamo iste operacije kao i kod <code>set</code> i <code>multiset</code> spremnika.
+Pretraživanje uvijek ide prema ključu.</p></div>
+<div class="tableblock">
+<table rules="all" width="100%" frame="border" cellspacing="0" cellpadding="4">
+<colgroup><col width="20%">
+<col width="80%">
+</colgroup><tbody>
+<tr>
+<td align="left" valign="top"><p class="table"><code>m.count(key)</code></p></td>
+<td align="left" valign="top"><p class="table">Vraća broj pojavljivanja ključa <code>key</code> u spremniku <code>m</code>.</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>m.find(key)</code></p></td>
+<td align="left" valign="top"><p class="table">Vraća iterator na element indeksiran sa <code>key</code>, ako takav postoji, ili vraća <em>end</em>  iterator.</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>m.lower_bound(key)</code></p></td>
+<td align="left" valign="top"><p class="table">Vraća iterator koji referira na prvi element čiji ključ nije manji od <code>key</code>.</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>m.upper_bound(key)</code></p></td>
+<td align="left" valign="top"><p class="table">Vraća iterator koji referira na prvi element čiji je ključ veći od <code>key</code>.</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>m.equal_range(key)</code></p></td>
+<td align="left" valign="top"><p class="table">Vraća par iteratora od kojih je prvi ekvivalentan s <code>m.lower_bound(key)</code>, a drugi s    <code>m.upper_bound(key)</code>.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="paragraph"><p><code>map</code> i <code>multimap</code> iteratori pokazuju na tip <code>std::pair&lt;Key, Value&gt;</code>.</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">konstante</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>      <span class="c1">// broj elemenata</span>
+<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">konstante</span><span class="p">.</span><span class="n">count</span><span class="p">(</span><span class="s">"pi"</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span> <span class="c1">//  broj pojavljivanja ključa "pi" (kod map 0 ili 1)</span>
+
+<span class="k">auto</span> <span class="n">it</span> <span class="o">=</span> <span class="n">konstante</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="s">"e"</span><span class="p">);</span>   <span class="c1">// nađi element e</span>
+<span class="n">assert</span><span class="p">(</span><span class="n">it</span><span class="o">-&gt;</span><span class="n">first</span> <span class="o">==</span> <span class="s">"e"</span><span class="p">);</span>
+<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"e = "</span> <span class="o">&lt;&lt;</span> <span class="n">it</span><span class="o">-&gt;</span><span class="n">second</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span> <span class="c1">// e = 2.718281828459045</span>
+
+<span class="k">auto</span> <span class="n">it_l</span> <span class="o">=</span> <span class="n">konstante</span><span class="p">.</span><span class="n">lower_bound</span><span class="p">(</span><span class="s">"ln2"</span><span class="p">);</span>
+<span class="k">auto</span> <span class="n">it_u</span> <span class="o">=</span> <span class="n">konstante</span><span class="p">.</span><span class="n">upper_bound</span><span class="p">(</span><span class="s">"pi"</span><span class="p">);</span>
+<span class="k">for</span><span class="p">(</span><span class="k">auto</span> <span class="n">i</span> <span class="o">=</span> <span class="n">it_l</span><span class="p">;</span> <span class="n">i</span> <span class="o">!=</span> <span class="n">it_u</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
+        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">setw</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">i</span><span class="o">-&gt;</span><span class="n">first</span> <span class="o">&lt;&lt;</span> <span class="s">" = "</span> <span class="o">&lt;&lt;</span> <span class="n">i</span><span class="o">-&gt;</span><span class="n">second</span> <span class="o">&lt;&lt;</span> <span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Zadnja petlja ispisuje:</p></div>
+<div class="listingblock">
+<div class="content">
+<pre><code>       ln2 = 0.6931471805599453
+   log_10e = 0.4342944819032518
+    log_2e = 1.442695040888963
+        pi = 3.141592653589793</code></pre>
+</div></div>
+<div class="ulist"><ul>
+<li>
+<p>
+Operacija <code>lower_bound(key)</code> daje iterator koji referira na prvo pojavljivanje ključa
+<code>key</code> u spremniku, ako element s tim ključem postoji. Operacija <code>upper_bound(key)</code>
+vraća iterator na prvi element iza posljednjeg elementa s ključem <code>key</code>. U toj situaciji
+par [<code>lower_bound(key)</code>, <code>upper_bound(key)</code>) predstavlja raspon elementa
+s ključem <code>key</code>.
+</p>
+</li>
+<li>
+<p>
+Kada element s ključem <code>key</code> ne postoji u spremniku tada <code>lower_bound(key)</code> i
+<code>upper_bound(key)</code> vraćaju iterator koji referira na isti element (ili end-iterator). Taj element predstavlja
+mjesto na koje možemo ubaciti element s ključem <code>key</code> a da ne narušimo poredak elemenata
+u spremniku.
+</p>
+</li>
+</ul></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_iteratori">Iteratori</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Spremnici  <em>std::map</em> i <em>std::multimap</em> nude iteratore kao i sekvencijalni spremnici
+s tom razlikom da su iteratori samo dvosmjerni (nisu izravnog pristupa).</p></div>
+<div class="paragraph"><p>Kroz iteratore <strong>ne možemo mijenjati ključ elementa</strong> jer se promjenom ključa mijenja njegov
+položaj u spremniku. Iteratori iteriraju po elementima tipa <code>std::pair&lt;const Key, Value&gt;</code>.</p></div>
+<div class="tableblock">
+<table rules="all" width="100%" frame="border" cellspacing="0" cellpadding="4">
+<caption class="title">Tabela 8. Iteratori</caption>
+<colgroup><col width="20%">
+<col width="80%">
+</colgroup><thead>
+<tr>
+<th align="left" valign="top"> Operacija </th>
+<th align="left" valign="top"> Značenje</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left" valign="top"><p class="table"><code>c.begin()</code></p></td>
+<td align="left" valign="top"><p class="table">Vraća iterator na poziciju prvog elementa</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>c.end()</code></p></td>
+<td align="left" valign="top"><p class="table">Vraća iterator na poziciju iza zadnjeg elementa</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>c.cbegin()</code></p></td>
+<td align="left" valign="top"><p class="table">Vraća konstantan iterator na poziciju prvog elementa</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>c.cend()</code></p></td>
+<td align="left" valign="top"><p class="table">Vraća konstantan iterator na poziciju iza zadnjeg elementa</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>c.rbegin()</code></p></td>
+<td align="left" valign="top"><p class="table">Vraća reverzni iterator na poziciju prvog elementa reverznog niza</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>c.rend()</code></p></td>
+<td align="left" valign="top"><p class="table">Vraća reverzni iterator na poziciju iza zadnjeg elementa reverznog niza</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>c.crbegin()</code></p></td>
+<td align="left" valign="top"><p class="table">Vraća konstantan reverzni iterator  na poziciju prvog elementa reverznog niza</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>c.crend()</code></p></td>
+<td align="left" valign="top"><p class="table">Vraća  konstantan reverzni iterator na poziciju iza zadnjeg elementa reverznog niza</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="paragraph"><p>Za  iteriranje kroz spremnik možemo koristiti rab+nge-for petlju:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">map</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">,</span> <span class="kt">int</span><span class="o">&gt;</span> <span class="n">members</span><span class="p">{{</span><span class="s">"A.B"</span><span class="p">,</span> <span class="mi">3</span><span class="p">},</span> <span class="p">{</span><span class="s">"R.E"</span><span class="p">,</span> <span class="mi">11</span><span class="p">},</span> <span class="p">{</span><span class="s">"K.M"</span><span class="p">,</span><span class="mi">8</span><span class="p">}};</span>
+
+<span class="k">for</span><span class="p">(</span><span class="k">auto</span> <span class="nl">x</span> <span class="p">:</span> <span class="n">members</span><span class="p">){</span>
+     <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">x</span><span class="p">.</span><span class="n">first</span> <span class="o">&lt;&lt;</span> <span class="s">" : "</span> <span class="o">&lt;&lt;</span> <span class="n">x</span><span class="p">.</span><span class="n">second</span> <span class="o">&lt;&lt;</span> <span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+   <span class="c1">//x.first = "F.Z";  -- Greška, ključ je konstantan</span>
+     <span class="n">x</span><span class="p">.</span><span class="n">second</span> <span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="c1">// vrijednost možemo mijenjati</span>
+                  <span class="c1">// (ali ovdje mijenjamo samo kopiju vrijednosti)</span>
+<span class="p">}</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Ekvivalentan ispis pomoću iteratora:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="k">for</span><span class="p">(</span><span class="k">auto</span> <span class="n">it</span> <span class="o">=</span> <span class="n">members</span><span class="p">.</span><span class="n">begin</span><span class="p">();</span> <span class="n">it</span> <span class="o">!=</span> <span class="n">members</span><span class="p">.</span><span class="n">end</span><span class="p">();</span> <span class="o">++</span><span class="n">it</span><span class="p">)</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">it</span><span class="o">-&gt;</span><span class="n">first</span> <span class="o">&lt;&lt;</span> <span class="s">" : "</span> <span class="o">&lt;&lt;</span> <span class="n">it</span><span class="o">-&gt;</span><span class="n">second</span> <span class="o">&lt;&lt;</span> <span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Kada koristimo algoritme s lambdama tip elementa u <em>std::map</em> ili <em>std::multimap</em>  trebamo eksplicitno navesti.</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">for_each</span><span class="p">(</span><span class="n">members</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">members</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span>
+            <span class="p">[](</span><span class="n">std</span><span class="o">::</span><span class="n">pair</span><span class="o">&lt;</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">,</span> <span class="kt">int</span><span class="o">&gt;</span> <span class="o">&amp;</span> <span class="n">u</span><span class="p">){</span> <span class="n">u</span><span class="p">.</span><span class="n">second</span> <span class="o">+=</span> <span class="mi">10</span><span class="p">;});</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Tip <code>std::pair&lt;const std::string, int&gt;</code> možemo dobiti kao</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">map</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">,</span> <span class="kt">int</span><span class="o">&gt;::</span><span class="n">value_type</span>
+</pre></div></div></div>
+<div class="paragraph"><p>i kao</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="k">decltype</span><span class="p">(</span><span class="n">members</span><span class="p">)</span><span class="o">::</span><span class="n">value_type</span>
+</pre></div></div></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_ubacivanje_elemenata_2">Ubacivanje elemenata</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Elementi se ubacuju u <code>map</code> pomoću metode <code>insert</code>. Element koji se ubacuje mora biti
+tipa <code>std::pair&lt;Key,Val&gt;</code>, gdje je <code>Key</code> tip ključa, a <code>Val</code> tip
+vrijednosti. Analogno, metoda koja uzima iteratore traži da on referiraju na odgovarajuće parove.</p></div>
+<div class="tableblock">
+<table rules="all" width="100%" frame="border" cellspacing="0" cellpadding="4">
+<colgroup><col width="25%">
+<col width="75%">
+</colgroup><tbody>
+<tr>
+<td align="left" valign="top"><p class="table"><code>m.insert(e)</code></p></td>
+<td align="left" valign="top"><p class="table">Ubacuje vrijednost  <code>e</code> u spremnik. Vraća par iteratora i <code>bool</code> vrijednosti ako je <em>m</em> tipa <em>std::map</em>,
+odnosno samo iterator na ubačeni element ako je <em>m</em> tipa <em>std::multimap</em>.</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>m.insert(beg, end)</code></p></td>
+<td align="left" valign="top"><p class="table"><code>beg</code> i <code>end</code> su iteratori koji određuju raspon elemenata koje ubacujemo u <code>m</code>.  Vraća  <code>void</code>.</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>m.insert(initlist)</code></p></td>
+<td align="left" valign="top"><p class="table">Ubacuje kopiju inicijalizacijske liste <code>initlist</code> u spremnik.
+Ne vraća ništa (tipa <code>void</code>).</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="ulist"><ul>
+<li>
+<p>
+Kod ubacivanja elementa <code>e</code> u <code>map</code>,  <code>insert</code>  ubacuje element u spremnika ako  pripadni ključ (<code>e.first</code>)
+nije u <code>m</code>. U suprotnom  <code>m</code> ostaje neizmjenjen.
+Povratna vrijednost je par (<code>std::pair</code>) čiji je prvi element iterator koji referira na
+element s ključem <code>e.first</code>, a drugi je  <code>bool</code>  varijabla koja indicira je li
+element ubačen ili nije.
+</p>
+</li>
+<li>
+<p>
+Kod ubacivanja elementa <code>e</code> u <code>multimap</code> uvijek dolazi do ubacivanja (jer se dozvoljavaju višestruki elementi)
+i povratna vrijednost je iterator na ubačenu vrijednost.
+</p>
+</li>
+</ul></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="k">auto</span> <span class="n">iit</span> <span class="o">=</span> <span class="n">konstante</span><span class="p">.</span><span class="n">insert</span><span class="p">(</span><span class="n">make_pair</span><span class="p">(</span><span class="s">"1/pi "</span><span class="p">,</span> <span class="n">M_1_PI</span><span class="p">));</span> <span class="c1">// make_pair napravi std::pair&lt;,&gt;</span>
+<span class="n">assert</span><span class="p">(</span><span class="n">iit</span><span class="p">.</span><span class="n">second</span> <span class="o">==</span> <span class="nb">true</span><span class="p">);</span>
+<span class="k">for</span><span class="p">(</span><span class="k">auto</span> <span class="nl">x</span> <span class="p">:</span> <span class="n">konstante</span><span class="p">)</span>
+        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">setw</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">x</span><span class="p">.</span><span class="n">first</span> <span class="o">&lt;&lt;</span> <span class="s">" = "</span>  <span class="o">&lt;&lt;</span> <span class="n">x</span><span class="p">.</span><span class="n">second</span> <span class="o">&lt;&lt;</span> <span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Ispis:</p></div>
+<div class="listingblock">
+<div class="content">
+<pre><code>     1/pi  = 0.3183098861837907
+         e = 2.718281828459045
+      ln10 = 2.302585092994046
+       ln2 = 0.6931471805599453
+   log_10e = 0.4342944819032518
+    log_2e = 1.442695040888963
+        pi = 3.141592653589793
+     sqrt2 = 1.414213562373095</code></pre>
+</div></div>
+<div class="paragraph"><p>Postoji još jedna verzija <code>insert</code> metode koja je ista za  <em>std::map</em> i  <em>std::multimap</em>.</p></div>
+<div class="tableblock">
+<table rules="all" width="100%" frame="border" cellspacing="0" cellpadding="4">
+<colgroup><col width="30%">
+<col width="70%">
+</colgroup><tbody>
+<tr>
+<td align="left" valign="top"><p class="table">Operacija</p></td>
+<td align="left" valign="top"><p class="table">Značenje</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>m.insert(pos, e)</code></p></td>
+<td align="left" valign="top"><p class="table">Ubacuje vrijednost  <code>e</code> u spremnik. Koristi iterator <code>pos</code> kao sugestiju gdje
+početi tražiti poziciju za ubacivanje. Vraća iterator na ubačeni element ili element koji je spriječio ubacivanje.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="paragraph"><p>Ova metoda ima istu signaturu kao i  <code>insert</code> metode u sekvencijalnim spremnicima i odgovarajuća metoda u
+<code>std::set</code> i <code>std::multiset</code>. Ako se unaprijed zna
+pozicija ubacivanja onada ima konstantnu složenost.</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="k">auto</span> <span class="n">init</span> <span class="o">=</span> <span class="n">members</span><span class="p">.</span><span class="n">insert</span><span class="p">(</span><span class="n">members</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span>  <span class="c1">// hint</span>
+                          <span class="k">decltype</span><span class="p">(</span><span class="n">members</span><span class="p">)</span><span class="o">::</span><span class="n">value_type</span><span class="p">{</span><span class="s">"A.U"</span><span class="p">,</span><span class="mi">11</span><span class="p">});</span>
+<span class="n">assert</span><span class="p">(</span><span class="n">init</span> <span class="o">==</span> <span class="n">members</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="s">"A.U"</span><span class="p">));</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Postoje i odgovarajuće <strong>emplace</strong> metode posve analogne kao i kos <code>set</code> i <code>multiset</code> spremnika:</p></div>
+<div class="tableblock">
+<table rules="all" width="100%" frame="border" cellspacing="0" cellpadding="4">
+<colgroup><col width="30%">
+<col width="70%">
+</colgroup><tbody>
+<tr>
+<td align="left" valign="top"><p class="table">Operacija</p></td>
+<td align="left" valign="top"><p class="table">Značenje</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>m.emplace(args...)</code></p></td>
+<td align="left" valign="top"><p class="table">Ubacuje u spremnik element konstruiran pomoću <code>args</code> (argumenti konstruktor).
+Vraća par iteratora i <code>bool</code> vrijednosti ako je <em>m</em> tipa  <em>std::map</em>,
+odnosno samo iterator na ubačeni element ako je <em>m</em> tipa  <em>std::multimap</em>.</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>m.emplace_hint(pos,args...)</code></p></td>
+<td align="left" valign="top"><p class="table">Ubacuje u spremnik element konstruiran pomoću <code>args</code> (argumenti konstruktor).
+Vraća iterator na ubačeni element ili element koji je spriječio ubacivanje. Iterator <code>pos</code> je sugestija gdje
+treba tražiti poziciju za ubacivanje.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="paragraph"><p>Kao i kod analognog konstruktora tipa <code>std::pair</code> dužni smo koristiti oznaku <code>std::piecewise_construct</code>
+kako bi predali argumente konstruktoru ključa i vrijednosti. Argumenti konstruktora se predaju
+pakirani u <code>std::tuple</code> te stoga koristimo funkciju <code>std::make_tuple</code>.</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">map</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">complex</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;&gt;</span> <span class="n">nums</span><span class="p">;</span>
+
+<span class="k">auto</span> <span class="n">rez</span><span class="o">=</span> <span class="n">nums</span><span class="p">.</span><span class="n">emplace</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">piecewise_construct</span><span class="p">,</span>
+                       <span class="n">std</span><span class="o">::</span><span class="n">make_tuple</span><span class="p">(</span><span class="s">"Im"</span><span class="p">),</span>    <span class="c1">// argumenti konstruktora prvog tipa</span>
+                       <span class="n">std</span><span class="o">::</span><span class="n">make_tuple</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">)</span>  <span class="c1">// argumenti konstruktora drugog tipa</span>
+                      <span class="p">);</span>
+<span class="n">assert</span><span class="p">(</span><span class="n">rez</span><span class="p">.</span><span class="n">second</span> <span class="o">==</span> <span class="nb">true</span><span class="p">);</span>
+
+<span class="k">decltype</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span><span class="o">::</span><span class="n">iterator</span> <span class="n">it</span>  <span class="o">=</span> <span class="n">nums</span><span class="p">.</span><span class="n">begin</span><span class="p">();</span>
+<span class="k">decltype</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span><span class="o">::</span><span class="n">iterator</span> <span class="n">end</span> <span class="o">=</span> <span class="n">nums</span><span class="p">.</span><span class="n">end</span><span class="p">();</span>
+
+
+<span class="k">for</span><span class="p">(;</span> <span class="n">it</span> <span class="o">!=</span> <span class="n">end</span><span class="p">;</span> <span class="o">++</span><span class="n">it</span><span class="p">)</span> <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"("</span> <span class="o">&lt;&lt;</span> <span class="n">it</span><span class="o">-&gt;</span><span class="n">first</span>   <span class="c1">// ključ</span>
+                                 <span class="o">&lt;&lt;</span> <span class="s">","</span> <span class="o">&lt;&lt;</span> <span class="n">it</span><span class="o">-&gt;</span><span class="n">second</span>  <span class="c1">// vrijednost</span>
+                                 <span class="o">&lt;&lt;</span> <span class="s">")"</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+</pre></div></div></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_brisanje_elementa">Brisanje elementa</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Brisanje elementa se vrši pomoću istih metoda kao kos <code>set</code> i <code>multiset</code> spremnika.</p></div>
+<div class="tableblock">
+<table rules="all" width="100%" frame="border" cellspacing="0" cellpadding="4">
+<colgroup><col width="30%">
+<col width="70%">
+</colgroup><tbody>
+<tr>
+<td align="left" valign="top"><p class="table"><code>m.erase(key)</code></p></td>
+<td align="left" valign="top"><p class="table">Izbriši element s ključem   <code>key</code> iz <code>m</code>. Vraća   broj izbrisanih elemenata.</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>m.erase(p)</code></p></td>
+<td align="left" valign="top"><p class="table">Briše element na koji referira iterator <code>p</code>.  Vraća iterator na sljedeći element.</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>m.erase(b, e)</code></p></td>
+<td align="left" valign="top"><p class="table">Briše elemente u rasponu koji određuju iteratori <code>b</code> i <code>e</code>.  Vraća iterator na sljedeći element.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="paragraph"><p>U prvoj verziji <code>multimap</code> briše sve elemente danog ključa.</p></div>
+<div class="paragraph"><p>U zadnjoj verziji funkcije <code>erase</code> raspon koji određuju iteratori mora biti ispravan (odgovornost programeta),
+a može biti i prazan: tada funkcija ne radi ništa.</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="kt">int</span> <span class="n">ni</span> <span class="o">=</span> <span class="n">konstante</span><span class="p">.</span><span class="n">erase</span><span class="p">(</span><span class="s">"ln2"</span><span class="p">);</span>
+<span class="n">assert</span><span class="p">(</span><span class="n">ni</span> <span class="o">==</span> <span class="mi">1</span><span class="p">);</span>
+<span class="k">for</span><span class="p">(</span><span class="k">auto</span> <span class="nl">x</span> <span class="p">:</span> <span class="n">konstante</span><span class="p">)</span>
+        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">setw</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">x</span><span class="p">.</span><span class="n">first</span> <span class="o">&lt;&lt;</span> <span class="s">" = "</span>  <span class="o">&lt;&lt;</span> <span class="n">x</span><span class="p">.</span><span class="n">second</span> <span class="o">&lt;&lt;</span> <span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Ispis:</p></div>
+<div class="listingblock">
+<div class="content">
+<pre><code>     1/pi  = 0.3183098861837907
+         e = 2.718281828459045
+      ln10 = 2.302585092994046
+   log_10e = 0.4342944819032518
+    log_2e = 1.442695040888963
+        pi = 3.141592653589793
+     sqrt2 = 1.414213562373095</code></pre>
+</div></div>
+<div class="paragraph"><p>Kada brišemo element u petlji po svim elementima moramo brinuti o obezvrijeđivanju iteratora:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">map</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">,</span> <span class="kt">int</span><span class="o">&gt;</span> <span class="n">members</span><span class="p">{{</span><span class="s">"A.B"</span><span class="p">,</span> <span class="mi">3</span><span class="p">},</span> <span class="p">{</span><span class="s">"R.E"</span><span class="p">,</span> <span class="mi">11</span><span class="p">},</span> <span class="p">{</span><span class="s">"K.M"</span><span class="p">,</span><span class="mi">8</span><span class="p">}};</span>
+
+<span class="k">for</span><span class="p">(</span><span class="k">auto</span> <span class="n">it</span> <span class="o">=</span> <span class="n">members</span><span class="p">.</span><span class="n">begin</span><span class="p">();</span> <span class="n">it</span> <span class="o">!=</span> <span class="n">members</span><span class="p">.</span><span class="n">end</span><span class="p">();</span> <span class="o">++</span><span class="n">it</span><span class="p">){</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">it</span><span class="o">-&gt;</span><span class="n">second</span> <span class="o">==</span> <span class="mi">11</span><span class="p">)</span>
+        <span class="n">members</span><span class="p">.</span><span class="n">erase</span><span class="p">(</span><span class="n">it</span><span class="p">);</span>  <span class="c1">// neispravno</span>
+<span class="p">}</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Ispravan kod bi bio:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">map</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">,</span> <span class="kt">int</span><span class="o">&gt;</span> <span class="n">members</span><span class="p">{{</span><span class="s">"A.B"</span><span class="p">,</span> <span class="mi">3</span><span class="p">},</span> <span class="p">{</span><span class="s">"R.E"</span><span class="p">,</span> <span class="mi">11</span><span class="p">},</span> <span class="p">{</span><span class="s">"K.M"</span><span class="p">,</span><span class="mi">8</span><span class="p">}};</span>
+
+<span class="k">for</span><span class="p">(</span><span class="k">auto</span> <span class="n">it</span> <span class="o">=</span> <span class="n">members</span><span class="p">.</span><span class="n">begin</span><span class="p">();</span> <span class="n">it</span> <span class="o">!=</span> <span class="n">members</span><span class="p">.</span><span class="n">end</span><span class="p">();</span> <span class="cm">/* prazno */</span> <span class="p">){</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">it</span><span class="o">-&gt;</span><span class="n">second</span> <span class="o">==</span> <span class="mi">11</span><span class="p">)</span>
+        <span class="n">it</span> <span class="o">=</span> <span class="n">members</span><span class="p">.</span><span class="n">erase</span><span class="p">(</span><span class="n">it</span><span class="p">);</span>  <span class="c1">// erase vraća pokazivač na sljedeći element</span>
+    <span class="k">else</span>
+        <span class="o">++</span><span class="n">it</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div></div></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_code_map_code_kao_asocijativno_polje"><code>map</code> kao asocijativno polje</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Asocijativni spremnici ne nude direktan pristup elementima već moramo koristiti iteratore.
+Spremnik <code>std::map</code> je s te strane iznimka. On nudi operator uglatih zagrada kao i <code>std::vector</code> ili <code>std::deque</code>,
+ali s ponašanjem koje je bitno različito.</p></div>
+<div class="tableblock">
+<table rules="all" width="100%" frame="border" cellspacing="0" cellpadding="4">
+<colgroup><col width="20%">
+<col width="80%">
+</colgroup><tbody>
+<tr>
+<td align="left" valign="top"><p class="table"><code>m[key]=val</code></p></td>
+<td align="left" valign="top"><p class="table">Vraća referencu na vrijednost koja je pridružena ključu <code>key</code>.
+ Ako <code>key</code> nije prisutan u spremniku ubacuje u njega par <code>(key,val)</code>.</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>m.at(key)</code></p></td>
+<td align="left" valign="top"><p class="table">Vraća referencu na vrijednost koja je pridružena ključu <code>key</code> i izbacuje izuzetak
+<code>std::out_of_range</code> ako element ne postoji.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="paragraph"><p>Sljedeći primjer pokazuje prednosti i nedostatke indeksiranja:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="n">std</span><span class="o">::</span><span class="n">map</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">,</span><span class="kt">double</span><span class="o">&gt;</span> <span class="n">data</span><span class="p">;</span><span class="c1">// prazan map</span>
+
+<span class="n">data</span><span class="p">[</span><span class="s">"tlak"</span><span class="p">]</span> <span class="o">=</span> <span class="mf">121.5</span><span class="p">;</span> <span class="c1">// ubaci tlak</span>
+
+<span class="c1">//"poroznost" još nije ubačena u map</span>
+<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">data</span><span class="p">[</span><span class="s">"poroznost"</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span><span class="c1">// ubacuje par ("poroznost",0.0) što vjerojatno nismo htjeli!</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Naredba <code>data["tlak"] = 121.5;</code> izvršava se na sljedeći način:</p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+Traži se element "tlak" u spremniku. Ako postoji vraća se referenca na pripadnu vrijednost.
+</p>
+</li>
+<li>
+<p>
+Ako "tlak" ne postoji u spremniku kreira se par <code>("tlak",  0.0)</code> i ubacuje se u
+    spremnik. Zatim se vraća referenca na novu vrijednost.
+</p>
+</li>
+<li>
+<p>
+Vrši se pridruživanje vrijednosti 121.5 kroz referencu.
+</p>
+</li>
+</ul></div>
+<div class="paragraph"><p>Lošu stranu indeksiranja ilustrira naredba <code>cout &lt;&lt; data["poroznost"] &lt;&lt; endl;</code>
+kojom nenamjerno ubacujemo element u spremnik (pod pretpostavkom da "poroznost"
+još nije u spremniku).</p></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_neureeni_asocijativni_spremnici">Neuređeni asocijativni spremnici</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Neuređeni asocijativni spremnici su bazirani na modelu <em>hash</em> tablice. Pomoću
+<em>hash</em> funkcije ključ se transformira u cjelobrojni indeks koji pokazuje na mjesto u
+tablici gdje treba smjestiti element. Premda C++ standard ne propisuje detalje implementacije
+ <em>hash</em> tablice, specifikacija sučelja neuređenih spremnika je bazirana na
+<strong>otvorenom haširanju</strong> koje pretpostavlja da se u slučaju kolizija elementi s istim indeksom spremaju
+u obliku povezane liste.</p></div>
+<div class="paragraph"><p>Neuređeni spremnici u standardnoj biblioteci su sljedeći:</p></div>
+<div class="tableblock">
+<table rules="all" width="100%" frame="border" cellspacing="0" cellpadding="4">
+<caption class="title">Tabela 9. Neuređeni spremnici</caption>
+<colgroup><col width="50%">
+<col width="50%">
+</colgroup><tbody>
+<tr>
+<td align="left" valign="top"><p class="table"><code>unordered_set</code></p></td>
+<td align="left" valign="top"><p class="table">Skup</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>unordered_map</code></p></td>
+<td align="left" valign="top"><p class="table">Asocijativno polja</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>unordered_multiset</code></p></td>
+<td align="left" valign="top"><p class="table">Skup s ponavljanjem ključeva</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>unordered_multimap</code></p></td>
+<td align="left" valign="top"><p class="table">Asocijativno polja s ponavljanjem ključeva</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="paragraph"><p>Za korištenje ovih spremnika treba uključiti zaglavlja <code>&lt;unordered_set&gt;</code> i/ili <code>&lt;unordered_map&gt;</code>.</p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+<code>unordered_set</code> i <code>unordered_multiset</code> čuvaju jednu vrijednost (ključ) dok  <code>unordered_map</code>
+i <code>unordered_multimap</code> čuvaju parove ključ/vrijednost.
+</p>
+</li>
+<li>
+<p>
+<code>unordered_set</code> i  <code>unordered_map</code> ne dozvoljavaju višestruke elemente s istim ključem, dok
+<code>unordered_multimap</code>  i <code>unordered_multiset</code> dozvoljavaju.
+</p>
+</li>
+</ul></div>
+<div class="paragraph"><p>Spremnici <code>unordered_set</code> i <code>unordered_multiset</code> su predlošci klasa sa četiri parametra predloška,
+od kojih tri imaju predodređene vrijednosti:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="p">,</span> <span class="k">typename</span> <span class="n">Hash</span> <span class="o">=</span> <span class="n">hash</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">,</span>
+                      <span class="k">typename</span> <span class="n">EqPred</span> <span class="o">=</span> <span class="n">equal_to</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">,</span>
+                      <span class="k">typename</span> <span class="n">Allocator</span> <span class="o">=</span> <span class="n">allocator</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="o">&gt;</span>
+<span class="k">class</span> <span class="nc">unordered_set</span><span class="p">;</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Spremnici <code>unordered_map</code> i <code>unordered_multimap</code> su predlošci klasa sa pet parametra predloška,
+od kojih tri imaju predodređene vrijednosti:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">Key</span><span class="p">,</span> <span class="k">typename</span> <span class="n">T</span><span class="p">,</span> <span class="k">typename</span> <span class="n">Hash</span> <span class="o">=</span> <span class="n">hash</span><span class="o">&lt;</span><span class="n">Key</span><span class="o">&gt;</span><span class="p">,</span>
+                                    <span class="k">typename</span> <span class="n">EqPred</span> <span class="o">=</span> <span class="n">equal_to</span><span class="o">&lt;</span><span class="n">Key</span><span class="o">&gt;</span><span class="p">,</span>
+                                    <span class="k">typename</span> <span class="n">Allocator</span> <span class="o">=</span> <span class="n">allocator</span><span class="o">&lt;</span><span class="n">pair</span><span class="o">&lt;</span><span class="k">const</span> <span class="n">Key</span><span class="p">,</span> <span class="n">T</span><span class="o">&gt;</span> <span class="o">&gt;</span> <span class="o">&gt;</span>
+<span class="k">class</span> <span class="nc">unordered_map</span><span class="p">;</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Predodređene vrijednosti imaju <em>hash</em> funkcija, operator uspoređivanja i alokator.</p></div>
+<div class="paragraph"><p>Korisnik može kontrolirati sljedeće implementacijske aspekte neuređenih spremnika:</p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+Minimalni broj pretinaca (<em>buckets</em>);
+</p>
+</li>
+<li>
+<p>
+<em>Hash</em> funkciju;
+</p>
+</li>
+<li>
+<p>
+Operator uspoređivanja;
+</p>
+</li>
+<li>
+<p>
+Maximalno opterećenje (<em>maximum load factor</em>);
+</p>
+</li>
+<li>
+<p>
+Moguće je izvršiti rehaširanje.
+</p>
+</li>
+</ul></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_konstruktori_2">Konstruktori</h2>
+<div class="sectionbody">
+<div class="tableblock">
+<table rules="all" width="100%" frame="border" cellspacing="0" cellpadding="4">
+<colgroup><col width="26%">
+<col width="74%">
+</colgroup><tbody>
+<tr>
+<td align="left" valign="top"><p class="table">Operacija</p></td>
+<td align="left" valign="top"><p class="table">Značenje</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>Unord c</code></p></td>
+<td align="left" valign="top"><p class="table">Konstruktor bez argumenata konstruira prazan spremnik  bez elemenata</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>Unord c(bnum)</code></p></td>
+<td align="left" valign="top"><p class="table">Kreira prazan spremnik koji koristi minimalno <code>bnum</code> pretinaca</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>Unord c(bnum,hf)</code></p></td>
+<td align="left" valign="top"><p class="table">Kreira prazan spremnik koji koristi minimalno <code>bnum</code> pretinaca i koristi
+<em>hash</em> funkciju <code>hf</code></p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>Unord c(bnum,hf,cmp)</code></p></td>
+<td align="left" valign="top"><p class="table">Kreira prazan spremnik koji koristi minimalno <code>bnum</code> pretinaca, koristi
+<em>hash</em> funkciju <code>hf</code> i predikat <code>cmp</code> za identifikaciju jednakih elemenata</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>Unord c(c2)</code></p></td>
+<td align="left" valign="top"><p class="table">Konstruktor kopije</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>Unord c = c2</code></p></td>
+<td align="left" valign="top"><p class="table">Konstruktor kopije</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>Unord c(rv)</code></p></td>
+<td align="left" valign="top"><p class="table">Konstruktor kopije premještanjem</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>Unord c = rv</code></p></td>
+<td align="left" valign="top"><p class="table">Konstruktor kopije premještanjem</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>Unord c(beg,end)</code></p></td>
+<td align="left" valign="top"><p class="table">Kreira spremnik inicijaliziran elementima iz raspona <code>[beg,end)</code></p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>Unord c(beg,end,bnum)</code></p></td>
+<td align="left" valign="top"><p class="table">Kreira spremnik inicijaliziran elementima iz raspona <code>[beg,end)</code>
+koji koristi barem <code>bnum</code>  pretinaca</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>Unord c(beg,end,bnum,hf)</code></p></td>
+<td align="left" valign="top"><p class="table">Kreira spremnik inicijaliziran elementima iz raspona <code>[beg,end)</code>
+koji koristi barem <code>bnum</code>  pretinaca i <em>hash</em> funkciju <code>hf</code></p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>Unord c(beg,end,bnum,hf,cmp)</code></p></td>
+<td align="left" valign="top"><p class="table">Kreira spremnik inicijaliziran elementima iz raspona <code>[beg,end)</code>
+koji koristi barem <code>bnum</code>  pretinaca, <em>hash</em> funkciju <code>hf</code>
+i predikat <code>cmp</code> za identifikaciju jednakih elemenata</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>Unord c(initlist)</code></p></td>
+<td align="left" valign="top"><p class="table">Kreira spremnik inicijaliziran elementima iz inicijalizacijske liste <code>initlist</code></p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>Unord c = initlist</code></p></td>
+<td align="left" valign="top"><p class="table">Kreira spremnik inicijaliziran elementima iz inicijalizacijske liste <code>initlist</code></p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>c.~Unord()</code></p></td>
+<td align="left" valign="top"><p class="table">Destruktor</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="paragraph"><p>U ovoj tabeli  <code>Unord</code> može bito</p></div>
+<div class="paragraph"><p><code>unordered_set&lt;Elem&gt;</code>,
+<code>unordered_set&lt;Elem,Hash&gt;</code>,
+<code>unordered_set&lt;Elem,Hash,Cmp&gt;</code>,</p></div>
+<div class="paragraph"><p><code>unordered_multiset&lt;Elem&gt;</code>,
+<code>unordered_multiset&lt;Elem,Hash&gt;</code>,
+<code>unordered_multiset&lt;Elem,Hash,Cmp&gt;</code>,</p></div>
+<div class="paragraph"><p><code>unordered_map&lt;Key,T&gt;</code>,
+<code>unordered_map&lt;Key,T,Hash&gt;</code>,
+<code>unordered_map&lt;Key,T,Hash,Cmp&gt;</code>,</p></div>
+<div class="paragraph"><p><code>unordered_multimap&lt;Key,T&gt;</code>,
+<code>unordered_multimap&lt;Key,T,Hash&gt;</code>,
+<code>unordered_multimap&lt;Key,T,Hash,Cmp&gt;</code>.</p></div>
+<div class="paragraph"><p>Na primjer,</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;string&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;unordered_set&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;unordered_map&gt;</span><span class="cp"></span>
+
+<span class="n">std</span><span class="o">::</span><span class="n">unordered_set</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;</span> <span class="n">s2</span><span class="p">{</span><span class="s">"UX"</span><span class="p">,</span><span class="s">"MSDOS"</span><span class="p">,</span><span class="s">"WINDOWS"</span><span class="p">,</span><span class="s">"OSX"</span><span class="p">};</span>
+
+<span class="k">for</span><span class="p">(</span><span class="k">auto</span> <span class="nl">x</span> <span class="p">:</span> <span class="n">s2</span><span class="p">)</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">x</span> <span class="o">&lt;&lt;</span> <span class="s">","</span><span class="p">;</span>
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+
+<span class="n">std</span><span class="o">::</span><span class="n">unordered_map</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">,</span> <span class="kt">int</span><span class="o">&gt;</span> <span class="n">m1</span><span class="p">{{</span><span class="s">"UX"</span><span class="p">,</span><span class="mi">1</span><span class="p">},{</span><span class="s">"MSDOS"</span><span class="p">,</span><span class="mi">2</span><span class="p">},</span>
+                                        <span class="p">{</span><span class="s">"WINDOWS"</span><span class="p">,</span><span class="mi">3</span><span class="p">},{</span><span class="s">"OSX"</span><span class="p">,</span><span class="mi">4</span><span class="p">}};</span>
+
+<span class="k">for</span><span class="p">(</span><span class="k">auto</span> <span class="nl">x</span> <span class="p">:</span> <span class="n">m1</span><span class="p">)</span>
+     <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"["</span> <span class="o">&lt;&lt;</span><span class="n">x</span><span class="p">.</span><span class="n">first</span> <span class="o">&lt;&lt;</span> <span class="s">","</span> <span class="o">&lt;&lt;</span> <span class="n">x</span><span class="p">.</span><span class="n">second</span> <span class="o">&lt;&lt;</span> <span class="s">"]</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+</pre></div></div></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_nalazenje_elemenata_2">Nalaženje elemenata</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Neuređeni spremnici nemaju metode  <code>lower_bound()</code> i <code>upper_bound()</code> jer ne koriste
+operator <code>&lt;</code>, ali zato imaju <code>equal_range()</code> koji je implementiran pomoću operatora <code>==</code>.</p></div>
+<div class="paragraph"><p>Općenito, neuređeni spremnici se koriste zbog brzog nalaženja elementa (ukoliko je
+<em>hash</em> funkcija kvalitetna). To su sljedeće funkcije:</p></div>
+<div class="tableblock">
+<table rules="all" width="100%" frame="border" cellspacing="0" cellpadding="4">
+<colgroup><col width="20%">
+<col width="80%">
+</colgroup><tbody>
+<tr>
+<td align="left" valign="top"><p class="table"><code>c.count(key)</code></p></td>
+<td align="left" valign="top"><p class="table">Vraća broj pojavljivanja ključa <code>key</code> u spremniku <code>m</code>.</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>c.find(key)</code></p></td>
+<td align="left" valign="top"><p class="table">Vraća iterator na element indeksiran sa <code>key</code>, ako takav postoji, ili vraća <em>end</em>  iterator.</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>c.equal_range(key)</code></p></td>
+<td align="left" valign="top"><p class="table">Vraća par iteratora koji predstavljaju raspon elemenata s ključem <code>key</code>.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="paragraph"><p>Prethodni primjer možemo nastaviti na sljedeći način:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"#OSX = "</span> <span class="o">&lt;&lt;</span> <span class="n">m1</span><span class="p">.</span><span class="n">count</span><span class="p">(</span><span class="s">"OSX"</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="k">auto</span> <span class="n">it</span> <span class="o">=</span> <span class="n">m1</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="s">"MSDOS"</span><span class="p">);</span>
+<span class="k">if</span><span class="p">(</span><span class="n">it</span> <span class="o">!=</span> <span class="n">m1</span><span class="p">.</span><span class="n">end</span><span class="p">()){</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"MSDOS = "</span> <span class="o">&lt;&lt;</span> <span class="n">it</span><span class="o">-&gt;</span><span class="n">second</span> <span class="o">&lt;&lt;</span> <span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="k">else</span><span class="p">{</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"MSDOS not found!</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="k">auto</span> <span class="n">range</span> <span class="o">=</span> <span class="n">m1</span><span class="p">.</span><span class="n">equal_range</span><span class="p">(</span><span class="s">"OSX"</span><span class="p">);</span>
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"range ="</span><span class="p">;</span>
+<span class="k">for</span><span class="p">(</span><span class="k">auto</span> <span class="n">itt</span><span class="o">=</span> <span class="n">range</span><span class="p">.</span><span class="n">first</span><span class="p">;</span> <span class="n">itt</span> <span class="o">!=</span> <span class="n">range</span><span class="p">.</span><span class="n">second</span><span class="p">;</span> <span class="o">++</span><span class="n">itt</span><span class="p">)</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">" {"</span> <span class="o">&lt;&lt;</span> <span class="n">itt</span><span class="o">-&gt;</span><span class="n">first</span> <span class="o">&lt;&lt;</span> <span class="s">","</span> <span class="o">&lt;&lt;</span> <span class="n">itt</span><span class="o">-&gt;</span><span class="n">second</span> <span class="o">&lt;&lt;</span> <span class="s">"} "</span><span class="p">;</span>
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+</pre></div></div></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_iteratori_2">Iteratori</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Spremnici  <em>std::unordered_map</em> i <em>std::unordered_multimap</em> nude iteratore kao i uređeni asocijativni spremnici
+s tom razlikom da su iteratori samo <strong>jednosmjerni</strong>.</p></div>
+<div class="paragraph"><p>Kroz iteratore <strong>ne možemo mijenjati ključ elementa</strong> jer se promjenom ključa mijenja njegov
+položaj u spremniku. Iteratori iteriraju po elementima tipa <code>std::pair&lt;const Key, Value&gt;</code>.</p></div>
+<div class="tableblock">
+<table rules="all" width="100%" frame="border" cellspacing="0" cellpadding="4">
+<caption class="title">Tabela 10. Iteratori</caption>
+<colgroup><col width="20%">
+<col width="80%">
+</colgroup><thead>
+<tr>
+<th align="left" valign="top"> Operacija </th>
+<th align="left" valign="top"> Značenje</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left" valign="top"><p class="table"><code>c.begin()</code></p></td>
+<td align="left" valign="top"><p class="table">Vraća iterator na poziciju prvog elementa</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>c.end()</code></p></td>
+<td align="left" valign="top"><p class="table">Vraća iterator na poziciju iza zadnjeg elementa</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>c.cbegin()</code></p></td>
+<td align="left" valign="top"><p class="table">Vraća konstantan iterator na poziciju prvog elementa</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>c.cend()</code></p></td>
+<td align="left" valign="top"><p class="table">Vraća konstantan iterator na poziciju iza zadnjeg elementa</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="paragraph"><p>Za iteriranje kroz spremnik možemo koristiti <em>range-for</em> petlju ili direktno iteratore:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">unordered_multimap</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">,</span> <span class="kt">int</span><span class="o">&gt;</span> <span class="n">m1</span><span class="p">{{</span><span class="s">"OSX"</span><span class="p">,</span><span class="mi">4</span><span class="p">},{</span><span class="s">"UX"</span><span class="p">,</span><span class="mi">1</span><span class="p">},{</span><span class="s">"MSDOS"</span><span class="p">,</span><span class="mi">2</span><span class="p">},</span>
+                                             <span class="p">{</span><span class="s">"WINDOWS"</span><span class="p">,</span><span class="mi">3</span><span class="p">},{</span><span class="s">"OSX"</span><span class="p">,</span><span class="mi">4</span><span class="p">}};</span>
+
+<span class="k">for</span><span class="p">(</span><span class="k">auto</span> <span class="nl">x</span> <span class="p">:</span> <span class="n">m1</span><span class="p">)</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"["</span> <span class="o">&lt;&lt;</span><span class="n">x</span><span class="p">.</span><span class="n">first</span> <span class="o">&lt;&lt;</span> <span class="s">","</span> <span class="o">&lt;&lt;</span> <span class="n">x</span><span class="p">.</span><span class="n">second</span> <span class="o">&lt;&lt;</span> <span class="s">"]</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+
+<span class="k">for</span><span class="p">(</span><span class="k">auto</span> <span class="n">it</span> <span class="o">=</span> <span class="n">m1</span><span class="p">.</span><span class="n">begin</span><span class="p">();</span> <span class="n">it</span> <span class="o">!=</span> <span class="n">m1</span><span class="p">.</span><span class="n">end</span><span class="p">();</span> <span class="o">++</span><span class="n">it</span><span class="p">)</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span>  <span class="s">"["</span> <span class="o">&lt;&lt;</span> <span class="n">it</span><span class="o">-&gt;</span><span class="n">first</span> <span class="o">&lt;&lt;</span> <span class="s">","</span> <span class="o">&lt;&lt;</span> <span class="n">it</span><span class="o">-&gt;</span><span class="n">second</span> <span class="o">&lt;&lt;</span> <span class="s">"]</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Pri korištenju algoritama i lambdi moramo točno deklarirati tip elementa u spremniku.
+Na primjer,</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">for_each</span><span class="p">(</span><span class="n">m1</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">m1</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span> <span class="p">[](</span><span class="n">std</span><span class="o">::</span><span class="n">pair</span><span class="o">&lt;</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">,</span> <span class="kt">int</span><span class="o">&gt;</span> <span class="o">&amp;</span> <span class="n">elem</span><span class="p">)</span>
+                                         <span class="p">{</span><span class="n">elem</span><span class="p">.</span><span class="n">second</span><span class="o">+=</span><span class="mi">10</span><span class="p">;});</span>
+</pre></div></div></div>
+<div class="paragraph"><p>jer</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">for_each</span><span class="p">(</span><span class="n">m1</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">m1</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span> <span class="p">[](</span><span class="n">std</span><span class="o">::</span><span class="n">pair</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">,</span> <span class="kt">int</span><span class="o">&gt;</span> <span class="o">&amp;</span> <span class="n">elem</span><span class="p">)</span>
+                                         <span class="p">{</span><span class="n">elem</span><span class="p">.</span><span class="n">second</span><span class="o">+=</span><span class="mi">10</span><span class="p">;});</span>
+</pre></div></div></div>
+<div class="paragraph"><p>daje grešku pri kompilaciji (zbog nekonstantnog ključa). Kod se može pojednostaviti korištenjem
+<code>auto</code> deklaracije (uvedene u C++14):</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">for_each</span><span class="p">(</span><span class="n">m1</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">m1</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span> <span class="p">[](</span><span class="k">auto</span> <span class="o">&amp;</span> <span class="n">elem</span><span class="p">){</span><span class="n">elem</span><span class="p">.</span><span class="n">second</span><span class="o">+=</span><span class="mi">10</span><span class="p">;});</span>
+</pre></div></div></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_ubacivanje_elemenata_3">Ubacivanje elemenata</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Sučelje neuređenih spremnika je sasvim isto kao i sučelje uređenih.
+Elementi se ubacuju u spremnik pomoću metode <code>insert</code>. Spremnici <code>unordered_set</code> i <code>unordered_multiset</code>
+pamte samo ključ te se on ubacuje u spremnik. S druge strane, <code>unordered_map</code> i <code>unordered_multimap</code>
+čuvaju par ključ/vrijednost tako da  element koji se ubacuje mora biti
+tipa <code>std::pair&lt;Key,Val&gt;</code>, gdje je <code>Key</code> tip ključa, a <code>Val</code> tip
+vrijednosti. Analogno, <code>insert</code> metoda koja uzima iteratore traži da oni referiraju na odgovarajuće tipove.</p></div>
+<div class="tableblock">
+<table rules="all" width="100%" frame="border" cellspacing="0" cellpadding="4">
+<colgroup><col width="25%">
+<col width="75%">
+</colgroup><tbody>
+<tr>
+<td align="left" valign="top"><p class="table"><code>c.insert(e)</code></p></td>
+<td align="left" valign="top"><p class="table">Ubacuje vrijednost  <code>e</code> u spremnik. Vraća par iteratora i <code>bool</code> vrijednosti ako je <em>c</em> tipa <code>set</code> ili <code>map</code>,
+odnosno samo iterator na ubačeni element ako je <em>c</em> tipa <code>multiset</code> ili <code>multimap</code>.</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>c.insert(beg, end)</code></p></td>
+<td align="left" valign="top"><p class="table"><code>beg</code> i <code>end</code> su iteratori koji određuju raspon elemenata koje ubacujemo u <code>c</code>.  Vraća  <code>void</code>.</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>c.insert(initlist)</code></p></td>
+<td align="left" valign="top"><p class="table">Ubacuje kopiju inicijalizacijske liste <code>initlist</code> u spremnik.
+Ne vraća ništa (tipa <code>void</code>).</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>c.insert(pos, e)</code></p></td>
+<td align="left" valign="top"><p class="table">Ubacuje vrijednost  <code>e</code> u spremnik. Koristi iterator <code>pos</code> kao sugestiju (<em>hint</em>) gdje
+početi tražiti poziciju za ubacivanje. Vraća iterator na ubačeni element ili element koji je spriječio ubacivanje.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="ulist"><ul>
+<li>
+<p>
+Kod ubacivanja elementa <code>e</code> u <code>unordered_set</code> i <code>unordered_map</code>, metoda  <code>insert</code>  ubacuje element u spremnika
+ ako  pripadni ključ nije prisutan u <code>c</code>. U suprotnom  <code>c</code> ostaje neizmjenjen.
+Povratna vrijednost je par (<code>std::pair</code>) čiji je prvi element iterator koji referira na
+element s ključem <code>e.first</code>, a drugi je  <code>bool</code>  varijabla koja indicira je li
+element ubačen ili nije.
+</p>
+</li>
+<li>
+<p>
+Kod ubacivanja elementa <code>e</code> u <code>multiset</code> i <code>multimap</code> uvijek dolazi do ubacivanja (jer se dozvoljavaju višestruki elementi)
+i povratna vrijednost je iterator na ubačenu vrijednost.
+</p>
+</li>
+<li>
+<p>
+Zadnja  metoda ima istu signaturu kao i  <code>insert</code> metode u sekvencijalnim spremnicima i odgovarajuća metoda u
+uređenim asocijativnim spremnicima. Ako se unaprijed zna
+pozicija ubacivanja onada ima konstantnu složenost.
+</p>
+</li>
+</ul></div>
+<div class="paragraph"><p>Postoje i odgovarajuće <strong>emplace</strong> metode posve analogne kao i kod uređenih asocijativnih spremnika:</p></div>
+<div class="tableblock">
+<table rules="all" width="100%" frame="border" cellspacing="0" cellpadding="4">
+<colgroup><col width="30%">
+<col width="70%">
+</colgroup><tbody>
+<tr>
+<td align="left" valign="top"><p class="table">Operacija</p></td>
+<td align="left" valign="top"><p class="table">Značenje</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>c.emplace(args...)</code></p></td>
+<td align="left" valign="top"><p class="table">Ubacuje u spremnik element konstruiran pomoću <code>args</code> (argumenti konstruktor).
+Vraća par iteratora i <code>bool</code> vrijednosti ako je <em>c</em> tipa  <em>std::map</em>,
+odnosno samo iterator na ubačeni element ako je <em>c</em> tipa  <em>std::multimap</em>.</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>c.emplace_hint(pos,args...)</code></p></td>
+<td align="left" valign="top"><p class="table">Ubacuje u spremnik element konstruiran pomoću <code>args</code> (argumenti konstruktor).
+Vraća iterator na ubačeni element ili element koji je spriječio ubacivanje. Iterator <code>pos</code> je sugestija gdje
+treba tražiti poziciju za ubacivanje.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="paragraph"><p>Kao i kod analognog konstruktora tipa <code>std::pair</code> dužni smo koristiti oznaku <code>std::piecewise_construct</code>
+kako bi predali argumente konstruktoru ključa i vrijednosti. Argumenti konstruktora se predaju
+pakirani u <code>std::tuple</code> te stoga koristimo funkciju <code>std::make_tuple</code>.</p></div>
+<div class="paragraph"><p>Ovdje je nekoliko primjera ubacivanja elemenata u spremnik u kojima nastavljamo primjer s prethodne stranice.</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="k">auto</span> <span class="n">insertit</span> <span class="o">=</span> <span class="n">m1</span><span class="p">.</span><span class="n">insert</span><span class="p">({</span><span class="s">"Linux"</span><span class="p">,</span> <span class="mi">93</span><span class="p">});</span> <span class="c1">// m1 je unordered_multimap&lt;string, int&gt;</span>
+<span class="n">assert</span><span class="p">(</span><span class="n">insertit</span><span class="o">-&gt;</span><span class="n">second</span> <span class="o">==</span> <span class="mi">93</span><span class="p">);</span>
+<span class="n">insertit</span> <span class="o">=</span> <span class="n">m1</span><span class="p">.</span><span class="n">insert</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">pair</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">,</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="s">"Linux"</span><span class="p">,</span> <span class="mi">93</span><span class="p">));</span> <span class="c1">// eksplicitno</span>
+<span class="n">insertit</span> <span class="o">=</span> <span class="n">m1</span><span class="p">.</span><span class="n">insert</span><span class="p">(</span><span class="k">decltype</span><span class="p">(</span><span class="n">m1</span><span class="p">)</span><span class="o">::</span><span class="n">value_type</span><span class="p">(</span><span class="s">"Linux"</span><span class="p">,</span> <span class="mi">93</span><span class="p">));</span>   <span class="c1">// zadavanje</span>
+<span class="n">insertit</span> <span class="o">=</span> <span class="n">m1</span><span class="p">.</span><span class="n">insert</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">make_pair</span><span class="p">(</span><span class="s">"Linux"</span><span class="p">,</span> <span class="mi">93</span><span class="p">));</span>             <span class="c1">// tipa</span>
+
+<span class="n">insertit</span> <span class="o">=</span> <span class="n">m1</span><span class="p">.</span><span class="n">emplace</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">piecewise_construct</span><span class="p">,</span>
+                      <span class="n">std</span><span class="o">::</span><span class="n">make_tuple</span><span class="p">(</span><span class="s">"Android"</span><span class="p">),</span>  <span class="c1">// za konstruktor stringa</span>
+                      <span class="n">std</span><span class="o">::</span><span class="n">make_tuple</span><span class="p">(</span><span class="mi">17</span><span class="p">));</span>        <span class="c1">// za konstruktor int-a</span>
+
+<span class="n">std</span><span class="o">::</span><span class="n">unordered_set</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">s1</span><span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">9</span><span class="p">};</span>
+<span class="k">auto</span> <span class="n">inss1</span> <span class="o">=</span> <span class="n">s1</span><span class="p">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">9</span><span class="p">);</span>
+<span class="k">if</span><span class="p">(</span><span class="n">inss1</span><span class="p">.</span><span class="n">second</span><span class="p">)</span>
+   <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"9 je ubačen u skup.</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+<span class="k">else</span>
+   <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"9 je već u skupu.</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+</pre></div></div></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_brisanje_elementa_2">Brisanje elementa</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Brisanje elementa se vrši pomoću istih metoda kao kos <code>set</code> i <code>multiset</code> spremnika.</p></div>
+<div class="tableblock">
+<table rules="all" width="100%" frame="border" cellspacing="0" cellpadding="4">
+<colgroup><col width="30%">
+<col width="70%">
+</colgroup><tbody>
+<tr>
+<td align="left" valign="top"><p class="table"><code>c.erase(key)</code></p></td>
+<td align="left" valign="top"><p class="table">Izbriši sve elemente s ključem   <code>key</code> iz <code>c</code>. Vraća   broj izbrisanih elemenata.</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>c.erase(p)</code></p></td>
+<td align="left" valign="top"><p class="table">Briše element na koji referira iterator <code>p</code>.  Vraća iterator na sljedeći element.</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>c.erase(b, e)</code></p></td>
+<td align="left" valign="top"><p class="table">Briše elemente u rasponu koji određuju iteratori <code>b</code> i <code>e</code>.  Vraća iterator na sljedeći element.</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>c.clear()</code></p></td>
+<td align="left" valign="top"><p class="table">Briše sve elemente.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="paragraph"><p>U prvoj verziji <code>multimap</code> briše sve elemente danog ključa.</p></div>
+<div class="paragraph"><p>U zadnjoj verziji funkcije <code>erase</code> raspon koji određuju iteratori mora biti ispravan (odgovornost programeta),
+a može biti i prazan: tada funkcija ne radi ništa.</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="k">auto</span> <span class="n">nob</span> <span class="o">=</span> <span class="n">m1</span><span class="p">.</span><span class="n">erase</span><span class="p">(</span><span class="s">"Linux"</span><span class="p">);</span>
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Obrisano "</span> <span class="o">&lt;&lt;</span> <span class="n">nob</span> <span class="o">&lt;&lt;</span> <span class="s">" elemenata.</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span> <span class="c1">// Obrisano 4 elemenata.</span>
+
+<span class="k">auto</span> <span class="n">fit</span> <span class="o">=</span> <span class="n">m1</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="s">"OSX"</span><span class="p">);</span>
+<span class="k">if</span><span class="p">(</span><span class="n">fit</span> <span class="o">!=</span> <span class="n">m1</span><span class="p">.</span><span class="n">end</span><span class="p">())</span>
+    <span class="n">fit</span> <span class="o">=</span> <span class="n">m1</span><span class="p">.</span><span class="n">erase</span><span class="p">(</span><span class="n">fit</span><span class="p">);</span> <span class="c1">// Obriši prvi "OSX"</span>
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span>  <span class="o">&lt;&lt;</span> <span class="s">"["</span> <span class="o">&lt;&lt;</span> <span class="n">fit</span><span class="o">-&gt;</span><span class="n">first</span> <span class="o">&lt;&lt;</span> <span class="s">","</span> <span class="o">&lt;&lt;</span> <span class="n">fit</span><span class="o">-&gt;</span><span class="n">second</span> <span class="o">&lt;&lt;</span> <span class="s">"]</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span> <span class="c1">// [[OSX,14]</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Kod brisanja elementa u petlji po svim elementima moramo brinuti o obezvrijeđivanju iteratora
+jednako kao i kod uređenih spremnika (vidi primjer tamo).</p></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_code_unordered_map_code_kao_asocijativno_polje"><code>unordered_map</code> kao asocijativno polje</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Asocijativni spremnici ne nude direktan pristup elementima već moramo koristiti iteratore.
+Spremnik <code>std::unordered_map</code> je s te strane iznimka kao i <code>std::map</code>. On nudi operator uglatih zagrada
+koji se  ponaša kao i isti operator u  <code>std::map</code>.</p></div>
+<div class="tableblock">
+<table rules="all" width="100%" frame="border" cellspacing="0" cellpadding="4">
+<colgroup><col width="20%">
+<col width="80%">
+</colgroup><tbody>
+<tr>
+<td align="left" valign="top"><p class="table"><code>m[key]=val</code></p></td>
+<td align="left" valign="top"><p class="table">Vraća referencu na vrijednost koja je pridružena ključu <code>key</code>.
+ Ako <code>key</code> nije prisutan u spremniku ubacuje u njega par <code>(key,val)</code>.</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>m.at(key)</code></p></td>
+<td align="left" valign="top"><p class="table">Vraća referencu na vrijednost koja je pridružena ključu <code>key</code> i izbacuje izuzetak
+<code>std::out_of_range</code> ako element ne postoji.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="paragraph"><p>Sljedeći primjer pokazuje prednosti i nedostatke indeksiranja:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">unordered_map</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">,</span> <span class="kt">int</span><span class="o">&gt;</span> <span class="n">m2</span><span class="p">;</span>
+<span class="n">m2</span><span class="p">[</span><span class="s">"Linux"</span><span class="p">]</span> <span class="o">=</span> <span class="mi">7</span><span class="p">;</span>  <span class="c1">// Ubačen novi element {"Linux", 7}</span>
+
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"m2[Linux] = "</span> <span class="o">&lt;&lt;</span> <span class="n">m2</span><span class="p">[</span><span class="s">"Linux"</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span> <span class="c1">// Ispis</span>
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"m2[UX] = "</span> <span class="o">&lt;&lt;</span> <span class="n">m2</span><span class="p">[</span><span class="s">"UX"</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>  <span class="c1">// Ubačen novi</span>
+                                                    <span class="c1">// element {"UX",0}</span>
+<span class="c1">//std::cout &lt;&lt; "m2[UX] = " &lt;&lt; m2.at("UX") &lt;&lt; std::endl; // bolji način</span>
+</pre></div></div></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_operacije_vezane_uz_hasiranje">Operacije vezane uz haširanje</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Neuređeni spremnici imaju jedan broj metoda za ispitivanje stanja spremnika.
+Oni mogu vratiti broj pretinaca, trenutno opterećenje, trenutno maksimalno opterećenje itd.</p></div>
+<div class="tableblock">
+<table rules="all" width="100%" frame="border" cellspacing="0" cellpadding="4">
+<colgroup><col width="30%">
+<col width="70%">
+</colgroup><tbody>
+<tr>
+<td align="left" valign="top"><p class="table">Operacija</p></td>
+<td align="left" valign="top"><p class="table">Značenje</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>c.hash_function()</code></p></td>
+<td align="left" valign="top"><p class="table">Vraća <em>hash</em> funkciju</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>c.key_eq()</code></p></td>
+<td align="left" valign="top"><p class="table">Vraća predikat ekvivalencije</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>c.bucket_count()</code></p></td>
+<td align="left" valign="top"><p class="table">Vraća trenutni broj pretinaca</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>c.max_bucket_count()</code></p></td>
+<td align="left" valign="top"><p class="table">Vraća maksimalni mogući broj pretinaca</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>c.load_factor()</code></p></td>
+<td align="left" valign="top"><p class="table">Vraća  trenutno opterećenje</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>c.max_load_factor()</code></p></td>
+<td align="left" valign="top"><p class="table">Vraća trenutno maksimalni opterećenje</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>c.max_load_factor(val)</code></p></td>
+<td align="left" valign="top"><p class="table">Postavlja maksimalno opterećenje na <code>val</code></p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>c.rehash(bnum)</code></p></td>
+<td align="left" valign="top"><p class="table">Vrši rehaširanje spremnika tako da broj pretinaca bude barem <code>bnum</code></p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>c.reserve(num)</code></p></td>
+<td align="left" valign="top"><p class="table">Vrši rehaširanje spremnika tako da ima prostora za barem <code>num</code> elementa</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="paragraph"><p>Možemo k tome postaviti maksimalno opterećenje te izvršiti rehaširanje.</p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+Opterećenje je omjer između broja elemenata u spremniku i broja pretinaca.
+</p>
+</li>
+<li>
+<p>
+Maksimalni opterećenje je ono pri kojem se povećava broj pretinaca i vrši se rehaširanje.
+  Predodređena vrijenost za maksimalni opterećenje je 1.
+</p>
+</li>
+<li>
+<p>
+U odnosu na  <code>c.reserve(num)</code>  poziv  <code>c.rehash(bnum)</code>  priprema spremnik za barem
+  <code>bnum*c.max_load_factor()</code> elemenata.
+</p>
+</li>
+</ul></div>
+<div class="paragraph"><p>Za ispitivanje strukture spremnika imamo i sljedeće metode:</p></div>
+<div class="tableblock">
+<table rules="all" width="100%" frame="border" cellspacing="0" cellpadding="4">
+<colgroup><col width="30%">
+<col width="70%">
+</colgroup><tbody>
+<tr>
+<td align="left" valign="top"><p class="table">Operacija</p></td>
+<td align="left" valign="top"><p class="table">Značenje</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>c.bucket(val)</code></p></td>
+<td align="left" valign="top"><p class="table">Vraća indeks pretinca u koji bi vrijednost <code>val</code> bila spremljena</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>c.bucket_size(buckidx)</code></p></td>
+<td align="left" valign="top"><p class="table">Vraća broj elemenata u pretincu s indeksom <code>buckidx</code></p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>c.begin(buckidx)</code></p></td>
+<td align="left" valign="top"><p class="table">Vraća jednosmjerni iterator koji pokazuje na prvi element u pretincu s indeksom <code>buckidx</code></p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>c.end(buckidx)</code></p></td>
+<td align="left" valign="top"><p class="table">Vraća jednosmjerni iterator koji pokazuje iza zadnjeg elementa u pretincu s indeksom <code>buckidx</code></p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>c.cbegin(buckidx)</code></p></td>
+<td align="left" valign="top"><p class="table">Vraća konstantan jednosmjerni iterator koji pokazuje na prvi element u pretincu s indeksom <code>buckidx</code></p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>c.cend(buckidx)</code></p></td>
+<td align="left" valign="top"><p class="table">Vraća konstantan jednosmjerni iterator koji pokazuje iza zadnjeg elementa u pretincu s indeksom <code>buckidx</code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_primjer">Primjer</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Ovdje je program koji koristi funkcije za ispitivanje spremnika kako bi ispisao
+njegovu strukturu.</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;unordered_map&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;string&gt;</span><span class="cp"></span>
+
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">unordered_map</span><span class="o">&lt;</span><span class="n">string</span><span class="p">,</span> <span class="kt">int</span><span class="o">&gt;</span> <span class="n">map</span><span class="p">{{</span><span class="s">"OSX"</span><span class="p">,</span><span class="mi">4</span><span class="p">},{</span><span class="s">"UX"</span><span class="p">,</span><span class="mi">1</span><span class="p">},{</span><span class="s">"MSDOS"</span><span class="p">,</span><span class="mi">2</span><span class="p">},</span>
+                                   <span class="p">{</span><span class="s">"WINDOWS"</span><span class="p">,</span><span class="mi">3</span><span class="p">},{</span><span class="s">"Android"</span><span class="p">,</span><span class="mi">5</span><span class="p">}};</span>
+
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Broj elemenata         = "</span> <span class="o">&lt;&lt;</span> <span class="n">map</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Broj pretinaca         = "</span> <span class="o">&lt;&lt;</span> <span class="n">map</span><span class="p">.</span><span class="n">bucket_count</span><span class="p">()</span>  <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Opterećenje            = "</span> <span class="o">&lt;&lt;</span> <span class="n">map</span><span class="p">.</span><span class="n">load_factor</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Maksimalno opterećenje = "</span> <span class="o">&lt;&lt;</span> <span class="n">map</span><span class="p">.</span><span class="n">max_load_factor</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Data:</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+
+    <span class="k">for</span><span class="p">(</span><span class="kt">size_t</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">map</span><span class="p">.</span><span class="n">bucket_count</span><span class="p">();</span> <span class="o">++</span><span class="n">i</span><span class="p">){</span>
+      <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"b["</span> <span class="o">&lt;&lt;</span> <span class="n">i</span> <span class="o">&lt;&lt;</span> <span class="s">"] "</span><span class="p">;</span>
+      <span class="k">for</span><span class="p">(</span><span class="k">auto</span> <span class="n">it</span><span class="o">=</span><span class="n">map</span><span class="p">.</span><span class="n">cbegin</span><span class="p">(</span><span class="n">i</span><span class="p">);</span> <span class="n">it</span> <span class="o">!=</span> <span class="n">map</span><span class="p">.</span><span class="n">cend</span><span class="p">(</span><span class="n">i</span><span class="p">);</span> <span class="o">++</span><span class="n">it</span><span class="p">)</span>
+          <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"{"</span> <span class="o">&lt;&lt;</span> <span class="n">it</span><span class="o">-&gt;</span><span class="n">first</span> <span class="o">&lt;&lt;</span> <span class="s">","</span> <span class="o">&lt;&lt;</span> <span class="n">it</span><span class="o">-&gt;</span><span class="n">second</span> <span class="o">&lt;&lt;</span> <span class="s">"} "</span><span class="p">;</span>
+      <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Ispis:</p></div>
+<div class="listingblock">
+<div class="content">
+<pre><code>Broj elemenata         = 5
+Broj pretinaca         = 7
+Opterećenje            = 0.714286
+Maksimalno opterećenje = 1
+Data:
+b[0]
+b[1]
+b[2] {UX,1}
+b[3] {WINDOWS,3}
+b[4] {Android,5}
+b[5]
+b[6] {MSDOS,2} {OSX,4}</code></pre>
+</div></div>
+</div>
+</div>
+</div>
+
+<div id="footer">
+<div id="footer-text">
+Version 2.1<br>
+Zadnja izmjena
+ 2019-05-14 19:35:56 CEST
+</div>
+</div>
+
+
+</body></html>

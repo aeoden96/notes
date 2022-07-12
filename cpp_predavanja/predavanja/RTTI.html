@@ -1,0 +1,1176 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<!-- saved from url=(0089)https://web.math.pmf.unizg.hr/nastava/opepp/Slides/Predavanja/html-noslides/slides-8.html -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="hr"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="generator" content="AsciiDoc 8.6.9">
+<title>RTTI</title>
+<style type="text/css">
+/* Shared CSS for AsciiDoc xhtml11 and html5 backends */
+
+/* Default font. */
+body {
+  font-family: Georgia,serif;
+}
+
+/* Title font. */
+h1, h2, h3, h4, h5, h6,
+div.title, caption.title,
+thead, p.table.header,
+#toctitle,
+#author, #revnumber, #revdate, #revremark,
+#footer {
+  font-family: Arial,Helvetica,sans-serif;
+}
+
+body {
+  margin: 1em 5% 1em 5%;
+}
+
+a {
+  color: blue;
+  text-decoration: underline;
+}
+a:visited {
+  color: fuchsia;
+}
+
+em {
+  font-style: italic;
+  color: navy;
+}
+
+strong {
+  font-weight: bold;
+  color: #083194;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #527bbd;
+  margin-top: 1.2em;
+  margin-bottom: 0.5em;
+  line-height: 1.3;
+}
+
+h1, h2, h3 {
+  border-bottom: 2px solid silver;
+}
+h2 {
+  padding-top: 0.5em;
+}
+h3 {
+  float: left;
+}
+h3 + * {
+  clear: left;
+}
+h5 {
+  font-size: 1.0em;
+}
+
+div.sectionbody {
+  margin-left: 0;
+}
+
+hr {
+  border: 1px solid silver;
+}
+
+p {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+ul, ol, li > p {
+  margin-top: 0;
+}
+ul > li     { color: #aaa; }
+ul > li > * { color: black; }
+
+.monospaced, code, pre {
+  font-family: "Courier New", Courier, monospace;
+  font-size: inherit;
+  color: navy;
+  padding: 0;
+  margin: 0;
+}
+pre {
+  white-space: pre-wrap;
+}
+
+#author {
+  color: #527bbd;
+  font-weight: bold;
+  font-size: 1.1em;
+}
+#email {
+}
+#revnumber, #revdate, #revremark {
+}
+
+#footer {
+  font-size: small;
+  border-top: 2px solid silver;
+  padding-top: 0.5em;
+  margin-top: 4.0em;
+}
+#footer-text {
+  float: left;
+  padding-bottom: 0.5em;
+}
+#footer-badges {
+  float: right;
+  padding-bottom: 0.5em;
+}
+
+#preamble {
+  margin-top: 1.5em;
+  margin-bottom: 1.5em;
+}
+div.imageblock, div.exampleblock, div.verseblock,
+div.quoteblock, div.literalblock, div.listingblock, div.sidebarblock,
+div.admonitionblock {
+  margin-top: 1.0em;
+  margin-bottom: 1.5em;
+}
+div.admonitionblock {
+  margin-top: 2.0em;
+  margin-bottom: 2.0em;
+  margin-right: 10%;
+  color: #606060;
+}
+
+div.content { /* Block element content. */
+  padding: 0;
+}
+
+/* Block element titles. */
+div.title, caption.title {
+  color: #527bbd;
+  font-weight: bold;
+  text-align: left;
+  margin-top: 1.0em;
+  margin-bottom: 0.5em;
+}
+div.title + * {
+  margin-top: 0;
+}
+
+td div.title:first-child {
+  margin-top: 0.0em;
+}
+div.content div.title:first-child {
+  margin-top: 0.0em;
+}
+div.content + div.title {
+  margin-top: 0.0em;
+}
+
+div.sidebarblock > div.content {
+  background: #ffffee;
+  border: 1px solid #dddddd;
+  border-left: 4px solid #f0f0f0;
+  padding: 0.5em;
+}
+
+div.listingblock > div.content {
+  border: 1px solid #dddddd;
+  border-left: 5px solid #f0f0f0;
+  background: #f8f8f8;
+  padding: 0.5em;
+}
+
+div.quoteblock, div.verseblock {
+  padding-left: 1.0em;
+  margin-left: 1.0em;
+  margin-right: 10%;
+  border-left: 5px solid #f0f0f0;
+  color: #888;
+}
+
+div.quoteblock > div.attribution {
+  padding-top: 0.5em;
+  text-align: right;
+}
+
+div.verseblock > pre.content {
+  font-family: inherit;
+  font-size: inherit;
+}
+div.verseblock > div.attribution {
+  padding-top: 0.75em;
+  text-align: left;
+}
+/* DEPRECATED: Pre version 8.2.7 verse style literal block. */
+div.verseblock + div.attribution {
+  text-align: left;
+}
+
+div.admonitionblock .icon {
+  vertical-align: top;
+  font-size: 1.1em;
+  font-weight: bold;
+  text-decoration: underline;
+  color: #527bbd;
+  padding-right: 0.5em;
+}
+div.admonitionblock td.content {
+  padding-left: 0.5em;
+  border-left: 3px solid #dddddd;
+}
+
+div.exampleblock > div.content {
+  border-left: 3px solid #dddddd;
+  padding-left: 0.5em;
+}
+
+div.imageblock div.content { padding-left: 0; }
+span.image img { border-style: none; vertical-align: text-bottom; }
+a.image:visited { color: white; }
+
+dl {
+  margin-top: 0.8em;
+  margin-bottom: 0.8em;
+}
+dt {
+  margin-top: 0.5em;
+  margin-bottom: 0;
+  font-style: normal;
+  color: navy;
+}
+dd > *:first-child {
+  margin-top: 0.1em;
+}
+
+ul, ol {
+    list-style-position: outside;
+}
+ol.arabic {
+  list-style-type: decimal;
+}
+ol.loweralpha {
+  list-style-type: lower-alpha;
+}
+ol.upperalpha {
+  list-style-type: upper-alpha;
+}
+ol.lowerroman {
+  list-style-type: lower-roman;
+}
+ol.upperroman {
+  list-style-type: upper-roman;
+}
+
+div.compact ul, div.compact ol,
+div.compact p, div.compact p,
+div.compact div, div.compact div {
+  margin-top: 0.1em;
+  margin-bottom: 0.1em;
+}
+
+tfoot {
+  font-weight: bold;
+}
+td > div.verse {
+  white-space: pre;
+}
+
+div.hdlist {
+  margin-top: 0.8em;
+  margin-bottom: 0.8em;
+}
+div.hdlist tr {
+  padding-bottom: 15px;
+}
+dt.hdlist1.strong, td.hdlist1.strong {
+  font-weight: bold;
+}
+td.hdlist1 {
+  vertical-align: top;
+  font-style: normal;
+  padding-right: 0.8em;
+  color: navy;
+}
+td.hdlist2 {
+  vertical-align: top;
+}
+div.hdlist.compact tr {
+  margin: 0;
+  padding-bottom: 0;
+}
+
+.comment {
+  background: yellow;
+}
+
+.footnote, .footnoteref {
+  font-size: 0.8em;
+}
+
+span.footnote, span.footnoteref {
+  vertical-align: super;
+}
+
+#footnotes {
+  margin: 20px 0 20px 0;
+  padding: 7px 0 0 0;
+}
+
+#footnotes div.footnote {
+  margin: 0 0 5px 0;
+}
+
+#footnotes hr {
+  border: none;
+  border-top: 1px solid silver;
+  height: 1px;
+  text-align: left;
+  margin-left: 0;
+  width: 20%;
+  min-width: 100px;
+}
+
+div.colist td {
+  padding-right: 0.5em;
+  padding-bottom: 0.3em;
+  vertical-align: top;
+}
+div.colist td img {
+  margin-top: 0.3em;
+}
+
+@media print {
+  #footer-badges { display: none; }
+}
+
+#toc {
+  margin-bottom: 2.5em;
+}
+
+#toctitle {
+  color: #527bbd;
+  font-size: 1.1em;
+  font-weight: bold;
+  margin-top: 1.0em;
+  margin-bottom: 0.1em;
+}
+
+div.toclevel0, div.toclevel1, div.toclevel2, div.toclevel3, div.toclevel4 {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+div.toclevel2 {
+  margin-left: 2em;
+  font-size: 0.9em;
+}
+div.toclevel3 {
+  margin-left: 4em;
+  font-size: 0.9em;
+}
+div.toclevel4 {
+  margin-left: 6em;
+  font-size: 0.9em;
+}
+
+span.aqua { color: aqua; }
+span.black { color: black; }
+span.blue { color: blue; }
+span.fuchsia { color: fuchsia; }
+span.gray { color: gray; }
+span.green { color: green; }
+span.lime { color: lime; }
+span.maroon { color: maroon; }
+span.navy { color: navy; }
+span.olive { color: olive; }
+span.purple { color: purple; }
+span.red { color: red; }
+span.silver { color: silver; }
+span.teal { color: teal; }
+span.white { color: white; }
+span.yellow { color: yellow; }
+
+span.aqua-background { background: aqua; }
+span.black-background { background: black; }
+span.blue-background { background: blue; }
+span.fuchsia-background { background: fuchsia; }
+span.gray-background { background: gray; }
+span.green-background { background: green; }
+span.lime-background { background: lime; }
+span.maroon-background { background: maroon; }
+span.navy-background { background: navy; }
+span.olive-background { background: olive; }
+span.purple-background { background: purple; }
+span.red-background { background: red; }
+span.silver-background { background: silver; }
+span.teal-background { background: teal; }
+span.white-background { background: white; }
+span.yellow-background { background: yellow; }
+
+span.big { font-size: 2em; }
+span.small { font-size: 0.6em; }
+
+span.underline { text-decoration: underline; }
+span.overline { text-decoration: overline; }
+span.line-through { text-decoration: line-through; }
+
+div.unbreakable { page-break-inside: avoid; }
+
+
+/*
+ * xhtml11 specific
+ *
+ * */
+
+div.tableblock {
+  margin-top: 1.0em;
+  margin-bottom: 1.5em;
+}
+div.tableblock > table {
+  border: 3px solid #527bbd;
+}
+thead, p.table.header {
+  font-weight: bold;
+  color: #527bbd;
+}
+p.table {
+  margin-top: 0;
+}
+/* Because the table frame attribute is overriden by CSS in most browsers. */
+div.tableblock > table[frame="void"] {
+  border-style: none;
+}
+div.tableblock > table[frame="hsides"] {
+  border-left-style: none;
+  border-right-style: none;
+}
+div.tableblock > table[frame="vsides"] {
+  border-top-style: none;
+  border-bottom-style: none;
+}
+
+
+/*
+ * html5 specific
+ *
+ * */
+
+table.tableblock {
+  margin-top: 1.0em;
+  margin-bottom: 1.5em;
+}
+thead, p.tableblock.header {
+  font-weight: bold;
+  color: #527bbd;
+}
+p.tableblock {
+  margin-top: 0;
+}
+table.tableblock {
+  border-width: 3px;
+  border-spacing: 0px;
+  border-style: solid;
+  border-color: #527bbd;
+  border-collapse: collapse;
+}
+th.tableblock, td.tableblock {
+  border-width: 1px;
+  padding: 4px;
+  border-style: solid;
+  border-color: #527bbd;
+}
+
+table.tableblock.frame-topbot {
+  border-left-style: hidden;
+  border-right-style: hidden;
+}
+table.tableblock.frame-sides {
+  border-top-style: hidden;
+  border-bottom-style: hidden;
+}
+table.tableblock.frame-none {
+  border-style: hidden;
+}
+
+th.tableblock.halign-left, td.tableblock.halign-left {
+  text-align: left;
+}
+th.tableblock.halign-center, td.tableblock.halign-center {
+  text-align: center;
+}
+th.tableblock.halign-right, td.tableblock.halign-right {
+  text-align: right;
+}
+
+th.tableblock.valign-top, td.tableblock.valign-top {
+  vertical-align: top;
+}
+th.tableblock.valign-middle, td.tableblock.valign-middle {
+  vertical-align: middle;
+}
+th.tableblock.valign-bottom, td.tableblock.valign-bottom {
+  vertical-align: bottom;
+}
+
+
+/*
+ * manpage specific
+ *
+ * */
+
+body.manpage h1 {
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+  border-top: 2px solid silver;
+  border-bottom: 2px solid silver;
+}
+body.manpage h2 {
+  border-style: none;
+}
+body.manpage div.sectionbody {
+  margin-left: 3em;
+}
+
+@media print {
+  body.manpage div#toc { display: none; }
+}
+.highlight .hll { background-color: #ffffcc }
+.highlight  { background: #f8f8f8; }
+.highlight .c { color: #408080; font-style: italic } /* Comment */
+.highlight .err { border: 1px solid #FF0000 } /* Error */
+.highlight .k { color: #008000; font-weight: bold } /* Keyword */
+.highlight .o { color: #666666 } /* Operator */
+.highlight .cm { color: #408080; font-style: italic } /* Comment.Multiline */
+.highlight .cp { color: #BC7A00 } /* Comment.Preproc */
+.highlight .c1 { color: #408080; font-style: italic } /* Comment.Single */
+.highlight .cs { color: #408080; font-style: italic } /* Comment.Special */
+.highlight .gd { color: #A00000 } /* Generic.Deleted */
+.highlight .ge { font-style: italic } /* Generic.Emph */
+.highlight .gr { color: #FF0000 } /* Generic.Error */
+.highlight .gh { color: #000080; font-weight: bold } /* Generic.Heading */
+.highlight .gi { color: #00A000 } /* Generic.Inserted */
+.highlight .go { color: #808080 } /* Generic.Output */
+.highlight .gp { color: #000080; font-weight: bold } /* Generic.Prompt */
+.highlight .gs { font-weight: bold } /* Generic.Strong */
+.highlight .gu { color: #800080; font-weight: bold } /* Generic.Subheading */
+.highlight .gt { color: #0040D0 } /* Generic.Traceback */
+.highlight .kc { color: #008000; font-weight: bold } /* Keyword.Constant */
+.highlight .kd { color: #008000; font-weight: bold } /* Keyword.Declaration */
+.highlight .kn { color: #008000; font-weight: bold } /* Keyword.Namespace */
+.highlight .kp { color: #008000 } /* Keyword.Pseudo */
+.highlight .kr { color: #008000; font-weight: bold } /* Keyword.Reserved */
+.highlight .kt { color: #B00040 } /* Keyword.Type */
+.highlight .m { color: #666666 } /* Literal.Number */
+.highlight .s { color: #BA2121 } /* Literal.String */
+.highlight .na { color: #7D9029 } /* Name.Attribute */
+.highlight .nb { color: #008000 } /* Name.Builtin */
+.highlight .nc { color: #0000FF; font-weight: bold } /* Name.Class */
+.highlight .no { color: #880000 } /* Name.Constant */
+.highlight .nd { color: #AA22FF } /* Name.Decorator */
+.highlight .ni { color: #999999; font-weight: bold } /* Name.Entity */
+.highlight .ne { color: #D2413A; font-weight: bold } /* Name.Exception */
+.highlight .nf { color: #0000FF } /* Name.Function */
+.highlight .nl { color: #A0A000 } /* Name.Label */
+.highlight .nn { color: #0000FF; font-weight: bold } /* Name.Namespace */
+.highlight .nt { color: #008000; font-weight: bold } /* Name.Tag */
+.highlight .nv { color: #19177C } /* Name.Variable */
+.highlight .ow { color: #AA22FF; font-weight: bold } /* Operator.Word */
+.highlight .w { color: #bbbbbb } /* Text.Whitespace */
+.highlight .mf { color: #666666 } /* Literal.Number.Float */
+.highlight .mh { color: #666666 } /* Literal.Number.Hex */
+.highlight .mi { color: #666666 } /* Literal.Number.Integer */
+.highlight .mo { color: #666666 } /* Literal.Number.Oct */
+.highlight .sb { color: #BA2121 } /* Literal.String.Backtick */
+.highlight .sc { color: #BA2121 } /* Literal.String.Char */
+.highlight .sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
+.highlight .s2 { color: #BA2121 } /* Literal.String.Double */
+.highlight .se { color: #BB6622; font-weight: bold } /* Literal.String.Escape */
+.highlight .sh { color: #BA2121 } /* Literal.String.Heredoc */
+.highlight .si { color: #BB6688; font-weight: bold } /* Literal.String.Interpol */
+.highlight .sx { color: #008000 } /* Literal.String.Other */
+.highlight .sr { color: #BB6688 } /* Literal.String.Regex */
+.highlight .s1 { color: #BA2121 } /* Literal.String.Single */
+.highlight .ss { color: #19177C } /* Literal.String.Symbol */
+.highlight .bp { color: #008000 } /* Name.Builtin.Pseudo */
+.highlight .vc { color: #19177C } /* Name.Variable.Class */
+.highlight .vg { color: #19177C } /* Name.Variable.Global */
+.highlight .vi { color: #19177C } /* Name.Variable.Instance */
+.highlight .il { color: #666666 } /* Literal.Number.Integer.Long */
+
+
+</style>
+<script type="text/javascript">
+/*<![CDATA[*/
+var asciidoc = {  // Namespace.
+
+/////////////////////////////////////////////////////////////////////
+// Table Of Contents generator
+/////////////////////////////////////////////////////////////////////
+
+/* Author: Mihai Bazon, September 2002
+ * http://students.infoiasi.ro/~mishoo
+ *
+ * Table Of Content generator
+ * Version: 0.4
+ *
+ * Feel free to use this script under the terms of the GNU General Public
+ * License, as long as you do not remove or alter this notice.
+ */
+
+ /* modified by Troy D. Hanson, September 2006. License: GPL */
+ /* modified by Stuart Rackham, 2006, 2009. License: GPL */
+
+// toclevels = 1..4.
+toc: function (toclevels) {
+
+  function getText(el) {
+    var text = "";
+    for (var i = el.firstChild; i != null; i = i.nextSibling) {
+      if (i.nodeType == 3 /* Node.TEXT_NODE */) // IE doesn't speak constants.
+        text += i.data;
+      else if (i.firstChild != null)
+        text += getText(i);
+    }
+    return text;
+  }
+
+  function TocEntry(el, text, toclevel) {
+    this.element = el;
+    this.text = text;
+    this.toclevel = toclevel;
+  }
+
+  function tocEntries(el, toclevels) {
+    var result = new Array;
+    var re = new RegExp('[hH]([1-'+(toclevels+1)+'])');
+    // Function that scans the DOM tree for header elements (the DOM2
+    // nodeIterator API would be a better technique but not supported by all
+    // browsers).
+    var iterate = function (el) {
+      for (var i = el.firstChild; i != null; i = i.nextSibling) {
+        if (i.nodeType == 1 /* Node.ELEMENT_NODE */) {
+          var mo = re.exec(i.tagName);
+          if (mo && (i.getAttribute("class") || i.getAttribute("className")) != "float") {
+            result[result.length] = new TocEntry(i, getText(i), mo[1]-1);
+          }
+          iterate(i);
+        }
+      }
+    }
+    iterate(el);
+    return result;
+  }
+
+  var toc = document.getElementById("toc");
+  if (!toc) {
+    return;
+  }
+
+  // Delete existing TOC entries in case we're reloading the TOC.
+  var tocEntriesToRemove = [];
+  var i;
+  for (i = 0; i < toc.childNodes.length; i++) {
+    var entry = toc.childNodes[i];
+    if (entry.nodeName.toLowerCase() == 'div'
+     && entry.getAttribute("class")
+     && entry.getAttribute("class").match(/^toclevel/))
+      tocEntriesToRemove.push(entry);
+  }
+  for (i = 0; i < tocEntriesToRemove.length; i++) {
+    toc.removeChild(tocEntriesToRemove[i]);
+  }
+
+  // Rebuild TOC entries.
+  var entries = tocEntries(document.getElementById("content"), toclevels);
+  for (var i = 0; i < entries.length; ++i) {
+    var entry = entries[i];
+    if (entry.element.id == "")
+      entry.element.id = "_toc_" + i;
+    var a = document.createElement("a");
+    a.href = "#" + entry.element.id;
+    a.appendChild(document.createTextNode(entry.text));
+    var div = document.createElement("div");
+    div.appendChild(a);
+    div.className = "toclevel" + entry.toclevel;
+    toc.appendChild(div);
+  }
+  if (entries.length == 0)
+    toc.parentNode.removeChild(toc);
+},
+
+
+/////////////////////////////////////////////////////////////////////
+// Footnotes generator
+/////////////////////////////////////////////////////////////////////
+
+/* Based on footnote generation code from:
+ * http://www.brandspankingnew.net/archive/2005/07/format_footnote.html
+ */
+
+footnotes: function () {
+  // Delete existing footnote entries in case we're reloading the footnodes.
+  var i;
+  var noteholder = document.getElementById("footnotes");
+  if (!noteholder) {
+    return;
+  }
+  var entriesToRemove = [];
+  for (i = 0; i < noteholder.childNodes.length; i++) {
+    var entry = noteholder.childNodes[i];
+    if (entry.nodeName.toLowerCase() == 'div' && entry.getAttribute("class") == "footnote")
+      entriesToRemove.push(entry);
+  }
+  for (i = 0; i < entriesToRemove.length; i++) {
+    noteholder.removeChild(entriesToRemove[i]);
+  }
+
+  // Rebuild footnote entries.
+  var cont = document.getElementById("content");
+  var spans = cont.getElementsByTagName("span");
+  var refs = {};
+  var n = 0;
+  for (i=0; i<spans.length; i++) {
+    if (spans[i].className == "footnote") {
+      n++;
+      var note = spans[i].getAttribute("data-note");
+      if (!note) {
+        // Use [\s\S] in place of . so multi-line matches work.
+        // Because JavaScript has no s (dotall) regex flag.
+        note = spans[i].innerHTML.match(/\s*\[([\s\S]*)]\s*/)[1];
+        spans[i].innerHTML =
+          "[<a id='_footnoteref_" + n + "' href='#_footnote_" + n +
+          "' title='View footnote' class='footnote'>" + n + "</a>]";
+        spans[i].setAttribute("data-note", note);
+      }
+      noteholder.innerHTML +=
+        "<div class='footnote' id='_footnote_" + n + "'>" +
+        "<a href='#_footnoteref_" + n + "' title='Return to text'>" +
+        n + "</a>. " + note + "</div>";
+      var id =spans[i].getAttribute("id");
+      if (id != null) refs["#"+id] = n;
+    }
+  }
+  if (n == 0)
+    noteholder.parentNode.removeChild(noteholder);
+  else {
+    // Process footnoterefs.
+    for (i=0; i<spans.length; i++) {
+      if (spans[i].className == "footnoteref") {
+        var href = spans[i].getElementsByTagName("a")[0].getAttribute("href");
+        href = href.match(/#.*/)[0];  // Because IE return full URL.
+        n = refs[href];
+        spans[i].innerHTML =
+          "[<a href='#_footnote_" + n +
+          "' title='View footnote' class='footnote'>" + n + "</a>]";
+      }
+    }
+  }
+},
+
+install: function(toclevels) {
+  var timerId;
+
+  function reinstall() {
+    asciidoc.footnotes();
+    if (toclevels) {
+      asciidoc.toc(toclevels);
+    }
+  }
+
+  function reinstallAndRemoveTimer() {
+    clearInterval(timerId);
+    reinstall();
+  }
+
+  timerId = setInterval(reinstall, 500);
+  if (document.addEventListener)
+    document.addEventListener("DOMContentLoaded", reinstallAndRemoveTimer, false);
+  else
+    window.onload = reinstallAndRemoveTimer;
+}
+
+}
+asciidoc.install();
+/*]]>*/
+</script>
+</head>
+<body class="article">
+<div id="header">
+<h1>RTTI</h1>
+<span id="author">Mladen Jurak</span><br>
+<span id="revnumber">version 2.0,</span>
+<span id="revdate">2018-02</span>
+</div>
+<div id="content">
+<div class="sect1">
+<h2 id="_rtti">RTTI</h2>
+<div class="sectionbody">
+<div class="paragraph"><p><strong>RTTI</strong> je kratica za <em>run-time type identification</em>, odnosno identificiranje dinamičkog tipa
+objekta, kojeg dohvaćamo kroz referencu ili pokazivač, za vrijeme izvršavanja programa.
+Dva operatora omogućavaju dohvat dinamičkog tipa:</p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+<code>typeid</code> operator koji na danoj referenci ili pokazivaču vraća dinamički tip
+objekta;
+</p>
+</li>
+<li>
+<p>
+<code>dynamic_cast</code> operator koji dozvoljava sigurnu konverziju pokazivača ili
+reference na bazni tip u pokazivač, odnosno referencu, na izvedeni tip.
+</p>
+</li>
+</ul></div>
+<div class="paragraph"><p><code>dynamic_cast</code> i <code>typeid</code> operatore treba upotrebljavati samo na referencama i pokazivačima
+na  <em>polimorfne klase</em>. Pri tome imamo definiciju.</p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+Klasa koja deklarira ili nasljeđuje barem jednu virtualnu funkciju naziva se polimorfna klasa.
+</p>
+</li>
+</ul></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_code_dynamic_cast_code_operator"><code>dynamic_cast</code> operator</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Operator <code>dynamic_cast</code> koristimo za konverziju reference ili pokazivača na
+objekt baznog tipa u referencu ili pokazivač na tip koji je posredno ili neposredno
+izveden iz baznog tipa. On vrši provjeru je li promjena tipa
+dopustiva i stoga se izvodi za vrijeme izvršavanja programa.</p></div>
+<div class="imageblock" style="text-align:center;">
+<div class="content">
+<img alt="simple-base-derived-diag.png" src="data:image/png;base64,%0A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">
+</div>
+</div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="n">Base</span> <span class="o">*</span> <span class="n">p_base</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Derived</span><span class="p">();</span>  <span class="c1">// implicitna konverzija</span>
+<span class="n">Derived</span> <span class="o">*</span> <span class="n">p_derived</span> <span class="o">=</span> <span class="n">p_base</span><span class="p">;</span>   <span class="c1">// nije implicitna konverzija</span>
+                                <span class="c1">// treba koristiti dynamic_cast</span>
+</pre></div></div></div>
+<div class="ulist"><ul>
+<li>
+<p>
+Ukoliko konverziju nije moguće izvršiti
+na <strong>pokazivaču</strong>, <code>dynamic_cast</code> vraća nul-pokazivač.
+</p>
+</li>
+<li>
+<p>
+Ukoliko konverziju nije moguće izvršiti
+na <strong>referenci</strong>, <code>dynamic_cast</code> izbacuje <code>std::bad_cast</code> izuzetak (koji je definiran u
+zaglavlju <code>&lt;typeinfo&gt;</code>).
+</p>
+</li>
+</ul></div>
+<div class="paragraph"><p>Mogući način uporabe <code>dynamic_cast</code> operatora pokazan je u sljedećem primjeru:</p></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_primjer">Primjer</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;typeinfo&gt;  // Da bismo mogli koristiti type_info klasu</span><span class="cp"></span>
+
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">Base</span> <span class="p">{</span>
+    <span class="k">public</span><span class="o">:</span>
+        <span class="kt">int</span> <span class="n">x</span><span class="p">;</span>
+        <span class="k">virtual</span> <span class="o">~</span><span class="n">Base</span><span class="p">(){}</span>  <span class="c1">// polimorfna klasa</span>
+        <span class="c1">// ...</span>
+<span class="p">};</span>
+
+<span class="k">class</span> <span class="nc">Derived</span> <span class="o">:</span> <span class="k">public</span> <span class="n">Base</span> <span class="p">{</span>
+    <span class="k">public</span><span class="o">:</span>
+        <span class="kt">int</span> <span class="n">y</span><span class="p">;</span>
+        <span class="c1">// ...</span>
+<span class="p">};</span>
+
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">Base</span> <span class="o">*</span><span class="n">pb</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Derived</span><span class="p">();</span>
+    <span class="n">Derived</span> <span class="o">*</span><span class="n">pd</span> <span class="o">=</span> <span class="k">dynamic_cast</span><span class="o">&lt;</span><span class="n">Derived</span> <span class="o">*&gt;</span><span class="p">(</span><span class="n">pb</span><span class="p">);</span> <span class="c1">// pb pokazuje na Derived objekt te je</span>
+                                               <span class="c1">// konverzija dopustiva</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">pd</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">" dynamic_cast&lt;Derived *&gt;(pb) je uspio "</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+    <span class="k">else</span>
+        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">" dynamic_cast&lt;Derived *&gt;(pb) nije uspio "</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+
+    <span class="n">Base</span> <span class="n">b_obj</span><span class="p">;</span>
+    <span class="n">Base</span> <span class="o">&amp;</span> <span class="n">rb</span> <span class="o">=</span> <span class="n">b_obj</span><span class="p">;</span>
+
+    <span class="n">Derived</span> <span class="o">&amp;</span> <span class="n">rbb</span> <span class="o">=</span> <span class="k">dynamic_cast</span><span class="o">&lt;</span><span class="n">Derived</span> <span class="o">&amp;&gt;</span><span class="p">(</span><span class="n">rb</span><span class="p">);</span> <span class="c1">// rb ne referira na Derived objekt</span>
+                                                 <span class="c1">// te stoga dynamic_cast izbacuje izuzetak</span>
+
+    <span class="k">delete</span> <span class="n">pb</span><span class="p">;</span>
+
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div></div></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_code_typeid_code_operator"><code>typeid</code> operator</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Operator <code>typeid</code> djeluje na <em>izraz</em> ili <em>ime tipa</em> i vraća
+objekt tipa <code>std::type_info</code> koji sadrži informacije o tipu izraza.
+Upotrebljavamo ga tipično kada želimo ispitati dinamički tip objekta koji dohvaćamo
+kroz pokazivač ili referencu na bazni tip.</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;typeinfo&gt;  // Da bismo mogli koristiti type_info klasu</span><span class="cp"></span>
+
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">Base</span> <span class="p">{</span>
+    <span class="k">public</span><span class="o">:</span>
+        <span class="kt">int</span> <span class="n">x</span><span class="p">;</span>
+        <span class="k">virtual</span> <span class="o">~</span><span class="n">Base</span><span class="p">(){}</span>  <span class="c1">// polimorfna klasa</span>
+        <span class="c1">// ...</span>
+<span class="p">};</span>
+
+<span class="k">class</span> <span class="nc">Derived</span> <span class="o">:</span> <span class="k">public</span> <span class="n">Base</span> <span class="p">{</span>
+    <span class="k">public</span><span class="o">:</span>
+        <span class="kt">int</span> <span class="n">y</span><span class="p">;</span>
+        <span class="c1">// ...</span>
+<span class="p">};</span>
+
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">Base</span> <span class="o">*</span> <span class="n">p1</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Base</span><span class="p">();</span>
+    <span class="n">Base</span> <span class="o">*</span> <span class="n">p2</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Derived</span><span class="p">();</span>
+
+    <span class="c1">// ....</span>
+
+    <span class="k">if</span><span class="p">(</span> <span class="k">typeid</span><span class="p">(</span><span class="o">*</span><span class="n">p1</span><span class="p">)</span> <span class="o">==</span> <span class="k">typeid</span><span class="p">(</span><span class="o">*</span><span class="n">p2</span><span class="p">)</span> <span class="p">)</span>
+        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"p1 i p2 pokazuju na objekt istog tipa!"</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+    <span class="k">else</span>
+        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"p1 i p2 pokazuju na objekte različitih tipova!"</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+
+    <span class="c1">// ....</span>
+
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div></div></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_code_typeid_code_operator_nastavak"><code>typeid</code> operator (nastavak)</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Operatoru <code>typeid</code> možemo dati i ime tipa kao u sljedećem
+slučaju:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="k">if</span><span class="p">(</span> <span class="k">typeid</span><span class="p">(</span><span class="o">*</span><span class="n">p2</span><span class="p">)</span> <span class="o">==</span> <span class="k">typeid</span><span class="p">(</span><span class="n">Derived</span><span class="p">)</span> <span class="p">)</span>
+      <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"p2 je tipa Derived!"</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+<span class="k">else</span>
+      <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"p2 nije tipa Derived!"</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Ovaj će kod ispisati <code>p2 je tipa Derived!</code>.</p></div>
+<div class="paragraph"><p><code>typeid(expr)</code> vraća</p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+<em>dinamički tip</em> izraza <code>expr</code> ako je njegov statički tip polimorfna klasa;
+</p>
+</li>
+<li>
+<p>
+<em>statički  tip</em> izraza <code>expr</code> ako je njegov statički tip nije polimorfna klasa;
+</p>
+</li>
+</ul></div>
+<div class="paragraph"><p>Operator <code>typeid</code> može se primijeniti na izraz bilo kojeg tipa, što uključuje ugrađene tipove i
+konstante. Stoga moramo paziti da dereferenciramo pokazivač
+kada želimo odrediti tip objekta na koji on pokazuje. Naime, ako bismo u gornjem kodu pisali</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="k">if</span><span class="p">(</span> <span class="k">typeid</span><span class="p">(</span><span class="n">p1</span><span class="p">)</span> <span class="o">==</span> <span class="k">typeid</span><span class="p">(</span><span class="n">p2</span><span class="p">)</span> <span class="p">)</span>  <span class="c1">// uspoređujem tipove pokazivača a ne objekata</span>
+</pre></div></div></div>
+<div class="paragraph"><p>uspoređivali bismo tipove pokazivača koji su neovisni o dinamičkom tipu objekata na koje
+pokazuju.</p></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_klasa_type_info">Klasa type_info</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Operator <code>typeid</code> vraća objekt tipa <code>std::type_info</code>
+koji je ovisan o implementaciji no minimalno  <code>std::type_info</code> ima sljedeći oblik:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="k">namespace</span> <span class="n">std</span> <span class="p">{</span>
+  <span class="k">class</span> <span class="nc">type_info</span> <span class="p">{</span>
+  <span class="k">public</span><span class="o">:</span>
+     <span class="k">virtual</span> <span class="o">~</span><span class="n">type_info</span><span class="p">();</span>
+     <span class="kt">bool</span> <span class="k">operator</span><span class="o">==</span><span class="p">(</span><span class="k">const</span> <span class="n">type_info</span><span class="o">&amp;</span> <span class="n">rhs</span><span class="p">)</span> <span class="k">const</span><span class="p">;</span>
+     <span class="kt">bool</span> <span class="k">operator</span><span class="o">!=</span><span class="p">(</span><span class="k">const</span> <span class="n">type_info</span><span class="o">&amp;</span> <span class="n">rhs</span><span class="p">)</span> <span class="k">const</span><span class="p">;</span>
+     <span class="kt">bool</span> <span class="nf">before</span><span class="p">(</span><span class="k">const</span> <span class="n">type_info</span><span class="o">&amp;</span> <span class="n">rhs</span><span class="p">)</span> <span class="k">const</span><span class="p">;</span>
+     <span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="nf">name</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
+  <span class="k">private</span><span class="o">:</span>
+     <span class="n">type_info</span><span class="p">(</span><span class="k">const</span> <span class="n">type_info</span><span class="o">&amp;</span> <span class="n">rhs</span><span class="p">);</span>
+     <span class="n">type_info</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">=</span><span class="p">(</span><span class="k">const</span> <span class="n">type_info</span><span class="o">&amp;</span> <span class="n">rhs</span><span class="p">);</span>
+  <span class="p">};</span>
+<span class="p">}</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Pored operatora uspoređivanja interesantan dio klase je funkcija <code>name()</code>
+koja daje ime tipa. Samo ime koje se vraća ovisno je o implementaciji.</p></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_ispisivanje_imena_tipova">Ispisivanje imena tipova</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="n">cout</span>  <span class="o">&lt;&lt;</span> <span class="k">typeid</span><span class="p">(</span><span class="kt">double</span><span class="p">).</span><span class="n">name</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+<span class="n">cout</span>  <span class="o">&lt;&lt;</span> <span class="k">typeid</span><span class="p">(</span><span class="kt">float</span><span class="p">).</span><span class="n">name</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+
+<span class="kt">double</span> <span class="n">d</span> <span class="o">=</span> <span class="mf">3.0</span><span class="p">;</span>
+<span class="kt">float</span>  <span class="n">f</span> <span class="o">=</span> <span class="mf">3.0F</span><span class="p">;</span>
+
+<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="k">typeid</span><span class="p">(</span><span class="n">d</span><span class="p">).</span><span class="n">name</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="k">typeid</span><span class="p">(</span><span class="n">f</span><span class="p">).</span><span class="n">name</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+
+<span class="n">Base</span> <span class="o">*</span> <span class="n">pb</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Derived</span><span class="p">();</span>
+
+<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="k">typeid</span><span class="p">(</span><span class="n">pb</span><span class="p">).</span><span class="n">name</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="k">typeid</span><span class="p">(</span><span class="o">*</span><span class="n">pb</span><span class="p">).</span><span class="n">name</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</pre></div></div></div>
+<div class="paragraph"><p>bi na jednoj platformi mogao ispisati:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="n">d</span>
+<span class="n">f</span>
+<span class="n">d</span>
+<span class="n">f</span>
+<span class="n">P4Base</span>
+<span class="mi">4</span><span class="n">Base</span>
+</pre></div></div></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_primjena_rtti_a">Primjena RTTI-a</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_operator_usporeivanja_code_code_za_stablo_polimorfnih_klasa">Operator uspoređivanja (<code>==</code>) za stablo polimorfnih klasa.</h3>
+<div class="paragraph"><p>Operator uspoređivanja možemo implementirati kao funkciju članicu klase ili kao
+globalnu (<code>friend</code>) funkciju.
+Budući da objekt bilo koje izvedene klase može biti dan kroz referencu
+na baznu klasu, operator <code>==</code> bi trebao uzeti dvije reference na
+baznu klasu. Uzmemo li stoga da imamo dvije klase: <code>Base</code> i <code>Derived</code>,
+kao u prethodnim primjerima, tada bi operator <code>==</code>, kao
+funkcija članica, trebao imati signaturu</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="k">virtual</span> <span class="kt">bool</span> <span class="n">ImeKlase</span><span class="o">::</span><span class="k">operator</span><span class="o">==</span><span class="p">(</span><span class="k">const</span> <span class="n">Base</span><span class="o">&amp;</span> <span class="n">rhs</span><span class="p">)</span> <span class="k">const</span><span class="p">;</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Takav operator bi trebao biti prisutan u svakoj klasi i brinuti se o uspoređivanju
+objekata dane klase s drugim objektima.</p></div>
+<div class="paragraph"><p><strong>Problem</strong>: da bismo mogli iskoristiti polimorfizam
+morali smo učiniti argument operatora  <code>==</code> referencom na baznu klasu,
+ali takav operator ne može obaviti postavljenu zadaću jer kroz referencu na baznu klasu ne
+možemo dohvatiti varijable članice u izvedenoj klasi, dok operator uspoređivanja tipično
+treba usporediti sve varijable članice.</p></div>
+<div class="paragraph"><p><strong>Rješenje</strong>: dinamičko određivanje tipova (RTTI).</p></div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_primjer_2">Primjer</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Uzmimo da imamo dvije polimorfne klase:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Base</span> <span class="p">{</span>
+    <span class="k">public</span><span class="o">:</span>
+        <span class="kt">int</span> <span class="n">x</span><span class="p">;</span>
+        <span class="k">virtual</span> <span class="o">~</span><span class="n">Base</span><span class="p">(){}</span>  <span class="c1">// polimorfna klasa</span>
+        <span class="n">Base</span><span class="p">(</span><span class="kt">int</span> <span class="n">x_</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span> <span class="o">:</span> <span class="n">x</span><span class="p">(</span><span class="n">x_</span><span class="p">)</span> <span class="p">{}</span>
+        <span class="k">virtual</span> <span class="kt">bool</span> <span class="k">operator</span><span class="o">==</span><span class="p">(</span><span class="k">const</span> <span class="n">Base</span><span class="o">&amp;</span><span class="p">)</span> <span class="k">const</span><span class="p">;</span>
+        <span class="c1">// ...</span>
+<span class="p">};</span>
+
+<span class="k">class</span> <span class="nc">Derived</span> <span class="o">:</span> <span class="k">public</span> <span class="n">Base</span> <span class="p">{</span>
+    <span class="k">public</span><span class="o">:</span>
+        <span class="kt">int</span> <span class="n">y</span><span class="p">;</span>
+        <span class="n">Derived</span><span class="p">(</span><span class="kt">int</span> <span class="n">x_</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="kt">int</span> <span class="n">y_</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="o">:</span> <span class="n">Base</span><span class="p">(</span><span class="n">x_</span><span class="p">),</span> <span class="n">y</span><span class="p">(</span><span class="n">y_</span><span class="p">)</span> <span class="p">{}</span>
+        <span class="k">virtual</span> <span class="kt">bool</span> <span class="k">operator</span><span class="o">==</span><span class="p">(</span><span class="k">const</span> <span class="n">Base</span><span class="o">&amp;</span><span class="p">)</span> <span class="k">const</span><span class="p">;</span>
+        <span class="c1">// ...</span>
+<span class="p">};</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Ove klase definiraju virtualne operatore uspoređivanja koji svi uzimaju referencu na baznu klasu.
+Operator uspoređivanja bazne klase (<code>Base</code>) zna da je lijevi operand tipa <code>Base</code>,
+ali ne zna kojeg je tipa
+desni operand. Stoga
+pomoću <code>typeid</code> operatora ispituje je li desni operator isto tipa <code>Base</code>:</p></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_nastavak">Nastavak</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="kt">bool</span> <span class="n">Base</span><span class="o">::</span><span class="k">operator</span><span class="o">==</span><span class="p">(</span><span class="k">const</span> <span class="n">Base</span><span class="o">&amp;</span> <span class="n">rhs</span><span class="p">)</span> <span class="k">const</span>
+<span class="p">{</span>
+    <span class="k">if</span><span class="p">(</span><span class="k">typeid</span><span class="p">(</span><span class="o">*</span><span class="k">this</span><span class="p">)</span> <span class="o">!=</span> <span class="k">typeid</span><span class="p">(</span><span class="n">rhs</span><span class="p">))</span> <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+    <span class="c1">// o.k. imamo posla s objektima tipa Base</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">x</span> <span class="o">==</span> <span class="n">rhs</span><span class="p">.</span><span class="n">x</span><span class="p">)</span> <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+    <span class="k">else</span>           <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div></div></div>
+<div class="paragraph"><p>U izvedenoj klasi:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="kt">bool</span> <span class="n">Derived</span><span class="o">::</span><span class="k">operator</span><span class="o">==</span><span class="p">(</span><span class="k">const</span> <span class="n">Base</span><span class="o">&amp;</span> <span class="n">rhs</span><span class="p">)</span> <span class="k">const</span>
+<span class="p">{</span>
+    <span class="k">if</span><span class="p">(</span><span class="k">typeid</span><span class="p">(</span><span class="o">*</span><span class="k">this</span><span class="p">)</span> <span class="o">!=</span> <span class="k">typeid</span><span class="p">(</span><span class="n">rhs</span><span class="p">))</span> <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+
+    <span class="c1">// Tipovi su isti, nastavljamo s ispitivanjem</span>
+    <span class="c1">// Ovaj cast je sada siguran</span>
+    <span class="k">const</span> <span class="n">Derived</span> <span class="o">&amp;</span> <span class="n">rd</span> <span class="o">=</span> <span class="k">dynamic_cast</span><span class="o">&lt;</span><span class="k">const</span> <span class="n">Derived</span> <span class="o">&amp;&gt;</span><span class="p">(</span><span class="n">rhs</span><span class="p">);</span>
+    <span class="c1">// Neka prvo bazna klasa obavi svoj posao</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">Base</span><span class="o">::</span><span class="k">operator</span><span class="o">==</span><span class="p">(</span><span class="n">rhs</span><span class="p">))</span>
+    <span class="p">{</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">y</span> <span class="o">==</span> <span class="n">rd</span><span class="p">.</span><span class="n">y</span><span class="p">)</span> <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
+        <span class="k">else</span>          <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">else</span> <span class="k">return</span> <span class="nb">false</span><span class="p">;</span> <span class="c1">// Bazni dijelovi nisu jednaki</span>
+<span class="p">}</span>
+</pre></div></div></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_zadatak">Zadatak</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Naša implementaciju funkcionira dobro, ali ima problem efikasnosti jer se <code>typeid</code> operator
+poziva i  u izvedenoj klasi i u baznoj klasi. Kako biste to izbjegli napravite globalnu
+funkciju</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="kt">bool</span> <span class="k">operator</span><span class="o">==</span><span class="p">(</span><span class="k">const</span> <span class="n">Base</span><span class="o">&amp;</span> <span class="n">lhs</span><span class="p">,</span> <span class="k">const</span> <span class="n">Base</span><span class="o">&amp;</span> <span class="n">rhs</span><span class="p">);</span>
+</pre></div></div></div>
+<div class="paragraph"><p>i učinite ju prijateljem klasa <code>Base</code> i <code>Derived</code>. Unutar tih klasa
+operatore jednakosti ćete zamijeniti s funkcijama koje obavljaju isti posao. Svaka klasa će imati
+funkciju članicu</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="k">virtual</span> <span class="kt">bool</span> <span class="nf">equal</span><span class="p">(</span><span class="k">const</span> <span class="n">Base</span><span class="o">&amp;</span> <span class="n">rhs</span><span class="p">)</span> <span class="k">const</span><span class="p">;</span>
+</pre></div></div></div>
+<div class="paragraph"><p>umjesto operatora uspoređivanja. <em>Ideja optimizacije je sljedeća</em>: Funkcija članica <code>equal</code> ne
+provjerava jesu li tipovi objekata čiju jednakost
+provjerava jednaki. To vrši, samo jednom, globalni operator uspoređivanja, a  <code>equal</code>
+vrši samo uspoređivanje. U globalnom operatoru uspređivanja se, dakle, nakon provjere jednakosti tipova,
+poziva virtualna funkcija <code>equal</code>  na jednom argumentu s drugim argumentom kao
+parametrom i ona obavlja uspoređivanje:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="n">lhs</span><span class="p">.</span><span class="n">equal</span><span class="p">(</span><span class="n">rhs</span><span class="p">);</span>
+</pre></div></div></div>
+<div class="paragraph"><p>U ovakvom dizajnu nije dobro funkciju <code>equal</code> staviti u javnu sekciju klase jer je ona
+nesigurna za korištenje izvan ovog konteksta. Stoga je prirodnije staviti ju u <em>protected</em>
+sekciju klase.</p></div>
+</div>
+</div>
+</div>
+
+<div id="footer">
+<div id="footer-text">
+Version 2.0<br>
+Zadnja izmjena
+ 2019-05-14 10:16:52 CEST
+</div>
+</div>
+
+
+</body></html>

@@ -1,0 +1,1257 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<!-- saved from url=(0091)https://web.math.pmf.unizg.hr/nastava/opepp/Slides/Predavanja/html-noslides/slides-1-3.html -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="hr"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="generator" content="AsciiDoc 8.6.9">
+<title>Tretman grešaka</title>
+<style type="text/css">
+/* Shared CSS for AsciiDoc xhtml11 and html5 backends */
+
+/* Default font. */
+body {
+  font-family: Georgia,serif;
+}
+
+/* Title font. */
+h1, h2, h3, h4, h5, h6,
+div.title, caption.title,
+thead, p.table.header,
+#toctitle,
+#author, #revnumber, #revdate, #revremark,
+#footer {
+  font-family: Arial,Helvetica,sans-serif;
+}
+
+body {
+  margin: 1em 5% 1em 5%;
+}
+
+a {
+  color: blue;
+  text-decoration: underline;
+}
+a:visited {
+  color: fuchsia;
+}
+
+em {
+  font-style: italic;
+  color: navy;
+}
+
+strong {
+  font-weight: bold;
+  color: #083194;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #527bbd;
+  margin-top: 1.2em;
+  margin-bottom: 0.5em;
+  line-height: 1.3;
+}
+
+h1, h2, h3 {
+  border-bottom: 2px solid silver;
+}
+h2 {
+  padding-top: 0.5em;
+}
+h3 {
+  float: left;
+}
+h3 + * {
+  clear: left;
+}
+h5 {
+  font-size: 1.0em;
+}
+
+div.sectionbody {
+  margin-left: 0;
+}
+
+hr {
+  border: 1px solid silver;
+}
+
+p {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+ul, ol, li > p {
+  margin-top: 0;
+}
+ul > li     { color: #aaa; }
+ul > li > * { color: black; }
+
+.monospaced, code, pre {
+  font-family: "Courier New", Courier, monospace;
+  font-size: inherit;
+  color: navy;
+  padding: 0;
+  margin: 0;
+}
+pre {
+  white-space: pre-wrap;
+}
+
+#author {
+  color: #527bbd;
+  font-weight: bold;
+  font-size: 1.1em;
+}
+#email {
+}
+#revnumber, #revdate, #revremark {
+}
+
+#footer {
+  font-size: small;
+  border-top: 2px solid silver;
+  padding-top: 0.5em;
+  margin-top: 4.0em;
+}
+#footer-text {
+  float: left;
+  padding-bottom: 0.5em;
+}
+#footer-badges {
+  float: right;
+  padding-bottom: 0.5em;
+}
+
+#preamble {
+  margin-top: 1.5em;
+  margin-bottom: 1.5em;
+}
+div.imageblock, div.exampleblock, div.verseblock,
+div.quoteblock, div.literalblock, div.listingblock, div.sidebarblock,
+div.admonitionblock {
+  margin-top: 1.0em;
+  margin-bottom: 1.5em;
+}
+div.admonitionblock {
+  margin-top: 2.0em;
+  margin-bottom: 2.0em;
+  margin-right: 10%;
+  color: #606060;
+}
+
+div.content { /* Block element content. */
+  padding: 0;
+}
+
+/* Block element titles. */
+div.title, caption.title {
+  color: #527bbd;
+  font-weight: bold;
+  text-align: left;
+  margin-top: 1.0em;
+  margin-bottom: 0.5em;
+}
+div.title + * {
+  margin-top: 0;
+}
+
+td div.title:first-child {
+  margin-top: 0.0em;
+}
+div.content div.title:first-child {
+  margin-top: 0.0em;
+}
+div.content + div.title {
+  margin-top: 0.0em;
+}
+
+div.sidebarblock > div.content {
+  background: #ffffee;
+  border: 1px solid #dddddd;
+  border-left: 4px solid #f0f0f0;
+  padding: 0.5em;
+}
+
+div.listingblock > div.content {
+  border: 1px solid #dddddd;
+  border-left: 5px solid #f0f0f0;
+  background: #f8f8f8;
+  padding: 0.5em;
+}
+
+div.quoteblock, div.verseblock {
+  padding-left: 1.0em;
+  margin-left: 1.0em;
+  margin-right: 10%;
+  border-left: 5px solid #f0f0f0;
+  color: #888;
+}
+
+div.quoteblock > div.attribution {
+  padding-top: 0.5em;
+  text-align: right;
+}
+
+div.verseblock > pre.content {
+  font-family: inherit;
+  font-size: inherit;
+}
+div.verseblock > div.attribution {
+  padding-top: 0.75em;
+  text-align: left;
+}
+/* DEPRECATED: Pre version 8.2.7 verse style literal block. */
+div.verseblock + div.attribution {
+  text-align: left;
+}
+
+div.admonitionblock .icon {
+  vertical-align: top;
+  font-size: 1.1em;
+  font-weight: bold;
+  text-decoration: underline;
+  color: #527bbd;
+  padding-right: 0.5em;
+}
+div.admonitionblock td.content {
+  padding-left: 0.5em;
+  border-left: 3px solid #dddddd;
+}
+
+div.exampleblock > div.content {
+  border-left: 3px solid #dddddd;
+  padding-left: 0.5em;
+}
+
+div.imageblock div.content { padding-left: 0; }
+span.image img { border-style: none; vertical-align: text-bottom; }
+a.image:visited { color: white; }
+
+dl {
+  margin-top: 0.8em;
+  margin-bottom: 0.8em;
+}
+dt {
+  margin-top: 0.5em;
+  margin-bottom: 0;
+  font-style: normal;
+  color: navy;
+}
+dd > *:first-child {
+  margin-top: 0.1em;
+}
+
+ul, ol {
+    list-style-position: outside;
+}
+ol.arabic {
+  list-style-type: decimal;
+}
+ol.loweralpha {
+  list-style-type: lower-alpha;
+}
+ol.upperalpha {
+  list-style-type: upper-alpha;
+}
+ol.lowerroman {
+  list-style-type: lower-roman;
+}
+ol.upperroman {
+  list-style-type: upper-roman;
+}
+
+div.compact ul, div.compact ol,
+div.compact p, div.compact p,
+div.compact div, div.compact div {
+  margin-top: 0.1em;
+  margin-bottom: 0.1em;
+}
+
+tfoot {
+  font-weight: bold;
+}
+td > div.verse {
+  white-space: pre;
+}
+
+div.hdlist {
+  margin-top: 0.8em;
+  margin-bottom: 0.8em;
+}
+div.hdlist tr {
+  padding-bottom: 15px;
+}
+dt.hdlist1.strong, td.hdlist1.strong {
+  font-weight: bold;
+}
+td.hdlist1 {
+  vertical-align: top;
+  font-style: normal;
+  padding-right: 0.8em;
+  color: navy;
+}
+td.hdlist2 {
+  vertical-align: top;
+}
+div.hdlist.compact tr {
+  margin: 0;
+  padding-bottom: 0;
+}
+
+.comment {
+  background: yellow;
+}
+
+.footnote, .footnoteref {
+  font-size: 0.8em;
+}
+
+span.footnote, span.footnoteref {
+  vertical-align: super;
+}
+
+#footnotes {
+  margin: 20px 0 20px 0;
+  padding: 7px 0 0 0;
+}
+
+#footnotes div.footnote {
+  margin: 0 0 5px 0;
+}
+
+#footnotes hr {
+  border: none;
+  border-top: 1px solid silver;
+  height: 1px;
+  text-align: left;
+  margin-left: 0;
+  width: 20%;
+  min-width: 100px;
+}
+
+div.colist td {
+  padding-right: 0.5em;
+  padding-bottom: 0.3em;
+  vertical-align: top;
+}
+div.colist td img {
+  margin-top: 0.3em;
+}
+
+@media print {
+  #footer-badges { display: none; }
+}
+
+#toc {
+  margin-bottom: 2.5em;
+}
+
+#toctitle {
+  color: #527bbd;
+  font-size: 1.1em;
+  font-weight: bold;
+  margin-top: 1.0em;
+  margin-bottom: 0.1em;
+}
+
+div.toclevel0, div.toclevel1, div.toclevel2, div.toclevel3, div.toclevel4 {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+div.toclevel2 {
+  margin-left: 2em;
+  font-size: 0.9em;
+}
+div.toclevel3 {
+  margin-left: 4em;
+  font-size: 0.9em;
+}
+div.toclevel4 {
+  margin-left: 6em;
+  font-size: 0.9em;
+}
+
+span.aqua { color: aqua; }
+span.black { color: black; }
+span.blue { color: blue; }
+span.fuchsia { color: fuchsia; }
+span.gray { color: gray; }
+span.green { color: green; }
+span.lime { color: lime; }
+span.maroon { color: maroon; }
+span.navy { color: navy; }
+span.olive { color: olive; }
+span.purple { color: purple; }
+span.red { color: red; }
+span.silver { color: silver; }
+span.teal { color: teal; }
+span.white { color: white; }
+span.yellow { color: yellow; }
+
+span.aqua-background { background: aqua; }
+span.black-background { background: black; }
+span.blue-background { background: blue; }
+span.fuchsia-background { background: fuchsia; }
+span.gray-background { background: gray; }
+span.green-background { background: green; }
+span.lime-background { background: lime; }
+span.maroon-background { background: maroon; }
+span.navy-background { background: navy; }
+span.olive-background { background: olive; }
+span.purple-background { background: purple; }
+span.red-background { background: red; }
+span.silver-background { background: silver; }
+span.teal-background { background: teal; }
+span.white-background { background: white; }
+span.yellow-background { background: yellow; }
+
+span.big { font-size: 2em; }
+span.small { font-size: 0.6em; }
+
+span.underline { text-decoration: underline; }
+span.overline { text-decoration: overline; }
+span.line-through { text-decoration: line-through; }
+
+div.unbreakable { page-break-inside: avoid; }
+
+
+/*
+ * xhtml11 specific
+ *
+ * */
+
+div.tableblock {
+  margin-top: 1.0em;
+  margin-bottom: 1.5em;
+}
+div.tableblock > table {
+  border: 3px solid #527bbd;
+}
+thead, p.table.header {
+  font-weight: bold;
+  color: #527bbd;
+}
+p.table {
+  margin-top: 0;
+}
+/* Because the table frame attribute is overriden by CSS in most browsers. */
+div.tableblock > table[frame="void"] {
+  border-style: none;
+}
+div.tableblock > table[frame="hsides"] {
+  border-left-style: none;
+  border-right-style: none;
+}
+div.tableblock > table[frame="vsides"] {
+  border-top-style: none;
+  border-bottom-style: none;
+}
+
+
+/*
+ * html5 specific
+ *
+ * */
+
+table.tableblock {
+  margin-top: 1.0em;
+  margin-bottom: 1.5em;
+}
+thead, p.tableblock.header {
+  font-weight: bold;
+  color: #527bbd;
+}
+p.tableblock {
+  margin-top: 0;
+}
+table.tableblock {
+  border-width: 3px;
+  border-spacing: 0px;
+  border-style: solid;
+  border-color: #527bbd;
+  border-collapse: collapse;
+}
+th.tableblock, td.tableblock {
+  border-width: 1px;
+  padding: 4px;
+  border-style: solid;
+  border-color: #527bbd;
+}
+
+table.tableblock.frame-topbot {
+  border-left-style: hidden;
+  border-right-style: hidden;
+}
+table.tableblock.frame-sides {
+  border-top-style: hidden;
+  border-bottom-style: hidden;
+}
+table.tableblock.frame-none {
+  border-style: hidden;
+}
+
+th.tableblock.halign-left, td.tableblock.halign-left {
+  text-align: left;
+}
+th.tableblock.halign-center, td.tableblock.halign-center {
+  text-align: center;
+}
+th.tableblock.halign-right, td.tableblock.halign-right {
+  text-align: right;
+}
+
+th.tableblock.valign-top, td.tableblock.valign-top {
+  vertical-align: top;
+}
+th.tableblock.valign-middle, td.tableblock.valign-middle {
+  vertical-align: middle;
+}
+th.tableblock.valign-bottom, td.tableblock.valign-bottom {
+  vertical-align: bottom;
+}
+
+
+/*
+ * manpage specific
+ *
+ * */
+
+body.manpage h1 {
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+  border-top: 2px solid silver;
+  border-bottom: 2px solid silver;
+}
+body.manpage h2 {
+  border-style: none;
+}
+body.manpage div.sectionbody {
+  margin-left: 3em;
+}
+
+@media print {
+  body.manpage div#toc { display: none; }
+}
+.highlight .hll { background-color: #ffffcc }
+.highlight  { background: #f8f8f8; }
+.highlight .c { color: #408080; font-style: italic } /* Comment */
+.highlight .err { border: 1px solid #FF0000 } /* Error */
+.highlight .k { color: #008000; font-weight: bold } /* Keyword */
+.highlight .o { color: #666666 } /* Operator */
+.highlight .cm { color: #408080; font-style: italic } /* Comment.Multiline */
+.highlight .cp { color: #BC7A00 } /* Comment.Preproc */
+.highlight .c1 { color: #408080; font-style: italic } /* Comment.Single */
+.highlight .cs { color: #408080; font-style: italic } /* Comment.Special */
+.highlight .gd { color: #A00000 } /* Generic.Deleted */
+.highlight .ge { font-style: italic } /* Generic.Emph */
+.highlight .gr { color: #FF0000 } /* Generic.Error */
+.highlight .gh { color: #000080; font-weight: bold } /* Generic.Heading */
+.highlight .gi { color: #00A000 } /* Generic.Inserted */
+.highlight .go { color: #808080 } /* Generic.Output */
+.highlight .gp { color: #000080; font-weight: bold } /* Generic.Prompt */
+.highlight .gs { font-weight: bold } /* Generic.Strong */
+.highlight .gu { color: #800080; font-weight: bold } /* Generic.Subheading */
+.highlight .gt { color: #0040D0 } /* Generic.Traceback */
+.highlight .kc { color: #008000; font-weight: bold } /* Keyword.Constant */
+.highlight .kd { color: #008000; font-weight: bold } /* Keyword.Declaration */
+.highlight .kn { color: #008000; font-weight: bold } /* Keyword.Namespace */
+.highlight .kp { color: #008000 } /* Keyword.Pseudo */
+.highlight .kr { color: #008000; font-weight: bold } /* Keyword.Reserved */
+.highlight .kt { color: #B00040 } /* Keyword.Type */
+.highlight .m { color: #666666 } /* Literal.Number */
+.highlight .s { color: #BA2121 } /* Literal.String */
+.highlight .na { color: #7D9029 } /* Name.Attribute */
+.highlight .nb { color: #008000 } /* Name.Builtin */
+.highlight .nc { color: #0000FF; font-weight: bold } /* Name.Class */
+.highlight .no { color: #880000 } /* Name.Constant */
+.highlight .nd { color: #AA22FF } /* Name.Decorator */
+.highlight .ni { color: #999999; font-weight: bold } /* Name.Entity */
+.highlight .ne { color: #D2413A; font-weight: bold } /* Name.Exception */
+.highlight .nf { color: #0000FF } /* Name.Function */
+.highlight .nl { color: #A0A000 } /* Name.Label */
+.highlight .nn { color: #0000FF; font-weight: bold } /* Name.Namespace */
+.highlight .nt { color: #008000; font-weight: bold } /* Name.Tag */
+.highlight .nv { color: #19177C } /* Name.Variable */
+.highlight .ow { color: #AA22FF; font-weight: bold } /* Operator.Word */
+.highlight .w { color: #bbbbbb } /* Text.Whitespace */
+.highlight .mf { color: #666666 } /* Literal.Number.Float */
+.highlight .mh { color: #666666 } /* Literal.Number.Hex */
+.highlight .mi { color: #666666 } /* Literal.Number.Integer */
+.highlight .mo { color: #666666 } /* Literal.Number.Oct */
+.highlight .sb { color: #BA2121 } /* Literal.String.Backtick */
+.highlight .sc { color: #BA2121 } /* Literal.String.Char */
+.highlight .sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
+.highlight .s2 { color: #BA2121 } /* Literal.String.Double */
+.highlight .se { color: #BB6622; font-weight: bold } /* Literal.String.Escape */
+.highlight .sh { color: #BA2121 } /* Literal.String.Heredoc */
+.highlight .si { color: #BB6688; font-weight: bold } /* Literal.String.Interpol */
+.highlight .sx { color: #008000 } /* Literal.String.Other */
+.highlight .sr { color: #BB6688 } /* Literal.String.Regex */
+.highlight .s1 { color: #BA2121 } /* Literal.String.Single */
+.highlight .ss { color: #19177C } /* Literal.String.Symbol */
+.highlight .bp { color: #008000 } /* Name.Builtin.Pseudo */
+.highlight .vc { color: #19177C } /* Name.Variable.Class */
+.highlight .vg { color: #19177C } /* Name.Variable.Global */
+.highlight .vi { color: #19177C } /* Name.Variable.Instance */
+.highlight .il { color: #666666 } /* Literal.Number.Integer.Long */
+
+
+</style>
+<script type="text/javascript">
+/*<![CDATA[*/
+var asciidoc = {  // Namespace.
+
+/////////////////////////////////////////////////////////////////////
+// Table Of Contents generator
+/////////////////////////////////////////////////////////////////////
+
+/* Author: Mihai Bazon, September 2002
+ * http://students.infoiasi.ro/~mishoo
+ *
+ * Table Of Content generator
+ * Version: 0.4
+ *
+ * Feel free to use this script under the terms of the GNU General Public
+ * License, as long as you do not remove or alter this notice.
+ */
+
+ /* modified by Troy D. Hanson, September 2006. License: GPL */
+ /* modified by Stuart Rackham, 2006, 2009. License: GPL */
+
+// toclevels = 1..4.
+toc: function (toclevels) {
+
+  function getText(el) {
+    var text = "";
+    for (var i = el.firstChild; i != null; i = i.nextSibling) {
+      if (i.nodeType == 3 /* Node.TEXT_NODE */) // IE doesn't speak constants.
+        text += i.data;
+      else if (i.firstChild != null)
+        text += getText(i);
+    }
+    return text;
+  }
+
+  function TocEntry(el, text, toclevel) {
+    this.element = el;
+    this.text = text;
+    this.toclevel = toclevel;
+  }
+
+  function tocEntries(el, toclevels) {
+    var result = new Array;
+    var re = new RegExp('[hH]([1-'+(toclevels+1)+'])');
+    // Function that scans the DOM tree for header elements (the DOM2
+    // nodeIterator API would be a better technique but not supported by all
+    // browsers).
+    var iterate = function (el) {
+      for (var i = el.firstChild; i != null; i = i.nextSibling) {
+        if (i.nodeType == 1 /* Node.ELEMENT_NODE */) {
+          var mo = re.exec(i.tagName);
+          if (mo && (i.getAttribute("class") || i.getAttribute("className")) != "float") {
+            result[result.length] = new TocEntry(i, getText(i), mo[1]-1);
+          }
+          iterate(i);
+        }
+      }
+    }
+    iterate(el);
+    return result;
+  }
+
+  var toc = document.getElementById("toc");
+  if (!toc) {
+    return;
+  }
+
+  // Delete existing TOC entries in case we're reloading the TOC.
+  var tocEntriesToRemove = [];
+  var i;
+  for (i = 0; i < toc.childNodes.length; i++) {
+    var entry = toc.childNodes[i];
+    if (entry.nodeName.toLowerCase() == 'div'
+     && entry.getAttribute("class")
+     && entry.getAttribute("class").match(/^toclevel/))
+      tocEntriesToRemove.push(entry);
+  }
+  for (i = 0; i < tocEntriesToRemove.length; i++) {
+    toc.removeChild(tocEntriesToRemove[i]);
+  }
+
+  // Rebuild TOC entries.
+  var entries = tocEntries(document.getElementById("content"), toclevels);
+  for (var i = 0; i < entries.length; ++i) {
+    var entry = entries[i];
+    if (entry.element.id == "")
+      entry.element.id = "_toc_" + i;
+    var a = document.createElement("a");
+    a.href = "#" + entry.element.id;
+    a.appendChild(document.createTextNode(entry.text));
+    var div = document.createElement("div");
+    div.appendChild(a);
+    div.className = "toclevel" + entry.toclevel;
+    toc.appendChild(div);
+  }
+  if (entries.length == 0)
+    toc.parentNode.removeChild(toc);
+},
+
+
+/////////////////////////////////////////////////////////////////////
+// Footnotes generator
+/////////////////////////////////////////////////////////////////////
+
+/* Based on footnote generation code from:
+ * http://www.brandspankingnew.net/archive/2005/07/format_footnote.html
+ */
+
+footnotes: function () {
+  // Delete existing footnote entries in case we're reloading the footnodes.
+  var i;
+  var noteholder = document.getElementById("footnotes");
+  if (!noteholder) {
+    return;
+  }
+  var entriesToRemove = [];
+  for (i = 0; i < noteholder.childNodes.length; i++) {
+    var entry = noteholder.childNodes[i];
+    if (entry.nodeName.toLowerCase() == 'div' && entry.getAttribute("class") == "footnote")
+      entriesToRemove.push(entry);
+  }
+  for (i = 0; i < entriesToRemove.length; i++) {
+    noteholder.removeChild(entriesToRemove[i]);
+  }
+
+  // Rebuild footnote entries.
+  var cont = document.getElementById("content");
+  var spans = cont.getElementsByTagName("span");
+  var refs = {};
+  var n = 0;
+  for (i=0; i<spans.length; i++) {
+    if (spans[i].className == "footnote") {
+      n++;
+      var note = spans[i].getAttribute("data-note");
+      if (!note) {
+        // Use [\s\S] in place of . so multi-line matches work.
+        // Because JavaScript has no s (dotall) regex flag.
+        note = spans[i].innerHTML.match(/\s*\[([\s\S]*)]\s*/)[1];
+        spans[i].innerHTML =
+          "[<a id='_footnoteref_" + n + "' href='#_footnote_" + n +
+          "' title='View footnote' class='footnote'>" + n + "</a>]";
+        spans[i].setAttribute("data-note", note);
+      }
+      noteholder.innerHTML +=
+        "<div class='footnote' id='_footnote_" + n + "'>" +
+        "<a href='#_footnoteref_" + n + "' title='Return to text'>" +
+        n + "</a>. " + note + "</div>";
+      var id =spans[i].getAttribute("id");
+      if (id != null) refs["#"+id] = n;
+    }
+  }
+  if (n == 0)
+    noteholder.parentNode.removeChild(noteholder);
+  else {
+    // Process footnoterefs.
+    for (i=0; i<spans.length; i++) {
+      if (spans[i].className == "footnoteref") {
+        var href = spans[i].getElementsByTagName("a")[0].getAttribute("href");
+        href = href.match(/#.*/)[0];  // Because IE return full URL.
+        n = refs[href];
+        spans[i].innerHTML =
+          "[<a href='#_footnote_" + n +
+          "' title='View footnote' class='footnote'>" + n + "</a>]";
+      }
+    }
+  }
+},
+
+install: function(toclevels) {
+  var timerId;
+
+  function reinstall() {
+    asciidoc.footnotes();
+    if (toclevels) {
+      asciidoc.toc(toclevels);
+    }
+  }
+
+  function reinstallAndRemoveTimer() {
+    clearInterval(timerId);
+    reinstall();
+  }
+
+  timerId = setInterval(reinstall, 500);
+  if (document.addEventListener)
+    document.addEventListener("DOMContentLoaded", reinstallAndRemoveTimer, false);
+  else
+    window.onload = reinstallAndRemoveTimer;
+}
+
+}
+asciidoc.install();
+/*]]>*/
+</script>
+</head>
+<body class="article">
+<div id="header">
+<h1>Tretman grešaka</h1>
+<span id="author">Mladen Jurak</span><br>
+<span id="revnumber">version 2.0,</span>
+<span id="revdate">2018-02</span>
+</div>
+<div id="content">
+<div class="sect1">
+<h2 id="_izuzeci">Izuzeci</h2>
+<div class="sectionbody">
+<div class="ulist"><ul>
+<li>
+<p>
+Sustav izuzetaka separira detekciju greške od reagiranja na grešku.
+Dio koda koji detektira grešku izbacuje izuzetak, a dio koji reagira na grešku
+zatvoren je u odgovarajući <code>catch</code> blok.  Komunikacija između dva dijela
+programa vrši se kroz izbačeni objekt.
+</p>
+</li>
+<li>
+<p>
+Kod koji izbacuje izuzetak pomoću <code>throw</code> naredbe zatvara se u <code>try</code> blok.
+Tip izbačenog objekta određuje
+koji će kod za obradu greške (<em>error handler</em>)  biti pozvan. Pravilo je da će
+biti pozvan najbliži <code>catch</code> blok u pozivnom lancu koji odgovara tipu izbačenog objekta.
+</p>
+</li>
+</ul></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="k">try</span><span class="p">{</span>
+    <span class="c1">// kod koji mpže izbaciti izuzetak</span>
+<span class="p">}</span>
+<span class="k">catch</span><span class="p">(</span><span class="n">TipIzuzetka1</span> <span class="n">e</span><span class="p">){</span>
+    <span class="c1">// kod koji procesira izuzetak tipa TipIzuzetka1</span>
+<span class="p">}</span>
+<span class="k">catch</span><span class="p">(</span><span class="n">TipIzuzetka2</span> <span class="k">const</span> <span class="o">&amp;</span> <span class="n">e</span><span class="p">){</span>
+    <span class="c1">// kod koji procesira izuzetak tipa TipIzuzetka2</span>
+<span class="p">}</span>
+
+<span class="c1">// Ovdje se nastavlja kod ako je izuzetak</span>
+<span class="c1">// izbačen ali i ako nije izbačen</span>
+</pre></div></div></div>
+<div class="ulist"><ul>
+<li>
+<p>
+<code>catch</code> blokova može biti proizvoljno mnogo.
+</p>
+</li>
+</ul></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_try_8212_catch">try—catch</h2>
+<div class="sectionbody">
+<div class="ulist"><ul>
+<li>
+<p>
+Kod za obradu greške zatvara se u <code>catch</code> blok koji deklarira izuzetak koji hvata
+slično kao što funkcija deklarira svoj parametar.  Izuzeci se izbacuju i hvataju slično kao što se
+argumenti predaju funkciji. Izuzetak može biti bilo kojeg tipa s ograničenjem da tip
+mora <strong>dozvoljavati kopiranje</strong>.
+</p>
+</li>
+<li>
+<p>
+Kada se izvrši <code>throw</code> naredba sekvencijalno izvršavanje programa se prekida i počinje potraga za
+odgovarajućim <code>catch</code> blokom.
+Ako se <code>throw</code> naredba nalazi unutar nekog <code>try</code> bloka, onda se pretražuju njemu pridruženi
+<code>catch</code> blokovi. Ako je blok nađen izuzetak će biti tretiran u nađenom <code>catch</code> bloku i program se nastavlja
+iza posljednjeg <code>catch</code> bloka pridruženog  <code>try</code> bloku u kome je izbačen izuzetak.
+</p>
+</li>
+</ul></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;stdexcept&gt; // za bad_alloc</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;cstdlib&gt;   // za exit</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(){</span>
+
+    <span class="kt">double</span> <span class="o">*</span> <span class="n">ax</span> <span class="o">=</span> <span class="k">nullptr</span><span class="p">;</span>
+    <span class="kt">double</span> <span class="o">*</span> <span class="n">px</span> <span class="o">=</span> <span class="k">nullptr</span><span class="p">;</span>
+    <span class="k">try</span><span class="p">{</span>
+        <span class="n">ax</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">double</span><span class="p">[</span><span class="mi">7</span><span class="p">];</span>
+        <span class="kt">unsigned</span> <span class="kt">long</span> <span class="n">size</span> <span class="o">=</span> <span class="mi">10000000000</span><span class="p">;</span>
+        <span class="n">px</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">double</span><span class="p">[</span><span class="n">size</span><span class="p">];</span>                           <span class="c1">// izbacuje izuzetak std::bad_alloc</span>
+                                                         <span class="c1">// sljedeća linja koda više neće biti izvršena</span>
+        <span class="k">for</span><span class="p">(</span><span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span> <span class="n">size</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="n">px</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">;</span>
+        <span class="c1">// ... procesiramo px i ax</span>
+        <span class="k">delete</span> <span class="p">[]</span> <span class="n">px</span><span class="p">;</span>  <span class="c1">// dealokacija</span>
+        <span class="k">delete</span> <span class="p">[]</span> <span class="n">ax</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">catch</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">bad_alloc</span> <span class="k">const</span> <span class="o">&amp;</span> <span class="n">e</span><span class="p">){</span>
+        <span class="c1">// Ispiši poruku o grešci.</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Uhvaćena je greška "</span> <span class="o">&lt;&lt;</span> <span class="n">e</span><span class="p">.</span><span class="n">what</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">ax</span> <span class="o">!=</span> <span class="k">nullptr</span><span class="p">)</span> <span class="k">delete</span> <span class="p">[]</span> <span class="n">ax</span><span class="p">;</span>   <span class="c1">// ova memorija nije dealocirana</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>                     <span class="c1">// završetak s greškom</span>
+    <span class="p">}</span>
+
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Prilikom traženja koda koji može procesirati grešku
+<code>catch</code> blok se selektira na osnovi varijable koju deklarira.
+Ime varijable se pri tome može ispustiti ako se izbačeni objekt ne
+koristi u  bloku.</p></div>
+<div class="paragraph"><p>Podudaranje izbačenog objekta i tipa deklariranog u <code>catch</code> bloku ne mora biti
+egzaktno, ali je broj implicitnih konverzija sužen u odnosu na funkcijski poziv. Dozvoljene su sljedeće konverzije:</p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+Konverzija iz nekonstantnog objekta u konstantan je dozvoljena;
+</p>
+</li>
+<li>
+<p>
+Konverzija iz izvedenog u bazni tip je dozvoljena;
+</p>
+</li>
+<li>
+<p>
+Polja i funkcije se konvertiraju u odgovarajuće pokazivače.
+</p>
+</li>
+</ul></div>
+<div class="paragraph"><p>Druge konverzije nisu dozvoljene (standardne konverzije i slično).</p></div>
+<div class="paragraph"><p>Pri ulazu u <code>catch</code> blok  njegov parametar se inicijalizira izbačenim objektom.
+Pri tome vrijede pravila kao i kod prijenosa argumenata funkciji. Ako <code>catch</code> blok deklarira
+parametar kao referencu na tip, onda će referenca biti samo inicijalizirana izbačenim objektom.
+Ako pak deklarira objekt, onda će doći do kopiranja izbačenog objekta u <code>catch</code> blok i
+<code>catch</code> blok će raditi s kopijom izbačenog objekta.  Sam izbačeni objekt tada je nedostupan
+u <code>catch</code> bloku.</p></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_izbacivanje_izuzetaka">Izbacivanje izuzetaka</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Objekt se izbacuje pomoću <code>throw</code> naredbe.  Iza <code>throw</code> dolazi konstruktor objekta kojeg izbacujemo.</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;string&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;stdexcept&gt;  // za runtime_error</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;fstream&gt;    // za ifstream</span><span class="cp"></span>
+
+<span class="k">class</span> <span class="nc">FileProcessor</span><span class="p">{</span>
+   <span class="c1">// ...</span>
+<span class="p">};</span>
+
+<span class="kt">void</span> <span class="nf">foo</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="k">const</span> <span class="o">&amp;</span> <span class="n">file_name</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">FileProcessor</span> <span class="n">proc</span><span class="p">;</span>   <span class="c1">// lokalni objekt</span>
+    <span class="kt">double</span> <span class="o">*</span> <span class="n">px</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">double</span><span class="p">;</span> <span class="c1">// dinamički alocirani loc objekt</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">ifstream</span> <span class="n">in</span><span class="p">(</span><span class="n">file_name</span><span class="p">);</span>
+    <span class="c1">// Izbaci izuzetak ako file nije otvoren</span>
+    <span class="k">if</span><span class="p">(</span> <span class="o">!</span><span class="n">in</span><span class="p">.</span><span class="n">is_open</span><span class="p">()</span> <span class="p">)</span>
+        <span class="k">throw</span> <span class="n">std</span><span class="o">::</span><span class="n">runtime_error</span><span class="p">(</span><span class="s">"Cannot open file "</span><span class="o">+</span><span class="n">file_name</span><span class="p">);</span>
+    <span class="c1">//...</span>
+    <span class="k">delete</span> <span class="n">px</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="k">try</span><span class="p">{</span>
+        <span class="n">foo</span><span class="p">(</span><span class="s">"example.dat"</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">catch</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">runtime_error</span> <span class="k">const</span> <span class="o">&amp;</span> <span class="n">e</span><span class="p">){</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Error: "</span> <span class="o">&lt;&lt;</span> <span class="n">e</span><span class="p">.</span><span class="n">what</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="c1">// Program se nastavlja ovdje</span>
+    <span class="c1">// ...</span>
+<span class="p">}</span>
+</pre></div></div></div>
+<div class="ulist"><ul>
+<li>
+<p>
+Ako se <code>throw</code> ne nalazi u <code>try</code> bloku (kao u funkciji <code>foo</code>),
+onda se izlazi iz funkcije u kojoj je izuzetak izbačen i uništavaju se lokalni objekti (ovdje <code>proc</code>). Ako je  funkcija
+smještena u jedan <code>try</code> blok potraga se nastavlja u njoj pripadajućim <code>catch</code> blokovima.
+Ako je <code>catch</code> blok nađen, njegov kod obrađuje izuzetak i program se nastavlja iz poslijednjeg  <code>catch</code> bloka
+pridruženog <code>try</code> bloku u kome je poziv funkcije. U suprotnom se potraga nastavlja u pozivnoj funkciji, a
+program se završava ako <code>catch</code> blok na kraju nije nađen. Ova se procedura naziva <em>stack unwinding</em>.
+</p>
+</li>
+</ul></div>
+<div class="paragraph"><p>Činjenica da <code>catch</code> blok može biti izvan lokalnog dosega u kome se poziva <code>throw</code>
+ima za posljedicu:</p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+Izvršavanje lokalnog bloka (funkcije) se prekida i sve lokalne varijable izlaze iz dosega i pri tome se uništavaju.
+Na svim lokalnim objektima se poziva njihov destruktor dok dinamički alocirana memorija ostaje nedealocirana.
+</p>
+</li>
+</ul></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_stl_izuzeci">STL izuzeci</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Standardna biblioteka definira jedan broj klasa koje predstavljaju izuzetke u zaglavlju <code>&amp;lt;stddexcept&amp;gt;</code>.</p></div>
+<div class="imageblock">
+<div class="content">
+<img alt="std.png" src="data:image/png;base64,%0AiVBORw0KGgoAAAANSUhEUgAAAuQAAAHWCAIAAACwnAsJAAA/10lEQVR42u2dDVBU173As1/AsrIo%0AjC6xLArkkYREwfhaFcGPgE3ThARRJBKVQCTRkIT4VbVinDz70kknaaaTNulkxvEjIU6qHeK8p09H%0AIyOiY9TWqNEmqfWDUatMY0acIBBr35930u2+/bh7d/la4Peb/zj3nD3n3nOvnP/9ce/dyx3/AAAA%0AAAhj7uAQAAAAALICAAAAgKwAAAAAsgIAAACArAAAAAAgKwAAAICsAAAAACArAAAAgKwAAAAAICsA%0AAAAAyAoAAAAgKwAAAADICgAAACArAAAAAMgKAAAAALICAAAAyAoAAAAAsgIAAADICgAAAACyAgAA%0AAICsAAAAALICAAAAgKwAAAAAsgIAAACArAAAAAAgKwAAAICsAAAAACArAAAAAMgKAAAAICsAAAAA%0AyAoAAAAgKwAAAADICgAAAACyAgAAAMgKAAAAALICAAAAyAoAAAAAsgIAAACArAAAAACyAgChT0II%0AA/g5BEBWAEBLVv7xjzVELwayAoCsAACygqwAALICEH5cu3YNWUFWAABZAQhTWlpaTCbT5MmTz58/%0Aj6wgKwCArACE5ey644777rvPaDRqKwuygqwAALIC0GuyIv8ePHhQW1mQFWQFAJAVgN6UFYWGsnS3%0ArPzzq7n9xCq6Y1+QFQBkBQBZ0VKWkM++Os/cfVdWvEeOrAAgKwDQvbLirSyff/45stLrI0dWAJCV%0AELM8wEB6farWqfTixcWlpRmJifaICJPDYZs9+/76+jKNNWzaND01dYjFYkxPH7pxY4F7Az3XKvbv%0AL8vLS4mJibDbI7OynNu3l6j6srJMaTl27J1///vLUpR/H3jgTqkpLx+jGpw8ubC4+L6EhEFq0x98%0AMEN7ha6tyyClveydDPu996a7f+Sxg96j3bVrTnZ2UnS0xWo1T5zolKLHyrdunTVhQmJUlDkuzpqf%0An3b2bBWyAoCsdO+vpAD94MrKF198MX78eKPR+MADDxw+fDigrEyePELa1NYWt7ZWX768pKamMCcn%0Ayd+Fh92750qlnLYvXHhJQhaCkpW6ulKz2Thp0ogzZ168dm353LmjlUzIRy0tq0aPdkjxt799VIrv%0AvPOILGdkOG7eXCXFw4crRBecTvuePfO++eanp09XlpSM0l6ha+siE+fPv9TYuEiNdu/eUp2jFTUx%0A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%0ACwCY+wCArAAAsgIAyAoJCwCY+wCArJCwAJAVAABkBQCY+wCArJCwAIC5DwDICgAgKwCArJCwAIC5%0ADwDICgkLAJj7AICsAACyAgDICgkLAJj7AICsAACyAgDICgkLAJj7AICskLAAgLkPAMgKACArAICs%0AkLAAgLkPAMgKACArAICskLAAgLkPAMjKAE1YdwD4gTSErJDNgFyHrITPHq0hCI/g3IyskM0Ich2y%0AwvQmkBVkBchmBLJCwmJ6E8gKcx9ZIQhkhelNMIGRFSCbEcgKCYvpTSArzH0gmxHICrJCEMgKskI2%0AI8h1yArTu/M/VfoHHFTjbl2bR9+uHRiywtyHHshmvZh89Gwl4Bb7RNpBVkhY4S4rOicSsoKsMPeh%0Aa7NZ+CcfZKVb8zaygqwgK8gKsgIDUVb6/ZVmZKUPyEp/fHlfz/3oXLy4uLQ0IzHRHhFhcjhss2ff%0AX19fpjGeTZump6YOsViM6elDN24s0P5NwqcTSC/pK5uT9bz33nT39m+++ZA0MBoNCQmDKioeaG5e%0AqXPT/sLfCgPKyq5dc7Kzk6KjLVareeJEpxRdH508ubC4+D5ZoRrJBx/MQFaY+xBCNuv55ONR3Lp1%0A1oQJiVFR5rg4a35+2tmzVfLRmDEJ6iNX4y1biqRG6gOmKe0hdWEGc63/ww9nyi7YbBbXqt5/vzC0%0Ao6SW3303Pzl5sPyPjBo1bPv2kp/97MHhw2MkE0o+PHXqOVfH/fvL8vJSYmIi7PbIrCyntNRzbHX+%0AbHBlhSsrPmLy5BGyxdra4tbW6suXl9TUFObkJPnz392750qlnLwvXHhJQhZCyBfyE3z+/EuNjYtU%0A9717S10NXnllisyHmzdXrVv3mHxUWfl9nZv2F/5WqJ3IRE0kO6hxyrZkQYrKVw4frhB9cTrte/bM%0A++abn54+XVlSMgpZYe5DCNms55OPRzEjw3Hs2LNiAGvXTpWijEc++vWvfyzLjz6a5mr8yCP/JjW/%0A+c2PA6YpjSF1bQZzrX/s2DtlF27dellVSjp15ViJceO+5zEkgyGArBQU3PO3v/1EHEgVCwvv/eqr%0An2zePEOtVrWsqys1m42TJo04c+bFa9eWz507Wv0WGvDYchsIWQk9lJLLLzS3bwe+WDdlykipPHjw%0AaVU8cKA8hHwhvdy7T5060ntUMvfko6SkWJ2bDhgeK9ROZCqPuMbZ0NCxLfnFQpZzc5Nl+aOPnuA2%0AEHMfOpnNej75eBQPHZqvijdurJRiZKRJlr/+enlUlFlOxleuLJXiX/+6RJblVxSpD5imNIbUtRnM%0Atf6jR59xbybpVColZami60qVq4vJZNCWlT/9qVKWW1pWuRe//Xa1WE5EhEm1FE2Rj06cWKiKV68u%0AlWJaWnzAY4usICuhh5yD1U9PdLQlMzOhqmrcpUuL/f1IxcVZpVJ++FRRrDmEe7Qe3ePjrap47lxV%0AUVF6QsIgo9GgWspCZzatsULtRCaJyXtbUinLcpRkWX6ZQFaY+9DJbNbzycej2NZWrYpiS+4Nnnxy%0AlCy/8cYPZfn1138oy3PmjNaTpjRkpWszmGv97e2r9R8lPbIiXuJz/e4tVRr0wLVm7WOLrCArIUZj%0A46Kyskyn0+76mVOXEHpMVmSdqpiT05G53nrr4dbWapkhnZ/qGivspKx4/46FrDD3Idhs1vPJR+Pi%0AjXtNXV3HzZTRox2yPGrUMFmWGj1pqmtlRf+29MuKu+6IT+jPit6y0tS0TOcjtMgKstKVcf36CnVj%0A0mazSNFg8PEjpe4xd9NtIHVNuKVllSx/+ukCj77am9a4yOxzhUHdBlLbUmn0wQc7bgNt28ZtIOY+%0AdFk267Hko/OEevv2mrvuilNPm8q/suy6UaWdpjSG1LUZzN9ZX90Gct2C8bgNFBFhcq1Q4pNP5ocm%0AK+qW1pYtRSHIis//XGQFWQkcubnJtbXF4shi7jt2PClbz8tLkfrhw2Nk+fTpSo/vyHT+GTfV3fWA%0A7Z4989Sn48cnSrGmplAGM21aivdDr8E+nqaxQj0P2LqP0/WArWSBqCjziBGxH388T+b8F188X1qa%0Agaww9yGEbNbzyUfnCVXi1Vdz1fVU+VeW9WQVbVnp2gzmT1bUA7YiRpK4vB+wVc+avPZa3o0bK48f%0AX6C+9xSCrDQ0lIv3JCcPlnzY1lYtu7NhQ4HskZ5j6/M/F1lBVgJHXV3pzJnpQ4dGyw+f02kvLx+j%0AHitbv/5xh8Pm/WMn9SkpQ2QOZ2Q45Ac0hHwhvaSvrEF+1l0PkEvIj29WljMy0pSUFPv2248EtWmf%0AobFCnV9dlm1JyEp27vzXV5dlkhcVpQ8bZjOb+eoycx9Cz2Y9n3z0y8qlS4tNJoN6FOPy5SU605T2%0AkLowg2ncT1FfXVZbUVeGXE+TnD1blZ+fFhdnjY3t+L6x+kp2CLIiceRIRUHBPfHxVkmD4h8lJaP2%0A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">
+</div>
+</div>
+<div class="ulist"><ul>
+<li>
+<p>
+Svi ti izuzeci proširuju klasu <code>std:exception</code>.
+</p>
+</li>
+<li>
+<p>
+Namijenjeni su podršci STL klasama (new izbacuje bad_alloc, itd) no može ih koristiti
+i korisnički kod.
+</p>
+</li>
+</ul></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_visestruki_catch_blokovi">Višestruki catch blokovi</h2>
+<div class="sectionbody">
+<div class="ulist"><ul>
+<li>
+<p>
+Možemo imati više <code>catch</code> blokova ako svaki deklarira različit argument.
+</p>
+</li>
+<li>
+<p>
+<code>catch</code> blokovi se procesiraju sekvencijalno u redosljedu u kojem su napisani.
+</p>
+</li>
+<li>
+<p>
+Ako su argumenti <code>catch</code> blokova vezani odnosima nasljeđivanja, onda prvo navodimo blokove koji
+hvataju specijaliziranije argumente.
+</p>
+</li>
+<li>
+<p>
+Kao zadnji <code>catch</code> blok možemo staviti blok koji hvata sve moguće izuzetke <code>(...)</code>.
+</p>
+</li>
+</ul></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;stdexcept&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+
+    <span class="k">try</span><span class="p">{</span>
+        <span class="c1">// kod koji može izbaciti runtime_error ili</span>
+        <span class="c1">// općenitiji exception</span>
+        <span class="k">throw</span> <span class="n">std</span><span class="o">::</span><span class="n">invalid_argument</span><span class="p">(</span><span class="s">"Expecting ... but ... !"</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">catch</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">runtime_error</span> <span class="k">const</span> <span class="o">&amp;</span> <span class="n">e</span><span class="p">){</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Izbačen je runtime_error! "</span> <span class="o">&lt;&lt;</span> <span class="n">e</span><span class="p">.</span><span class="n">what</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">catch</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">exception</span> <span class="k">const</span> <span class="o">&amp;</span> <span class="n">e</span><span class="p">){</span> <span class="c1">// procesuiramo širu klasu izuzetaka</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Izbačen je exception!"</span> <span class="o">&lt;&lt;</span> <span class="n">e</span><span class="p">.</span><span class="n">what</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">catch</span><span class="p">(...){</span> <span class="c1">// Ova konstrukcija prihvaća svaki izuzetak</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Izbačen je nepoznati izuzetak!"</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Kada <code>catch</code> blok  hvata objekte bazne klase, on može uhvatiti i objekte
+izvedene klase. Pri tome polimorfno ponašanje ovisi o tome da li <code>catch</code> blok
+deklarira svoj parametar kao referencu ili kao objekt.</p></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_napomene">Napomene</h2>
+<div class="sectionbody">
+<div class="ulist"><ul>
+<li>
+<p>
+Destruktor ne bi smio nikada izbaciti izuzetak. Naime, destruktori se pozivaju kod izbacivanja izuzetka
+radi destrukcije lokanih varijabli kada je <code>catch</code> blok u širem dosegu (npr. u pozivnom programu).
+Kada destruktor u takvoj situaciji izbaci izuzetak postaje
+nejasno koji od ta dva izuzetka treba imati prednost. Tada će biti pozvana funkcija <code>terminate</code> iz
+standardne biblioteke koja zove <code>abort</code> koja zaustavlja program. Stoga je dobra praksa
+sve moguće izuzetke obraditi unutar destruktora. To nije naročit problem jer destruktor samo dealocira
+resurse, što je operacija koja rijetko izbacuje izuzetke.
+</p>
+</li>
+<li>
+<p>
+S druge strane, konstruktor se može prirodno naći u situaciji da vrši operacije koje mogu
+izbaciti izuzetak. Tada se pojavljuje opasnost da objekt neće biti korektno konstruiran što treba
+izbjeći procesiranjem izuzetka.
+No i u situaciji kad se to desi imamo garanciju da će konstruirane varijable/objekti biti propisno
+uništeni.
+</p>
+</li>
+<li>
+<p>
+Ponekad kod u <code>catch</code> bloku  može tek djelomično procesirati nastalu grešku.
+Tada on može ponovo izbaciti izuzetak pomoću  <code>throw</code>.
+Ovdje iza <code>throw</code> ne dolazi objekt koji se izbacuje. Takva konstrukcija je dozvoljena samo u
+<code>catch</code> bloku.
+</p>
+</li>
+<li>
+<p>
+U složenijim programima ponekad pišemo vlastitu hierarhiju klasa izuzetaka.
+</p>
+</li>
+</ul></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_funkcijski_try_blok">Funkcijski try blok</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Izuzetak može biti izbačen u inicijalizacijskoj listi konstruktora i tada on može biti uhvaćen tek
+posebnom sintaksom prikazanom niže. Ključna riječ <code>try</code> se stavlja prije inicijalizacijske liste,
+a <code>catch</code> blok se nastavlja odmah iza tijela konstruktora.</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+<span class="k">class</span> <span class="nc">C</span><span class="p">{</span>
+    <span class="k">public</span><span class="o">:</span>
+        <span class="n">C</span><span class="p">(</span><span class="kt">long</span> <span class="kt">int</span><span class="p">);</span>
+        <span class="kt">int</span> <span class="nf">size</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span> <span class="k">return</span> <span class="n">size_</span><span class="p">;}</span>
+        <span class="c1">// ... etc</span>
+    <span class="k">private</span><span class="o">:</span>
+        <span class="n">T</span><span class="o">*</span> <span class="n">pT</span><span class="p">;</span>
+        <span class="kt">int</span> <span class="n">size_</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+<span class="n">C</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;::</span><span class="n">C</span><span class="p">(</span><span class="kt">long</span> <span class="kt">int</span> <span class="n">s</span><span class="p">)</span> <span class="k">try</span> <span class="o">:</span> <span class="n">pT</span><span class="p">(</span><span class="k">new</span> <span class="n">T</span><span class="p">[</span><span class="n">s</span><span class="p">]),</span> <span class="n">size_</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="c1">// prazno tijelo</span>
+<span class="p">}</span><span class="k">catch</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">bad_alloc</span><span class="o">&amp;</span> <span class="n">e</span><span class="p">)</span>
+ <span class="p">{</span> <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">e</span><span class="p">.</span><span class="n">what</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span> <span class="p">}</span>
+</pre></div></div></div>
+<div class="paragraph"><p>To je jedini način da se uhvati izuzetak izbačen u inicijalizacijskoj listi.</p></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_specifikacija_izuzetaka">Specifikacija izuzetaka</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Moguće je pri deklaraciji funkcije deklarirati da funkcija ne izbacuje izuzetke pomoći <code>noexcept</code>:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="kt">void</span> <span class="nf">f</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">)</span> <span class="k">noexcept</span>
+<span class="p">{</span>
+    <span class="c1">// ..</span>
+<span class="p">}</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Prevodilac ne provjerava za vrijeme kompilacije da li <code>noexcept</code> funkcija zaista ne izbacuje izuzetke,
+te stoga u <code>noexcept</code> funkciji možemo imati i <code>throw</code> naredbu.  Ako izuzetak bude izbačen program
+završava pozivom <code>terminate</code> funkciji.</p></div>
+<div class="paragraph"><p><code>noexcept</code> uzima eventualni dodatni argument  <code>true</code> ili <code>false</code> sa značenjem true = ne izbacuje izuzetak, false = izbacuje:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="kt">int</span> <span class="nf">f</span><span class="p">()</span> <span class="k">noexcept</span><span class="p">(</span><span class="nb">true</span><span class="p">)</span> <span class="p">{</span>   <span class="c1">// ne izbacuje izuzetke</span>
+    <span class="c1">// ...</span>
+<span class="p">}</span>
+<span class="kt">int</span> <span class="nf">g</span><span class="p">()</span> <span class="k">noexcept</span><span class="p">(</span><span class="nb">false</span><span class="p">)</span> <span class="p">{</span>   <span class="c1">// može izbaciti izuzetak</span>
+    <span class="c1">// ...</span>
+<span class="p">}</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Postoji još i <code>noexcept</code> operator koji uzima izraz i vraća <code>bool</code> vrijednost koja indicira da li izraz može izbaciti
+izuzetak (<code>false</code>) ili ne može (<code>true</code>).  Taj se operator koristi kako bi se uvjetno odredilo da li funkcija
+izbacuje ili ne.</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="kt">int</span> <span class="nf">g</span><span class="p">()</span> <span class="k">noexcept</span><span class="p">(</span> <span class="k">noexcept</span><span class="p">(</span><span class="n">f</span><span class="p">())</span> <span class="p">)</span> <span class="p">{</span>   <span class="c1">// ne izbacuje ako f() ne izbacuje</span>
+    <span class="c1">// ...</span>
+<span class="p">}</span>
+</pre></div></div></div>
+<div class="paragraph"><p><code>noexcept</code> <strong>operator</strong> ne izračunava svoj argument već samo provjerava deklaracije funkcija koje izraz
+može pozvati i da ne sadrže <code>throw</code>.</p></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_primjer">Primjer</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Imamo klasu <code>FileReader</code> koja čita varijable i njihove vrijednosti iz datoteke koja ima sljedeću formu:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span>   <span class="n">apscisa</span> <span class="o">=</span> <span class="mf">11.6</span>
+<span class="n">ordinata</span><span class="o">=</span><span class="mi">777</span>
+ <span class="n">sss</span>    <span class="o">=</span> <span class="n">blabla</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Svaka linija ima oblik <code>ime_varijable = vrijednost</code>. Bjeline su proizvoljne, a o tipovima varijabli nemamo pretpostavki
+(mogu biti svih C++ tipova). Klasa pamti i imena varijabli i njihove vrijednosti i dozvoljava traženje vrijednosti prema
+imenu.</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="c1">// Klasa FileReader čita strukturiranu datoteku i nudi metodu get()</span>
+<span class="c1">// pomoću koje se čita vrijednost varijable. Jedini izuzetak koji se izbacuje je</span>
+<span class="c1">// std::runtime_error.</span>
+<span class="k">class</span> <span class="nc">FileReader</span><span class="p">{</span>
+  <span class="k">public</span><span class="o">:</span>
+    <span class="c1">// Počitaj file i ispuni mapu variables. Izbacuje izuzetak ako file ne postoji,</span>
+    <span class="c1">// nemamo prava čitanja ili file nije strukturiran u obliku</span>
+    <span class="c1">// varijabla1 = vrijednost1</span>
+    <span class="c1">// varijabla2 = vrijednost2</span>
+    <span class="c1">// .....</span>
+    <span class="kt">void</span> <span class="n">readFile</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="k">const</span> <span class="o">&amp;</span> <span class="n">file_name</span><span class="p">);</span>
+    <span class="c1">// Pronađi varijablu name i vrati njenu vrijednost tipa T. Izbacuje izuzetak</span>
+    <span class="c1">// ako nema varijable name i ako se vrijednost ne može konvertirati u tip T</span>
+    <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+    <span class="n">T</span> <span class="n">get</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="k">const</span> <span class="o">&amp;</span> <span class="n">name</span><span class="p">);</span>
+  <span class="k">private</span><span class="o">:</span>
+    <span class="c1">// Vrijednosti varijabli pročitanih iz datoteke.</span>
+    <span class="c1">// Prvi argument je ime varijable, a drugi njena vrijednost u obliku stringa</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">map</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;</span> <span class="n">variables</span><span class="p">;</span>
+    <span class="c1">// implementacija -- pročitaj jednu liniju u datoteci i napravi par: ime varijable,</span>
+    <span class="c1">// vrijednost varijable.</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">pair</span><span class="o">&lt;</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;</span> <span class="n">readline</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="k">const</span> <span class="o">&amp;</span> <span class="n">line</span><span class="p">);</span>
+<span class="p">};</span>
+</pre></div></div></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_primjer_glavni_program">Primjer - glavni program</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>U glavnom programu pokušavamo učitavati varijable iz datoteke u try bloku. Ukoliko to ne uspije
+varijable inicijaliziramo defaultnim vrijednostima.</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span> <span class="n">argv</span><span class="p">[])</span>
+<span class="p">{</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">name</span><span class="p">{</span><span class="s">"default_name"</span><span class="p">};</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">argc</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">)</span> <span class="n">name</span> <span class="o">=</span> <span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
+
+    <span class="n">FileReader</span> <span class="n">fr</span><span class="p">;</span>  <span class="c1">// FileReader objekt</span>
+    <span class="kt">double</span> <span class="n">x</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">y</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">;</span>
+    <span class="k">try</span><span class="p">{</span>
+       <span class="n">fr</span><span class="p">.</span><span class="n">readFile</span><span class="p">(</span><span class="n">name</span><span class="p">);</span>                <span class="c1">// pročitaj ulaznu datoteku</span>
+       <span class="n">x</span> <span class="o">=</span> <span class="n">fr</span><span class="p">.</span><span class="n">get</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="p">(</span><span class="s">"apscisa"</span><span class="p">);</span>    <span class="c1">// čitanje varijabli</span>
+       <span class="n">y</span> <span class="o">=</span> <span class="n">fr</span><span class="p">.</span><span class="n">get</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="s">"ordinata"</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">catch</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">runtime_error</span> <span class="k">const</span> <span class="o">&amp;</span> <span class="n">e</span><span class="p">)</span>    <span class="c1">// ako je izbačena greška</span>
+    <span class="p">{</span>                                      <span class="c1">// nastavi ovdje</span>
+      <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Error : "</span> <span class="o">&lt;&lt;</span> <span class="n">e</span><span class="p">.</span><span class="n">what</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+      <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Biram defaultne vrijednosti za parametre x i y!</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+      <span class="n">x</span> <span class="o">=</span> <span class="mf">15.4</span><span class="p">;</span>
+      <span class="n">y</span> <span class="o">=</span> <span class="mi">17</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="c1">// program nastavlja ovdje (sa i bez izbačenog izuzetka)</span>
+    <span class="c1">// ...</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div></div></div>
+<div class="paragraph"><p><strong>Zadatak</strong>. Implementirajte sve metode klase <code>FileReader</code>.</p></div>
+</div>
+</div>
+</div>
+
+<div id="footer">
+<div id="footer-text">
+Version 2.0<br>
+Zadnja izmjena
+ 2019-05-14 10:36:06 CEST
+</div>
+</div>
+
+
+</body></html>

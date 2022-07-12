@@ -1,0 +1,2353 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<!-- saved from url=(0089)https://web.math.pmf.unizg.hr/nastava/opepp/Slides/Predavanja/html-noslides/slides-4.html -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="hr"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="generator" content="AsciiDoc 8.6.9">
+<title>Preopterećenje  operatora</title>
+<style type="text/css">
+/* Shared CSS for AsciiDoc xhtml11 and html5 backends */
+
+/* Default font. */
+body {
+  font-family: Georgia,serif;
+}
+
+/* Title font. */
+h1, h2, h3, h4, h5, h6,
+div.title, caption.title,
+thead, p.table.header,
+#toctitle,
+#author, #revnumber, #revdate, #revremark,
+#footer {
+  font-family: Arial,Helvetica,sans-serif;
+}
+
+body {
+  margin: 1em 5% 1em 5%;
+}
+
+a {
+  color: blue;
+  text-decoration: underline;
+}
+a:visited {
+  color: fuchsia;
+}
+
+em {
+  font-style: italic;
+  color: navy;
+}
+
+strong {
+  font-weight: bold;
+  color: #083194;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #527bbd;
+  margin-top: 1.2em;
+  margin-bottom: 0.5em;
+  line-height: 1.3;
+}
+
+h1, h2, h3 {
+  border-bottom: 2px solid silver;
+}
+h2 {
+  padding-top: 0.5em;
+}
+h3 {
+  float: left;
+}
+h3 + * {
+  clear: left;
+}
+h5 {
+  font-size: 1.0em;
+}
+
+div.sectionbody {
+  margin-left: 0;
+}
+
+hr {
+  border: 1px solid silver;
+}
+
+p {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+ul, ol, li > p {
+  margin-top: 0;
+}
+ul > li     { color: #aaa; }
+ul > li > * { color: black; }
+
+.monospaced, code, pre {
+  font-family: "Courier New", Courier, monospace;
+  font-size: inherit;
+  color: navy;
+  padding: 0;
+  margin: 0;
+}
+pre {
+  white-space: pre-wrap;
+}
+
+#author {
+  color: #527bbd;
+  font-weight: bold;
+  font-size: 1.1em;
+}
+#email {
+}
+#revnumber, #revdate, #revremark {
+}
+
+#footer {
+  font-size: small;
+  border-top: 2px solid silver;
+  padding-top: 0.5em;
+  margin-top: 4.0em;
+}
+#footer-text {
+  float: left;
+  padding-bottom: 0.5em;
+}
+#footer-badges {
+  float: right;
+  padding-bottom: 0.5em;
+}
+
+#preamble {
+  margin-top: 1.5em;
+  margin-bottom: 1.5em;
+}
+div.imageblock, div.exampleblock, div.verseblock,
+div.quoteblock, div.literalblock, div.listingblock, div.sidebarblock,
+div.admonitionblock {
+  margin-top: 1.0em;
+  margin-bottom: 1.5em;
+}
+div.admonitionblock {
+  margin-top: 2.0em;
+  margin-bottom: 2.0em;
+  margin-right: 10%;
+  color: #606060;
+}
+
+div.content { /* Block element content. */
+  padding: 0;
+}
+
+/* Block element titles. */
+div.title, caption.title {
+  color: #527bbd;
+  font-weight: bold;
+  text-align: left;
+  margin-top: 1.0em;
+  margin-bottom: 0.5em;
+}
+div.title + * {
+  margin-top: 0;
+}
+
+td div.title:first-child {
+  margin-top: 0.0em;
+}
+div.content div.title:first-child {
+  margin-top: 0.0em;
+}
+div.content + div.title {
+  margin-top: 0.0em;
+}
+
+div.sidebarblock > div.content {
+  background: #ffffee;
+  border: 1px solid #dddddd;
+  border-left: 4px solid #f0f0f0;
+  padding: 0.5em;
+}
+
+div.listingblock > div.content {
+  border: 1px solid #dddddd;
+  border-left: 5px solid #f0f0f0;
+  background: #f8f8f8;
+  padding: 0.5em;
+}
+
+div.quoteblock, div.verseblock {
+  padding-left: 1.0em;
+  margin-left: 1.0em;
+  margin-right: 10%;
+  border-left: 5px solid #f0f0f0;
+  color: #888;
+}
+
+div.quoteblock > div.attribution {
+  padding-top: 0.5em;
+  text-align: right;
+}
+
+div.verseblock > pre.content {
+  font-family: inherit;
+  font-size: inherit;
+}
+div.verseblock > div.attribution {
+  padding-top: 0.75em;
+  text-align: left;
+}
+/* DEPRECATED: Pre version 8.2.7 verse style literal block. */
+div.verseblock + div.attribution {
+  text-align: left;
+}
+
+div.admonitionblock .icon {
+  vertical-align: top;
+  font-size: 1.1em;
+  font-weight: bold;
+  text-decoration: underline;
+  color: #527bbd;
+  padding-right: 0.5em;
+}
+div.admonitionblock td.content {
+  padding-left: 0.5em;
+  border-left: 3px solid #dddddd;
+}
+
+div.exampleblock > div.content {
+  border-left: 3px solid #dddddd;
+  padding-left: 0.5em;
+}
+
+div.imageblock div.content { padding-left: 0; }
+span.image img { border-style: none; vertical-align: text-bottom; }
+a.image:visited { color: white; }
+
+dl {
+  margin-top: 0.8em;
+  margin-bottom: 0.8em;
+}
+dt {
+  margin-top: 0.5em;
+  margin-bottom: 0;
+  font-style: normal;
+  color: navy;
+}
+dd > *:first-child {
+  margin-top: 0.1em;
+}
+
+ul, ol {
+    list-style-position: outside;
+}
+ol.arabic {
+  list-style-type: decimal;
+}
+ol.loweralpha {
+  list-style-type: lower-alpha;
+}
+ol.upperalpha {
+  list-style-type: upper-alpha;
+}
+ol.lowerroman {
+  list-style-type: lower-roman;
+}
+ol.upperroman {
+  list-style-type: upper-roman;
+}
+
+div.compact ul, div.compact ol,
+div.compact p, div.compact p,
+div.compact div, div.compact div {
+  margin-top: 0.1em;
+  margin-bottom: 0.1em;
+}
+
+tfoot {
+  font-weight: bold;
+}
+td > div.verse {
+  white-space: pre;
+}
+
+div.hdlist {
+  margin-top: 0.8em;
+  margin-bottom: 0.8em;
+}
+div.hdlist tr {
+  padding-bottom: 15px;
+}
+dt.hdlist1.strong, td.hdlist1.strong {
+  font-weight: bold;
+}
+td.hdlist1 {
+  vertical-align: top;
+  font-style: normal;
+  padding-right: 0.8em;
+  color: navy;
+}
+td.hdlist2 {
+  vertical-align: top;
+}
+div.hdlist.compact tr {
+  margin: 0;
+  padding-bottom: 0;
+}
+
+.comment {
+  background: yellow;
+}
+
+.footnote, .footnoteref {
+  font-size: 0.8em;
+}
+
+span.footnote, span.footnoteref {
+  vertical-align: super;
+}
+
+#footnotes {
+  margin: 20px 0 20px 0;
+  padding: 7px 0 0 0;
+}
+
+#footnotes div.footnote {
+  margin: 0 0 5px 0;
+}
+
+#footnotes hr {
+  border: none;
+  border-top: 1px solid silver;
+  height: 1px;
+  text-align: left;
+  margin-left: 0;
+  width: 20%;
+  min-width: 100px;
+}
+
+div.colist td {
+  padding-right: 0.5em;
+  padding-bottom: 0.3em;
+  vertical-align: top;
+}
+div.colist td img {
+  margin-top: 0.3em;
+}
+
+@media print {
+  #footer-badges { display: none; }
+}
+
+#toc {
+  margin-bottom: 2.5em;
+}
+
+#toctitle {
+  color: #527bbd;
+  font-size: 1.1em;
+  font-weight: bold;
+  margin-top: 1.0em;
+  margin-bottom: 0.1em;
+}
+
+div.toclevel0, div.toclevel1, div.toclevel2, div.toclevel3, div.toclevel4 {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+div.toclevel2 {
+  margin-left: 2em;
+  font-size: 0.9em;
+}
+div.toclevel3 {
+  margin-left: 4em;
+  font-size: 0.9em;
+}
+div.toclevel4 {
+  margin-left: 6em;
+  font-size: 0.9em;
+}
+
+span.aqua { color: aqua; }
+span.black { color: black; }
+span.blue { color: blue; }
+span.fuchsia { color: fuchsia; }
+span.gray { color: gray; }
+span.green { color: green; }
+span.lime { color: lime; }
+span.maroon { color: maroon; }
+span.navy { color: navy; }
+span.olive { color: olive; }
+span.purple { color: purple; }
+span.red { color: red; }
+span.silver { color: silver; }
+span.teal { color: teal; }
+span.white { color: white; }
+span.yellow { color: yellow; }
+
+span.aqua-background { background: aqua; }
+span.black-background { background: black; }
+span.blue-background { background: blue; }
+span.fuchsia-background { background: fuchsia; }
+span.gray-background { background: gray; }
+span.green-background { background: green; }
+span.lime-background { background: lime; }
+span.maroon-background { background: maroon; }
+span.navy-background { background: navy; }
+span.olive-background { background: olive; }
+span.purple-background { background: purple; }
+span.red-background { background: red; }
+span.silver-background { background: silver; }
+span.teal-background { background: teal; }
+span.white-background { background: white; }
+span.yellow-background { background: yellow; }
+
+span.big { font-size: 2em; }
+span.small { font-size: 0.6em; }
+
+span.underline { text-decoration: underline; }
+span.overline { text-decoration: overline; }
+span.line-through { text-decoration: line-through; }
+
+div.unbreakable { page-break-inside: avoid; }
+
+
+/*
+ * xhtml11 specific
+ *
+ * */
+
+div.tableblock {
+  margin-top: 1.0em;
+  margin-bottom: 1.5em;
+}
+div.tableblock > table {
+  border: 3px solid #527bbd;
+}
+thead, p.table.header {
+  font-weight: bold;
+  color: #527bbd;
+}
+p.table {
+  margin-top: 0;
+}
+/* Because the table frame attribute is overriden by CSS in most browsers. */
+div.tableblock > table[frame="void"] {
+  border-style: none;
+}
+div.tableblock > table[frame="hsides"] {
+  border-left-style: none;
+  border-right-style: none;
+}
+div.tableblock > table[frame="vsides"] {
+  border-top-style: none;
+  border-bottom-style: none;
+}
+
+
+/*
+ * html5 specific
+ *
+ * */
+
+table.tableblock {
+  margin-top: 1.0em;
+  margin-bottom: 1.5em;
+}
+thead, p.tableblock.header {
+  font-weight: bold;
+  color: #527bbd;
+}
+p.tableblock {
+  margin-top: 0;
+}
+table.tableblock {
+  border-width: 3px;
+  border-spacing: 0px;
+  border-style: solid;
+  border-color: #527bbd;
+  border-collapse: collapse;
+}
+th.tableblock, td.tableblock {
+  border-width: 1px;
+  padding: 4px;
+  border-style: solid;
+  border-color: #527bbd;
+}
+
+table.tableblock.frame-topbot {
+  border-left-style: hidden;
+  border-right-style: hidden;
+}
+table.tableblock.frame-sides {
+  border-top-style: hidden;
+  border-bottom-style: hidden;
+}
+table.tableblock.frame-none {
+  border-style: hidden;
+}
+
+th.tableblock.halign-left, td.tableblock.halign-left {
+  text-align: left;
+}
+th.tableblock.halign-center, td.tableblock.halign-center {
+  text-align: center;
+}
+th.tableblock.halign-right, td.tableblock.halign-right {
+  text-align: right;
+}
+
+th.tableblock.valign-top, td.tableblock.valign-top {
+  vertical-align: top;
+}
+th.tableblock.valign-middle, td.tableblock.valign-middle {
+  vertical-align: middle;
+}
+th.tableblock.valign-bottom, td.tableblock.valign-bottom {
+  vertical-align: bottom;
+}
+
+
+/*
+ * manpage specific
+ *
+ * */
+
+body.manpage h1 {
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+  border-top: 2px solid silver;
+  border-bottom: 2px solid silver;
+}
+body.manpage h2 {
+  border-style: none;
+}
+body.manpage div.sectionbody {
+  margin-left: 3em;
+}
+
+@media print {
+  body.manpage div#toc { display: none; }
+}
+.highlight .hll { background-color: #ffffcc }
+.highlight  { background: #f8f8f8; }
+.highlight .c { color: #408080; font-style: italic } /* Comment */
+.highlight .err { border: 1px solid #FF0000 } /* Error */
+.highlight .k { color: #008000; font-weight: bold } /* Keyword */
+.highlight .o { color: #666666 } /* Operator */
+.highlight .cm { color: #408080; font-style: italic } /* Comment.Multiline */
+.highlight .cp { color: #BC7A00 } /* Comment.Preproc */
+.highlight .c1 { color: #408080; font-style: italic } /* Comment.Single */
+.highlight .cs { color: #408080; font-style: italic } /* Comment.Special */
+.highlight .gd { color: #A00000 } /* Generic.Deleted */
+.highlight .ge { font-style: italic } /* Generic.Emph */
+.highlight .gr { color: #FF0000 } /* Generic.Error */
+.highlight .gh { color: #000080; font-weight: bold } /* Generic.Heading */
+.highlight .gi { color: #00A000 } /* Generic.Inserted */
+.highlight .go { color: #808080 } /* Generic.Output */
+.highlight .gp { color: #000080; font-weight: bold } /* Generic.Prompt */
+.highlight .gs { font-weight: bold } /* Generic.Strong */
+.highlight .gu { color: #800080; font-weight: bold } /* Generic.Subheading */
+.highlight .gt { color: #0040D0 } /* Generic.Traceback */
+.highlight .kc { color: #008000; font-weight: bold } /* Keyword.Constant */
+.highlight .kd { color: #008000; font-weight: bold } /* Keyword.Declaration */
+.highlight .kn { color: #008000; font-weight: bold } /* Keyword.Namespace */
+.highlight .kp { color: #008000 } /* Keyword.Pseudo */
+.highlight .kr { color: #008000; font-weight: bold } /* Keyword.Reserved */
+.highlight .kt { color: #B00040 } /* Keyword.Type */
+.highlight .m { color: #666666 } /* Literal.Number */
+.highlight .s { color: #BA2121 } /* Literal.String */
+.highlight .na { color: #7D9029 } /* Name.Attribute */
+.highlight .nb { color: #008000 } /* Name.Builtin */
+.highlight .nc { color: #0000FF; font-weight: bold } /* Name.Class */
+.highlight .no { color: #880000 } /* Name.Constant */
+.highlight .nd { color: #AA22FF } /* Name.Decorator */
+.highlight .ni { color: #999999; font-weight: bold } /* Name.Entity */
+.highlight .ne { color: #D2413A; font-weight: bold } /* Name.Exception */
+.highlight .nf { color: #0000FF } /* Name.Function */
+.highlight .nl { color: #A0A000 } /* Name.Label */
+.highlight .nn { color: #0000FF; font-weight: bold } /* Name.Namespace */
+.highlight .nt { color: #008000; font-weight: bold } /* Name.Tag */
+.highlight .nv { color: #19177C } /* Name.Variable */
+.highlight .ow { color: #AA22FF; font-weight: bold } /* Operator.Word */
+.highlight .w { color: #bbbbbb } /* Text.Whitespace */
+.highlight .mf { color: #666666 } /* Literal.Number.Float */
+.highlight .mh { color: #666666 } /* Literal.Number.Hex */
+.highlight .mi { color: #666666 } /* Literal.Number.Integer */
+.highlight .mo { color: #666666 } /* Literal.Number.Oct */
+.highlight .sb { color: #BA2121 } /* Literal.String.Backtick */
+.highlight .sc { color: #BA2121 } /* Literal.String.Char */
+.highlight .sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
+.highlight .s2 { color: #BA2121 } /* Literal.String.Double */
+.highlight .se { color: #BB6622; font-weight: bold } /* Literal.String.Escape */
+.highlight .sh { color: #BA2121 } /* Literal.String.Heredoc */
+.highlight .si { color: #BB6688; font-weight: bold } /* Literal.String.Interpol */
+.highlight .sx { color: #008000 } /* Literal.String.Other */
+.highlight .sr { color: #BB6688 } /* Literal.String.Regex */
+.highlight .s1 { color: #BA2121 } /* Literal.String.Single */
+.highlight .ss { color: #19177C } /* Literal.String.Symbol */
+.highlight .bp { color: #008000 } /* Name.Builtin.Pseudo */
+.highlight .vc { color: #19177C } /* Name.Variable.Class */
+.highlight .vg { color: #19177C } /* Name.Variable.Global */
+.highlight .vi { color: #19177C } /* Name.Variable.Instance */
+.highlight .il { color: #666666 } /* Literal.Number.Integer.Long */
+
+
+</style>
+<script type="text/javascript">
+/*<![CDATA[*/
+var asciidoc = {  // Namespace.
+
+/////////////////////////////////////////////////////////////////////
+// Table Of Contents generator
+/////////////////////////////////////////////////////////////////////
+
+/* Author: Mihai Bazon, September 2002
+ * http://students.infoiasi.ro/~mishoo
+ *
+ * Table Of Content generator
+ * Version: 0.4
+ *
+ * Feel free to use this script under the terms of the GNU General Public
+ * License, as long as you do not remove or alter this notice.
+ */
+
+ /* modified by Troy D. Hanson, September 2006. License: GPL */
+ /* modified by Stuart Rackham, 2006, 2009. License: GPL */
+
+// toclevels = 1..4.
+toc: function (toclevels) {
+
+  function getText(el) {
+    var text = "";
+    for (var i = el.firstChild; i != null; i = i.nextSibling) {
+      if (i.nodeType == 3 /* Node.TEXT_NODE */) // IE doesn't speak constants.
+        text += i.data;
+      else if (i.firstChild != null)
+        text += getText(i);
+    }
+    return text;
+  }
+
+  function TocEntry(el, text, toclevel) {
+    this.element = el;
+    this.text = text;
+    this.toclevel = toclevel;
+  }
+
+  function tocEntries(el, toclevels) {
+    var result = new Array;
+    var re = new RegExp('[hH]([1-'+(toclevels+1)+'])');
+    // Function that scans the DOM tree for header elements (the DOM2
+    // nodeIterator API would be a better technique but not supported by all
+    // browsers).
+    var iterate = function (el) {
+      for (var i = el.firstChild; i != null; i = i.nextSibling) {
+        if (i.nodeType == 1 /* Node.ELEMENT_NODE */) {
+          var mo = re.exec(i.tagName);
+          if (mo && (i.getAttribute("class") || i.getAttribute("className")) != "float") {
+            result[result.length] = new TocEntry(i, getText(i), mo[1]-1);
+          }
+          iterate(i);
+        }
+      }
+    }
+    iterate(el);
+    return result;
+  }
+
+  var toc = document.getElementById("toc");
+  if (!toc) {
+    return;
+  }
+
+  // Delete existing TOC entries in case we're reloading the TOC.
+  var tocEntriesToRemove = [];
+  var i;
+  for (i = 0; i < toc.childNodes.length; i++) {
+    var entry = toc.childNodes[i];
+    if (entry.nodeName.toLowerCase() == 'div'
+     && entry.getAttribute("class")
+     && entry.getAttribute("class").match(/^toclevel/))
+      tocEntriesToRemove.push(entry);
+  }
+  for (i = 0; i < tocEntriesToRemove.length; i++) {
+    toc.removeChild(tocEntriesToRemove[i]);
+  }
+
+  // Rebuild TOC entries.
+  var entries = tocEntries(document.getElementById("content"), toclevels);
+  for (var i = 0; i < entries.length; ++i) {
+    var entry = entries[i];
+    if (entry.element.id == "")
+      entry.element.id = "_toc_" + i;
+    var a = document.createElement("a");
+    a.href = "#" + entry.element.id;
+    a.appendChild(document.createTextNode(entry.text));
+    var div = document.createElement("div");
+    div.appendChild(a);
+    div.className = "toclevel" + entry.toclevel;
+    toc.appendChild(div);
+  }
+  if (entries.length == 0)
+    toc.parentNode.removeChild(toc);
+},
+
+
+/////////////////////////////////////////////////////////////////////
+// Footnotes generator
+/////////////////////////////////////////////////////////////////////
+
+/* Based on footnote generation code from:
+ * http://www.brandspankingnew.net/archive/2005/07/format_footnote.html
+ */
+
+footnotes: function () {
+  // Delete existing footnote entries in case we're reloading the footnodes.
+  var i;
+  var noteholder = document.getElementById("footnotes");
+  if (!noteholder) {
+    return;
+  }
+  var entriesToRemove = [];
+  for (i = 0; i < noteholder.childNodes.length; i++) {
+    var entry = noteholder.childNodes[i];
+    if (entry.nodeName.toLowerCase() == 'div' && entry.getAttribute("class") == "footnote")
+      entriesToRemove.push(entry);
+  }
+  for (i = 0; i < entriesToRemove.length; i++) {
+    noteholder.removeChild(entriesToRemove[i]);
+  }
+
+  // Rebuild footnote entries.
+  var cont = document.getElementById("content");
+  var spans = cont.getElementsByTagName("span");
+  var refs = {};
+  var n = 0;
+  for (i=0; i<spans.length; i++) {
+    if (spans[i].className == "footnote") {
+      n++;
+      var note = spans[i].getAttribute("data-note");
+      if (!note) {
+        // Use [\s\S] in place of . so multi-line matches work.
+        // Because JavaScript has no s (dotall) regex flag.
+        note = spans[i].innerHTML.match(/\s*\[([\s\S]*)]\s*/)[1];
+        spans[i].innerHTML =
+          "[<a id='_footnoteref_" + n + "' href='#_footnote_" + n +
+          "' title='View footnote' class='footnote'>" + n + "</a>]";
+        spans[i].setAttribute("data-note", note);
+      }
+      noteholder.innerHTML +=
+        "<div class='footnote' id='_footnote_" + n + "'>" +
+        "<a href='#_footnoteref_" + n + "' title='Return to text'>" +
+        n + "</a>. " + note + "</div>";
+      var id =spans[i].getAttribute("id");
+      if (id != null) refs["#"+id] = n;
+    }
+  }
+  if (n == 0)
+    noteholder.parentNode.removeChild(noteholder);
+  else {
+    // Process footnoterefs.
+    for (i=0; i<spans.length; i++) {
+      if (spans[i].className == "footnoteref") {
+        var href = spans[i].getElementsByTagName("a")[0].getAttribute("href");
+        href = href.match(/#.*/)[0];  // Because IE return full URL.
+        n = refs[href];
+        spans[i].innerHTML =
+          "[<a href='#_footnote_" + n +
+          "' title='View footnote' class='footnote'>" + n + "</a>]";
+      }
+    }
+  }
+},
+
+install: function(toclevels) {
+  var timerId;
+
+  function reinstall() {
+    asciidoc.footnotes();
+    if (toclevels) {
+      asciidoc.toc(toclevels);
+    }
+  }
+
+  function reinstallAndRemoveTimer() {
+    clearInterval(timerId);
+    reinstall();
+  }
+
+  timerId = setInterval(reinstall, 500);
+  if (document.addEventListener)
+    document.addEventListener("DOMContentLoaded", reinstallAndRemoveTimer, false);
+  else
+    window.onload = reinstallAndRemoveTimer;
+}
+
+}
+asciidoc.install();
+/*]]>*/
+</script>
+</head>
+<body class="article">
+<div id="header">
+<h1>Preopterećenje  operatora</h1>
+<span id="author">Mladen Jurak</span><br>
+<span id="revnumber">version 1.1,</span>
+<span id="revdate">2019-04</span>
+</div>
+<div id="content">
+<div class="sect1">
+<h2 id="_operatori_su_funkcije">Operatori su funkcije</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Operatori su posebna vrsta funkcija čije se ime sastoji od ključne riječi
+<strong>operator</strong>
+iza koje slijedi simbol operacije.Na primjer,</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="n">Vect</span>  <span class="k">operator</span><span class="o">+</span><span class="p">(</span><span class="k">const</span> <span class="n">Vect</span><span class="o">&amp;</span><span class="p">,</span> <span class="k">const</span> <span class="n">Vect</span><span class="o">&amp;</span><span class="p">);</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Broj parametara  operatora je jednak broju operanada, pri čemu treba računati
+i implicitni <code>this</code> parametar.</p></div>
+<div class="paragraph"><p>Sljedeći  operatori se mogu  preopteretiti:</p></div>
+<div class="tableblock">
+<table rules="all" style="margin-left:auto; margin-right:auto;" width="70%" frame="border" cellspacing="0" cellpadding="4">
+<colgroup><col width="16%">
+<col width="16%">
+<col width="16%">
+<col width="16%">
+<col width="16%">
+<col width="16%">
+</colgroup><tbody>
+<tr>
+<td align="center" valign="top"><p class="table">+</p></td>
+<td align="center" valign="top"><p class="table">-</p></td>
+<td align="center" valign="top"><p class="table">*</p></td>
+<td align="center" valign="top"><p class="table">/</p></td>
+<td align="center" valign="top"><p class="table">%</p></td>
+<td align="center" valign="top"><p class="table">^</p></td>
+</tr>
+<tr>
+<td align="center" valign="top"><p class="table">&amp;</p></td>
+<td align="center" valign="top"><p class="table">|</p></td>
+<td align="center" valign="top"><p class="table">~</p></td>
+<td align="center" valign="top"><p class="table">!</p></td>
+<td align="center" valign="top"><p class="table">,</p></td>
+<td align="center" valign="top"><p class="table">=</p></td>
+</tr>
+<tr>
+<td align="center" valign="top"><p class="table">&lt;</p></td>
+<td align="center" valign="top"><p class="table">&gt;</p></td>
+<td align="center" valign="top"><p class="table">&lt;=</p></td>
+<td align="center" valign="top"><p class="table">&gt;=</p></td>
+<td align="center" valign="top"><p class="table">++</p></td>
+<td align="center" valign="top"><p class="table"> — </p></td>
+</tr>
+<tr>
+<td align="center" valign="top"><p class="table">&lt;&lt;</p></td>
+<td align="center" valign="top"><p class="table">&gt;&gt;</p></td>
+<td align="center" valign="top"><p class="table">==</p></td>
+<td align="center" valign="top"><p class="table">!=</p></td>
+<td align="center" valign="top"><p class="table">&amp;&amp;</p></td>
+<td align="center" valign="top"><p class="table">||</p></td>
+</tr>
+<tr>
+<td align="center" valign="top"><p class="table">+=</p></td>
+<td align="center" valign="top"><p class="table">-=</p></td>
+<td align="center" valign="top"><p class="table">*=</p></td>
+<td align="center" valign="top"><p class="table">/=</p></td>
+<td align="center" valign="top"><p class="table">%=</p></td>
+<td align="center" valign="top"><p class="table">^=</p></td>
+</tr>
+<tr>
+<td align="center" valign="top"><p class="table">&amp;=</p></td>
+<td align="center" valign="top"><p class="table">|=</p></td>
+<td align="center" valign="top"><p class="table">&lt; =</p></td>
+<td align="center" valign="top"><p class="table">&gt; =</p></td>
+<td align="center" valign="top"><p class="table">[]</p></td>
+<td align="center" valign="top"><p class="table">()</p></td>
+</tr>
+<tr>
+<td align="center" valign="top"><p class="table">→</p></td>
+<td align="center" valign="top"><p class="table">→*</p></td>
+<td align="center" valign="top"><p class="table">new</p></td>
+<td align="center" valign="top"><p class="table">new []</p></td>
+<td align="center" valign="top"><p class="table">delete</p></td>
+<td align="center" valign="top"><p class="table">delete []</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="paragraph"><p>Operatori koji ne mogu biti preopterećeni:</p></div>
+<div class="tableblock">
+<table rules="all" style="margin-left:auto; margin-right:auto;" width="50%" frame="border" cellspacing="0" cellpadding="4">
+<colgroup><col width="25%">
+<col width="25%">
+<col width="25%">
+<col width="25%">
+</colgroup><tbody>
+<tr>
+<td align="center" valign="top"><p class="table">::</p></td>
+<td align="center" valign="top"><p class="table">.*</p></td>
+<td align="center" valign="top"><p class="table">.</p></td>
+<td align="center" valign="top"><p class="table">?:</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_pravila">Pravila</h2>
+<div class="sectionbody">
+<div class="ulist"><ul>
+<li>
+<p>
+Nije moguće kreiranje novih  operatora spajanjem simbola (na primjer <code>**</code>).
+</p>
+</li>
+<li>
+<p>
+Možemo  preopteretiti samo već postojeće  operatore.
+</p>
+</li>
+<li>
+<p>
+Barem jedan operand mora biti tipa klase (ili enumeracije): drugim riječima, ne možemo
+  promijeniti ponašanje  operatora na ugrađenim tipovima:
+</p>
+</li>
+</ul></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="kt">int</span> <span class="k">operator</span><span class="o">+</span><span class="p">(</span><span class="kt">int</span><span class="p">,</span> <span class="kt">int</span><span class="p">);</span>  <span class="c1">// Greška.</span>
+</pre></div></div></div>
+<div class="admonitionblock">
+<table><tbody><tr>
+<td class="icon">
+<div class="title">Napomena</div>
+</td>
+<td class="content">Prioriteti, asocijativnost i broj operanda fiksirani su za svaki operator i
+prilikom preopterećenja ne mogu se mijenjati.</td>
+</tr></tbody></table>
+</div>
+<div class="paragraph"><p>Četiri  operatora (<code>+</code>, <code>-</code>, <code>*</code>, <code>&amp;&amp;</code>)  mogu biti unarni i binarni. Svaki se od njih može
+preopteretiti, a koji je definiran ovisi o broju parametara.</p></div>
+<div class="paragraph"><p>Defaultni argumenti kod operatora nisu dozvoljeni, osim kod operatora funkcijskog
+poziva:  <code>operator()</code>.</p></div>
+<div class="admonitionblock">
+<table><tbody><tr>
+<td class="icon">
+<div class="title">Napomena</div>
+</td>
+<td class="content">Preopterećeni operatori ne garantiraju poredak izračunavanja operanada.
+Posebno, lijeno izračunavanje logičkih izraza ne prenosi se na preopterećene
+logičke operande <code>&amp;&amp;</code>  i <code>||</code>.  Oba argumenta tih operatora se uvijek izračunavaju;
+operator zarez (,) preopterećen ne garantira poredak izračunavanja.
+Stoga vrijedi pravilo: <strong>Nikad ne preopteretiti operatore  <code>&amp;&amp;</code>, <code>||</code> i zarez</strong>.</td>
+</tr></tbody></table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_operator_moze_i_ne_mora_biti_clan_klase">Operator može i ne mora biti član klase</h2>
+<div class="sectionbody">
+<div class="admonitionblock">
+<table><tbody><tr>
+<td class="icon">
+<div class="title">Napomena</div>
+</td>
+<td class="content">Operator član klase prima implicitni parametar <em>this</em> koji je vezan uz prvi operand.</td>
+</tr></tbody></table>
+</div>
+<div class="paragraph"><p>Aritmetički i relacijski operatori se obično definiraju izvan klase, dok se
+operatori pridruživanja redovito implementiraju kao funkcije članice.</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="c1">// lijevi operand je dan implicitnim this pokazivačem</span>
+ <span class="n">Vect</span><span class="o">&amp;</span> <span class="n">Vect</span><span class="o">::</span><span class="k">operator</span><span class="o">+=</span><span class="p">(</span><span class="k">const</span> <span class="n">Vect</span><span class="o">&amp;</span><span class="p">);</span>
+<span class="c1">// Nije članica klase -- ima dva parametra</span>
+<span class="n">Vect</span> <span class="k">operator</span><span class="o">+</span><span class="p">(</span><span class="k">const</span> <span class="n">Vect</span><span class="o">&amp;</span><span class="p">,</span> <span class="k">const</span> <span class="n">Vect</span><span class="o">&amp;</span><span class="p">);</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Uočimo da složeni operator vraća referencu kako bi povratna vrijednost mogla služiti
+kao vrijednost na lijevoj strani.</p></div>
+<div class="paragraph"><p>Ako je operator definiran izvan klase, a mora dohvatiti privatne članove klase
+(tipično operatori ulaza/izlaza), onda se on definira kao <em>prijatelj klase</em>.</p></div>
+<div class="sect2">
+<h3 id="_upotreba_preopterecenog_operatora">Upotreba preopterećenog operatora</h3>
+<div class="paragraph"><p>Sintaksa je vrlo prirodna, odnosno ista kao i za ugrađene tipove. Ako su npr.
+<code>A1</code> i <code>A2</code> tipa  <code>Vect</code>, onda ispis njihovog zbroja izgleda ovako:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">A1</span> <span class="o">+</span> <span class="n">A2</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Ekvivalento bismo mogli pisati:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="n">cout</span> <span class="o">&lt;&lt;</span>  <span class="k">operator</span><span class="o">+</span><span class="p">(</span><span class="n">A1</span><span class="p">,</span> <span class="n">A2</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Analogno,</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="n">A1</span> <span class="o">+=</span> <span class="n">A2</span><span class="p">;</span>            <span class="c1">// prirodna sintaksa</span>
+<span class="n">A1</span><span class="p">.</span><span class="k">operator</span><span class="o">+=</span><span class="p">(</span><span class="n">A2</span><span class="p">);</span>   <span class="c1">// ekvivalentan funkcijski poziv</span>
+</pre></div></div></div>
+<div class="paragraph"><p>su dvije posve ekvivlentne naredbe.</p></div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_operator_clan_klase_ili_globalna_funkcija">Operator član klase ili globalna funkcija</h2>
+<div class="sectionbody">
+<div class="ulist"><ul>
+<li>
+<p>
+operatori pridruživanja (<code>operator=</code>), indeksiranja (<code>operator[]</code>),
+funkcijski poziv (<code>operator()</code>) i strelica (<code>operator-&gt;</code>)
+<em>moraju</em> biti metode članice (zahtjev prevodioca).
+</p>
+</li>
+<li>
+<p>
+Složena pridruživanja trebaju biti metode članice, ali nije greška kompilacije ako nisu.
+</p>
+</li>
+<li>
+<p>
+Inkrement, dekrement, dereferenciranje, …  u većini slučaja su metode članice.
+</p>
+</li>
+<li>
+<p>
+Simetrični operatori, aritmetički, relacijski, jednakost, itd. trebaju biti globalne funkcije.
+</p>
+</li>
+</ul></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_operatori_ulaza_izlaza">Operatori ulaza/izlaza</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_preopterecenje_operatora_lt_lt">Preopterećenje operatora &lt;&lt;</h3>
+<div class="paragraph"><p>Konzistentnost s IO bibliotekom zahtjeva da operator &lt;&lt;</p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+Uzima <code>ostream&amp;</code> kao prvi parametar;
+</p>
+</li>
+<li>
+<p>
+Uzima referencu na konstantan objekt tipa klase kao drugi parametar;
+</p>
+</li>
+<li>
+<p>
+Vraća referencu na svoj ostream parametar.
+</p>
+</li>
+</ul></div>
+<div class="admonitionblock">
+<table><tbody><tr>
+<td class="icon">
+<div class="title">Napomena</div>
+</td>
+<td class="content">Operator &lt;&lt; i &gt;&gt; moraju uvijek biti implementirani izvan klase.</td>
+</tr></tbody></table>
+</div>
+<div class="paragraph"><p>Razlog je jednostavan. Kada je operator član klase njegov prvi argument (argument na lijevoj strani operatora)
+je implicitni <code>this</code> pokazivač, koji pokazuje na objekt na kome se nalazimo. To ima za posljedicu
+da bi ispis objekta klase <code>Point3D</code> u kojoj je definiran operator <code>&lt;&lt;</code> izgledao ovako:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="n">Point3D</span> <span class="n">A</span><span class="p">;</span>
+<span class="c1">//    .....</span>
+<span class="n">A</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="p">;</span> <span class="c1">// Ekvivalentno s A.operator&lt;&lt;(std::cout)</span>
+</pre></div></div></div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_ispis_objekta_code_point3d_code">Ispis objekta <code>Point3D</code></h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+<span class="n">std</span><span class="o">::</span><span class="n">ostream</span> <span class="o">&amp;</span> <span class="k">operator</span><span class="o">&lt;&lt;</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">ostream</span> <span class="o">&amp;</span> <span class="n">out</span><span class="p">,</span> <span class="n">Point3D</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="k">const</span> <span class="o">&amp;</span> <span class="n">p</span><span class="p">){</span>
+  <span class="n">out</span> <span class="o">&lt;&lt;</span> <span class="s">"["</span><span class="o">&lt;&lt;</span> <span class="n">p</span><span class="p">.</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;&lt;</span><span class="s">","</span> <span class="o">&lt;&lt;</span> <span class="n">p</span><span class="p">.</span><span class="n">data</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="s">","</span> <span class="o">&lt;&lt;</span> <span class="n">p</span><span class="p">.</span><span class="n">data</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="s">"]"</span><span class="p">;</span>
+  <span class="k">return</span> <span class="n">out</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Operator ispisa dohvaća privatne podatke klase pa stoga mora biti deklariran kao <code>friend</code>.
+Klasa <code>Point3D</code>, u ovom trenutku, izgleda ovako:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+<span class="k">class</span> <span class="nc">Point3D</span>
+<span class="p">{</span>
+ <span class="k">public</span><span class="o">:</span>
+        <span class="k">explicit</span> <span class="n">Point3D</span><span class="p">(</span><span class="n">T</span> <span class="n">x</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">T</span> <span class="n">y</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">T</span> <span class="n">z</span><span class="o">=</span><span class="mi">0</span><span class="p">);</span>
+    <span class="c1">// ...</span>
+    <span class="c1">// friend deklaracija operatora</span>
+    <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">U</span><span class="o">&gt;</span>
+    <span class="k">friend</span> <span class="n">std</span><span class="o">::</span><span class="n">ostream</span> <span class="o">&amp;</span> <span class="k">operator</span><span class="o">&lt;&lt;</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">ostream</span> <span class="o">&amp;</span><span class="p">,</span> <span class="n">Point3D</span><span class="o">&lt;</span><span class="n">U</span><span class="o">&gt;</span> <span class="k">const</span> <span class="o">&amp;</span><span class="p">);</span>
+ <span class="k">private</span><span class="o">:</span>
+        <span class="n">T</span> <span class="n">data</span><span class="p">[</span><span class="mi">3</span><span class="p">];</span>
+        <span class="c1">// ...</span>
+<span class="p">};</span>
+</pre></div></div></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_preopterecenje_operatora_gt_gt">Preopterećenje operatora &gt;&gt;</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Konzistentnost s IO bibliotekom zahtijeva da operator &gt;&gt;</p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+Uzima <code>istream&amp;</code> kao prvi parametar.
+</p>
+</li>
+<li>
+<p>
+Uzima nekonstantnu referencu na objekt tipa klase kao drugi parametar.
+</p>
+</li>
+<li>
+<p>
+Vraća referencu na svoj istream parametar.
+</p>
+</li>
+</ul></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+<span class="n">std</span><span class="o">::</span><span class="n">istream</span> <span class="o">&amp;</span> <span class="k">operator</span> <span class="o">&gt;&gt;</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">istream</span> <span class="o">&amp;</span> <span class="n">in</span><span class="p">,</span> <span class="n">Point3D</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="o">&amp;</span> <span class="n">p</span><span class="p">){</span>
+        <span class="n">T</span> <span class="n">data</span><span class="p">[</span><span class="mi">3</span><span class="p">];</span> <span class="c1">// pomoćna varijabla</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="mi">3</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">in</span> <span class="o">&gt;&gt;</span> <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">in</span><span class="p">.</span><span class="n">fail</span><span class="p">())</span>
+           <span class="k">throw</span> <span class="n">std</span><span class="o">::</span><span class="n">runtime_error</span><span class="p">(</span><span class="s">"Operator &gt;&gt; : incorrect input."</span><span class="p">);</span>
+    <span class="p">}</span>
+        <span class="c1">// Ne korumpiramo postojeće podatke ako je došlo do greške</span>
+        <span class="c1">// pri učitavanju.</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="mi">3</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="n">p</span><span class="p">.</span><span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+    <span class="k">return</span> <span class="n">in</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div></div></div>
+<div class="ulist"><ul>
+<li>
+<p>
+Operator u mnogim situacijama ima vrlo malu mogućnost tretiranja
+grešaka. U našem slučaju izbacujemo izuzetak.
+</p>
+</li>
+<li>
+<p>
+Koristimo pomoćnu varijablu da izbjegnemo djelomičnu promjenu varijable <code>p</code>
+u slučaju greške.
+</p>
+</li>
+<li>
+<p>
+Ulazni stream treba dovesti u ispravno stanje pozivni program u kojem se hvata
+izuzetak.
+</p>
+</li>
+</ul></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_aritmeticki_i_relacijski_operatori">Aritmetički i relacijski operatori</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Aritmetičke i relacijske operatore definiramo kao funkcije <strong>nečlanice</strong>. U svrhu primjera
+dodat ćemo našoj klasi <code>Point3D</code> operator zbrajanja:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+<span class="n">Point3D</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="k">operator</span><span class="o">+</span><span class="p">(</span><span class="n">Point3D</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="k">const</span> <span class="o">&amp;</span> <span class="n">p1</span><span class="p">,</span> <span class="n">Point3D</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="k">const</span> <span class="o">&amp;</span> <span class="n">p2</span><span class="p">){</span>
+     <span class="n">Point3D</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">tmp</span><span class="p">(</span><span class="n">p1</span><span class="p">.</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="n">p2</span><span class="p">.</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+                    <span class="n">p1</span><span class="p">.</span><span class="n">data</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="n">p2</span><span class="p">.</span><span class="n">data</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+                    <span class="n">p1</span><span class="p">.</span><span class="n">data</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">+</span><span class="n">p2</span><span class="p">.</span><span class="n">data</span><span class="p">[</span><span class="mi">2</span><span class="p">]);</span>
+         <span class="k">return</span> <span class="n">tmp</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Posve analogno bismo konstruirali operator oduzimanja. Uočimo da naš operator kreira privremeni
+objet koji zatim vraća u <code>return</code> naredbi. To je prilično skupa operacija
+jer u kodu oblika:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="n">Point3D</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">c</span><span class="p">;</span>
+<span class="c1">// .....</span>
+<span class="n">c</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="p">;</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Pozivamo konstruktor za privremeni objekt, operator pridruživanja i destruktor. Da bismo optimizirali
+ponašanje klase treba implementirati konstruktor kopije i operator pridruživanja <strong>premještanjem</strong>.</p></div>
+<div class="paragraph"><p>Operatori <code>==</code> i <code>!=</code> se implementiraju na isti način, ali u našem slučaju imaju smisla samo
+za neke tipove <code>T</code> (na primjer <code>T=int</code>) pa ih nećemo implementirati.</p></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_slozena_pridruzivanja">Složena pridruživanja</h2>
+<div class="sectionbody">
+<div class="paragraph"><p><em>Složene operatore</em> <code>+=</code> i <code>-=</code> moguće je implementirati bez konstrukcije
+privremenog objekta te su oni stoga efikasniji.</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+<span class="n">Point3D</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;&amp;</span> <span class="n">Point3D</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;::</span><span class="k">operator</span><span class="o">+=</span><span class="p">(</span><span class="k">const</span> <span class="n">Point3D</span><span class="o">&amp;</span> <span class="n">rhs</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+=</span> <span class="n">rhs</span><span class="p">.</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+    <span class="n">data</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+=</span> <span class="n">rhs</span><span class="p">.</span><span class="n">data</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
+    <span class="n">data</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">+=</span> <span class="n">rhs</span><span class="p">.</span><span class="n">data</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span>
+
+    <span class="k">return</span> <span class="o">*</span><span class="k">this</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div></div></div>
+<div class="paragraph"><p><strong>Zadatak</strong>: Da li je dozvoljen sljedeći kod:
+<code>(a += b) = c;</code>?</p></div>
+<div class="paragraph"><p>Skaliranje točke možemo postići operatorom <code>*=</code> koji uzima skalarni argument.</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+<span class="n">Point3D</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;&amp;</span> <span class="n">Point3D</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;::</span><span class="k">operator</span><span class="o">*=</span><span class="p">(</span><span class="n">T</span> <span class="k">const</span> <span class="o">&amp;</span> <span class="n">scalar</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*=</span> <span class="n">scalar</span><span class="p">;</span>
+    <span class="n">data</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*=</span> <span class="n">scalar</span><span class="p">;</span>
+    <span class="n">data</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">*=</span> <span class="n">scalar</span><span class="p">;</span>
+
+    <span class="k">return</span> <span class="o">*</span><span class="k">this</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div></div></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_operator_pridruzivanja_kopiranjem_i_drugi">Operator pridruživanja (kopiranjem i drugi)</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Operatori pridruživanja koji uzimaju referencu tipa klase su istaknuti među svim mogućim
+drugim operatorima pridruživanja i stoga imaju posebno ime: <em>operator pridruživanja kopiranjem/premještanjem</em>
+(<em>copy assignment operator, move assignement operator</em>).
+Na primjer,</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="n">Vect</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">=</span><span class="p">(</span><span class="k">const</span> <span class="n">Vect</span><span class="o">&amp;</span> <span class="n">v</span><span class="p">);</span>
+<span class="n">Vect</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">=</span><span class="p">(</span><span class="n">Vect</span><span class="o">&amp;&amp;</span> <span class="n">v</span><span class="p">);</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Ti operatori pridruživanja mogu biti preopterećeni, tj. možemo definirati druge operatore
+pridruživanja koje uzimaju argumente drugog tipa. Pri tome imamo ograničenje:</p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+Svaki preopterećeni operator pridruživanja mora biti član klase;
+</p>
+</li>
+<li>
+<p>
+Svaki preopterećeni operator pridruživanja uzima samo jedan argument.
+</p>
+</li>
+</ul></div>
+<div class="paragraph"><p>Implementacija novog operatora pridruživanja u klasi <code>Point3D</code> bi mogla biti ta da svakoj komponenti
+vektora pridružuje danu vrijednost:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="n">Point3D</span><span class="o">&amp;</span> <span class="n">Point3D</span><span class="o">::</span><span class="k">operator</span><span class="o">=</span><span class="p">(</span><span class="n">Real</span> <span class="n">x</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span><span class="p">;</span>
+    <span class="n">data</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span><span class="p">;</span>
+    <span class="n">data</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span><span class="p">;</span>
+
+    <span class="k">return</span> <span class="o">*</span><span class="k">this</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div></div></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_operator_indeksiranja">Operator indeksiranja []</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Klase koje predstavljaju spremnike obično definiraju operator indeksiranja <code>operator[]</code>
+kroz koji se dohvaćaju elementi spremnika.</p></div>
+<div class="admonitionblock">
+<table><tbody><tr>
+<td class="icon">
+<div class="title">Napomena</div>
+</td>
+<td class="content">Operator indeksiranja mora biti član klase i uzima točno jedan parametar.</td>
+</tr></tbody></table>
+</div>
+<div class="paragraph"><p>Na primjer, sve get metode u klasi <code>Point3D</code> mogli bismo zamijeniti jednim operatorom:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+<span class="k">class</span> <span class="nc">Point3D</span>
+<span class="p">{</span>
+        <span class="n">T</span>  <span class="k">operator</span><span class="p">[](</span><span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">i</span><span class="p">)</span> <span class="k">const</span><span class="p">{</span> <span class="k">return</span> <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">];</span> <span class="p">}</span>
+        <span class="n">T</span><span class="o">&amp;</span> <span class="k">operator</span><span class="p">[](</span><span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">i</span><span class="p">)</span>      <span class="p">{</span> <span class="k">return</span> <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">];</span> <span class="p">}</span>
+      <span class="c1">// .....</span>
+<span class="p">};</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Sada možemo pisati:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="n">Point3D</span> <span class="nf">a</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">);</span>
+<span class="kt">double</span> <span class="n">x</span> <span class="o">=</span> <span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span> <span class="c1">// x = a.operator[](1)</span>
+<span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">=</span><span class="mf">2.0</span><span class="p">;</span>        <span class="c1">// o.k.</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Nužno je da operatori vraćaju referencu i da su
+<em>preopterećeni po konstantnosti</em>.</p></div>
+<div class="paragraph"><p><strong>Zadatak</strong>. Ubacite  kontrolu granica indeksa u operator indeksiranja.</p></div>
+<div class="paragraph"><p>Operator indeksiranja mogućava dohvat elemenata izvan klase i eliminira potrebu za friend deklaracijama.
+Možemo na primjer pisati:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+<span class="n">Point3D</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="k">operator</span><span class="o">+</span><span class="p">(</span><span class="n">Point3D</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="k">const</span> <span class="o">&amp;</span> <span class="n">p1</span><span class="p">,</span> <span class="n">Point3D</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="k">const</span> <span class="o">&amp;</span> <span class="n">p2</span><span class="p">){</span>
+     <span class="n">Point3D</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">tmp</span><span class="p">(</span><span class="n">p1</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="n">p2</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+                    <span class="n">p1</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="n">p2</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+                    <span class="n">p1</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">+</span><span class="n">p2</span><span class="p">[</span><span class="mi">2</span><span class="p">]);</span>
+         <span class="k">return</span> <span class="n">tmp</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div></div></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_parametrizirana_klasa_code_point3d_lt_t_gt_code">Parametrizirana klasa <code>Point3D&lt;T&gt;</code></h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="c1">// Datoteka point3D.h</span>
+<span class="cp">#ifndef  _POINT3D_H_IS_INCLUDED_</span>
+<span class="cp">#define  _POINT3D_H_IS_INCLUDED_</span>
+
+<span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+<span class="k">class</span> <span class="nc">Point3D</span>
+<span class="p">{</span>
+  <span class="k">public</span><span class="o">:</span>
+        <span class="k">explicit</span> <span class="n">Point3D</span><span class="p">(</span><span class="n">T</span> <span class="n">x</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">T</span> <span class="n">y</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">T</span> <span class="n">z</span><span class="o">=</span><span class="mi">0</span><span class="p">);</span>
+
+        <span class="n">T</span>  <span class="k">operator</span><span class="p">[](</span><span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">i</span><span class="p">)</span> <span class="k">const</span><span class="p">{</span> <span class="k">return</span> <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">];</span> <span class="p">}</span>
+        <span class="n">T</span><span class="o">&amp;</span> <span class="k">operator</span><span class="p">[](</span><span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">i</span><span class="p">)</span>      <span class="p">{</span> <span class="k">return</span> <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">];</span> <span class="p">}</span>
+
+        <span class="n">Point3D</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">+=</span><span class="p">(</span><span class="k">const</span> <span class="n">Point3D</span><span class="o">&amp;</span> <span class="n">rhs</span><span class="p">);</span>
+        <span class="n">Point3D</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">-=</span><span class="p">(</span><span class="k">const</span> <span class="n">Point3D</span><span class="o">&amp;</span> <span class="n">rhs</span><span class="p">);</span>
+        <span class="n">Point3D</span><span class="o">&amp;</span> <span class="k">operator</span> <span class="o">*=</span><span class="p">(</span><span class="n">T</span> <span class="k">const</span> <span class="o">&amp;</span> <span class="n">t</span><span class="p">);</span>
+        <span class="n">Point3D</span> <span class="o">&amp;</span> <span class="n">translate</span><span class="p">(</span><span class="k">const</span> <span class="n">Point3D</span><span class="o">&amp;</span> <span class="n">dir</span><span class="p">);</span>
+        <span class="n">Point3D</span> <span class="o">&amp;</span> <span class="n">rotate</span><span class="p">(</span><span class="n">T</span> <span class="n">phi</span><span class="p">,</span> <span class="n">T</span> <span class="n">psi</span><span class="p">,</span> <span class="n">T</span> <span class="n">theta</span><span class="p">);</span>
+        <span class="n">Point3D</span> <span class="o">&amp;</span> <span class="n">rotate</span><span class="p">(</span><span class="k">const</span> <span class="n">Point3D</span><span class="o">&amp;</span> <span class="n">centar</span><span class="p">,</span> <span class="n">T</span> <span class="n">phi</span><span class="p">,</span> <span class="n">T</span> <span class="n">psi</span><span class="p">,</span> <span class="n">T</span> <span class="n">theta</span><span class="p">);</span>
+        <span class="k">static</span> <span class="kt">int</span> <span class="nf">print_cnt</span><span class="p">()</span> <span class="p">{</span><span class="k">return</span> <span class="n">cnt</span><span class="p">;}</span>
+  <span class="k">private</span><span class="o">:</span>
+        <span class="n">T</span> <span class="n">data</span><span class="p">[</span><span class="mi">3</span><span class="p">];</span>
+        <span class="k">static</span> <span class="kt">int</span> <span class="n">cnt</span><span class="p">;</span>
+<span class="p">};</span>
+<span class="cp">#endif</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Implementacija svih metoda dolazi u datoteku zaglavlja — uključujući i globalne operatore.</p></div>
+<div class="admonitionblock">
+<table><tbody><tr>
+<td class="icon">
+<div class="title">Napomena</div>
+</td>
+<td class="content">Ako klasa nije parametrizirana sve metode koje nisu <code>inline</code> se implementiraju u izvornoj datoteci
+(ne datoteci zaglavlja). Pri tome datoteka zaglavlja deklarira klasu ali i sve operatore definirane izvan
+klase jer i oni pripadaju tipu koji klasa definira.</td>
+</tr></tbody></table>
+</div>
+<div class="paragraph"><p><strong>Zadatak</strong>. Implementirati sve metode klase <code>Point3D&lt;T&gt;</code>.</p></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_operatori_dohvata">Operatori dohvata</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Pod operatorima dohvata podrazumijevamo operatore <code>*</code> (dereferenciranja) i <code>-&gt;</code>.</p></div>
+<div class="admonitionblock">
+<table><tbody><tr>
+<td class="icon">
+<div class="title">Napomena</div>
+</td>
+<td class="content">Operator <code>-&gt;</code> mora biti član klase. Operator dereferenciranja ne mora nužno biti član
+klase, ali je obično prirodno definirati ga kao člana klase.</td>
+</tr></tbody></table>
+</div>
+<div class="paragraph"><p>Primjer preopterećenja operatora dohvata ilustrirat ćemo na klasi   <code>SmartBFC</code>.</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">SmartBFC</span><span class="p">{</span>
+    <span class="k">public</span><span class="o">:</span>
+        <span class="n">SmartBFC</span><span class="p">(</span><span class="n">BFC</span> <span class="o">*</span><span class="n">p</span><span class="p">)</span> <span class="o">:</span> <span class="n">ptr</span><span class="p">(</span><span class="n">p</span><span class="p">),</span> <span class="n">cnt</span><span class="p">(</span><span class="k">new</span> <span class="kt">int</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span> <span class="p">{}</span>
+        <span class="n">SmartBFC</span><span class="p">(</span><span class="k">const</span> <span class="n">SmartBFC</span> <span class="o">&amp;</span> <span class="n">orig</span><span class="p">)</span><span class="o">:</span> <span class="n">ptr</span><span class="p">(</span><span class="n">orig</span><span class="p">.</span><span class="n">ptr</span><span class="p">),</span> <span class="n">cnt</span><span class="p">(</span><span class="n">orig</span><span class="p">.</span><span class="n">cnt</span><span class="p">)</span> <span class="p">{</span> <span class="o">++*</span><span class="n">cnt</span><span class="p">;</span> <span class="p">}</span>
+        <span class="n">SmartBFC</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">=</span><span class="p">(</span><span class="k">const</span> <span class="n">SmartBFC</span><span class="o">&amp;</span><span class="p">);</span>
+        <span class="o">~</span><span class="n">SmartBFC</span><span class="p">(){</span> <span class="k">if</span><span class="p">(</span><span class="o">--*</span><span class="n">cnt</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span> <span class="k">delete</span> <span class="n">ptr</span><span class="p">;</span> <span class="k">delete</span> <span class="n">cnt</span><span class="p">;</span> <span class="p">}</span> <span class="p">}</span>
+
+        <span class="c1">// Pomoćne funkcije</span>
+        <span class="k">const</span> <span class="n">BFC</span> <span class="o">*</span> <span class="n">get_ptr</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span> <span class="k">return</span> <span class="n">ptr</span><span class="p">;</span> <span class="p">}</span>
+        <span class="kt">int</span>         <span class="n">use_count</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span> <span class="k">return</span> <span class="o">*</span><span class="n">cnt</span><span class="p">;</span> <span class="p">}</span>
+    <span class="k">private</span><span class="o">:</span>
+         <span class="n">BFC</span> <span class="o">*</span> <span class="n">ptr</span><span class="p">;</span>
+         <span class="kt">int</span> <span class="o">*</span> <span class="n">cnt</span><span class="p">;</span>
+<span class="p">};</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Preopterećivanjem operatora dohvata klasi  <code>SmartBFC</code>  dajemo <em>pokazivačku sintaksu</em>.
+Ona će na razini sintakse funkcionirati kao pokazivač i stoga se naziva <strong>pametni pokazivač</strong>
+(<em>smart pointer</em>).</p></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_operator_dereferenciranja">Operator dereferenciranja</h2>
+<div class="sectionbody">
+<div class="ulist"><ul>
+<li>
+<p>
+Kada je član klase, ne uzima parametar i vraća
+referencu na tip. Stoga se može koristiti na lijevoj strani operatora pridruživanja.
+Uvijek definiramo konstantnu i
+nekonstantnu verziju operatora.
+</p>
+</li>
+</ul></div>
+<div class="sect2">
+<h3 id="_operator_strelica">Operator strelica</h3>
+<div class="paragraph"><p><em>Operator strelica</em> također ne uzima parametar. Na desnoj se strani operatora
+<code>-&gt;</code> uvijek nalazi identifikator (ime funkcije ili varijable koju dohvaćamo), a ne
+objekt nekog tipa. To čini ovaj operator posebnim. Kad god prevodilac naiđe na izraz oblika:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="n">pt</span><span class="o">-&gt;</span><span class="n">metoda</span><span class="p">();</span>
+</pre></div></div></div>
+<div class="paragraph"><p>on generira kod na sljedeći način:</p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+Ako je <code>pt</code> pokazivač na objekt koji ima metodu <code>metoda()</code>,
+onda prevodilac generira kod za poziv metode;
+</p>
+</li>
+<li>
+<p>
+Ako je <code>pt</code> objekt tipa klase koja definira operator <code>-&gt;</code>
+tada je poziv oblika  <code>pt-&gt;metoda()</code> isto što i
+<code>pt.operator-&gt;()-&gt;metoda()</code>.
+To znači da <code>operator-&gt;()</code> mora vratiti:
+</p>
+<div class="ulist"><ul>
+<li>
+<p>
+ili pokazivač na objekt klase koja deklarira funkciju <code>metoda()</code>
+</p>
+</li>
+<li>
+<p>
+ili objekt klase koja definira <code>operator-&gt;()</code>.
+U ovom drugom slučaju definicija je rekurzivna.
+</p>
+</li>
+</ul></div>
+</li>
+<li>
+<p>
+U svim ostalim slučajevima kod je pogrešan.
+</p>
+</li>
+</ul></div>
+<div class="paragraph"><p>Operator strelicu  i operator dereferenciranja <em>preopterećujemo po konstantnosti</em> kako bismo mogli dohvatiti konstantne i
+nekonstantne objekte.</p></div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_korigirana_klasa_code_smartbfc_code">Korigirana klasa <code>SmartBFC</code></h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Klasa <code>SmartBFC</code> s pokazivačkom semantikom:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">SmartBFC</span><span class="p">{</span>
+    <span class="k">public</span><span class="o">:</span>
+        <span class="n">SmartBFC</span><span class="p">(</span><span class="n">BFC</span> <span class="o">*</span><span class="n">p</span><span class="p">)</span> <span class="o">:</span> <span class="n">ptr</span><span class="p">(</span><span class="n">p</span><span class="p">),</span> <span class="n">cnt</span><span class="p">(</span><span class="k">new</span> <span class="kt">int</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span> <span class="p">{}</span>
+        <span class="n">SmartBFC</span><span class="p">(</span><span class="k">const</span> <span class="n">SmartBFC</span> <span class="o">&amp;</span> <span class="n">orig</span><span class="p">)</span><span class="o">:</span> <span class="n">ptr</span><span class="p">(</span><span class="n">orig</span><span class="p">.</span><span class="n">ptr</span><span class="p">),</span> <span class="n">cnt</span><span class="p">(</span><span class="n">orig</span><span class="p">.</span><span class="n">cnt</span><span class="p">)</span> <span class="p">{</span> <span class="o">++*</span><span class="n">cnt</span><span class="p">;</span> <span class="p">}</span>
+        <span class="n">SmartBFC</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">=</span><span class="p">(</span><span class="k">const</span> <span class="n">SmartBFC</span><span class="o">&amp;</span><span class="p">);</span>
+        <span class="o">~</span><span class="n">SmartBFC</span><span class="p">(){</span> <span class="k">if</span><span class="p">(</span><span class="o">--*</span><span class="n">cnt</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span> <span class="k">delete</span> <span class="n">ptr</span><span class="p">;</span> <span class="k">delete</span> <span class="n">cnt</span><span class="p">;</span> <span class="p">}</span> <span class="p">}</span>
+
+        <span class="k">const</span> <span class="n">BFC</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">*</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span><span class="k">return</span> <span class="o">*</span><span class="n">ptr</span><span class="p">;}</span>
+        <span class="n">BFC</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">*</span><span class="p">()</span> <span class="p">{</span><span class="k">return</span> <span class="o">*</span><span class="n">ptr</span><span class="p">;}</span>
+
+        <span class="k">const</span> <span class="n">BFC</span><span class="o">*</span> <span class="k">operator</span><span class="o">-&gt;</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span><span class="k">return</span> <span class="n">ptr</span><span class="p">;}</span>
+        <span class="n">BFC</span><span class="o">*</span>  <span class="k">operator</span><span class="o">-&gt;</span><span class="p">()</span> <span class="p">{</span><span class="k">return</span> <span class="n">ptr</span><span class="p">;}</span>
+
+        <span class="kt">int</span>   <span class="n">use_count</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span> <span class="k">return</span> <span class="o">*</span><span class="n">cnt</span><span class="p">;</span> <span class="p">}</span>
+    <span class="k">private</span><span class="o">:</span>
+         <span class="n">BFC</span> <span class="o">*</span> <span class="n">ptr</span><span class="p">;</span>
+         <span class="kt">int</span> <span class="o">*</span> <span class="n">cnt</span><span class="p">;</span>
+<span class="p">};</span>
+</pre></div></div></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_primjer_upotrebe">Primjer upotrebe</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Sada <code>SmartBFC</code> objekt koristimo kao da je pokazivač. Jedina dodatna metoda je <code>use_count()</code>:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">SmartBFC</span> <span class="n">spt1</span><span class="p">(</span><span class="k">new</span> <span class="n">BFC</span><span class="p">(</span><span class="mi">13</span><span class="p">));</span>
+    <span class="n">SmartBFC</span> <span class="n">spt2</span> <span class="o">=</span> <span class="n">spt1</span><span class="p">;</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="p">(</span><span class="o">*</span><span class="n">spt1</span><span class="p">).</span><span class="n">get</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+    <span class="n">spt2</span><span class="o">-&gt;</span><span class="n">set</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span>  <span class="n">spt1</span><span class="o">-&gt;</span><span class="n">get</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+
+    <span class="k">const</span> <span class="n">SmartBFC</span> <span class="n">spt3</span><span class="p">(</span><span class="k">new</span> <span class="n">BFC</span><span class="p">(</span><span class="mi">11</span><span class="p">));</span>
+
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span>  <span class="p">(</span><span class="o">*</span><span class="n">spt3</span><span class="p">).</span><span class="n">get</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span>  <span class="n">spt3</span><span class="o">-&gt;</span><span class="n">get</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span>  <span class="n">spt1</span><span class="p">.</span><span class="n">use_count</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div></div></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_operatori_inkrementiranja_i_dekrementiranja_code_code">Operatori inkrementiranja i dekrementiranja (<code>++/--</code>)</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Operatori inkrementiranja i dekrementiranja implementiraju se
+najčešće u klasama koje modeliraju <strong>iteratore</strong> i daju pokazivačku
+semaniku svojim objektima. Mi ćemo ih ilustrirati na jednoj jednostavnoj
+verziji iteratora kroz polje nekog tipa.</p></div>
+<div class="sect2">
+<h3 id="_polje">Polje</h3>
+<div class="paragraph"><p>Imamo vlastiti spremnik i želimo za njega napisati iterator. Na primjer:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+<span class="k">class</span> <span class="nc">Polje</span>
+<span class="p">{</span>
+  <span class="k">private</span><span class="o">:</span>
+        <span class="n">T</span><span class="o">*</span> <span class="n">data</span><span class="p">;</span>     <span class="c1">// dinamički alociran blok memorije</span>
+        <span class="kt">size_t</span> <span class="n">n_el</span><span class="p">;</span>
+  <span class="k">public</span><span class="o">:</span>
+        <span class="n">Polje</span><span class="p">(</span><span class="kt">size_t</span> <span class="n">n</span><span class="p">)</span> <span class="o">:</span> <span class="n">data</span><span class="p">(</span><span class="k">new</span> <span class="n">T</span><span class="p">[</span><span class="n">n</span><span class="p">]),</span> <span class="n">n_el</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="p">{}</span>
+        <span class="o">~</span><span class="n">Polje</span><span class="p">(){</span> <span class="k">delete</span> <span class="p">[]</span> <span class="n">data</span><span class="p">;</span> <span class="p">}</span>
+
+        <span class="kt">size_t</span> <span class="n">size</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span> <span class="k">return</span> <span class="n">n_el</span><span class="p">;</span> <span class="p">}</span>
+
+        <span class="k">using</span> <span class="n">iterator</span> <span class="o">=</span> <span class="n">IteratorKrozPolje</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">;</span> <span class="c1">// naš iterator</span>
+    <span class="c1">// ...</span>
+<span class="p">};</span>
+</pre></div></div></div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_konstrukcija_iteratora">Konstrukcija iteratora</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Želimo iterator direktnog dohvata koji će provjeravati da li je iterator u korektnim
+granicama te izbaciti izuzetak ako nije.</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+<span class="k">class</span> <span class="nc">IteratorKrozPolje</span> <span class="p">{</span>
+    <span class="k">private</span><span class="o">:</span>
+        <span class="n">T</span><span class="o">*</span> <span class="n">begin</span><span class="p">;</span>
+        <span class="n">T</span><span class="o">*</span> <span class="n">end</span><span class="p">;</span>
+        <span class="n">T</span><span class="o">*</span> <span class="n">current</span><span class="p">;</span>
+    <span class="k">public</span><span class="o">:</span>
+
+        <span class="n">IteratorKrozPolje</span><span class="p">(</span><span class="n">T</span><span class="o">*</span> <span class="n">b</span><span class="p">,</span> <span class="kt">size_t</span> <span class="n">size</span><span class="p">)</span> <span class="o">:</span> <span class="n">begin</span><span class="p">(</span><span class="n">b</span><span class="p">),</span> <span class="n">end</span><span class="p">(</span><span class="n">b</span><span class="o">+</span><span class="n">size</span><span class="p">),</span>
+                                     <span class="n">current</span><span class="p">(</span><span class="n">b</span><span class="p">)</span> <span class="p">{}</span>
+        <span class="n">IteratorKrozPolje</span><span class="p">(</span><span class="n">T</span><span class="o">*</span> <span class="n">b</span><span class="p">,</span> <span class="kt">size_t</span> <span class="n">size</span><span class="p">,</span> <span class="n">T</span><span class="o">*</span> <span class="n">curr</span><span class="p">)</span> <span class="o">:</span> <span class="n">begin</span><span class="p">(</span><span class="n">b</span><span class="p">),</span>
+                                      <span class="n">end</span><span class="p">(</span><span class="n">b</span><span class="o">+</span><span class="n">size</span><span class="p">),</span> <span class="n">current</span><span class="p">(</span><span class="n">curr</span><span class="p">)</span> <span class="p">{}</span>
+       <span class="c1">//....</span>
+
+<span class="p">};</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Klasa je parametrizirana tipom <code>T</code> koji predstavlja tip elementa polja.
+Imamo pokazivač na početak polja (<code>begin</code>), pokazivač na mjesto
+iza zadnjeg elementa polja (<code>end</code>) i pokazivač na tekući
+element polja (<code>current</code>).</p></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_prefiks_operatori_deklaracija">Prefiks operatori: deklaracija</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Ovi operatori kad su članovi klase ne uzimaju argumente i da bi bili
+konzistentni s ugrađenim verzijama trebaju vratiti referencu na objekt na
+kojem su pozvani. Imali bismo:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+<span class="k">class</span> <span class="nc">IteratorKrozPolje</span> <span class="p">{</span>
+    <span class="k">private</span><span class="o">:</span>
+        <span class="n">T</span><span class="o">*</span> <span class="n">begin</span><span class="p">;</span>
+        <span class="n">T</span><span class="o">*</span> <span class="n">end</span><span class="p">;</span>
+        <span class="n">T</span><span class="o">*</span> <span class="n">current</span><span class="p">;</span>
+    <span class="k">public</span><span class="o">:</span>
+
+        <span class="n">IteratorKrozPolje</span><span class="p">(</span><span class="n">T</span><span class="o">*</span> <span class="n">b</span><span class="p">,</span> <span class="kt">size_t</span> <span class="n">size</span><span class="p">);</span>
+        <span class="n">IteratorKrozPolje</span><span class="p">(</span><span class="n">T</span><span class="o">*</span> <span class="n">b</span><span class="p">,</span> <span class="kt">size_t</span> <span class="n">size</span><span class="p">,</span> <span class="n">T</span><span class="o">*</span> <span class="n">curr</span><span class="p">);</span>
+
+        <span class="n">IteratorKrozPolje</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">++</span><span class="p">();</span> <span class="c1">// prefix</span>
+        <span class="n">IteratorKrozPolje</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">--</span><span class="p">();</span>
+       <span class="c1">//....</span>
+
+<span class="p">};</span>
+</pre></div></div></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_prefiks_operatori_implementacija">Prefiks operatori: implementacija</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>U implementaciji provjeravamo da li povećanjem ili smanjenjem izlazimo iz
+zadanih granica, i ako je to slučaj izbacujemo <em>out_of_range</em> izuzetak
+koji je definiran u <em>&lt;stdexcept&gt;</em> zaglavlju.</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+<span class="n">IteratorKrozPolje</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;&amp;</span> <span class="n">IteratorKrozPolje</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;::</span><span class="k">operator</span><span class="o">++</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">current</span> <span class="o">==</span> <span class="n">end</span><span class="p">)</span>
+      <span class="k">throw</span> <span class="n">std</span><span class="o">::</span><span class="n">out_of_range</span><span class="p">(</span><span class="s">"Inkrementiranje end pokazivaca."</span><span class="p">);</span>
+    <span class="o">++</span><span class="n">current</span><span class="p">;</span>
+    <span class="k">return</span> <span class="o">*</span><span class="k">this</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+<span class="n">IteratorKrozPolje</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;&amp;</span> <span class="n">IteratorKrozPolje</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;::</span><span class="k">operator</span><span class="o">--</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">current</span> <span class="o">==</span> <span class="n">begin</span><span class="p">)</span>
+      <span class="k">throw</span> <span class="n">std</span><span class="o">::</span><span class="n">out_of_range</span><span class="p">(</span><span class="s">"Dekrementiranje pokazivaca na 1. element."</span><span class="p">);</span>
+    <span class="o">--</span><span class="n">current</span><span class="p">;</span>
+    <span class="k">return</span> <span class="o">*</span><span class="k">this</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div></div></div>
+<div class="paragraph"><p>U implementaciji na pokazivaču <code>current</code> koristimo standardne operatore dekrementiranja
+i inkrementiranja.</p></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_postfiks_operatori_deklaracija">Postfiks operatori: Deklaracija</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Način razlikovanja prefiks i postfiks verzije ovih operatora posve je artificijelan.
+Postfiks verzije uzimaju jedan dodatni parametar tipa <code>int</code> koji služi samo
+razlikovanju dviju verzija operatora. Prilikom korištenja postfiks forme
+prevodilac sam predaje operatoru nulu kao argument. Nadalje, <strong>postfiks forma vraća objekt a ne referencu na objekt</strong>.
+Sjetimo se da postfiks forma mijenja objekt, ali vraća kopiju nepromijenjenog objekta.</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+<span class="k">class</span> <span class="nc">IteratorKrozPolje</span>
+<span class="p">{</span>
+    <span class="k">private</span><span class="o">:</span>
+        <span class="n">T</span><span class="o">*</span> <span class="n">begin</span><span class="p">;</span>
+        <span class="n">T</span><span class="o">*</span> <span class="n">end</span><span class="p">;</span>
+        <span class="n">T</span><span class="o">*</span> <span class="n">current</span><span class="p">;</span>
+    <span class="k">public</span><span class="o">:</span>
+       <span class="c1">//....</span>
+        <span class="n">IteratorKrozPolje</span> <span class="k">operator</span><span class="o">++</span><span class="p">(</span><span class="kt">int</span><span class="p">);</span> <span class="c1">// postfix</span>
+        <span class="n">IteratorKrozPolje</span> <span class="k">operator</span><span class="o">--</span><span class="p">(</span><span class="kt">int</span><span class="p">);</span>
+        <span class="c1">//....</span>
+<span class="p">};</span>
+</pre></div></div></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_postfiks_operatori_implementacija">Postfiks operatori: Implementacija</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Napravimo kopiju objekta, inkrementiramo/dekrementiramo pokazivač i vraćamo kopiju:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+<span class="n">IteratorKrozPolje</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">IteratorKrozPolje</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;::</span><span class="k">operator</span><span class="o">++</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">IteratorKrozPolje</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">tmp</span><span class="p">{</span><span class="o">*</span><span class="k">this</span><span class="p">};</span>  <span class="c1">// zapamti pokazivač</span>
+                                            <span class="c1">// može biti end!</span>
+    <span class="o">++*</span><span class="k">this</span><span class="p">;</span>                <span class="c1">// Pozovi prefix verziju</span>
+    <span class="k">return</span> <span class="n">tmp</span><span class="p">;</span>             <span class="c1">// Vrati staru vrijednost. Sada tmp != end</span>
+<span class="p">}</span>
+
+<span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+<span class="n">IteratorKrozPolje</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">IteratorKrozPolje</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;::</span><span class="k">operator</span><span class="o">--</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">IteratorKrozPolje</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">tmp</span><span class="p">{</span><span class="o">*</span><span class="k">this</span><span class="p">};</span>  <span class="c1">// Kopija objekta</span>
+    <span class="o">--*</span><span class="k">this</span><span class="p">;</span>                <span class="c1">// Pozovi prefix verziju</span>
+    <span class="k">return</span> <span class="n">tmp</span><span class="p">;</span>             <span class="c1">// Vrati staru vrijednost</span>
+<span class="p">}</span>
+</pre></div></div></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_potpuna_klasa">Potpuna klasa</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>U <code>IteratorKrozPolje</code> dodajemo još nekoliko konstruktora, operator dereferenciranja i operatore uspoređivanja.</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+<span class="k">class</span> <span class="nc">IteratorKrozPolje</span>
+<span class="p">{</span>
+    <span class="k">private</span><span class="o">:</span>
+        <span class="n">T</span><span class="o">*</span> <span class="n">begin</span><span class="p">;</span>
+        <span class="n">T</span><span class="o">*</span> <span class="n">end</span><span class="p">;</span>
+        <span class="n">T</span><span class="o">*</span> <span class="n">current</span><span class="p">;</span>
+    <span class="k">public</span><span class="o">:</span>
+        <span class="n">IteratorKrozPolje</span><span class="p">(</span><span class="n">T</span><span class="o">*</span> <span class="n">b</span><span class="p">,</span> <span class="kt">size_t</span> <span class="n">size</span><span class="p">);</span>
+        <span class="n">IteratorKrozPolje</span><span class="p">(</span><span class="n">T</span><span class="o">*</span> <span class="n">b</span><span class="p">,</span> <span class="kt">size_t</span> <span class="n">size</span><span class="p">,</span> <span class="n">T</span><span class="o">*</span> <span class="n">curr</span><span class="p">);</span>
+
+        <span class="n">IteratorKrozPolje</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">++</span><span class="p">();</span> <span class="c1">// prefix</span>
+        <span class="n">IteratorKrozPolje</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">--</span><span class="p">();</span>
+
+        <span class="n">IteratorKrozPolje</span> <span class="k">operator</span><span class="o">++</span><span class="p">(</span><span class="kt">int</span><span class="p">);</span> <span class="c1">// postfix</span>
+        <span class="n">IteratorKrozPolje</span> <span class="k">operator</span><span class="o">--</span><span class="p">(</span><span class="kt">int</span><span class="p">);</span>
+
+        <span class="n">T</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">*</span><span class="p">()</span> <span class="p">{</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">current</span> <span class="o">==</span> <span class="n">end</span><span class="p">)</span> <span class="k">throw</span>  <span class="p">...</span>
+            <span class="k">return</span> <span class="o">*</span><span class="n">current</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">const</span> <span class="n">T</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">*</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span>
+            <span class="k">if</span><span class="p">(</span><span class="n">current</span> <span class="o">==</span> <span class="n">end</span><span class="p">)</span> <span class="k">throw</span> <span class="p">...</span>
+            <span class="k">return</span> <span class="o">*</span><span class="n">current</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="n">T</span><span class="o">*</span> <span class="k">operator</span><span class="o">-&gt;</span><span class="p">()</span> <span class="p">{</span>
+               <span class="k">if</span><span class="p">(</span><span class="n">current</span> <span class="o">==</span> <span class="n">end</span><span class="p">)</span> <span class="k">throw</span>  <span class="p">...</span>
+               <span class="k">return</span> <span class="n">current</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="k">const</span> <span class="n">T</span><span class="o">*</span> <span class="k">operator</span><span class="o">-&gt;</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span>
+               <span class="k">if</span><span class="p">(</span><span class="n">current</span> <span class="o">==</span> <span class="n">end</span><span class="p">)</span> <span class="k">throw</span> <span class="p">...</span>
+               <span class="k">return</span> <span class="n">current</span><span class="p">;</span>
+            <span class="p">}</span>
+
+        <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">U</span><span class="o">&gt;</span>
+        <span class="k">friend</span> <span class="kt">bool</span> <span class="k">operator</span><span class="o">==</span><span class="p">(</span><span class="k">const</span> <span class="n">IteratorKrozPolje</span><span class="o">&lt;</span><span class="n">U</span><span class="o">&gt;&amp;</span> <span class="n">lhs</span><span class="p">,</span>
+                               <span class="k">const</span> <span class="n">IteratorKrozPolje</span><span class="o">&lt;</span><span class="n">U</span><span class="o">&gt;&amp;</span> <span class="n">rhs</span><span class="p">);</span>
+        <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">U</span><span class="o">&gt;</span>
+        <span class="k">friend</span> <span class="kt">bool</span> <span class="k">operator</span><span class="o">!=</span><span class="p">(</span><span class="k">const</span> <span class="n">IteratorKrozPolje</span><span class="o">&lt;</span><span class="n">U</span><span class="o">&gt;&amp;</span> <span class="n">lhs</span><span class="p">,</span>
+                               <span class="k">const</span> <span class="n">IteratorKrozPolje</span><span class="o">&lt;</span><span class="n">U</span><span class="o">&gt;&amp;</span> <span class="n">rhs</span><span class="p">);</span>
+
+        <span class="c1">// Ove tipove očekuje klasa std::iterator_traits</span>
+        <span class="c1">// koju koristi standardna biblioteka.</span>
+        <span class="k">using</span> <span class="n">difference_type</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="kt">ptrdiff_t</span><span class="p">;</span>
+        <span class="k">using</span> <span class="n">value_type</span> <span class="o">=</span> <span class="n">T</span><span class="p">;</span>
+        <span class="k">using</span> <span class="n">pointer</span> <span class="o">=</span> <span class="n">T</span><span class="o">*</span><span class="p">;</span>
+        <span class="k">using</span> <span class="n">reference</span> <span class="o">=</span> <span class="n">T</span><span class="o">&amp;</span><span class="p">;</span>
+        <span class="k">using</span> <span class="n">iterator_category</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">random_access_iterator_tag</span><span class="p">;</span>
+        <span class="c1">// Kategorije iteratora:</span>
+        <span class="c1">//    input_iterator_tag, output_iterator_tag, forward_iterator_tag,</span>
+        <span class="c1">//    bidirectional_iterator_tag,random_access_iterator_tag</span>
+<span class="p">};</span>
+</pre></div></div></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_primjena_na_klasu_code_polje_code">Primjena na klasu <code>Polje</code></h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Konstruirajmo klasu koja će koristiti naš iterator:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+<span class="k">class</span> <span class="nc">Polje</span>
+<span class="p">{</span>
+    <span class="k">private</span><span class="o">:</span>
+        <span class="n">T</span><span class="o">*</span> <span class="n">data</span><span class="p">;</span>
+        <span class="kt">size_t</span> <span class="n">n_el</span><span class="p">;</span>
+    <span class="k">public</span><span class="o">:</span>
+        <span class="n">Polje</span><span class="p">(</span><span class="kt">size_t</span> <span class="n">n</span><span class="p">)</span> <span class="o">:</span> <span class="n">data</span><span class="p">(</span><span class="k">new</span> <span class="n">T</span><span class="p">[</span><span class="n">n</span><span class="p">]),</span> <span class="n">n_el</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="p">{}</span>
+        <span class="kt">size_t</span> <span class="n">size</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span> <span class="k">return</span> <span class="n">n_el</span><span class="p">;</span> <span class="p">}</span>
+        <span class="k">using</span> <span class="n">iterator</span> <span class="o">=</span> <span class="n">IteratorKrozPolje</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">;</span>
+
+        <span class="n">iterator</span> <span class="nf">begin</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="n">IteratorKrozPolje</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">n_el</span><span class="p">);</span> <span class="p">}</span>
+        <span class="k">const</span> <span class="n">iterator</span> <span class="nf">end</span><span class="p">()</span>
+        <span class="p">{</span> <span class="k">return</span> <span class="n">IteratorKrozPolje</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">n_el</span><span class="p">,</span> <span class="n">data</span><span class="o">+</span><span class="n">n_el</span><span class="p">);</span> <span class="p">}</span>
+
+        <span class="o">~</span><span class="n">Polje</span><span class="p">(){</span> <span class="k">delete</span> <span class="p">[]</span> <span class="n">data</span><span class="p">;</span> <span class="p">}</span>
+<span class="p">};</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Korištenjem simboličkog imena  <code>iterator</code> ime je iteratora  skriveno tako da
+<code>Polje</code> možemo koristiti na standardan način, kao i druge spremnike
+u standardnoj biblioteci.</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">Polje</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="n">v</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span> <span class="c1">// Polje od 10 elemenata</span>
+
+    <span class="n">Polje</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;::</span><span class="n">iterator</span> <span class="n">it</span> <span class="o">=</span> <span class="n">v</span><span class="p">.</span><span class="n">begin</span><span class="p">();</span>
+
+    <span class="k">for</span><span class="p">(</span><span class="kt">double</span> <span class="n">x</span><span class="o">=</span><span class="mf">0.0</span><span class="p">;</span> <span class="n">it</span> <span class="o">!=</span> <span class="n">v</span><span class="p">.</span><span class="n">end</span><span class="p">();</span> <span class="o">++</span><span class="n">it</span><span class="p">,</span> <span class="n">x</span> <span class="o">+=</span> <span class="mf">5.0</span><span class="p">)</span>
+        <span class="o">*</span><span class="n">it</span> <span class="o">=</span> <span class="n">x</span><span class="p">;</span>
+
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div></div></div>
+<div class="paragraph"><p><strong>Napomena</strong>: Prefiks i postfiks operatore <code>++</code> i <code>--</code>
+možemo pozivati i eksplicitno.</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="kt">double</span> <span class="n">polje</span><span class="p">[]</span> <span class="o">=</span> <span class="p">{</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">2.0</span><span class="p">,</span><span class="mf">3.0</span><span class="p">,</span><span class="mf">4.0</span><span class="p">,</span><span class="mf">5.0</span><span class="p">};</span>
+<span class="n">IteratorKrozPolje</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="n">iter</span><span class="p">(</span><span class="n">polje</span><span class="p">,</span> <span class="mi">5</span><span class="p">);</span>
+<span class="n">iter</span><span class="p">.</span><span class="k">operator</span><span class="o">++</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>                    <span class="c1">// postfix operator++</span>
+<span class="n">iter</span><span class="p">.</span><span class="k">operator</span><span class="o">++</span><span class="p">();</span>                     <span class="c1">// prefix operator++</span>
+</pre></div></div></div>
+<div class="paragraph"><p><strong>Zadatak</strong>. Implementirajte <strong>konstantan iterator</strong> i <code>cbegin()</code> i <code>cend()</code> metode.</p></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_funkcijski_objekti">Funkcijski objekti</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>C++ nam dozvoljava da u klasi definiramo <strong>operator funkcijskog poziva</strong>
+<code>()</code>. Objekt te klase se  ponaša kao funkcija pa se stoga
+naziva funkcijski objekt.</p></div>
+<div class="paragraph"><p>Evo primjera klase koja implementira <code>operator()</code>.</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">CutOff</span><span class="p">{</span>
+    <span class="k">private</span><span class="o">:</span>
+        <span class="kt">double</span> <span class="n">min</span><span class="p">;</span>
+        <span class="kt">double</span> <span class="n">max</span><span class="p">;</span>
+    <span class="k">public</span><span class="o">:</span>
+        <span class="n">CutOff</span><span class="p">(</span><span class="kt">double</span> <span class="n">low</span><span class="p">,</span> <span class="kt">double</span> <span class="n">high</span><span class="p">)</span> <span class="o">:</span> <span class="n">min</span><span class="p">(</span><span class="n">low</span><span class="p">),</span> <span class="n">max</span><span class="p">(</span><span class="n">high</span><span class="p">)</span> <span class="p">{</span><span class="n">assert</span><span class="p">(</span><span class="n">min</span> <span class="o">&lt;=</span> <span class="n">max</span><span class="p">);}</span>
+        <span class="kt">double</span> <span class="k">operator</span><span class="p">()(</span><span class="kt">double</span> <span class="n">x</span><span class="p">);</span>
+<span class="p">};</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Operator je implementiran na sljedeći način:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="kt">double</span> <span class="n">CutOff</span><span class="o">::</span><span class="k">operator</span><span class="p">()(</span><span class="kt">double</span> <span class="n">x</span><span class="p">){</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">x</span> <span class="o">&lt;=</span><span class="n">min</span><span class="p">)</span>      <span class="k">return</span> <span class="n">min</span><span class="p">;</span>
+    <span class="k">else</span> <span class="nf">if</span><span class="p">(</span><span class="n">x</span> <span class="o">&gt;</span> <span class="n">max</span><span class="p">)</span> <span class="k">return</span> <span class="n">max</span><span class="p">;</span>
+    <span class="k">else</span>             <span class="k">return</span> <span class="n">x</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Upotreba:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="kt">void</span> <span class="nf">f</span><span class="p">(</span><span class="n">CutOff</span> <span class="n">fun</span><span class="p">,</span> <span class="kt">double</span> <span class="n">a</span><span class="p">,</span> <span class="kt">double</span> <span class="n">b</span><span class="p">,</span> <span class="kt">unsigned</span> <span class="n">n</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">unsigned</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">fun</span><span class="p">(</span><span class="n">a</span> <span class="o">+</span> <span class="n">i</span><span class="o">*</span><span class="p">(</span><span class="n">b</span><span class="o">-</span><span class="n">a</span><span class="p">)</span><span class="o">/</span><span class="n">n</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Poziv</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="n">fun</span><span class="p">(</span><span class="n">a</span> <span class="o">+</span> <span class="n">i</span><span class="o">*</span><span class="p">(</span><span class="n">b</span><span class="o">-</span><span class="n">a</span><span class="p">)</span><span class="o">/</span><span class="n">n</span><span class="p">)</span>
+</pre></div></div></div>
+<div class="paragraph"><p>je  ekvivalentna s</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="n">fun</span><span class="p">.</span><span class="k">operator</span><span class="p">()(</span><span class="n">a</span> <span class="o">+</span> <span class="n">i</span><span class="o">*</span><span class="p">(</span><span class="n">b</span><span class="o">-</span><span class="n">a</span><span class="p">)</span><span class="o">/</span><span class="n">n</span><span class="p">)</span>
+</pre></div></div></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_parametrizirane_funkcije_i_funkcijski_objekti">Parametrizirane funkcije i funkcijski objekti</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Napravimo od funkcije <code>f</code> iz prethodnog
+primjera parametriziranu funkciju:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+<span class="kt">void</span> <span class="n">f</span><span class="p">(</span><span class="n">T</span> <span class="n">fun</span><span class="p">,</span> <span class="kt">double</span> <span class="n">a</span><span class="p">,</span> <span class="kt">double</span> <span class="n">b</span><span class="p">,</span> <span class="kt">unsigned</span> <span class="n">n</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">unsigned</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span> <span class="n">n</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">fun</span><span class="p">(</span><span class="n">a</span> <span class="o">+</span> <span class="n">i</span><span class="o">*</span><span class="p">(</span><span class="n">b</span><span class="o">-</span><span class="n">a</span><span class="p">)</span><span class="o">/</span><span class="n">n</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Definirajmo još i običnu funkciju</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="kt">double</span> <span class="nf">funkcija</span><span class="p">(</span><span class="kt">double</span> <span class="n">x</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="n">x</span><span class="p">;</span> <span class="p">}</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Sada će program</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">CutOff</span> <span class="n">b</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Funkcijski objekt:"</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+    <span class="n">f</span><span class="p">(</span><span class="n">b</span><span class="p">,</span><span class="o">-</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">2.0</span><span class="p">,</span><span class="mi">6</span><span class="p">);</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Funkcija:"</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+    <span class="n">f</span><span class="p">(</span><span class="n">funkcija</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">6</span><span class="p">);</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div></div></div>
+<div class="paragraph"><p>ispisati</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="n">Funkcijski</span> <span class="nl">objekt</span><span class="p">:</span>
+<span class="mi">0</span>
+<span class="mi">0</span>
+<span class="mi">0</span>
+<span class="mf">0.5</span>
+<span class="mi">1</span>
+<span class="mi">1</span>
+<span class="nl">Funkcija</span><span class="p">:</span>
+<span class="o">-</span><span class="mi">1</span>
+<span class="o">-</span><span class="mf">0.5</span>
+<span class="mi">0</span>
+<span class="mf">0.5</span>
+<span class="mi">1</span>
+<span class="mf">1.5</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Parametrizirana funkcija je dakle prihvatila i funkcijski objekt i
+funkciju kao prvi argument. Prevodioc je generirao dvije (preopterećene) funkcije
+iz template-a:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="kt">void</span> <span class="n">f</span><span class="p">(</span><span class="n">CutOff</span> <span class="n">fun</span><span class="p">,</span> <span class="kt">double</span> <span class="n">a</span><span class="p">,</span> <span class="kt">double</span> <span class="n">b</span><span class="p">,</span> <span class="kt">unsigned</span> <span class="n">n</span><span class="p">)</span>
+<span class="kt">void</span> <span class="n">f</span><span class="p">(</span><span class="kt">double</span> <span class="p">(</span><span class="o">*</span><span class="n">fun</span><span class="p">)(</span><span class="kt">double</span><span class="p">),</span> <span class="kt">double</span> <span class="n">a</span><span class="p">,</span> <span class="kt">double</span> <span class="n">b</span><span class="p">,</span> <span class="kt">unsigned</span> <span class="n">n</span><span class="p">)</span>
+</pre></div></div></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_lambda_izrazi">Lambda izrazi</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Kada prevodilac naiđe na <em>lambda izraz</em> on definira anonimnu klasu koja  implementira funkcijski
+objekt. Na primjer, u kodu</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="kt">int</span> <span class="n">size</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">count_if</span><span class="p">(</span><span class="n">vec</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">vec</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span>
+               <span class="p">[</span><span class="n">size</span><span class="p">](</span><span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="k">const</span> <span class="o">&amp;</span> <span class="n">s</span><span class="p">)</span>
+               <span class="p">{</span> <span class="k">return</span> <span class="n">s</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">&gt;</span> <span class="n">size</span><span class="p">;</span> <span class="p">}</span>
+                     <span class="p">);</span>
+</pre></div></div></div>
+<div class="paragraph"><p>bit će definirana klasa oblika:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">ImeKojeGeneriraPrevodilac</span><span class="p">{</span>
+   <span class="k">public</span><span class="o">:</span>
+       <span class="n">ImeKojeGeneriraPrevodilac</span><span class="p">(</span><span class="kt">int</span> <span class="n">sz</span><span class="p">)</span> <span class="o">:</span> <span class="n">size</span><span class="p">(</span><span class="n">sz</span><span class="p">)</span> <span class="p">{}</span>
+       <span class="kt">bool</span> <span class="k">operator</span><span class="p">()(</span><span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="k">const</span> <span class="o">&amp;</span> <span class="n">s</span><span class="p">)</span> <span class="k">const</span>
+                           <span class="p">{</span> <span class="k">return</span> <span class="n">s</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">&gt;</span> <span class="n">size</span><span class="p">;</span> <span class="p">}</span>
+   <span class="k">private</span><span class="o">:</span>
+       <span class="kt">int</span> <span class="n">size</span><span class="p">;</span>
+<span class="p">};</span>
+</pre></div></div></div>
+<div class="paragraph"><p>i gornji kod je ekvivalentan s</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">count_if</span><span class="p">(</span><span class="n">vec</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">vec</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span> <span class="n">ImeKojeGeneriraPrevodilac</span><span class="p">(</span><span class="n">size</span><span class="p">));</span>
+</pre></div></div></div>
+<div class="ulist"><ul>
+<li>
+<p>
+Varijable koje lambda <em>hvata</em> su argumenti konstruktora.
+</p>
+</li>
+<li>
+<p>
+Operator funkcijskog poziva je konstantan tako da <em>lambda</em> ne može mijenjati varijablu
+uhvaćenu po vrijednosti (za to mora biti definirana <em>mutable</em>).
+</p>
+</li>
+</ul></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_genericki_lambda_izrazi">Generički lambda izrazi</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>C++14 definira generičke lambda izraze u kojima se tipovi argumenata izraza deduciraju
+auto-dedukcijom.  Na primjer,</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="kt">int</span> <span class="n">size</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">count_if</span><span class="p">(</span><span class="n">vec</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">vec</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span>
+               <span class="p">[</span><span class="n">size</span><span class="p">](</span><span class="k">auto</span> <span class="o">&amp;</span> <span class="n">s</span><span class="p">)</span>
+               <span class="p">{</span> <span class="k">return</span> <span class="n">s</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">&gt;</span> <span class="n">size</span><span class="p">;</span> <span class="p">}</span>
+                     <span class="p">);</span>
+</pre></div></div></div>
+<div class="paragraph"><p>U ovom slučaju će prevodilac definirati klasu oblika:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">ImeKojeGeneriraPrevodilac</span><span class="p">{</span>
+   <span class="k">public</span><span class="o">:</span>
+       <span class="n">ImeKojeGeneriraPrevodilac</span><span class="p">(</span><span class="kt">int</span> <span class="n">sz</span><span class="p">)</span> <span class="o">:</span> <span class="n">size</span><span class="p">(</span><span class="n">sz</span><span class="p">)</span> <span class="p">{}</span>
+       <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+       <span class="k">auto</span> <span class="k">operator</span><span class="p">()(</span><span class="n">T</span> <span class="o">&amp;</span> <span class="n">s</span><span class="p">)</span> <span class="k">const</span> <span class="p">{</span> <span class="k">return</span> <span class="n">s</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">&gt;</span> <span class="n">size</span><span class="p">;</span> <span class="p">}</span>
+   <span class="k">private</span><span class="o">:</span>
+       <span class="kt">int</span> <span class="n">size</span><span class="p">;</span>
+<span class="p">};</span>
+</pre></div></div></div>
+<div class="paragraph"><p>i gornji kod je ekvivalentan s</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">count_if</span><span class="p">(</span><span class="n">vec</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">vec</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span> <span class="n">ImeKojeGeneriraPrevodilac</span><span class="p">(</span><span class="n">size</span><span class="p">));</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Operator funkcijskog poziva nije instanciran pri kreiranju lambde već u trenutku
+korištenja operatora.</p></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_funkcijski_objekti_i_code_std_function_code">Funkcijski objekti i <code>std::function</code></h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Objekt koji možemo pozvati s danim parametrima može biti: funkcija, pokazivač na funkciju,
+lambda izraz, funkcijski objekt i objekt kreiran pomoću <code>std::bind</code>.</p></div>
+<div class="paragraph"><p>Svi ti objekti i kada imaju istu signaturu poziva imaju različite tipove i stoga ih, na primjer,
+ne možemo spremiti u isti spremnik. Primjer:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="kt">int</span> <span class="nf">add</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="p">,</span> <span class="kt">int</span> <span class="n">j</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="n">i</span><span class="o">+</span><span class="n">j</span><span class="p">;</span> <span class="p">}</span> <span class="c1">// funkcija</span>
+
+<span class="k">struct</span> <span class="n">Div</span><span class="p">{</span>    <span class="c1">// klasa</span>
+   <span class="kt">int</span> <span class="k">operator</span><span class="p">()(</span><span class="kt">int</span> <span class="n">i</span><span class="p">,</span> <span class="kt">int</span> <span class="n">j</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="n">i</span><span class="o">/</span><span class="n">j</span><span class="p">;</span> <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="k">auto</span> <span class="n">mod</span> <span class="o">=</span> <span class="p">[](</span><span class="kt">int</span> <span class="n">i</span><span class="p">,</span> <span class="kt">int</span> <span class="n">j</span><span class="p">){</span> <span class="k">return</span> <span class="n">i</span> <span class="o">%</span> <span class="n">j</span><span class="p">;</span> <span class="p">};</span>  <span class="c1">// lambda</span>
+
+<span class="n">std</span><span class="o">::</span><span class="n">map</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">,</span> <span class="kt">int</span><span class="p">(</span><span class="o">*</span><span class="p">)(</span><span class="kt">int</span><span class="p">,</span><span class="kt">int</span><span class="p">)</span><span class="o">&gt;</span> <span class="n">binops</span><span class="p">;</span>
+
+<span class="n">binops</span><span class="p">.</span><span class="n">insert</span><span class="p">({</span><span class="s">"+"</span><span class="p">,</span> <span class="n">add</span><span class="p">});</span>    <span class="c1">// o.k.</span>
+<span class="n">binops</span><span class="p">.</span><span class="n">insert</span><span class="p">({</span><span class="s">"%"</span><span class="p">,</span> <span class="n">mod</span><span class="p">});</span>    <span class="c1">// greška, ovisno o implementaciji</span>
+<span class="n">binops</span><span class="p">.</span><span class="n">insert</span><span class="p">({</span><span class="s">"/"</span><span class="p">,</span> <span class="n">Div</span><span class="p">()});</span>  <span class="c1">// greška</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Ta problem riješava predložak <code>std::function&lt;T&gt;</code> iz zaglavlja
+<code>&lt;functional&gt;</code> koji za dani <strong>tip poziva</strong> <code>T</code> može biti inicijaliziran bilo kojim
+objektom koji može biti pozvan na taj način.  Primjer:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">function</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">(</span><span class="kt">int</span><span class="p">,</span><span class="kt">int</span><span class="p">)</span><span class="o">&gt;</span> <span class="n">f1</span> <span class="o">=</span> <span class="n">add</span><span class="p">;</span>
+<span class="n">std</span><span class="o">::</span><span class="n">function</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">(</span><span class="kt">int</span><span class="p">,</span><span class="kt">int</span><span class="p">)</span><span class="o">&gt;</span> <span class="n">f2</span> <span class="o">=</span> <span class="n">mod</span><span class="p">;</span>
+<span class="n">std</span><span class="o">::</span><span class="n">function</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">(</span><span class="kt">int</span><span class="p">,</span><span class="kt">int</span><span class="p">)</span><span class="o">&gt;</span> <span class="n">f3</span> <span class="o">=</span> <span class="n">Div</span><span class="p">();</span>
+<span class="n">std</span><span class="o">::</span><span class="n">map</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">function</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">(</span><span class="kt">int</span><span class="p">,</span><span class="kt">int</span><span class="p">)</span><span class="o">&gt;&gt;</span> <span class="n">binops</span><span class="p">;</span>
+<span class="n">binops</span><span class="p">.</span><span class="n">insert</span><span class="p">({</span><span class="s">"+"</span><span class="p">,</span><span class="n">f1</span><span class="p">});</span>
+<span class="n">binops</span><span class="p">.</span><span class="n">insert</span><span class="p">({</span><span class="s">"%"</span><span class="p">,</span><span class="n">f2</span><span class="p">});</span>
+<span class="n">binops</span><span class="p">.</span><span class="n">insert</span><span class="p">({</span><span class="s">"/"</span><span class="p">,</span><span class="n">f3</span><span class="p">});</span>
+
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">binops</span><span class="p">[</span><span class="s">"+"</span><span class="p">](</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">binops</span><span class="p">[</span><span class="s">"%"</span><span class="p">](</span><span class="mi">4</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">binops</span><span class="p">[</span><span class="s">"/"</span><span class="p">](</span><span class="mi">9</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+</pre></div></div></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_konverzije">Konverzije</h2>
+<div class="sectionbody">
+<div class="ulist"><ul>
+<li>
+<p>
+Konverzija u tip klase
+</p>
+</li>
+<li>
+<p>
+Konverzija iz tipa klase u …
+</p>
+</li>
+</ul></div>
+<div class="sect2">
+<h3 id="_konverzija_u_tip_klase">Konverzija u tip klase</h3>
+<div class="paragraph"><p>Vrši ih konstruktor koji uzima jedan argument. Ako nije definiran kao <code>explicit</code>
+onda se konverzija vrši automatski.</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Racionalan</span><span class="p">{</span>
+    <span class="k">friend</span> <span class="n">ostream</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">&lt;&lt;</span><span class="p">(</span><span class="n">ostream</span><span class="o">&amp;</span><span class="p">,</span> <span class="k">const</span> <span class="n">Racionalan</span><span class="o">&amp;</span><span class="p">);</span>
+    <span class="k">friend</span> <span class="n">Racionalan</span> <span class="k">operator</span><span class="o">+</span><span class="p">(</span><span class="k">const</span> <span class="n">Racionalan</span><span class="o">&amp;</span><span class="p">,</span> <span class="k">const</span> <span class="n">Racionalan</span><span class="o">&amp;</span><span class="p">);</span>
+    <span class="k">friend</span> <span class="n">Racionalan</span> <span class="k">operator</span><span class="o">-</span><span class="p">(</span><span class="k">const</span> <span class="n">Racionalan</span><span class="o">&amp;</span><span class="p">,</span> <span class="k">const</span> <span class="n">Racionalan</span><span class="o">&amp;</span><span class="p">);</span>
+    <span class="k">friend</span> <span class="n">Racionalan</span> <span class="k">operator</span><span class="o">*</span><span class="p">(</span><span class="k">const</span> <span class="n">Racionalan</span><span class="o">&amp;</span><span class="p">,</span> <span class="k">const</span> <span class="n">Racionalan</span><span class="o">&amp;</span><span class="p">);</span>
+    <span class="k">friend</span> <span class="n">Racionalan</span> <span class="k">operator</span><span class="o">/</span><span class="p">(</span><span class="k">const</span> <span class="n">Racionalan</span><span class="o">&amp;</span><span class="p">,</span> <span class="k">const</span> <span class="n">Racionalan</span><span class="o">&amp;</span><span class="p">);</span>
+
+    <span class="k">private</span><span class="o">:</span>
+        <span class="kt">int</span> <span class="n">n</span><span class="p">;</span>  <span class="c1">// Brojnik</span>
+        <span class="kt">int</span> <span class="n">m</span><span class="p">;</span>  <span class="c1">// Nazivnik</span>
+    <span class="k">public</span><span class="o">:</span>
+        <span class="n">Racionalan</span><span class="p">(</span><span class="kt">int</span> <span class="n">brojnik</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="kt">int</span> <span class="n">nazivnik</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span> <span class="o">:</span> <span class="n">n</span><span class="p">(</span><span class="n">brojnik</span><span class="p">),</span> <span class="n">m</span><span class="p">(</span><span class="n">nazivnik</span><span class="p">)</span>
+        <span class="p">{</span><span class="n">assert</span><span class="p">(</span><span class="n">m</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">);}</span>
+        <span class="n">Racionalan</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">+=</span><span class="p">(</span><span class="k">const</span> <span class="n">Racionalan</span><span class="o">&amp;</span> <span class="n">rhs</span><span class="p">);</span>
+        <span class="n">Racionalan</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">-=</span><span class="p">(</span><span class="k">const</span> <span class="n">Racionalan</span><span class="o">&amp;</span> <span class="n">rhs</span><span class="p">);</span>
+<span class="p">};</span>
+</pre></div></div></div>
+<div class="paragraph"><p><strong>Zadatak</strong>. Implementirajte sve operatore  klase <code>Racionalan</code>.</p></div>
+<div class="paragraph"><p>Sjedeći kod će ispravno funkcionirati:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="n">Racionalan</span> <span class="nf">a</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span> <span class="n">b</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="mi">3</span><span class="p">);</span>
+
+<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">a</span> <span class="o">+</span> <span class="mi">3</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">a</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</pre></div></div></div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_problem">Problem:</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">a</span> <span class="o">+</span> <span class="mf">3.14</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Naredba je posve legalna, ali daje isti rezultat kao i <code>a + 3</code>.</p></div>
+<div class="sect2">
+<h3 id="_konverzija_iz_tipa_klase_u_8230">Konverzija iz tipa klase u …</h3>
+<div class="paragraph"><p>Konverziju iz tipa klase u neki drugi tip obavljaju <em>operatori konverzije</em>.
+Operator konverzije u tip <code>T</code> deklarira se na sljedeći način:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="k">operator</span> <span class="nf">T</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Pogledajmo primjer operatora koji tip <code>Racionalan</code> konvertira u <code>double</code>.</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Racionalan</span><span class="p">{</span>
+    <span class="k">friend</span> <span class="n">ostream</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">&lt;&lt;</span><span class="p">(</span><span class="n">ostream</span><span class="o">&amp;</span><span class="p">,</span> <span class="k">const</span> <span class="n">Racionalan</span><span class="o">&amp;</span><span class="p">);</span>
+    <span class="k">friend</span> <span class="n">Racionalan</span> <span class="k">operator</span><span class="o">+</span><span class="p">(</span><span class="k">const</span> <span class="n">Racionalan</span><span class="o">&amp;</span><span class="p">,</span> <span class="k">const</span> <span class="n">Racionalan</span><span class="o">&amp;</span><span class="p">);</span>
+    <span class="k">friend</span> <span class="n">Racionalan</span> <span class="k">operator</span><span class="o">-</span><span class="p">(</span><span class="k">const</span> <span class="n">Racionalan</span><span class="o">&amp;</span><span class="p">,</span> <span class="k">const</span> <span class="n">Racionalan</span><span class="o">&amp;</span><span class="p">);</span>
+    <span class="k">friend</span> <span class="n">Racionalan</span> <span class="k">operator</span><span class="o">*</span><span class="p">(</span><span class="k">const</span> <span class="n">Racionalan</span><span class="o">&amp;</span><span class="p">,</span> <span class="k">const</span> <span class="n">Racionalan</span><span class="o">&amp;</span><span class="p">);</span>
+    <span class="k">friend</span> <span class="n">Racionalan</span> <span class="k">operator</span><span class="o">/</span><span class="p">(</span><span class="k">const</span> <span class="n">Racionalan</span><span class="o">&amp;</span><span class="p">,</span> <span class="k">const</span> <span class="n">Racionalan</span><span class="o">&amp;</span><span class="p">);</span>
+
+    <span class="k">private</span><span class="o">:</span>
+        <span class="kt">int</span> <span class="n">n</span><span class="p">;</span>  <span class="c1">// Brojnik</span>
+        <span class="kt">int</span> <span class="n">m</span><span class="p">;</span>  <span class="c1">// Nazivnik</span>
+    <span class="k">public</span><span class="o">:</span>
+        <span class="k">explicit</span>
+        <span class="n">Racionalan</span><span class="p">(</span><span class="kt">int</span> <span class="n">brojnik</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="kt">int</span> <span class="n">nazivnik</span> <span class="o">=</span> <span class="mi">1</span><span class="p">);</span>
+        <span class="k">operator</span> <span class="nf">double</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span> <span class="k">return</span> <span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="p">(</span><span class="n">n</span><span class="p">)</span><span class="o">/</span><span class="n">m</span><span class="p">;}</span>
+        <span class="n">Racionalan</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">+=</span><span class="p">(</span><span class="k">const</span> <span class="n">Racionalan</span><span class="o">&amp;</span> <span class="n">rhs</span><span class="p">);</span>
+        <span class="n">Racionalan</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">-=</span><span class="p">(</span><span class="k">const</span> <span class="n">Racionalan</span><span class="o">&amp;</span> <span class="n">rhs</span><span class="p">);</span>
+<span class="p">};</span>
+</pre></div></div></div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_sintaksa_operatora_konverzije">Sintaksa operatora konverzije:</h2>
+<div class="sectionbody">
+<div class="ulist"><ul>
+<li>
+<p>
+Tip u koji se vrši konverzija dio je imena operatora i dolazi iz ključne
+riječi <code>operator</code>.   Taj tip može biti primitivan, tip klase ili ime uvedeno s
+<code>typedef</code>.  Pri tome, kako operator konverzije vraća vrijednost tipa
+u koji se konverzija vrši,  nije moguće definirati operator konverzije
+u tip koji ne može biti povratna vrijednost funkcije — kao što je  polje ili funkcija.
+Ostali složeni tipovi (pokazivači i reference) su dozvoljeni.
+</p>
+</li>
+<li>
+<p>
+Operator konverzije mora biti član klase. On ne uzima parametre i ne deklarira
+   povratnu vrijednost jer je ona dana imenom operatora.
+</p>
+</li>
+<li>
+<p>
+Prirodno je operator konverzije deklarirati kao konstantan operator.
+</p>
+</li>
+</ul></div>
+<div class="paragraph"><p>Sada će se naredba</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="n">cout</span> <span class="o">&lt;&lt;</span>  <span class="n">a</span> <span class="o">+</span> <span class="mf">3.14</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</pre></div></div></div>
+<div class="paragraph"><p>ispravno izvršiti i dati rezultat <code>a + 3.14 = 4.80667</code> umjesto
+<code>a + 3.14 = 14/3</code> kojeg smo dobivali ranije. Ali, uočimo dobro
+da smo naš konstruktor sada <em>deklarirali eksplicitnim</em>. Pogledajmo što be se
+desilo pri naredbi <code>a + 3.14</code> da to nismo učinili: Prevodilac bi javio
+sljedeću grešku:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="nl">error</span><span class="p">:</span> <span class="n">ambiguous</span> <span class="n">overload</span> <span class="k">for</span> <span class="k">operator</span><span class="o">+</span> <span class="n">in</span> <span class="n">a</span> <span class="o">+</span> <span class="mf">3.14000000000000012434497875801753252744674682617e+0</span>
+<span class="nl">note</span><span class="p">:</span> <span class="n">candidates</span> <span class="nl">are</span><span class="p">:</span> <span class="k">operator</span><span class="o">+</span><span class="p">(</span><span class="kt">double</span><span class="p">,</span> <span class="kt">double</span><span class="p">)</span> <span class="o">&lt;</span><span class="n">built</span><span class="o">-</span><span class="n">in</span><span class="o">&gt;</span>
+<span class="nl">note</span><span class="p">:</span>                 <span class="n">Racionalan</span> <span class="k">operator</span><span class="o">+</span><span class="p">(</span><span class="k">const</span> <span class="n">Racionalan</span><span class="o">&amp;</span><span class="p">,</span> <span class="k">const</span> <span class="n">Racionalan</span><span class="o">&amp;</span><span class="p">)</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Prevodilac je zaključio da su ugrađeni operator zbrajanja i operator definiran u klasi <code>Racionalan</code>
+jednako dobri kandidati i poziv je stoga dvosmislen. Naime, sada postoje dvije mogućnosti
+koje su jednakovaljane:</p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+Ili konvertirati <code>3.14</code> pomoću konstruktora u tip <code>Racionalan</code> i zatim primijeniti
+operator zbrajanja iz klase <code>Racionalan</code>;
+</p>
+</li>
+<li>
+<p>
+Ili konvertirati <code>a</code> pomoću operatora konverzije u tip <code>double</code>    i
+iskoristiti primitivan operator zbrajanja.
+</p>
+</li>
+</ul></div>
+<div class="paragraph"><p>Budući da se u oba slučaja na jednom parametru mora izvršiti konverzija
+definiranu korisnikom, <em>a među takvim konverzijama prevodilac ne radi razlike</em>,
+poziv je dvosmislen.</p></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_konverzije_se_obavljaju_automatski">Konverzije se obavljaju automatski</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Konverzije koje obavljaju operatori konverzije i one koje obavlja
+konstruktor pozivaju se automatski u svim situacijama koje dovode od implicitnih konverzija.
+To su sljedeće situacije:</p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+U izrazima u kojima sudjeluju operandi različitih tipova;
+</p>
+</li>
+<li>
+<p>
+U uvjetima <code>if</code> i <code>while</code> naredbe (konverzija u tip <code>bool</code>);
+</p>
+</li>
+<li>
+<p>
+Pri predaji parametara funkciji i vraćanju vrijednosti iz funkcije u pozivni program;
+</p>
+</li>
+<li>
+<p>
+Pri predaji parametara preopterećenim operatorima;
+</p>
+</li>
+<li>
+<p>
+Kod eksplicitnog korištenja konverzije.
+</p>
+</li>
+</ul></div>
+<div class="paragraph"><p>Eksplicitna konverzija</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</pre></div></div></div>
+<div class="paragraph"><p>je ekvivalentna funkcijskom pozivu</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">c</span><span class="p">.</span><span class="k">operator</span> <span class="kt">double</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</pre></div></div></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_problemi_s_konverzijama">Problemi s konverzijama</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Kada implementiramo konverziju iz tipa klase u neki drugi tip moramo osigurati da
+postoji samo jedan način na koji se ta konverzija vrši.</p></div>
+<div class="paragraph"><p>To pravilo je moguće narušiti na dva načina:</p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+Dvije klase dozvoljavaju istu konverziju;
+</p>
+</li>
+<li>
+<p>
+Postoji više konverzija u tipove međusobno vezane konverzijama.
+</p>
+</li>
+</ul></div>
+<div class="sect2">
+<h3 id="_dvije_klase_s_istom_konverzijom">Dvije klase s istom konverzijom</h3>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="k">struct</span> <span class="n">B</span><span class="p">;</span>
+
+<span class="k">struct</span> <span class="n">A</span><span class="p">{</span>
+    <span class="n">A</span><span class="p">()</span> <span class="o">=</span> <span class="k">default</span><span class="p">;</span>
+    <span class="n">A</span><span class="p">(</span><span class="n">B</span> <span class="k">const</span> <span class="o">&amp;</span><span class="p">);</span>   <span class="c1">// konverzija iz B u A</span>
+<span class="p">};</span>
+
+<span class="k">struct</span> <span class="n">B</span><span class="p">{</span>
+   <span class="k">operator</span> <span class="n">A</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>  <span class="c1">// konverzija iz B u A</span>
+<span class="p">};</span>
+
+<span class="n">A</span> <span class="nf">f</span><span class="p">(</span><span class="n">A</span> <span class="k">const</span> <span class="o">&amp;</span> <span class="n">a</span><span class="p">){</span>
+<span class="c1">//  ...</span>
+<span class="p">}</span>
+
+<span class="n">B</span> <span class="n">b</span><span class="p">;</span>
+<span class="n">A</span> <span class="n">a</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">b</span><span class="p">);</span> <span class="c1">// Dvosmislen poziv. b može biti konvertiran</span>
+            <span class="c1">// u A na dva načina.</span>
+
+<span class="n">A</span> <span class="n">a</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">b</span><span class="p">.</span><span class="k">operator</span> <span class="n">A</span><span class="p">());</span> <span class="c1">// prva mogućnost</span>
+<span class="n">A</span> <span class="n">a</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">A</span><span class="p">(</span><span class="n">b</span><span class="p">));</span>           <span class="c1">// druga mogućnost</span>
+</pre></div></div></div>
+</div>
+<div class="sect2">
+<h3 id="_vise_konverzija_u_tipove_meusobno_vezane_konverzijama">Više konverzija u tipove međusobno vezane konverzijama</h3>
+<div class="paragraph"><p>Te situacije vode do dvosmislenih poziva.</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="k">struct</span> <span class="n">C</span><span class="p">{</span>
+    <span class="n">C</span><span class="p">(</span><span class="kt">int</span><span class="p">);</span>     <span class="c1">// konverzija iz int u C</span>
+    <span class="n">C</span><span class="p">(</span><span class="kt">double</span><span class="p">);</span>  <span class="c1">// konverzija iz double u C</span>
+
+    <span class="k">operator</span> <span class="nf">int</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>   <span class="c1">// konverzija iz C u int</span>
+    <span class="k">operator</span> <span class="nf">double</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span><span class="c1">// konverzija iz C u double</span>
+    <span class="c1">// ..</span>
+<span class="p">};</span>
+
+<span class="kt">void</span> <span class="nf">g</span><span class="p">(</span><span class="kt">long</span> <span class="kt">double</span> <span class="n">x</span><span class="p">){</span>
+<span class="c1">// ...</span>
+<span class="p">}</span>
+
+<span class="n">C</span> <span class="nf">c</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="n">g</span><span class="p">(</span><span class="n">c</span><span class="p">);</span>  <span class="c1">// c -&gt; double -&gt; long double ili</span>
+       <span class="c1">// c -&gt; int -&gt; long double</span>
+
+<span class="kt">long</span> <span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">1l</span><span class="p">;</span>
+<span class="n">C</span> <span class="nf">cc</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>  <span class="c1">// long int -&gt; double ili long int -&gt; int ?</span>
+</pre></div></div></div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_explicitan_operator_konverzije">Explicitan operator konverzije</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Standard C++2011 dozvoljava <code>explicit</code> deklaraciju operatora konverzije.
+Eksplicitan operator konverzije ne sudjeluje u implicitnim konverzijama već se može
+pozvati jedino eksplicitno (odnosno kroz <code>static_cast</code>).</p></div>
+<div class="paragraph"><p>To pravilo ima jednu iznimku: operator konverzije u tip <code>bool</code>
+i kada je definiran kao <code>explicit</code>  vrši implicitnu konverziju u
+ovim situacijama:</p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+U uvjetu <code>if</code>, <code>while</code>, <code>do</code> i <code>for</code> naredbe;
+</p>
+</li>
+<li>
+<p>
+U uvjetu operatora <code>?:</code>.
+</p>
+</li>
+<li>
+<p>
+Kao operand logičkih operatora.
+</p>
+</li>
+</ul></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="k">struct</span> <span class="n">A</span><span class="p">{</span>
+   <span class="k">explicit</span> <span class="k">operator</span> <span class="kt">bool</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
+   <span class="c1">// ...</span>
+<span class="p">};</span>
+
+<span class="n">A</span> <span class="n">a</span><span class="p">;</span>
+<span class="kt">bool</span> <span class="n">isDone</span> <span class="o">=</span> <span class="n">a</span><span class="p">;</span> <span class="c1">// greška, implicitne konverzije nisu dozvoljene</span>
+
+<span class="k">if</span><span class="p">(</span> <span class="n">a</span> <span class="p">)</span> <span class="p">{</span> <span class="c1">// o.k.</span>
+    <span class="c1">// ...</span>
+<span class="p">}</span>
+</pre></div></div></div>
+<div class="paragraph"><p><strong>Primjer</strong>: operator <code>&gt;&gt;</code> iz STL-a definira eksplicitan operator konverzije u <code>bool</code> i
+zato možemo koristiti izraze oblika:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="k">while</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">value</span><span class="p">)</span>
+</pre></div></div></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_konverzije_i_preopterecenje_funkcija">Konverzije i preopterećenje funkcija</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Standardne konverzije mogu biti kombinirane s korisničkim konverzijama, ali vrijedi:</p></div>
+<div class="admonitionblock">
+<table><tbody><tr>
+<td class="icon">
+<div class="title">Napomena</div>
+</td>
+<td class="content">U implicitnim i eksplicitnim konverzijama prevodilac dozvoljava najviše
+jednu korisničku konverziju (konverziju definiranu unutar klase operatorom konverzije
+ili konstruktorom).</td>
+</tr></tbody></table>
+</div>
+<div class="paragraph"><p><strong>Selekcija funkcije iz skupa preopterećenih funkcija</strong> dešava se u
+tri koraka:</p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+Određivanje skupa  kandidata;
+</p>
+</li>
+<li>
+<p>
+Nalaženje dobrih kandidata unutar skupa svih kandidata;
+</p>
+</li>
+<li>
+<p>
+Određivanje najboljeg kandidata.
+</p>
+</li>
+</ul></div>
+<div class="paragraph"><p><em>Skup kandidata</em> su sve funkcije istog imena vidljive u dosegu poziva, odnosno u prvom
+okružujućem dosegu u kome se nalazi bar jedan kandidat. Operatori se tretiraju kao funkcije, ali
+ovdje postoji mala iznimka. <em>Operatori članovi klase tretiraju se ravnopravno s operatorima
+definiranim izvan klase</em>.</p></div>
+<div class="paragraph"><p><em>Dobri kandidati</em> čine podskup kandidata koji se mogu pozvati sa zadanim parametrima.
+U određivanju dobrih kandidata određuju se i konverzije koje su potrebne za poziv
+svake pojedine funkcije ili operatora.</p></div>
+<div class="paragraph"><p><em>Najbolji kandidat</em> ne smije biti lošiji od drugih niti po jednom parametru, a po jednom
+mora biti bolji od svih. Pri tome se konverzije rangiraju kako bi se ostvario poredak na
+skupu konverzija. Najboljeg kandidata nema kada ima više  "jednako dobrih" i tada je
+poziv <strong>dvosmislen</strong>.</p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+U svakom nizu konverzija može biti samo jedna korisnička. Ako dva niza konverzija koriste
+<em>istu korisničku konverziju</em>, onda se cjelokupna konverzija rangira prema rangu standardnih
+konverzija koje se vrše prije ili poslije korisničke konverzije.
+</p>
+</li>
+<li>
+<p>
+Ako dva niza konverzija koriste <em>različitu korisničku konverziju</em>, onda se ti nizovi smatraju
+jednakovrijednim bez obzira na rang standardnih konverzija koje se vrše prije ili
+poslije korisničke konverzije. Takve situacije lako dovode do dvosmislenosti poziva.
+</p>
+</li>
+</ul></div>
+<div class="paragraph"><p>Kada se desi dvosmisleni poziv zbog implicitnih konverzija ponekad se situacija može
+razriješiti eksplicitnim pozivom operatoru konverzije ili konstruktoru, no to nije uvijek slučaj.</p></div>
+</div>
+</div>
+</div>
+
+<div id="footer">
+<div id="footer-text">
+Version 1.1<br>
+Zadnja izmjena
+ 2019-05-14 10:15:58 CEST
+</div>
+</div>
+
+
+</body></html>

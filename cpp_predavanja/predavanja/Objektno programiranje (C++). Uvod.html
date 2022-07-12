@@ -1,0 +1,1559 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<!-- saved from url=(0089)https://web.math.pmf.unizg.hr/nastava/opepp/Slides/Predavanja/html-noslides/slides-1.html -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="hr"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="generator" content="AsciiDoc 8.6.9">
+<title>Objektno programiranje (C++). Uvod</title>
+<style type="text/css">
+/* Shared CSS for AsciiDoc xhtml11 and html5 backends */
+
+/* Default font. */
+body {
+  font-family: Georgia,serif;
+}
+
+/* Title font. */
+h1, h2, h3, h4, h5, h6,
+div.title, caption.title,
+thead, p.table.header,
+#toctitle,
+#author, #revnumber, #revdate, #revremark,
+#footer {
+  font-family: Arial,Helvetica,sans-serif;
+}
+
+body {
+  margin: 1em 5% 1em 5%;
+}
+
+a {
+  color: blue;
+  text-decoration: underline;
+}
+a:visited {
+  color: fuchsia;
+}
+
+em {
+  font-style: italic;
+  color: navy;
+}
+
+strong {
+  font-weight: bold;
+  color: #083194;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #527bbd;
+  margin-top: 1.2em;
+  margin-bottom: 0.5em;
+  line-height: 1.3;
+}
+
+h1, h2, h3 {
+  border-bottom: 2px solid silver;
+}
+h2 {
+  padding-top: 0.5em;
+}
+h3 {
+  float: left;
+}
+h3 + * {
+  clear: left;
+}
+h5 {
+  font-size: 1.0em;
+}
+
+div.sectionbody {
+  margin-left: 0;
+}
+
+hr {
+  border: 1px solid silver;
+}
+
+p {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+ul, ol, li > p {
+  margin-top: 0;
+}
+ul > li     { color: #aaa; }
+ul > li > * { color: black; }
+
+.monospaced, code, pre {
+  font-family: "Courier New", Courier, monospace;
+  font-size: inherit;
+  color: navy;
+  padding: 0;
+  margin: 0;
+}
+pre {
+  white-space: pre-wrap;
+}
+
+#author {
+  color: #527bbd;
+  font-weight: bold;
+  font-size: 1.1em;
+}
+#email {
+}
+#revnumber, #revdate, #revremark {
+}
+
+#footer {
+  font-size: small;
+  border-top: 2px solid silver;
+  padding-top: 0.5em;
+  margin-top: 4.0em;
+}
+#footer-text {
+  float: left;
+  padding-bottom: 0.5em;
+}
+#footer-badges {
+  float: right;
+  padding-bottom: 0.5em;
+}
+
+#preamble {
+  margin-top: 1.5em;
+  margin-bottom: 1.5em;
+}
+div.imageblock, div.exampleblock, div.verseblock,
+div.quoteblock, div.literalblock, div.listingblock, div.sidebarblock,
+div.admonitionblock {
+  margin-top: 1.0em;
+  margin-bottom: 1.5em;
+}
+div.admonitionblock {
+  margin-top: 2.0em;
+  margin-bottom: 2.0em;
+  margin-right: 10%;
+  color: #606060;
+}
+
+div.content { /* Block element content. */
+  padding: 0;
+}
+
+/* Block element titles. */
+div.title, caption.title {
+  color: #527bbd;
+  font-weight: bold;
+  text-align: left;
+  margin-top: 1.0em;
+  margin-bottom: 0.5em;
+}
+div.title + * {
+  margin-top: 0;
+}
+
+td div.title:first-child {
+  margin-top: 0.0em;
+}
+div.content div.title:first-child {
+  margin-top: 0.0em;
+}
+div.content + div.title {
+  margin-top: 0.0em;
+}
+
+div.sidebarblock > div.content {
+  background: #ffffee;
+  border: 1px solid #dddddd;
+  border-left: 4px solid #f0f0f0;
+  padding: 0.5em;
+}
+
+div.listingblock > div.content {
+  border: 1px solid #dddddd;
+  border-left: 5px solid #f0f0f0;
+  background: #f8f8f8;
+  padding: 0.5em;
+}
+
+div.quoteblock, div.verseblock {
+  padding-left: 1.0em;
+  margin-left: 1.0em;
+  margin-right: 10%;
+  border-left: 5px solid #f0f0f0;
+  color: #888;
+}
+
+div.quoteblock > div.attribution {
+  padding-top: 0.5em;
+  text-align: right;
+}
+
+div.verseblock > pre.content {
+  font-family: inherit;
+  font-size: inherit;
+}
+div.verseblock > div.attribution {
+  padding-top: 0.75em;
+  text-align: left;
+}
+/* DEPRECATED: Pre version 8.2.7 verse style literal block. */
+div.verseblock + div.attribution {
+  text-align: left;
+}
+
+div.admonitionblock .icon {
+  vertical-align: top;
+  font-size: 1.1em;
+  font-weight: bold;
+  text-decoration: underline;
+  color: #527bbd;
+  padding-right: 0.5em;
+}
+div.admonitionblock td.content {
+  padding-left: 0.5em;
+  border-left: 3px solid #dddddd;
+}
+
+div.exampleblock > div.content {
+  border-left: 3px solid #dddddd;
+  padding-left: 0.5em;
+}
+
+div.imageblock div.content { padding-left: 0; }
+span.image img { border-style: none; vertical-align: text-bottom; }
+a.image:visited { color: white; }
+
+dl {
+  margin-top: 0.8em;
+  margin-bottom: 0.8em;
+}
+dt {
+  margin-top: 0.5em;
+  margin-bottom: 0;
+  font-style: normal;
+  color: navy;
+}
+dd > *:first-child {
+  margin-top: 0.1em;
+}
+
+ul, ol {
+    list-style-position: outside;
+}
+ol.arabic {
+  list-style-type: decimal;
+}
+ol.loweralpha {
+  list-style-type: lower-alpha;
+}
+ol.upperalpha {
+  list-style-type: upper-alpha;
+}
+ol.lowerroman {
+  list-style-type: lower-roman;
+}
+ol.upperroman {
+  list-style-type: upper-roman;
+}
+
+div.compact ul, div.compact ol,
+div.compact p, div.compact p,
+div.compact div, div.compact div {
+  margin-top: 0.1em;
+  margin-bottom: 0.1em;
+}
+
+tfoot {
+  font-weight: bold;
+}
+td > div.verse {
+  white-space: pre;
+}
+
+div.hdlist {
+  margin-top: 0.8em;
+  margin-bottom: 0.8em;
+}
+div.hdlist tr {
+  padding-bottom: 15px;
+}
+dt.hdlist1.strong, td.hdlist1.strong {
+  font-weight: bold;
+}
+td.hdlist1 {
+  vertical-align: top;
+  font-style: normal;
+  padding-right: 0.8em;
+  color: navy;
+}
+td.hdlist2 {
+  vertical-align: top;
+}
+div.hdlist.compact tr {
+  margin: 0;
+  padding-bottom: 0;
+}
+
+.comment {
+  background: yellow;
+}
+
+.footnote, .footnoteref {
+  font-size: 0.8em;
+}
+
+span.footnote, span.footnoteref {
+  vertical-align: super;
+}
+
+#footnotes {
+  margin: 20px 0 20px 0;
+  padding: 7px 0 0 0;
+}
+
+#footnotes div.footnote {
+  margin: 0 0 5px 0;
+}
+
+#footnotes hr {
+  border: none;
+  border-top: 1px solid silver;
+  height: 1px;
+  text-align: left;
+  margin-left: 0;
+  width: 20%;
+  min-width: 100px;
+}
+
+div.colist td {
+  padding-right: 0.5em;
+  padding-bottom: 0.3em;
+  vertical-align: top;
+}
+div.colist td img {
+  margin-top: 0.3em;
+}
+
+@media print {
+  #footer-badges { display: none; }
+}
+
+#toc {
+  margin-bottom: 2.5em;
+}
+
+#toctitle {
+  color: #527bbd;
+  font-size: 1.1em;
+  font-weight: bold;
+  margin-top: 1.0em;
+  margin-bottom: 0.1em;
+}
+
+div.toclevel0, div.toclevel1, div.toclevel2, div.toclevel3, div.toclevel4 {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+div.toclevel2 {
+  margin-left: 2em;
+  font-size: 0.9em;
+}
+div.toclevel3 {
+  margin-left: 4em;
+  font-size: 0.9em;
+}
+div.toclevel4 {
+  margin-left: 6em;
+  font-size: 0.9em;
+}
+
+span.aqua { color: aqua; }
+span.black { color: black; }
+span.blue { color: blue; }
+span.fuchsia { color: fuchsia; }
+span.gray { color: gray; }
+span.green { color: green; }
+span.lime { color: lime; }
+span.maroon { color: maroon; }
+span.navy { color: navy; }
+span.olive { color: olive; }
+span.purple { color: purple; }
+span.red { color: red; }
+span.silver { color: silver; }
+span.teal { color: teal; }
+span.white { color: white; }
+span.yellow { color: yellow; }
+
+span.aqua-background { background: aqua; }
+span.black-background { background: black; }
+span.blue-background { background: blue; }
+span.fuchsia-background { background: fuchsia; }
+span.gray-background { background: gray; }
+span.green-background { background: green; }
+span.lime-background { background: lime; }
+span.maroon-background { background: maroon; }
+span.navy-background { background: navy; }
+span.olive-background { background: olive; }
+span.purple-background { background: purple; }
+span.red-background { background: red; }
+span.silver-background { background: silver; }
+span.teal-background { background: teal; }
+span.white-background { background: white; }
+span.yellow-background { background: yellow; }
+
+span.big { font-size: 2em; }
+span.small { font-size: 0.6em; }
+
+span.underline { text-decoration: underline; }
+span.overline { text-decoration: overline; }
+span.line-through { text-decoration: line-through; }
+
+div.unbreakable { page-break-inside: avoid; }
+
+
+/*
+ * xhtml11 specific
+ *
+ * */
+
+div.tableblock {
+  margin-top: 1.0em;
+  margin-bottom: 1.5em;
+}
+div.tableblock > table {
+  border: 3px solid #527bbd;
+}
+thead, p.table.header {
+  font-weight: bold;
+  color: #527bbd;
+}
+p.table {
+  margin-top: 0;
+}
+/* Because the table frame attribute is overriden by CSS in most browsers. */
+div.tableblock > table[frame="void"] {
+  border-style: none;
+}
+div.tableblock > table[frame="hsides"] {
+  border-left-style: none;
+  border-right-style: none;
+}
+div.tableblock > table[frame="vsides"] {
+  border-top-style: none;
+  border-bottom-style: none;
+}
+
+
+/*
+ * html5 specific
+ *
+ * */
+
+table.tableblock {
+  margin-top: 1.0em;
+  margin-bottom: 1.5em;
+}
+thead, p.tableblock.header {
+  font-weight: bold;
+  color: #527bbd;
+}
+p.tableblock {
+  margin-top: 0;
+}
+table.tableblock {
+  border-width: 3px;
+  border-spacing: 0px;
+  border-style: solid;
+  border-color: #527bbd;
+  border-collapse: collapse;
+}
+th.tableblock, td.tableblock {
+  border-width: 1px;
+  padding: 4px;
+  border-style: solid;
+  border-color: #527bbd;
+}
+
+table.tableblock.frame-topbot {
+  border-left-style: hidden;
+  border-right-style: hidden;
+}
+table.tableblock.frame-sides {
+  border-top-style: hidden;
+  border-bottom-style: hidden;
+}
+table.tableblock.frame-none {
+  border-style: hidden;
+}
+
+th.tableblock.halign-left, td.tableblock.halign-left {
+  text-align: left;
+}
+th.tableblock.halign-center, td.tableblock.halign-center {
+  text-align: center;
+}
+th.tableblock.halign-right, td.tableblock.halign-right {
+  text-align: right;
+}
+
+th.tableblock.valign-top, td.tableblock.valign-top {
+  vertical-align: top;
+}
+th.tableblock.valign-middle, td.tableblock.valign-middle {
+  vertical-align: middle;
+}
+th.tableblock.valign-bottom, td.tableblock.valign-bottom {
+  vertical-align: bottom;
+}
+
+
+/*
+ * manpage specific
+ *
+ * */
+
+body.manpage h1 {
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+  border-top: 2px solid silver;
+  border-bottom: 2px solid silver;
+}
+body.manpage h2 {
+  border-style: none;
+}
+body.manpage div.sectionbody {
+  margin-left: 3em;
+}
+
+@media print {
+  body.manpage div#toc { display: none; }
+}
+.highlight .hll { background-color: #ffffcc }
+.highlight  { background: #f8f8f8; }
+.highlight .c { color: #408080; font-style: italic } /* Comment */
+.highlight .err { border: 1px solid #FF0000 } /* Error */
+.highlight .k { color: #008000; font-weight: bold } /* Keyword */
+.highlight .o { color: #666666 } /* Operator */
+.highlight .cm { color: #408080; font-style: italic } /* Comment.Multiline */
+.highlight .cp { color: #BC7A00 } /* Comment.Preproc */
+.highlight .c1 { color: #408080; font-style: italic } /* Comment.Single */
+.highlight .cs { color: #408080; font-style: italic } /* Comment.Special */
+.highlight .gd { color: #A00000 } /* Generic.Deleted */
+.highlight .ge { font-style: italic } /* Generic.Emph */
+.highlight .gr { color: #FF0000 } /* Generic.Error */
+.highlight .gh { color: #000080; font-weight: bold } /* Generic.Heading */
+.highlight .gi { color: #00A000 } /* Generic.Inserted */
+.highlight .go { color: #808080 } /* Generic.Output */
+.highlight .gp { color: #000080; font-weight: bold } /* Generic.Prompt */
+.highlight .gs { font-weight: bold } /* Generic.Strong */
+.highlight .gu { color: #800080; font-weight: bold } /* Generic.Subheading */
+.highlight .gt { color: #0040D0 } /* Generic.Traceback */
+.highlight .kc { color: #008000; font-weight: bold } /* Keyword.Constant */
+.highlight .kd { color: #008000; font-weight: bold } /* Keyword.Declaration */
+.highlight .kn { color: #008000; font-weight: bold } /* Keyword.Namespace */
+.highlight .kp { color: #008000 } /* Keyword.Pseudo */
+.highlight .kr { color: #008000; font-weight: bold } /* Keyword.Reserved */
+.highlight .kt { color: #B00040 } /* Keyword.Type */
+.highlight .m { color: #666666 } /* Literal.Number */
+.highlight .s { color: #BA2121 } /* Literal.String */
+.highlight .na { color: #7D9029 } /* Name.Attribute */
+.highlight .nb { color: #008000 } /* Name.Builtin */
+.highlight .nc { color: #0000FF; font-weight: bold } /* Name.Class */
+.highlight .no { color: #880000 } /* Name.Constant */
+.highlight .nd { color: #AA22FF } /* Name.Decorator */
+.highlight .ni { color: #999999; font-weight: bold } /* Name.Entity */
+.highlight .ne { color: #D2413A; font-weight: bold } /* Name.Exception */
+.highlight .nf { color: #0000FF } /* Name.Function */
+.highlight .nl { color: #A0A000 } /* Name.Label */
+.highlight .nn { color: #0000FF; font-weight: bold } /* Name.Namespace */
+.highlight .nt { color: #008000; font-weight: bold } /* Name.Tag */
+.highlight .nv { color: #19177C } /* Name.Variable */
+.highlight .ow { color: #AA22FF; font-weight: bold } /* Operator.Word */
+.highlight .w { color: #bbbbbb } /* Text.Whitespace */
+.highlight .mf { color: #666666 } /* Literal.Number.Float */
+.highlight .mh { color: #666666 } /* Literal.Number.Hex */
+.highlight .mi { color: #666666 } /* Literal.Number.Integer */
+.highlight .mo { color: #666666 } /* Literal.Number.Oct */
+.highlight .sb { color: #BA2121 } /* Literal.String.Backtick */
+.highlight .sc { color: #BA2121 } /* Literal.String.Char */
+.highlight .sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
+.highlight .s2 { color: #BA2121 } /* Literal.String.Double */
+.highlight .se { color: #BB6622; font-weight: bold } /* Literal.String.Escape */
+.highlight .sh { color: #BA2121 } /* Literal.String.Heredoc */
+.highlight .si { color: #BB6688; font-weight: bold } /* Literal.String.Interpol */
+.highlight .sx { color: #008000 } /* Literal.String.Other */
+.highlight .sr { color: #BB6688 } /* Literal.String.Regex */
+.highlight .s1 { color: #BA2121 } /* Literal.String.Single */
+.highlight .ss { color: #19177C } /* Literal.String.Symbol */
+.highlight .bp { color: #008000 } /* Name.Builtin.Pseudo */
+.highlight .vc { color: #19177C } /* Name.Variable.Class */
+.highlight .vg { color: #19177C } /* Name.Variable.Global */
+.highlight .vi { color: #19177C } /* Name.Variable.Instance */
+.highlight .il { color: #666666 } /* Literal.Number.Integer.Long */
+
+
+</style>
+<script type="text/javascript">
+/*<![CDATA[*/
+var asciidoc = {  // Namespace.
+
+/////////////////////////////////////////////////////////////////////
+// Table Of Contents generator
+/////////////////////////////////////////////////////////////////////
+
+/* Author: Mihai Bazon, September 2002
+ * http://students.infoiasi.ro/~mishoo
+ *
+ * Table Of Content generator
+ * Version: 0.4
+ *
+ * Feel free to use this script under the terms of the GNU General Public
+ * License, as long as you do not remove or alter this notice.
+ */
+
+ /* modified by Troy D. Hanson, September 2006. License: GPL */
+ /* modified by Stuart Rackham, 2006, 2009. License: GPL */
+
+// toclevels = 1..4.
+toc: function (toclevels) {
+
+  function getText(el) {
+    var text = "";
+    for (var i = el.firstChild; i != null; i = i.nextSibling) {
+      if (i.nodeType == 3 /* Node.TEXT_NODE */) // IE doesn't speak constants.
+        text += i.data;
+      else if (i.firstChild != null)
+        text += getText(i);
+    }
+    return text;
+  }
+
+  function TocEntry(el, text, toclevel) {
+    this.element = el;
+    this.text = text;
+    this.toclevel = toclevel;
+  }
+
+  function tocEntries(el, toclevels) {
+    var result = new Array;
+    var re = new RegExp('[hH]([1-'+(toclevels+1)+'])');
+    // Function that scans the DOM tree for header elements (the DOM2
+    // nodeIterator API would be a better technique but not supported by all
+    // browsers).
+    var iterate = function (el) {
+      for (var i = el.firstChild; i != null; i = i.nextSibling) {
+        if (i.nodeType == 1 /* Node.ELEMENT_NODE */) {
+          var mo = re.exec(i.tagName);
+          if (mo && (i.getAttribute("class") || i.getAttribute("className")) != "float") {
+            result[result.length] = new TocEntry(i, getText(i), mo[1]-1);
+          }
+          iterate(i);
+        }
+      }
+    }
+    iterate(el);
+    return result;
+  }
+
+  var toc = document.getElementById("toc");
+  if (!toc) {
+    return;
+  }
+
+  // Delete existing TOC entries in case we're reloading the TOC.
+  var tocEntriesToRemove = [];
+  var i;
+  for (i = 0; i < toc.childNodes.length; i++) {
+    var entry = toc.childNodes[i];
+    if (entry.nodeName.toLowerCase() == 'div'
+     && entry.getAttribute("class")
+     && entry.getAttribute("class").match(/^toclevel/))
+      tocEntriesToRemove.push(entry);
+  }
+  for (i = 0; i < tocEntriesToRemove.length; i++) {
+    toc.removeChild(tocEntriesToRemove[i]);
+  }
+
+  // Rebuild TOC entries.
+  var entries = tocEntries(document.getElementById("content"), toclevels);
+  for (var i = 0; i < entries.length; ++i) {
+    var entry = entries[i];
+    if (entry.element.id == "")
+      entry.element.id = "_toc_" + i;
+    var a = document.createElement("a");
+    a.href = "#" + entry.element.id;
+    a.appendChild(document.createTextNode(entry.text));
+    var div = document.createElement("div");
+    div.appendChild(a);
+    div.className = "toclevel" + entry.toclevel;
+    toc.appendChild(div);
+  }
+  if (entries.length == 0)
+    toc.parentNode.removeChild(toc);
+},
+
+
+/////////////////////////////////////////////////////////////////////
+// Footnotes generator
+/////////////////////////////////////////////////////////////////////
+
+/* Based on footnote generation code from:
+ * http://www.brandspankingnew.net/archive/2005/07/format_footnote.html
+ */
+
+footnotes: function () {
+  // Delete existing footnote entries in case we're reloading the footnodes.
+  var i;
+  var noteholder = document.getElementById("footnotes");
+  if (!noteholder) {
+    return;
+  }
+  var entriesToRemove = [];
+  for (i = 0; i < noteholder.childNodes.length; i++) {
+    var entry = noteholder.childNodes[i];
+    if (entry.nodeName.toLowerCase() == 'div' && entry.getAttribute("class") == "footnote")
+      entriesToRemove.push(entry);
+  }
+  for (i = 0; i < entriesToRemove.length; i++) {
+    noteholder.removeChild(entriesToRemove[i]);
+  }
+
+  // Rebuild footnote entries.
+  var cont = document.getElementById("content");
+  var spans = cont.getElementsByTagName("span");
+  var refs = {};
+  var n = 0;
+  for (i=0; i<spans.length; i++) {
+    if (spans[i].className == "footnote") {
+      n++;
+      var note = spans[i].getAttribute("data-note");
+      if (!note) {
+        // Use [\s\S] in place of . so multi-line matches work.
+        // Because JavaScript has no s (dotall) regex flag.
+        note = spans[i].innerHTML.match(/\s*\[([\s\S]*)]\s*/)[1];
+        spans[i].innerHTML =
+          "[<a id='_footnoteref_" + n + "' href='#_footnote_" + n +
+          "' title='View footnote' class='footnote'>" + n + "</a>]";
+        spans[i].setAttribute("data-note", note);
+      }
+      noteholder.innerHTML +=
+        "<div class='footnote' id='_footnote_" + n + "'>" +
+        "<a href='#_footnoteref_" + n + "' title='Return to text'>" +
+        n + "</a>. " + note + "</div>";
+      var id =spans[i].getAttribute("id");
+      if (id != null) refs["#"+id] = n;
+    }
+  }
+  if (n == 0)
+    noteholder.parentNode.removeChild(noteholder);
+  else {
+    // Process footnoterefs.
+    for (i=0; i<spans.length; i++) {
+      if (spans[i].className == "footnoteref") {
+        var href = spans[i].getElementsByTagName("a")[0].getAttribute("href");
+        href = href.match(/#.*/)[0];  // Because IE return full URL.
+        n = refs[href];
+        spans[i].innerHTML =
+          "[<a href='#_footnote_" + n +
+          "' title='View footnote' class='footnote'>" + n + "</a>]";
+      }
+    }
+  }
+},
+
+install: function(toclevels) {
+  var timerId;
+
+  function reinstall() {
+    asciidoc.footnotes();
+    if (toclevels) {
+      asciidoc.toc(toclevels);
+    }
+  }
+
+  function reinstallAndRemoveTimer() {
+    clearInterval(timerId);
+    reinstall();
+  }
+
+  timerId = setInterval(reinstall, 500);
+  if (document.addEventListener)
+    document.addEventListener("DOMContentLoaded", reinstallAndRemoveTimer, false);
+  else
+    window.onload = reinstallAndRemoveTimer;
+}
+
+}
+asciidoc.install();
+/*]]>*/
+</script>
+</head>
+<body class="article">
+<div id="header">
+<h1>Objektno programiranje (C++). Uvod</h1>
+<span id="author">Mladen Jurak</span><br>
+<span id="revnumber">version 1.1,</span>
+<span id="revdate">2019-02</span>
+</div>
+<div id="content">
+<div class="sect1">
+<h2 id="_ciljevi_kolegija_objektno_programiranje_c">Ciljevi kolegija Objektno programiranje (C++)</h2>
+<div class="sectionbody">
+<div class="ulist"><ul>
+<li>
+<p>
+Uvod u objektno orijentirano i generičko programiranje kroz programski jezik C++;
+</p>
+</li>
+<li>
+<p>
+Detaljna prezentacija jezika C++-a;
+</p>
+</li>
+<li>
+<p>
+Napredno korištenje standardne biblioteke STL. Druge bilioteke, Boost, …;
+</p>
+</li>
+<li>
+<p>
+Napredne tehnike programiranje, softverski predlošci;
+</p>
+</li>
+<li>
+<p>
+Upoznavanje sa sustavom za upravljanjem kodom (Git, GitHub), sustavom za
+  distribuciju koda (CMake) i softverom za testiranje koda (googletest).
+</p>
+</li>
+</ul></div>
+<div class="sect2">
+<h3 id="_pretpostavke">Pretpostavke:</h3>
+<div class="ulist"><ul>
+<li>
+<p>
+Poznavanje osnova programskog jezika C++.
+</p>
+</li>
+<li>
+<p>
+Poznavanje osnova STL-a: ulaz/izlaz, stringovi, vektori, itd.
+</p>
+</li>
+</ul></div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_organizacija_kolegija">Organizacija kolegija</h2>
+<div class="sectionbody">
+<div class="ulist"><ul>
+<li>
+<p>
+Predavanja: srijeda 10-12 (A102), vježbe: srijeda 12-14 (Pr2), 14-16 (Pr2) i 16-18 (Pr2)
+</p>
+</li>
+<li>
+<p>
+Stranica kolegija se nalazi na sustavu <a href="http://merlin.srce.hr/">merlin.srce.hr</a>. Potrebno je ulogirati se
+        svojim  <strong>AAI@EduHr</strong> identitetom.
+</p>
+<div class="ulist"><ul>
+<li>
+<p>
+Studenti se trebaju prijaviti u Merlin sustav. Kod prve prijave treba upisati osobne podatke
+</p>
+</li>
+<li>
+<p>
+Zatim treba upisati kolegij <strong>Objektno programiranje (C++)</strong>. Upis će biti moguć samo
+           prvi tjedan nastave. Upis će se nakon toga obavljati tako da se na <a href="mailto:jurak@math.hr">jurak@math.hr</a> pošalje email sa zahtjevom za upis.
+</p>
+</li>
+</ul></div>
+</li>
+<li>
+<p>
+Stranica kolegija: <a href="http://web.math.hr/nastava/opepp/">web.math.hr/nastava/opepp</a> je samo poveznica na
+        <a href="http://merlin.srce.hr/">Merlin</a> sustav gdje se nalaze nastavni materijali.
+</p>
+</li>
+<li>
+<p>
+Ispit: završni pismeni ispit i domaće zadaće. Nema kolokvija usred semestra.
+</p>
+</li>
+<li>
+<p>
+Materijali na web-u: Web je vrlo bogat materijalima koji se odnose na C++. Stranica
+        <a href="http://en.cppreference.com/w/">en.cppreference.com/w/</a>
+        je temeljni resurs za učenje i korištenje standardne biblioteke.
+</p>
+</li>
+</ul></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_ocjenjivanje">Ocjenjivanje</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_elementi_ocjenivanja">Elementi ocjenivanja</h3>
+<div class="olist arabic"><ol class="arabic">
+<li>
+<p>
+<strong>Završni ispit</strong> (50 %),
+</p>
+</li>
+<li>
+<p>
+<strong>Domaće zadaće</strong> (50 %).
+</p>
+</li>
+<li>
+<p>
+<strong>Aktivnost u nastavi.</strong>
+</p>
+</li>
+</ol></div>
+</div>
+<div class="sect2">
+<h3 id="_prvi_element_ocjenjivanja">Prvi element ocjenjivanja</h3>
+<div class="ulist"><ul>
+<li>
+<p>
+<strong>Završni pismeni ispit</strong>
+   piše se na papiru i uključuje čitavo gradivo. Pravo pristupa ispitu dobiva se ispunjavanjem uvjeta prema drugom i trećem elementu ispitivanja.
+</p>
+</li>
+<li>
+<p>
+Minimalni uvjeti za prolaz na prvom elementu ocjenjivanja je postići <strong>30</strong> od mogućih 100 bodova na završnom ispitu.
+</p>
+</li>
+<li>
+<p>
+Popravni završni ispit organizira se za sve studente koji su pristupili završnom ispitu i nisu postigli
+  dovoljno bodova za prolaznu ocjenu, kao i za studente koji nisu pristupili završnom ispitu.
+</p>
+</li>
+</ul></div>
+</div>
+<div class="sect2">
+<h3 id="_drugi_element_ocjenjivanja">Drugi element ocjenjivanja</h3>
+<div class="ulist"><ul>
+<li>
+<p>
+Sastoji se od <strong>zadaća koje se boduju</strong> ako su predane u zadanom roku. Neke zadaće su manje i
+     uključuju samo doradu programa rađenih na vježbama, dok druge mogu biti opsežnije.
+</p>
+</li>
+<li>
+<p>
+Minimalni uvjeti za prolaz na drugom elementu ocjenjivanja je postići <strong>30</strong> od mogućih 100 bodova
+     na zadaćama. To je uvjet za pristup završnom ispitu.
+</p>
+</li>
+<li>
+<p>
+Mogućnosti popravka drugog elementa ocjenjivanja nema.
+</p>
+</li>
+</ul></div>
+</div>
+<div class="sect2">
+<h3 id="_treci_element_ocjenjivanja">Treći element ocjenjivanja</h3>
+<div class="ulist"><ul>
+<li>
+<p>
+Aktivnost u nastavi je nužan preduvjet za bodovanje zadaća te stoga i za pristup završnom ispitu. Nužno je biti prisutan na 70 % vježbi i 50 % predavanja.
+</p>
+</li>
+<li>
+<p>
+Manju aktivnost od minimalno propisane moguće je opravdati samo posebnim razlozima.
+</p>
+</li>
+</ul></div>
+</div>
+<div class="sect2">
+<h3 id="_zakljucivanje_ocjene">Zaključivanje ocjene</h3>
+<div class="ulist"><ul>
+<li>
+<p>
+Ukupni broj bodova = (bodovi na završnom ispit + bodovi na zadaćama)/2.
+</p>
+</li>
+<li>
+<p>
+Ocjena se dobiva iz ukupnog broja bodova prema sljedećoj tablici:
+</p>
+</li>
+</ul></div>
+<div class="tableblock">
+<table rules="all" style="margin-left:auto; margin-right:auto;" width="50%" frame="hsides" cellspacing="0" cellpadding="4">
+<colgroup><col width="50%">
+<col width="50%">
+</colgroup><thead>
+<tr>
+<th align="center" valign="top"> bodovi     </th>
+<th align="center" valign="top"> ocjena</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center" valign="top"><p class="table">0 do 44</p></td>
+<td align="center" valign="top"><p class="table">nedovoljan</p></td>
+</tr>
+<tr>
+<td align="center" valign="top"><p class="table">45 do 59</p></td>
+<td align="center" valign="top"><p class="table">dovoljan</p></td>
+</tr>
+<tr>
+<td align="center" valign="top"><p class="table">60 do 74</p></td>
+<td align="center" valign="top"><p class="table">dobar</p></td>
+</tr>
+<tr>
+<td align="center" valign="top"><p class="table">75 do 89</p></td>
+<td align="center" valign="top"><p class="table">vrlo dobar</p></td>
+</tr>
+<tr>
+<td align="center" valign="top"><p class="table">90 do 100</p></td>
+<td align="center" valign="top"><p class="table">izvrstan</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_literatura">Literatura</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_osnovna">Osnovna:</h3>
+<div class="ulist"><ul>
+<li>
+<p>
+Stanley B. Lippman, Josée Lajoie, Barbara E. Moo: <em>C++ Primer, Fifth Edition</em>,
+        Addison Wesley Professional, 2012.
+</p>
+</li>
+</ul></div>
+</div>
+<div class="sect2">
+<h3 id="_napredna">Napredna:</h3>
+<div class="ulist"><ul>
+<li>
+<p>
+Bjarne Stroustrup: <em>The C++ Programming Language, Fourth Edition</em>, Addison Wesley, 2013.
+</p>
+</li>
+<li>
+<p>
+Nicolai Josuttis: <em>The C++ Standard Library - A Tutorial and Reference, 2nd Edition</em>,  Addison Wesley, 2012.
+</p>
+</li>
+<li>
+<p>
+David Vandevoorde, Nicolai Josuttis, Douglas Gregor: <em>C++ Templates: The Complete Guide</em>, 2nd Edition, Addison Wesley, 2018.
+</p>
+</li>
+<li>
+<p>
+Scott Meyers: <em>Effective Modern C++:  42 Specific Ways to Improve Your Use of C++11 and C++14</em>, O’Reilly Media Inc, 2015.
+</p>
+</li>
+<li>
+<p>
+Scott Meyers: <em>Effective C++, Third Edition</em>, Addison-Wesley, 2006.
+</p>
+</li>
+<li>
+<p>
+Scott Meyers: <em>Effective STL</em>, Addison-Wesley, 2001.
+</p>
+</li>
+<li>
+<p>
+Herb Sutter: <em>Exceptional C++</em>, Addison Wesley, 2000.
+</p>
+</li>
+<li>
+<p>
+Stephen C. Dewhurst: <em>C++ Common Knowledge</em>, Addison Wesley, 2005.
+</p>
+</li>
+<li>
+<p>
+Erich Gamma, et. all:     <em>Design Patterns: Elements of Reusable Object-Oriented Software</em>   (Addison-Wesley Professional Computing Series).
+</p>
+</li>
+<li>
+<p>
+Andrei Alexandrescu: <em>Modern C++ Design: Generic Programming and Design Patterns Applied</em>,
+    Addison-Wesley, 2001.
+</p>
+</li>
+</ul></div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_programski_jezik_c">Programski jezik C++</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_povijest">Povijest</h3>
+<div class="ulist"><ul>
+<li>
+<p>
+Programski jezik C++ nastao je razvojem  jezika C i zadržava
+    visoku kompatibilnost s njime.
+</p>
+</li>
+<li>
+<p>
+Kreator jezika je  <strong>Bjarne Stroustrup</strong>
+    (<a href="http://www.stroustrup.com/">www.stroustrup.com</a>). Razvoj je započeo 1979. g.;
+     ime C++ skovano je  1983. godine, a prva  komercijalna implementacija pojavila se 1985.
+</p>
+</li>
+<li>
+<p>
+Između 1985. i 1989. jezik je doživio veće inovacije: zaštićeni članovi, parametrizirane klase,
+    višestruko nasljeđivanje itd.
+</p>
+</li>
+<li>
+<p>
+Jezik je 1997. godine definiran je ISO standardnom. To je prva standardizacija jezika.
+</p>
+</li>
+<li>
+<p>
+Godina 2003. — manja revizija prvog standarda.
+</p>
+</li>
+<li>
+<p>
+Godina 2011. — novi standard s brojnim novostima i poboljšanjima.
+</p>
+</li>
+<li>
+<p>
+Godina 2014. — Revizija standarda iz 2011. godine.
+</p>
+</li>
+<li>
+<p>
+Godina 2017. — Revizija standarda iz 2014. godine.
+</p>
+</li>
+<li>
+<p>
+Godina 2020. — Očekuje se novi standard.
+</p>
+</li>
+</ul></div>
+<div class="paragraph"><p>Za informacije o standardu vidjeti: <a href="https://isocpp.org/std/">isocpp.org/std/</a>.</p></div>
+</div>
+<div class="sect2">
+<h3 id="_karakteristike_jezika">Karakteristike jezika</h3>
+<div class="paragraph"><p>Jezik opće namjene visoke efikasnosti. Omogućava programiranje niske razine i programiranje
+s apstrakcijama. Slijedi princip da apstrakcija ne smije negativno utjecati na efikasnost koda.</p></div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_razvoj_softvera">Razvoj softvera</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Razvoj programske aplikacije ili programske biblioteke zahtjeva korištenje niza softverskih
+alata i sustava među kojim su temeljni sljedeći:</p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+Programski jezici i njihovi prevodioci/interpreteri;
+</p>
+</li>
+<li>
+<p>
+Softverske biblioteke;
+</p>
+</li>
+<li>
+<p>
+Integrirane okoline za razvoj programa;
+</p>
+</li>
+<li>
+<p>
+Sustav za upravljanje kodom;
+</p>
+</li>
+<li>
+<p>
+Sustav distribucije koda;
+</p>
+</li>
+<li>
+<p>
+Biblioteke za testiranje koda.
+</p>
+</li>
+</ul></div>
+<div class="sect2">
+<h3 id="_prevodioci_za_c">Prevodioci za C++</h3>
+</div>
+<div class="sect2">
+<h3 id="_linux">Linux</h3>
+<div class="ulist"><ul>
+<li>
+<p>
+<a href="http://gcc.gnu.org/">GCC</a>
+</p>
+</li>
+<li>
+<p>
+<a href="http://clang.llvm.org/">Clang</a>
+</p>
+</li>
+</ul></div>
+</div>
+<div class="sect2">
+<h3 id="_microsoft_windows">Microsoft Windows</h3>
+<div class="ulist"><ul>
+<li>
+<p>
+<a href="http://www.visualstudio.com/">Microsoft Visual C++</a>
+</p>
+</li>
+</ul></div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_softverske_biblioteke">Softverske biblioteke</h2>
+<div class="sectionbody">
+<div class="ulist"><ul>
+<li>
+<p>
+Prevodilac za C++  dolazi uvijek zajedno sa standardnom bibliotekom koja se kratko naziva
+<strong>STL</strong> (<em>standard template library</em>).
+</p>
+</li>
+<li>
+<p>
+Druga najznačajnija softverska biblioteka za
+jezik C++ je <a href="http://www.boost.org/">www.boost.org</a>. Boost je na određen način ekstenzija
+standardne biblioteke.
+</p>
+</li>
+</ul></div>
+<div class="paragraph"><p>Standardna biblioteka ne uključuje biblioteku za konstrukciju grafičkog sučelja.
+S druge strane, postoji čitav niz različitih C++-biblioteka
+za konstrukciju grafičkog sučelja. Na primjer:</p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+<a href="http://qt-project.org/">Qt</a>
+</p>
+</li>
+<li>
+<p>
+<a href="https://www.wxwidgets.org/">WxWidgets</a>
+</p>
+</li>
+<li>
+<p>
+<a href="http://www.fltk.org/index.php">Fltk</a>
+</p>
+</li>
+<li>
+<p>
+<a href="http://www.juce.com/">Juce</a>
+</p>
+</li>
+<li>
+<p>
+<a href="http://www.ultimatepp.org/">Ultimate++</a>
+</p>
+</li>
+</ul></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_sustav_za_upravljanje_kodom">Sustav za upravljanje kodom</h2>
+<div class="sectionbody">
+<div class="ulist"><ul>
+<li>
+<p>
+Softver se razvija  proširivanjem
+funkcionalnosti inicijalne verzije programa, optimizacijom algoritama i ispravljanjem grešaka.
+Kada promjene postanu dovoljno značajne i potpune izdaje se nova verzija programa.
+</p>
+</li>
+<li>
+<p>
+Na softveru najčešće radi više programera koji izvornom kodu pristupaju s prostorno različitih
+lokacija, manje više istovremeno.
+</p>
+</li>
+</ul></div>
+<div class="paragraph"><p>Stoga se javlja potreba za sustavom koji bilježi sve promjene
+učinjene u svakoj izvornoj datoteci i nudi mogućnost rješavanja konflikata koji nastaju kada više
+programera pokušava mijenjati istu datoteku. Takvi se sustavi  nazivaju
+sustavima za upravljanje kodom (eng. <strong>version control systems</strong>).</p></div>
+<div class="sect2">
+<h3 id="_sustavi_za_upravljenje_kodom_otvorenog_tipa">Sustavi za upravljenje kodom otvorenog tipa</h3>
+<div class="sect3">
+<h4 id="_distribuirani">Distribuirani</h4>
+<div class="ulist"><ul>
+<li>
+<p>
+<strong>Git</strong>: <a href="http://git-scm.com/">git-scm.com</a>
+</p>
+</li>
+<li>
+<p>
+Mercurial: <a href="http://mercurial.selenic.com/">mercurial.selenic.com</a>
+</p>
+</li>
+</ul></div>
+</div>
+<div class="sect3">
+<h4 id="_centralizirani">Centralizirani</h4>
+<div class="ulist"><ul>
+<li>
+<p>
+Subversion: <a href="http://subversion.apache.org/">subversion.apache.org</a>
+</p>
+</li>
+</ul></div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_sustav_distribucije_koda">Sustav distribucije koda</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Softverski sustavi mogu se  distribuirati kao <em>binarni</em> kod spreman za izvršavanje ili kao <em>izvorni</em>
+kod koji prvo treba kompilirati.</p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+Binarni kod se može distribuirati samo na operacijskim sustavima
+onog tipa na kojem je kod razvijen.  Ako se koristi interpreterski jezik, kao Java, onda je moguće
+binarni kod distribuirati na različitim operacijskim sustavima  koji imaju     instaliran interpreter.
+</p>
+</li>
+<li>
+<p>
+Softver otvorenog tipa distribuira se kao izvorni kod koji treba prethodno kompilirati.
+To u principu omogućava da se kod distribuira na različitim operacijskim sustavima.
+Prije kompilacije programa na svakoj platformi treba izvršiti <em>konfiguraciju</em> u kojoj se
+softver prilagođava platformi na kojoj će se kompilirati.
+</p>
+</li>
+</ul></div>
+<div class="sect2">
+<h3 id="_distribucija_izvornog_koda">Distribucija izvornog koda</h3>
+<div class="ulist"><ul>
+<li>
+<p>
+Make: <a href="http://www.gnu.org/software/make/">www.gnu.org/software/make</a>,
+</p>
+</li>
+<li>
+<p>
+Autoconf: <a href="http://www.gnu.org/software/autoconf/">www.gnu.org/software/autoconf</a>,
+</p>
+</li>
+<li>
+<p>
+Automake: <a href="http://www.gnu.org/software/automake/">www.gnu.org/software/automake</a> i
+</p>
+</li>
+<li>
+<p>
+Libtool: <a href="https://www.gnu.org/software/libtool/">www.gnu.org/software/libtool</a>
+</p>
+</li>
+</ul></div>
+<div class="paragraph"><p>koji zajedno čine <em>autotools</em> (Unix/Linux platforme)</p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+<strong>Cmake</strong>: <a href="http://www.cmake.org/">www.cmake.org</a>
+</p>
+</li>
+</ul></div>
+<div class="paragraph"><p><em>Autotools</em> sustav je danas istisnut <em>CMake</em> sustavom koji je postao industrijski standard.</p></div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_integrirane_okoline_za_razvoj_programa">Integrirane okoline za razvoj programa</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Integrirane okoline za razvoj programa nude editor za pisanje programa i različite alate za
+prevođenje, analizu, ispravljanje programa itd. One često integriraju i sustav za upravljanjem kodom i
+sustav za distribuciju koda.</p></div>
+<div class="sect2">
+<h3 id="_microsoft_windows_2">Microsoft Windows</h3>
+<div class="ulist"><ul>
+<li>
+<p>
+Visual Studio: <a href="http://msdn.microsoft.com/en-us/vstudio//">msdn.microsoft.com/en-us/vstudio</a>
+</p>
+</li>
+</ul></div>
+</div>
+<div class="sect2">
+<h3 id="_ostali_sustavi">Ostali sustavi:</h3>
+<div class="ulist"><ul>
+<li>
+<p>
+<strong>Qt Creator</strong>: <a href="https://www.qt.io/">www.qt.io</a>
+</p>
+</li>
+<li>
+<p>
+Code::Blocks: <a href="http://www.codeblocks.org/">www.codeblocks.org</a>
+</p>
+</li>
+<li>
+<p>
+NetBeans IDE: <a href="https://netbeans.org/">netbeans.org</a>
+</p>
+</li>
+<li>
+<p>
+Eclipse CDT: <a href="https://www.eclipse.org/cdt/">www.eclipse.org/cdt</a>
+</p>
+</li>
+<li>
+<p>
+CodeLite: <a href="http://www.codelite.org/">www.codelite.org</a>
+</p>
+</li>
+</ul></div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_objektno_orijentirano_programiranje">Objektno orijentirano programiranje</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>U centru interesa softverskog inženjerstva su složene aplikacije. Problemi:</p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+Održivost — mogućnost lakog održavanja koda.
+</p>
+</li>
+<li>
+<p>
+Proširivost — mogućnost lakog dodavanja nove funkcionalnosti.
+</p>
+</li>
+<li>
+<p>
+Prenosivost — mogućnost prijenosa koda na druge platforme bez velikih izmjena.
+</p>
+</li>
+</ul></div>
+<div class="sect2">
+<h3 id="_tehnike_programiranja">Tehnike programiranja:</h3>
+<div class="sect3">
+<h4 id="_proceduralna">Proceduralna.</h4>
+<div class="ulist"><ul>
+<li>
+<p>
+Razlaganje programa na manje cjeline — implementacija pomoću funkcija, procedura.
+</p>
+</li>
+<li>
+<p>
+Nemogućnost definiranja apstrakcije koncepata iz aplikacijske domene.
+</p>
+</li>
+<li>
+<p>
+Ne nudi podršku za postizanje održivosti i proširivosti.
+</p>
+</li>
+</ul></div>
+</div>
+<div class="sect3">
+<h4 id="_objektno_orijentirana">Objektno orijentirana.</h4>
+<div class="ulist"><ul>
+<li>
+<p>
+Klase predstavljaju koncepte iz aplikacijske domene.
+</p>
+</li>
+<li>
+<p>
+Program se sastoji od objekta (instance klasa) i njihove komunikacije.
+</p>
+</li>
+<li>
+<p>
+Objekti imaju punu odgovornost za svoje ponašanje.
+</p>
+</li>
+</ul></div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_osnovni_elementi_oo_tehnike">Osnovni elementi OO tehnike:</h2>
+<div class="sectionbody">
+<div class="ulist"><ul>
+<li>
+<p>
+<em>Apstrakcija</em> — Koncepti iz aplikacijske domene se reprezentiraju neposredno u programu, a izvedbeni detalji su
+    skriveni iza sučelja (eng. interface) koje reprezentira koncept.
+</p>
+</li>
+<li>
+<p>
+<em>Enkapsulacija</em> — Sposobnost osiguravanja da se apstrakcija koristi prema svojim specifikacijama.
+    Enkapsulacijom se sprečava narušavanje apstrakcije, odnosno prodiranje implementacijskih odluka izvan
+    granica apstrakcije.
+</p>
+</li>
+<li>
+<p>
+<em>Polimorfizam</em> — Skrivanje različitih implementacija iza istog sučelja. Osigurava široku primjenjivost
+   koda i reducira zavisnost o implementaciji.
+</p>
+</li>
+<li>
+<p>
+<em>Naslijeđivanje</em> — Konstrukcija novih apstrakcija polazeći od već postojećih.
+</p>
+</li>
+</ul></div>
+<div class="sect2">
+<h3 id="_genericko_programiranje">Generičko programiranje</h3>
+<div class="paragraph"><p>Pojam generičkog programiranja  odnosi se
+na generalizaciju softverskih komponenti kako bi se lako  mogle koristiti u različitim situacijama.
+Osnovni elementi generičkog programiranja u C++-u su <em>parametrizirane klase i funkcije</em>.</p></div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="footer">
+<div id="footer-text">
+Version 1.1<br>
+Zadnja izmjena
+ 2019-05-14 10:15:33 CEST
+</div>
+</div>
+
+
+</body></html>

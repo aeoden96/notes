@@ -1,0 +1,1343 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<!-- saved from url=(0093)https://web.math.pmf.unizg.hr/nastava/opepp/Slides/Vjezbe/html-noslides/vjezbe-iteratori.html -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="hr"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="generator" content="AsciiDoc 8.6.9">
+<title>Iteratori</title>
+<style type="text/css">
+/* Shared CSS for AsciiDoc xhtml11 and html5 backends */
+
+/* Default font. */
+body {
+  font-family: Georgia,serif;
+}
+
+/* Title font. */
+h1, h2, h3, h4, h5, h6,
+div.title, caption.title,
+thead, p.table.header,
+#toctitle,
+#author, #revnumber, #revdate, #revremark,
+#footer {
+  font-family: Arial,Helvetica,sans-serif;
+}
+
+body {
+  margin: 1em 5% 1em 5%;
+}
+
+a {
+  color: blue;
+  text-decoration: underline;
+}
+a:visited {
+  color: fuchsia;
+}
+
+em {
+  font-style: italic;
+  color: navy;
+}
+
+strong {
+  font-weight: bold;
+  color: #083194;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #527bbd;
+  margin-top: 1.2em;
+  margin-bottom: 0.5em;
+  line-height: 1.3;
+}
+
+h1, h2, h3 {
+  border-bottom: 2px solid silver;
+}
+h2 {
+  padding-top: 0.5em;
+}
+h3 {
+  float: left;
+}
+h3 + * {
+  clear: left;
+}
+h5 {
+  font-size: 1.0em;
+}
+
+div.sectionbody {
+  margin-left: 0;
+}
+
+hr {
+  border: 1px solid silver;
+}
+
+p {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+ul, ol, li > p {
+  margin-top: 0;
+}
+ul > li     { color: #aaa; }
+ul > li > * { color: black; }
+
+.monospaced, code, pre {
+  font-family: "Courier New", Courier, monospace;
+  font-size: inherit;
+  color: navy;
+  padding: 0;
+  margin: 0;
+}
+pre {
+  white-space: pre-wrap;
+}
+
+#author {
+  color: #527bbd;
+  font-weight: bold;
+  font-size: 1.1em;
+}
+#email {
+}
+#revnumber, #revdate, #revremark {
+}
+
+#footer {
+  font-size: small;
+  border-top: 2px solid silver;
+  padding-top: 0.5em;
+  margin-top: 4.0em;
+}
+#footer-text {
+  float: left;
+  padding-bottom: 0.5em;
+}
+#footer-badges {
+  float: right;
+  padding-bottom: 0.5em;
+}
+
+#preamble {
+  margin-top: 1.5em;
+  margin-bottom: 1.5em;
+}
+div.imageblock, div.exampleblock, div.verseblock,
+div.quoteblock, div.literalblock, div.listingblock, div.sidebarblock,
+div.admonitionblock {
+  margin-top: 1.0em;
+  margin-bottom: 1.5em;
+}
+div.admonitionblock {
+  margin-top: 2.0em;
+  margin-bottom: 2.0em;
+  margin-right: 10%;
+  color: #606060;
+}
+
+div.content { /* Block element content. */
+  padding: 0;
+}
+
+/* Block element titles. */
+div.title, caption.title {
+  color: #527bbd;
+  font-weight: bold;
+  text-align: left;
+  margin-top: 1.0em;
+  margin-bottom: 0.5em;
+}
+div.title + * {
+  margin-top: 0;
+}
+
+td div.title:first-child {
+  margin-top: 0.0em;
+}
+div.content div.title:first-child {
+  margin-top: 0.0em;
+}
+div.content + div.title {
+  margin-top: 0.0em;
+}
+
+div.sidebarblock > div.content {
+  background: #ffffee;
+  border: 1px solid #dddddd;
+  border-left: 4px solid #f0f0f0;
+  padding: 0.5em;
+}
+
+div.listingblock > div.content {
+  border: 1px solid #dddddd;
+  border-left: 5px solid #f0f0f0;
+  background: #f8f8f8;
+  padding: 0.5em;
+}
+
+div.quoteblock, div.verseblock {
+  padding-left: 1.0em;
+  margin-left: 1.0em;
+  margin-right: 10%;
+  border-left: 5px solid #f0f0f0;
+  color: #888;
+}
+
+div.quoteblock > div.attribution {
+  padding-top: 0.5em;
+  text-align: right;
+}
+
+div.verseblock > pre.content {
+  font-family: inherit;
+  font-size: inherit;
+}
+div.verseblock > div.attribution {
+  padding-top: 0.75em;
+  text-align: left;
+}
+/* DEPRECATED: Pre version 8.2.7 verse style literal block. */
+div.verseblock + div.attribution {
+  text-align: left;
+}
+
+div.admonitionblock .icon {
+  vertical-align: top;
+  font-size: 1.1em;
+  font-weight: bold;
+  text-decoration: underline;
+  color: #527bbd;
+  padding-right: 0.5em;
+}
+div.admonitionblock td.content {
+  padding-left: 0.5em;
+  border-left: 3px solid #dddddd;
+}
+
+div.exampleblock > div.content {
+  border-left: 3px solid #dddddd;
+  padding-left: 0.5em;
+}
+
+div.imageblock div.content { padding-left: 0; }
+span.image img { border-style: none; vertical-align: text-bottom; }
+a.image:visited { color: white; }
+
+dl {
+  margin-top: 0.8em;
+  margin-bottom: 0.8em;
+}
+dt {
+  margin-top: 0.5em;
+  margin-bottom: 0;
+  font-style: normal;
+  color: navy;
+}
+dd > *:first-child {
+  margin-top: 0.1em;
+}
+
+ul, ol {
+    list-style-position: outside;
+}
+ol.arabic {
+  list-style-type: decimal;
+}
+ol.loweralpha {
+  list-style-type: lower-alpha;
+}
+ol.upperalpha {
+  list-style-type: upper-alpha;
+}
+ol.lowerroman {
+  list-style-type: lower-roman;
+}
+ol.upperroman {
+  list-style-type: upper-roman;
+}
+
+div.compact ul, div.compact ol,
+div.compact p, div.compact p,
+div.compact div, div.compact div {
+  margin-top: 0.1em;
+  margin-bottom: 0.1em;
+}
+
+tfoot {
+  font-weight: bold;
+}
+td > div.verse {
+  white-space: pre;
+}
+
+div.hdlist {
+  margin-top: 0.8em;
+  margin-bottom: 0.8em;
+}
+div.hdlist tr {
+  padding-bottom: 15px;
+}
+dt.hdlist1.strong, td.hdlist1.strong {
+  font-weight: bold;
+}
+td.hdlist1 {
+  vertical-align: top;
+  font-style: normal;
+  padding-right: 0.8em;
+  color: navy;
+}
+td.hdlist2 {
+  vertical-align: top;
+}
+div.hdlist.compact tr {
+  margin: 0;
+  padding-bottom: 0;
+}
+
+.comment {
+  background: yellow;
+}
+
+.footnote, .footnoteref {
+  font-size: 0.8em;
+}
+
+span.footnote, span.footnoteref {
+  vertical-align: super;
+}
+
+#footnotes {
+  margin: 20px 0 20px 0;
+  padding: 7px 0 0 0;
+}
+
+#footnotes div.footnote {
+  margin: 0 0 5px 0;
+}
+
+#footnotes hr {
+  border: none;
+  border-top: 1px solid silver;
+  height: 1px;
+  text-align: left;
+  margin-left: 0;
+  width: 20%;
+  min-width: 100px;
+}
+
+div.colist td {
+  padding-right: 0.5em;
+  padding-bottom: 0.3em;
+  vertical-align: top;
+}
+div.colist td img {
+  margin-top: 0.3em;
+}
+
+@media print {
+  #footer-badges { display: none; }
+}
+
+#toc {
+  margin-bottom: 2.5em;
+}
+
+#toctitle {
+  color: #527bbd;
+  font-size: 1.1em;
+  font-weight: bold;
+  margin-top: 1.0em;
+  margin-bottom: 0.1em;
+}
+
+div.toclevel0, div.toclevel1, div.toclevel2, div.toclevel3, div.toclevel4 {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+div.toclevel2 {
+  margin-left: 2em;
+  font-size: 0.9em;
+}
+div.toclevel3 {
+  margin-left: 4em;
+  font-size: 0.9em;
+}
+div.toclevel4 {
+  margin-left: 6em;
+  font-size: 0.9em;
+}
+
+span.aqua { color: aqua; }
+span.black { color: black; }
+span.blue { color: blue; }
+span.fuchsia { color: fuchsia; }
+span.gray { color: gray; }
+span.green { color: green; }
+span.lime { color: lime; }
+span.maroon { color: maroon; }
+span.navy { color: navy; }
+span.olive { color: olive; }
+span.purple { color: purple; }
+span.red { color: red; }
+span.silver { color: silver; }
+span.teal { color: teal; }
+span.white { color: white; }
+span.yellow { color: yellow; }
+
+span.aqua-background { background: aqua; }
+span.black-background { background: black; }
+span.blue-background { background: blue; }
+span.fuchsia-background { background: fuchsia; }
+span.gray-background { background: gray; }
+span.green-background { background: green; }
+span.lime-background { background: lime; }
+span.maroon-background { background: maroon; }
+span.navy-background { background: navy; }
+span.olive-background { background: olive; }
+span.purple-background { background: purple; }
+span.red-background { background: red; }
+span.silver-background { background: silver; }
+span.teal-background { background: teal; }
+span.white-background { background: white; }
+span.yellow-background { background: yellow; }
+
+span.big { font-size: 2em; }
+span.small { font-size: 0.6em; }
+
+span.underline { text-decoration: underline; }
+span.overline { text-decoration: overline; }
+span.line-through { text-decoration: line-through; }
+
+div.unbreakable { page-break-inside: avoid; }
+
+
+/*
+ * xhtml11 specific
+ *
+ * */
+
+div.tableblock {
+  margin-top: 1.0em;
+  margin-bottom: 1.5em;
+}
+div.tableblock > table {
+  border: 3px solid #527bbd;
+}
+thead, p.table.header {
+  font-weight: bold;
+  color: #527bbd;
+}
+p.table {
+  margin-top: 0;
+}
+/* Because the table frame attribute is overriden by CSS in most browsers. */
+div.tableblock > table[frame="void"] {
+  border-style: none;
+}
+div.tableblock > table[frame="hsides"] {
+  border-left-style: none;
+  border-right-style: none;
+}
+div.tableblock > table[frame="vsides"] {
+  border-top-style: none;
+  border-bottom-style: none;
+}
+
+
+/*
+ * html5 specific
+ *
+ * */
+
+table.tableblock {
+  margin-top: 1.0em;
+  margin-bottom: 1.5em;
+}
+thead, p.tableblock.header {
+  font-weight: bold;
+  color: #527bbd;
+}
+p.tableblock {
+  margin-top: 0;
+}
+table.tableblock {
+  border-width: 3px;
+  border-spacing: 0px;
+  border-style: solid;
+  border-color: #527bbd;
+  border-collapse: collapse;
+}
+th.tableblock, td.tableblock {
+  border-width: 1px;
+  padding: 4px;
+  border-style: solid;
+  border-color: #527bbd;
+}
+
+table.tableblock.frame-topbot {
+  border-left-style: hidden;
+  border-right-style: hidden;
+}
+table.tableblock.frame-sides {
+  border-top-style: hidden;
+  border-bottom-style: hidden;
+}
+table.tableblock.frame-none {
+  border-style: hidden;
+}
+
+th.tableblock.halign-left, td.tableblock.halign-left {
+  text-align: left;
+}
+th.tableblock.halign-center, td.tableblock.halign-center {
+  text-align: center;
+}
+th.tableblock.halign-right, td.tableblock.halign-right {
+  text-align: right;
+}
+
+th.tableblock.valign-top, td.tableblock.valign-top {
+  vertical-align: top;
+}
+th.tableblock.valign-middle, td.tableblock.valign-middle {
+  vertical-align: middle;
+}
+th.tableblock.valign-bottom, td.tableblock.valign-bottom {
+  vertical-align: bottom;
+}
+
+
+/*
+ * manpage specific
+ *
+ * */
+
+body.manpage h1 {
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+  border-top: 2px solid silver;
+  border-bottom: 2px solid silver;
+}
+body.manpage h2 {
+  border-style: none;
+}
+body.manpage div.sectionbody {
+  margin-left: 3em;
+}
+
+@media print {
+  body.manpage div#toc { display: none; }
+}
+.highlight .hll { background-color: #ffffcc }
+.highlight  { background: #f8f8f8; }
+.highlight .c { color: #408080; font-style: italic } /* Comment */
+.highlight .err { border: 1px solid #FF0000 } /* Error */
+.highlight .k { color: #008000; font-weight: bold } /* Keyword */
+.highlight .o { color: #666666 } /* Operator */
+.highlight .cm { color: #408080; font-style: italic } /* Comment.Multiline */
+.highlight .cp { color: #BC7A00 } /* Comment.Preproc */
+.highlight .c1 { color: #408080; font-style: italic } /* Comment.Single */
+.highlight .cs { color: #408080; font-style: italic } /* Comment.Special */
+.highlight .gd { color: #A00000 } /* Generic.Deleted */
+.highlight .ge { font-style: italic } /* Generic.Emph */
+.highlight .gr { color: #FF0000 } /* Generic.Error */
+.highlight .gh { color: #000080; font-weight: bold } /* Generic.Heading */
+.highlight .gi { color: #00A000 } /* Generic.Inserted */
+.highlight .go { color: #808080 } /* Generic.Output */
+.highlight .gp { color: #000080; font-weight: bold } /* Generic.Prompt */
+.highlight .gs { font-weight: bold } /* Generic.Strong */
+.highlight .gu { color: #800080; font-weight: bold } /* Generic.Subheading */
+.highlight .gt { color: #0040D0 } /* Generic.Traceback */
+.highlight .kc { color: #008000; font-weight: bold } /* Keyword.Constant */
+.highlight .kd { color: #008000; font-weight: bold } /* Keyword.Declaration */
+.highlight .kn { color: #008000; font-weight: bold } /* Keyword.Namespace */
+.highlight .kp { color: #008000 } /* Keyword.Pseudo */
+.highlight .kr { color: #008000; font-weight: bold } /* Keyword.Reserved */
+.highlight .kt { color: #B00040 } /* Keyword.Type */
+.highlight .m { color: #666666 } /* Literal.Number */
+.highlight .s { color: #BA2121 } /* Literal.String */
+.highlight .na { color: #7D9029 } /* Name.Attribute */
+.highlight .nb { color: #008000 } /* Name.Builtin */
+.highlight .nc { color: #0000FF; font-weight: bold } /* Name.Class */
+.highlight .no { color: #880000 } /* Name.Constant */
+.highlight .nd { color: #AA22FF } /* Name.Decorator */
+.highlight .ni { color: #999999; font-weight: bold } /* Name.Entity */
+.highlight .ne { color: #D2413A; font-weight: bold } /* Name.Exception */
+.highlight .nf { color: #0000FF } /* Name.Function */
+.highlight .nl { color: #A0A000 } /* Name.Label */
+.highlight .nn { color: #0000FF; font-weight: bold } /* Name.Namespace */
+.highlight .nt { color: #008000; font-weight: bold } /* Name.Tag */
+.highlight .nv { color: #19177C } /* Name.Variable */
+.highlight .ow { color: #AA22FF; font-weight: bold } /* Operator.Word */
+.highlight .w { color: #bbbbbb } /* Text.Whitespace */
+.highlight .mf { color: #666666 } /* Literal.Number.Float */
+.highlight .mh { color: #666666 } /* Literal.Number.Hex */
+.highlight .mi { color: #666666 } /* Literal.Number.Integer */
+.highlight .mo { color: #666666 } /* Literal.Number.Oct */
+.highlight .sb { color: #BA2121 } /* Literal.String.Backtick */
+.highlight .sc { color: #BA2121 } /* Literal.String.Char */
+.highlight .sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
+.highlight .s2 { color: #BA2121 } /* Literal.String.Double */
+.highlight .se { color: #BB6622; font-weight: bold } /* Literal.String.Escape */
+.highlight .sh { color: #BA2121 } /* Literal.String.Heredoc */
+.highlight .si { color: #BB6688; font-weight: bold } /* Literal.String.Interpol */
+.highlight .sx { color: #008000 } /* Literal.String.Other */
+.highlight .sr { color: #BB6688 } /* Literal.String.Regex */
+.highlight .s1 { color: #BA2121 } /* Literal.String.Single */
+.highlight .ss { color: #19177C } /* Literal.String.Symbol */
+.highlight .bp { color: #008000 } /* Name.Builtin.Pseudo */
+.highlight .vc { color: #19177C } /* Name.Variable.Class */
+.highlight .vg { color: #19177C } /* Name.Variable.Global */
+.highlight .vi { color: #19177C } /* Name.Variable.Instance */
+.highlight .il { color: #666666 } /* Literal.Number.Integer.Long */
+
+
+</style>
+<script type="text/javascript">
+/*<![CDATA[*/
+var asciidoc = {  // Namespace.
+
+/////////////////////////////////////////////////////////////////////
+// Table Of Contents generator
+/////////////////////////////////////////////////////////////////////
+
+/* Author: Mihai Bazon, September 2002
+ * http://students.infoiasi.ro/~mishoo
+ *
+ * Table Of Content generator
+ * Version: 0.4
+ *
+ * Feel free to use this script under the terms of the GNU General Public
+ * License, as long as you do not remove or alter this notice.
+ */
+
+ /* modified by Troy D. Hanson, September 2006. License: GPL */
+ /* modified by Stuart Rackham, 2006, 2009. License: GPL */
+
+// toclevels = 1..4.
+toc: function (toclevels) {
+
+  function getText(el) {
+    var text = "";
+    for (var i = el.firstChild; i != null; i = i.nextSibling) {
+      if (i.nodeType == 3 /* Node.TEXT_NODE */) // IE doesn't speak constants.
+        text += i.data;
+      else if (i.firstChild != null)
+        text += getText(i);
+    }
+    return text;
+  }
+
+  function TocEntry(el, text, toclevel) {
+    this.element = el;
+    this.text = text;
+    this.toclevel = toclevel;
+  }
+
+  function tocEntries(el, toclevels) {
+    var result = new Array;
+    var re = new RegExp('[hH]([1-'+(toclevels+1)+'])');
+    // Function that scans the DOM tree for header elements (the DOM2
+    // nodeIterator API would be a better technique but not supported by all
+    // browsers).
+    var iterate = function (el) {
+      for (var i = el.firstChild; i != null; i = i.nextSibling) {
+        if (i.nodeType == 1 /* Node.ELEMENT_NODE */) {
+          var mo = re.exec(i.tagName);
+          if (mo && (i.getAttribute("class") || i.getAttribute("className")) != "float") {
+            result[result.length] = new TocEntry(i, getText(i), mo[1]-1);
+          }
+          iterate(i);
+        }
+      }
+    }
+    iterate(el);
+    return result;
+  }
+
+  var toc = document.getElementById("toc");
+  if (!toc) {
+    return;
+  }
+
+  // Delete existing TOC entries in case we're reloading the TOC.
+  var tocEntriesToRemove = [];
+  var i;
+  for (i = 0; i < toc.childNodes.length; i++) {
+    var entry = toc.childNodes[i];
+    if (entry.nodeName.toLowerCase() == 'div'
+     && entry.getAttribute("class")
+     && entry.getAttribute("class").match(/^toclevel/))
+      tocEntriesToRemove.push(entry);
+  }
+  for (i = 0; i < tocEntriesToRemove.length; i++) {
+    toc.removeChild(tocEntriesToRemove[i]);
+  }
+
+  // Rebuild TOC entries.
+  var entries = tocEntries(document.getElementById("content"), toclevels);
+  for (var i = 0; i < entries.length; ++i) {
+    var entry = entries[i];
+    if (entry.element.id == "")
+      entry.element.id = "_toc_" + i;
+    var a = document.createElement("a");
+    a.href = "#" + entry.element.id;
+    a.appendChild(document.createTextNode(entry.text));
+    var div = document.createElement("div");
+    div.appendChild(a);
+    div.className = "toclevel" + entry.toclevel;
+    toc.appendChild(div);
+  }
+  if (entries.length == 0)
+    toc.parentNode.removeChild(toc);
+},
+
+
+/////////////////////////////////////////////////////////////////////
+// Footnotes generator
+/////////////////////////////////////////////////////////////////////
+
+/* Based on footnote generation code from:
+ * http://www.brandspankingnew.net/archive/2005/07/format_footnote.html
+ */
+
+footnotes: function () {
+  // Delete existing footnote entries in case we're reloading the footnodes.
+  var i;
+  var noteholder = document.getElementById("footnotes");
+  if (!noteholder) {
+    return;
+  }
+  var entriesToRemove = [];
+  for (i = 0; i < noteholder.childNodes.length; i++) {
+    var entry = noteholder.childNodes[i];
+    if (entry.nodeName.toLowerCase() == 'div' && entry.getAttribute("class") == "footnote")
+      entriesToRemove.push(entry);
+  }
+  for (i = 0; i < entriesToRemove.length; i++) {
+    noteholder.removeChild(entriesToRemove[i]);
+  }
+
+  // Rebuild footnote entries.
+  var cont = document.getElementById("content");
+  var spans = cont.getElementsByTagName("span");
+  var refs = {};
+  var n = 0;
+  for (i=0; i<spans.length; i++) {
+    if (spans[i].className == "footnote") {
+      n++;
+      var note = spans[i].getAttribute("data-note");
+      if (!note) {
+        // Use [\s\S] in place of . so multi-line matches work.
+        // Because JavaScript has no s (dotall) regex flag.
+        note = spans[i].innerHTML.match(/\s*\[([\s\S]*)]\s*/)[1];
+        spans[i].innerHTML =
+          "[<a id='_footnoteref_" + n + "' href='#_footnote_" + n +
+          "' title='View footnote' class='footnote'>" + n + "</a>]";
+        spans[i].setAttribute("data-note", note);
+      }
+      noteholder.innerHTML +=
+        "<div class='footnote' id='_footnote_" + n + "'>" +
+        "<a href='#_footnoteref_" + n + "' title='Return to text'>" +
+        n + "</a>. " + note + "</div>";
+      var id =spans[i].getAttribute("id");
+      if (id != null) refs["#"+id] = n;
+    }
+  }
+  if (n == 0)
+    noteholder.parentNode.removeChild(noteholder);
+  else {
+    // Process footnoterefs.
+    for (i=0; i<spans.length; i++) {
+      if (spans[i].className == "footnoteref") {
+        var href = spans[i].getElementsByTagName("a")[0].getAttribute("href");
+        href = href.match(/#.*/)[0];  // Because IE return full URL.
+        n = refs[href];
+        spans[i].innerHTML =
+          "[<a href='#_footnote_" + n +
+          "' title='View footnote' class='footnote'>" + n + "</a>]";
+      }
+    }
+  }
+},
+
+install: function(toclevels) {
+  var timerId;
+
+  function reinstall() {
+    asciidoc.footnotes();
+    if (toclevels) {
+      asciidoc.toc(toclevels);
+    }
+  }
+
+  function reinstallAndRemoveTimer() {
+    clearInterval(timerId);
+    reinstall();
+  }
+
+  timerId = setInterval(reinstall, 500);
+  if (document.addEventListener)
+    document.addEventListener("DOMContentLoaded", reinstallAndRemoveTimer, false);
+  else
+    window.onload = reinstallAndRemoveTimer;
+}
+
+}
+asciidoc.install();
+/*]]>*/
+</script>
+</head>
+<body class="article">
+<div id="header">
+<h1>Iteratori</h1>
+<span id="author">Mladen Jurak</span><br>
+<span id="revnumber">version 1.0,</span>
+<span id="revdate">2019-03</span>
+</div>
+<div id="content">
+<div class="sect1">
+<h2 id="_iteratori">Iteratori</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Iteratori su objekti pomoću kojih iteriramo kroz spremnike. Prisutni su u svim
+modernim jezicima, a specifičnost C++-a je što imaju <strong>sintaksu pokazivača</strong>.
+To znači da za kretanje kroz spremnik koristimo operatore <code>++</code>  i <code>--</code>, a za
+dohvat elementa koristimo operator dereferenciranja; iteratore uspoređujemo
+pomoću operatora <code>==</code> i <code>!=</code>.</p></div>
+<div class="paragraph"><p>Svi spremnici imaju metode <code>begin()</code> i <code>end()</code> koje vraćaju iteratore za
+kretanje kroz spremnik:</p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+<code>begin()</code> je iterator koji pokazuje na prvi element u spremniku,
+</p>
+</li>
+<li>
+<p>
+<code>end()</code> je iterator koji pokazuje na <em>jedno mjesto iza zadnjeg elementa</em> u spremniku.
+</p>
+</li>
+<li>
+<p>
+<code>cbegin()</code> je konstantan iterator koji pokazuje na prvi element u spremniku,
+</p>
+</li>
+<li>
+<p>
+<code>cend()</code> je konstantan iterator koji pokazuje na <em>jedno mjesto iza zadnjeg elementa</em> u spremniku.
+</p>
+</li>
+</ul></div>
+<div class="paragraph"><p>Konstantan iterator ne može mijenjati objekte kroz koje iterira. Oni su za njega konstantni.</p></div>
+<div class="paragraph"><p>Iteratori se dijele u kategorije prema svojim sposobnostima.</p></div>
+<div class="imageblock" style="text-align:center;">
+<div class="content">
+<img alt="iterators.png" src="data:image/png;base64,%0A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%0A4gnUz0QgUD9BoH6CQP0EgfoJRjvqJwjUTzDaUT/BZED9BKMd9RNMBkY7wWhH/QSTgdFOoH4mA4H6%0AGe0E6mcyEKif0U6gfiYDgfoJAvUzGQjUTxConyBQP0F0fPUDtCtaVf0AHWa0t+JUAQCA9gnqBwBA%0A/QAAgPoBAAD1AwAA6gcAANQPAACoHwAAUD8AAKB+AABA/QAAgPoBAAD1AwAA6gcAANQPAACoHwAA%0AUD8AAOoHAADUDwAAqB8AAFB/p+osAHhs/0fkgPq9V//9+xsJgmiTQP2oH/UTBOoH1I/6CQL1A+pH%0A/QSB+gH1o36CQP2A+lE/QaB+1A+onyBQP+oH1E8QqB/101mPlfrd/TSmU5hCs72drWdQP9CVqB/1%0AO8/ZrrqLDyfUj/pRP7JA/agfUD/qRxat0AOoH/Wjfujg6q+pWVpUNCw1NSY0NDAkxJaSEl1YOFQS%0AXRXY0FBRUjKye/cuNpu/HEpOjjbSg4NtckhS6uvL/Pz8JEX+ymtJkfSgoAAjm5Svit21K08V6+/v%0A17Vr8JAhPUpLs2/ceE3z7BJ371a++eY4KVYqkJYWs3nzpHv3Nni96tfcK6utXbF8+YjMzNjw8CBp%0AWkJCtzlzBp46tVi/2jpt16mMzuVzWxnUj/qhc6l/x45pgYEBjlqRRDnktMCCggHGCzG7HHrlleHq%0A0IkTRZIif1XKyZOLJOX48eaUZctGqGLnzx/sVGq9enW9dGm1ztklVIqiuDirVdW/Z88MkazjUTF4%0AVdVYzWrrtN1tZTQvn9vKoH7UD53oa15xtNjKSOzfP/bcuZLz51fICyUyQ9x2Bfbp0+3o0UJZaxuH%0APv54rjr0m9+Ml5Tf/naqSnn//amS8utfj1cpf/rTPFWB3Nz0LVsmXby4srFx/dWrr1ZUjFbZZCXr%0AtDl2Z//ww3x1SGou9Zf1uGpCa+z1nz79ckCAv3EoOztJznjzZum8eYNU/gMH5rittn7bLSqjf/nc%0AVgb1o37oROqfPj1DJR48+FBY8kIlSgbHAqur883nunWrXC2BjfxLljxYdEdFhRoLcEnJy0s3MkhO%0Aye+q2nfurFdnSUjo5rQ5dmcfPz7Fugk+V//MmZnqkNpXuXZtrUrMyUlyW239tltURv/yeVoZ1I/6%0AoSNv+MTGdlHZrl9fayTKClQlxsWFOxYomrMr5+c/f+jfHj0i5D9HjUow7gDk77PPJkhKfHy4kUFM%0A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%0AAABJRU5ErkJggg==">
+</div>
+</div>
+<div class="ulist"><ul>
+<li>
+<p>
+Iteratori nikad ne provjeravaju jesu li izašli izvan granica spremnika
+kroz koji iteriraju.
+</p>
+</li>
+</ul></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_kategorije_iteratora">Kategorije iteratora</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Svi iteratori dozvoljavaju kretanje unaprijed pomoću operatora  <code>++</code>
+i dereferenciranje pooću operatora <code>*</code>. Derferencirani iterator može služiti
+samo za čitanje, samo za pisanje ili za oboje, ovisno o kategoriji kojoj pripada.
+K tome svi iteratori imaju operatore <code>==</code> i <code>!=</code> za uspoređivanje.</p></div>
+<div class="sect2">
+<h3 id="_ulazni_iterator_em_input_iterator_em">Ulazni iterator (<em>input iterator</em>)</h3>
+<div class="paragraph"><p>Ulazni iterator može se kretati samo unaprijed (nema operatora <code>--</code>) i može jedino čitati
+vrijednost sa ulaza. Kako služi uglavnom čitanju s ulaznog toka, ne može pročitati istu vrijednost
+više puta. Postinkrement operator (<code>it++</code>) ne mora nužno ništa vratiti.</p></div>
+</div>
+<div class="sect2">
+<h3 id="_izlazni_iterator_em_output_iterator_em">Izlazni iterator (<em>output iterator</em>)</h3>
+<div class="paragraph"><p>Izlazni iterator može se kretati samo unaprijed (nema operatora <code>--</code>) i može jedino pisati
+vrijednost na izlaz. Kako služi uglavnom za pisanje na izlazni tok, ne može pisati
+više puta u istu lokaciju. Izlazni iterator ne može biti konstantan.</p></div>
+</div>
+<div class="sect2">
+<h3 id="_jednosmjerni_iterator_em_forward_iterator_em">Jednosmjerni iterator (<em>forward iterator</em>)</h3>
+<div class="paragraph"><p>Jednosmjerni iterator može se kretati samo unaprijed (nema operatora <code>--</code>) i može pisati u lokaciju (ako nije konstantan)
+i čitati iz nje. Nema ograničenja na broj pisanja/čitanja.
+Takav iterator daje klasa <code>std::forward_list&lt;&gt;</code> i (eventualno) neuređeni asocijativni spremnici.</p></div>
+</div>
+<div class="sect2">
+<h3 id="_dvosmjerni_iterator_em_bidirectional_iterator_em">Dvosmjerni iterator (<em>bidirectional iterator</em>)</h3>
+<div class="paragraph"><p>Dozvoljava kretanje u oba smjera pa ima operatore <code>++</code> i <code>--</code> (prefiks i postfiks verziju).
+Može čitati i pisati (ako nije konstantan). Takav iterator daje klasa <code>std::list&lt;&gt;</code> i asocijativni spremnici.</p></div>
+</div>
+<div class="sect2">
+<h3 id="_iterator_izravnog_dohvata_em_random_access_iterator_em">Iterator izravnog dohvata (<em>random access iterator</em>)</h3>
+<div class="paragraph"><p>Iteratori u ovoj kategoriji imaju sva svojstva  dvosmjernih iteratora i k tome podržavaju
+<em>pokazivačku aritmetiku</em>. To znači da ako je <code>it</code> iterator izravnog dohvata koji pokazuje na neku lokaciju,
+onda <code>it + n</code> pokazuje na <code>n</code>-ti element od polazne lokacije. Dozvoljena je i sintaksa <code>it[n]</code>.
+Operacije dodavanja i oduzimanja cijelog broja iteratoru su dozvoljene i imaju kao efekt pomicanje
+iteratora za toliko mjesta unaprijed/unazad.</p></div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_funkcije_na_iteratorima">Funkcije na iteratorima</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>U zaglavlju <code>&lt;iterator&gt;</code> su definirane pomoćne funkcije koje rade s iteratorima:</p></div>
+<div class="tableblock">
+<table rules="all" width="100%" frame="border" cellspacing="0" cellpadding="4">
+<colgroup><col width="30%">
+<col width="70%">
+</colgroup><thead>
+<tr>
+<th align="left" valign="top">  Operacija </th>
+<th align="left" valign="top"> Značenje</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left" valign="top"><p class="table"><a href="http://en.cppreference.com/w/cpp/iterator/advance">advance(it,n)</a></p></td>
+<td align="left" valign="top"><p class="table">Pomiće iterator <code>it</code> za <code>n</code> pozicija unaprijed/unazad</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><a href="http://en.cppreference.com/w/cpp/iterator/next">newit = next(it)</a></p></td>
+<td align="left" valign="top"><p class="table">Daje novi iterator <code>newit</code> koji pokazuje na sljedeću poziciju u odnosu na <code>it</code>.
+Iterator <code>it</code> se ne pomiće.</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><a href="http://en.cppreference.com/w/cpp/iterator/next">newit = next(it,n)</a></p></td>
+<td align="left" valign="top"><p class="table">Daje novi iterator <code>newit</code> koji pokazuje na <code>n</code>-tu poziciju
+ nakon <code>it</code>.  Iterator <code>it</code> se ne pomiće.</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><a href="http://en.cppreference.com/w/cpp/iterator/prev">newit = prev(it)</a></p></td>
+<td align="left" valign="top"><p class="table">Daje novi iterator <code>newit</code> koji pokazuje na prethodnu poziciju u
+odnosu na <code>it</code>.  Iterator <code>it</code> se ne pomiće.</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><a href="http://en.cppreference.com/w/cpp/iterator/next">newit = prev(it,n)</a></p></td>
+<td align="left" valign="top"><p class="table">Daje novi iterator <code>newit</code> koji pokazuje na <code>n</code>-tu poziciju
+ prije <code>it</code>.  Iterator <code>it</code> se ne pomiće.</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><a href="http://en.cppreference.com/w/cpp/iterator/distance">n = distance(it1,it2)</a></p></td>
+<td align="left" valign="top"><p class="table">Cjelobrojna vrijednost <code>n</code> je udaljenost između pozicija na
+koje pokazuju iteratori <code>it1</code> i <code>it2</code>. Iterator <code>it1</code> mora pokazivati na element ispred <code>it2</code>.</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><a href="http://en.cppreference.com/w/cpp/algorithm/iter_swap">iter_swap(it1, it2)</a></p></td>
+<td align="left" valign="top"><p class="table">Vrši zamjenu dva iteratora.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="ulist"><ul>
+<li>
+<p>
+U pozivu <code>n = distance(it1,it2)</code> iterator <code>it1</code> može pokazivati na element nakon elementa na koji pokazuje <code>it2</code>
+u slučaju iteratora izravnog dohvata. U slučaju dvosmjernih iteratora to vodi na  nedefinirano ponašanje.
+</p>
+</li>
+<li>
+<p>
+Funkcija <code>std::iter_swap</code> je definirana u zaglavlju <code>&lt;algorithm&gt;</code>.
+</p>
+</li>
+</ul></div>
+<div class="paragraph"><p>Primjer:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">list</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">li</span><span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">};</span>
+<span class="n">std</span><span class="o">::</span><span class="n">iter_swap</span><span class="p">(</span><span class="n">li</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">std</span><span class="o">::</span><span class="n">prev</span><span class="p">(</span><span class="n">li</span><span class="p">.</span><span class="n">end</span><span class="p">()));</span> <span class="c1">// 9,2,3,4,5,6,7,8,1,</span>
+</pre></div></div></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_reverzni_iteratori">Reverzni iteratori</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Reverzni iteratori služe za iteriranje kroz spremnik u obrnutom pretku, od kraja prema početku.
+Na primjer:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;deque&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;algorithm&gt;</span><span class="cp"></span>
+
+<span class="kt">void</span> <span class="nf">print</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">){</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">x</span> <span class="o">&lt;&lt;</span> <span class="s">","</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">deque</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">deq</span><span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">};</span>
+
+  <span class="n">std</span><span class="o">::</span><span class="n">for_each</span><span class="p">(</span><span class="n">deq</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">deq</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span> <span class="n">print</span><span class="p">);</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>  <span class="c1">// 1,2,3,4,5,6,7,8,9,</span>
+
+
+  <span class="n">std</span><span class="o">::</span><span class="n">for_each</span><span class="p">(</span><span class="n">deq</span><span class="p">.</span><span class="n">rbegin</span><span class="p">(),</span> <span class="n">deq</span><span class="p">.</span><span class="n">rend</span><span class="p">(),</span> <span class="n">print</span><span class="p">);</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span> <span class="c1">// 9,8,7,6,5,4,3,2,1,</span>
+
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div></div></div>
+<div class="ulist"><ul>
+<li>
+<p>
+Metode <code>rbegin()</code> i <code>rend()</code> vraćaju reverzne iteratore tipa <code>spremnik::reverse_iterator</code>
+ili, ako je reverzni iterator konstantan, <code>spremnik::const_reverse_iterator</code>. U našem primjeru
+<code>spremnik=std::deque&lt;int&gt;</code>.
+</p>
+</li>
+<li>
+<p>
+Metode <code>crbegin()</code> i <code>crend()</code> vraćaju konstantne reverzne iteratore tipa
+ <code>spremnik::const_reverse_iterator</code>.
+</p>
+</li>
+</ul></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_konverzija_u_reverzni_iterator_i_obratno">Konverzija u reverzni iterator i obratno</h2>
+<div class="sectionbody">
+<div class="ulist"><ul>
+<li>
+<p>
+Konstruktor reverznog iteratora može se inicijalizirati običnim iteratorom i tada konstruktor vrši konverziju
+običnog u reverzni iterator. Dobiveni reverzni iterator pokazuje na jedno mjesto <strong>ispred</strong> običnog iteratora.
+</p>
+</li>
+<li>
+<p>
+Funkcija <code>base()</code> na reverznom iteratoru vrši konverziju u obični iterator. Dobiveni obični iterator
+pokazuje na jedno mjesto iza  reverznog iteratora.
+</p>
+</li>
+</ul></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">deque</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">deq</span><span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">};</span>
+<span class="k">auto</span> <span class="n">it</span> <span class="o">=</span> <span class="n">deq</span><span class="p">.</span><span class="n">begin</span><span class="p">()</span> <span class="o">+</span> <span class="mi">5</span><span class="p">;</span>
+<span class="n">std</span><span class="o">::</span><span class="n">deque</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;::</span><span class="n">reverse_iterator</span> <span class="n">rit</span><span class="p">{</span><span class="n">it</span><span class="p">};</span>  <span class="c1">// konverzija u reverzni iterator</span>
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="o">*</span><span class="n">it</span> <span class="o">&lt;&lt;</span> <span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>  <span class="c1">// ispisuje 6</span>
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="o">*</span><span class="n">rit</span> <span class="o">&lt;&lt;</span> <span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span> <span class="c1">// ispisuje 5</span>
+<span class="k">auto</span> <span class="n">rrit</span> <span class="o">=</span> <span class="n">rit</span><span class="p">.</span><span class="n">base</span><span class="p">();</span>                     <span class="c1">// konverzija u običan iterator</span>
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="o">*</span><span class="n">rrit</span> <span class="o">&lt;&lt;</span> <span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span> <span class="c1">// ispisuje 6</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Ovakva konstrukcija čuva raspone pri prijelazu iz običnog u reverzno iteriranje:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="k">auto</span> <span class="n">it1</span> <span class="o">=</span> <span class="n">deq</span><span class="p">.</span><span class="n">begin</span><span class="p">()</span> <span class="o">+</span> <span class="mi">2</span><span class="p">;</span>
+<span class="k">auto</span> <span class="n">it2</span> <span class="o">=</span> <span class="n">deq</span><span class="p">.</span><span class="n">begin</span><span class="p">()</span> <span class="o">+</span> <span class="mi">7</span><span class="p">;</span>
+<span class="n">std</span><span class="o">::</span><span class="n">for_each</span><span class="p">(</span><span class="n">it1</span><span class="p">,</span> <span class="n">it2</span><span class="p">,</span> <span class="n">print</span><span class="p">);</span>
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>  <span class="c1">// 3,4,5,6,7,</span>
+
+<span class="n">std</span><span class="o">::</span><span class="n">deque</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;::</span><span class="n">reverse_iterator</span> <span class="n">rit1</span><span class="p">{</span><span class="n">it1</span><span class="p">},</span> <span class="n">rit2</span><span class="p">{</span><span class="n">it2</span><span class="p">};</span>
+<span class="n">std</span><span class="o">::</span><span class="n">for_each</span><span class="p">(</span><span class="n">rit2</span><span class="p">,</span> <span class="n">rit1</span><span class="p">,</span> <span class="n">print</span><span class="p">);</span>
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>  <span class="c1">// 7,6,5,4,3,</span>
+</pre></div></div></div>
+<div class="ulist"><ul>
+<li>
+<p>
+Reverzan iterator se prirodno implementira tako da fizički pokazuje na istu
+memorijsku lokaciju kao i odgovarajući običan iterator, ali <em>logički</em> pokazuje na lokaciju
+ispred nje.
+</p>
+</li>
+</ul></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_insert_iteratori">Insert iteratori</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Insert iteratori su posebni iteratori koji pripadaju kategoriji <strong>izlaznih iteratora</strong>
+koji prilikom dereferenciranja insertiraju element u spremnik. Ta
+se operacija može obavljati pomoći metoda:<code>push_back()</code>,
+<code>push_front()</code> i <code>insert()</code>,  pa imamo tri vrste takvih iteratora:</p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+<code>std::back_insert_iterator&lt;Spremnik&gt;</code>
+</p>
+</li>
+<li>
+<p>
+<code>std::front_insert_iterator&lt;Spremnik&gt;</code>
+</p>
+</li>
+<li>
+<p>
+<code>std::insert_iterator&lt;Spremnik&gt;</code>
+</p>
+</li>
+</ul></div>
+<div class="paragraph"><p>Svi se oni nalaze u zaglavlju <code>&lt;iterators&gt;</code> i uzimaju kao parametar predloška tip spremnika
+na kojem rade. Njihovi konstruktori uzimaju spremnik, a <code>insert_iterator</code>  uzima i poziciju
+ubacivanja. Na primjer,</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">list</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">lst</span><span class="p">;</span>
+<span class="n">std</span><span class="o">::</span><span class="n">back_insert_iterator</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">list</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="o">&gt;</span> <span class="n">iter_b</span><span class="p">(</span><span class="n">lst</span><span class="p">);</span>
+<span class="n">std</span><span class="o">::</span><span class="n">front_insert_iterator</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">list</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="o">&gt;</span> <span class="n">iter_f</span><span class="p">(</span><span class="n">lst</span><span class="p">);</span>
+<span class="n">std</span><span class="o">::</span><span class="n">insert_iterator</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">list</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="o">&gt;</span> <span class="n">iter</span><span class="p">(</span><span class="n">lst</span><span class="p">,</span> <span class="n">lst</span><span class="p">.</span><span class="n">begin</span><span class="p">());</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Ovi iteratori su konstruirani tako da operator <code>++</code> ne radi ništa, operator dereferenciranja
+vraća <code>*this</code> (dakle ne radi ništa) i tek operator pridruživanja poziva odgovarajuću <em>insert</em>
+metodu.</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="c1">//Ubacivanje na kraj spremnika</span>
+<span class="o">*</span><span class="n">iter_b</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="n">iter_b</span><span class="o">++</span><span class="p">;</span>
+<span class="o">*</span><span class="n">iter_b</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+<span class="n">iter_b</span><span class="o">++</span><span class="p">;</span>
+<span class="o">*</span><span class="n">iter_b</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>  <span class="c1">// daje 1 2 3</span>
+<span class="c1">// Ubacivanje ispred prvog elementa</span>
+<span class="o">*</span><span class="n">iter_f</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span>  <span class="c1">// iter_f++ nije potreban jer ne radi ništa</span>
+<span class="o">*</span><span class="n">iter_f</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+<span class="o">*</span><span class="n">iter_f</span> <span class="o">=</span> <span class="mi">6</span><span class="p">;</span>  <span class="c1">// daje 6 5 4 1 2 3</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Pokažimo još i <code>insert_iterator</code>:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="k">auto</span> <span class="n">it</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">find</span><span class="p">(</span><span class="n">lst</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">lst</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span> <span class="mi">3</span><span class="p">);</span>
+<span class="n">std</span><span class="o">::</span><span class="n">insert_iterator</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">list</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="o">&gt;</span> <span class="n">iter</span><span class="p">(</span><span class="n">lst</span><span class="p">,</span> <span class="n">it</span><span class="p">);</span>
+<span class="o">*</span><span class="n">iter</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+<span class="o">*</span><span class="n">iter</span> <span class="o">=</span> <span class="mi">11</span><span class="p">;</span>
+<span class="o">*</span><span class="n">iter</span> <span class="o">=</span> <span class="mi">12</span><span class="p">;</span>  <span class="c1">// daje 6 5 4 1 2 10 11 12 3</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Uočimo da <code>back_insert_iterator</code>  i <code>insert_iterator</code> ubacuju elemente u ispravnom poretku
+dok ih <code>front_insert_iterator</code> ubacuje u inverznom poretku.</p></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_pomocne_funkcije_inserteri">Pomoćne funkcije - inserteri</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Postoje tri pomoćne funkcije koje uzimaju spremnik i kreiraju odgovarajući <em>insert</em> iterator.
+To su</p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+<a href="http://en.cppreference.com/w/cpp/iterator/back_inserter">std::back_inserter()</a>
+</p>
+</li>
+<li>
+<p>
+<a href="http://en.cppreference.com/w/cpp/iterator/front_inserter">std::front_inserter()</a>
+</p>
+</li>
+<li>
+<p>
+<a href="http://en.cppreference.com/w/cpp/iterator/inserter">std::inserter()</a>
+</p>
+</li>
+</ul></div>
+<div class="paragraph"><p>Definirane su u zaglavlju <code>&lt;iterator&gt;</code>. Ove funkcje najčešće koristimo zajedno sa algoritmima.
+Na primjer:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">vec1</span><span class="p">;</span>
+<span class="n">std</span><span class="o">::</span><span class="n">copy</span><span class="p">(</span><span class="n">lst</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">lst</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span> <span class="n">std</span><span class="o">::</span><span class="n">back_inserter</span><span class="p">(</span><span class="n">vec1</span><span class="p">));</span>
+<span class="c1">// daje  6 5 4 1 2 10 11 12 3</span>
+
+<span class="n">std</span><span class="o">::</span><span class="n">deque</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">deq</span><span class="p">;</span>
+<span class="n">std</span><span class="o">::</span><span class="n">copy</span><span class="p">(</span><span class="n">lst</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">lst</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span> <span class="n">std</span><span class="o">::</span><span class="n">front_inserter</span><span class="p">(</span><span class="n">deq</span><span class="p">));</span>
+<span class="c1">// daje 3 12 11 10 2 1 4 5 6</span>
+
+<span class="n">std</span><span class="o">::</span><span class="n">list</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">lst1</span><span class="p">{</span><span class="n">lst</span><span class="p">};</span>
+<span class="n">std</span><span class="o">::</span><span class="n">copy</span><span class="p">(</span><span class="n">lst</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">lst</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span>
+          <span class="n">std</span><span class="o">::</span><span class="n">inserter</span><span class="p">(</span><span class="n">lst1</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">next</span><span class="p">(</span><span class="n">lst1</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span><span class="mi">3</span><span class="p">)));</span>
+<span class="c1">// daje 6 5 4 6 5 4 1 2 10 11 12 3 1 2 10 11 12 3</span>
+</pre></div></div></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_iostream_iteratori_1">Iostream iteratori (1)</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Postoje dva specijalna iteratora (deklarirana u zaglavlju <code>&lt;iterator&gt;</code>)
+koja služe za čitanje s ulaznog streama i za pisanje na izlazni stream. Oba iteratora
+promatraju stream kao <strong>niz vrijednosti istog tipa</strong>;
+to su <code>istream_iterator</code> i <code>ostream_iterator</code> .</p></div>
+<div class="sect2">
+<h3 id="_code_ostream_iterator_code"><code>ostream_iterator</code></h3>
+<div class="paragraph"><p>Kod <code>ostream_iterator</code>-a operator dereferenciranja (<code>*</code>) i operator
+inkrementiranja (<code>++</code>) ne rade ništa. Vrijednost na stream ispisuje
+operator pridruživanja. Ovdje nemamo end-iteratora,ali konstruktor
+iteratora pored streama mora kao argument dobiti i separator podataka
+(kao C-string). Za pisanje se koristi operator &lt;&lt;.</p></div>
+<div class="tableblock">
+<table rules="all" width="100%" frame="border" cellspacing="0" cellpadding="4">
+<colgroup><col width="50%">
+<col width="50%">
+</colgroup><thead>
+<tr>
+<th align="left" valign="top">  Operacija </th>
+<th align="left" valign="top"> Značenje</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left" valign="top"><p class="table"><code>ostream_iterator&lt;T&gt;(ostream, delim)</code></p></td>
+<td align="left" valign="top"><p class="table">Konstruktor</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>*it</code></p></td>
+<td align="left" valign="top"><p class="table">NoOp</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>it = value</code></p></td>
+<td align="left" valign="top"><p class="table"><code>ostream &lt;&lt; value</code></p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>it++</code></p></td>
+<td align="left" valign="top"><p class="table">NoOp</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>++it</code></p></td>
+<td align="left" valign="top"><p class="table">NoOp</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="c1">// ostream iteratori</span>
+<span class="n">std</span><span class="o">::</span><span class="n">ostream_iterator</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span> <span class="n">osi</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="p">,</span> <span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+<span class="c1">//    std::ostream_iterator&lt;float&gt; osi_end;  -- ne postoji !</span>
+<span class="c1">// ispis vektora</span>
+<span class="n">std</span><span class="o">::</span><span class="n">copy</span><span class="p">(</span><span class="n">fvec2</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">fvec2</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span> <span class="n">osi</span><span class="p">);</span>
+<span class="c1">// drugi način da se postigne ispis:</span>
+<span class="k">for</span><span class="p">(</span><span class="k">auto</span> <span class="o">&amp;</span> <span class="nl">x</span> <span class="p">:</span> <span class="n">fvec2</span><span class="p">)</span>
+       <span class="o">*</span><span class="n">osi</span><span class="o">++</span> <span class="o">=</span> <span class="n">x</span><span class="p">;</span>  <span class="c1">// dereferenciranje i inkrementiranje ne rade ništa</span>
+<span class="c1">// dovoljno je pisati</span>
+<span class="k">for</span><span class="p">(</span><span class="k">auto</span> <span class="o">&amp;</span> <span class="nl">x</span> <span class="p">:</span> <span class="n">fvec2</span><span class="p">)</span>
+       <span class="n">osi</span> <span class="o">=</span> <span class="n">x</span><span class="p">;</span>    <span class="c1">// ispis radi operator pridruživanja</span>
+
+<span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div></div></div>
+<div class="ulist"><ul>
+<li>
+<p>
+U konstrukciji <code>delim</code> služi kao delimiter između dva ispisa. Može se izostaviti
+ako se želi ispis bez razgraničenja između članova u ispisu. Tip mu je <code>const char *</code>.
+</p>
+</li>
+</ul></div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_iostream_iteratori_2">Iostream iteratori (2)</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_code_istream_iterator_code"><code>istream_iterator</code></h3>
+<div class="paragraph"><p><code>istream_iterator</code> služi čitanju podataka sa ulaznog streama.</p></div>
+<div class="paragraph"><p>Kod <code>istream_iterator</code>-a operator dereferenciranja vraća pročitanu
+vrijednost, a operator inkrementiranja (++) čita sljedeću vrijednost.
+Čitanje završava kada se dođe do kraja streama ili kada dođe do greške.
+Za čitanje se koristi operator &gt;&gt;. Prilikom unosa sa tastature kraj
+unosa se daje s Return i Ctrl-D (linux) ili s Return i Ctrl-Z (windows).</p></div>
+<div class="tableblock">
+<table rules="all" width="100%" frame="border" cellspacing="0" cellpadding="4">
+<colgroup><col width="50%">
+<col width="50%">
+</colgroup><thead>
+<tr>
+<th align="left" valign="top">  Operacija </th>
+<th align="left" valign="top"> Značenje</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left" valign="top"><p class="table"><code>istream_iterator&lt;T&gt;()</code></p></td>
+<td align="left" valign="top"><p class="table">Dodijeljeni konstruktor. Predstavlja <em>end</em> iterator.</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>istream_iterator&lt;T&gt;(ostream)</code></p></td>
+<td align="left" valign="top"><p class="table">Konstruktor. Kreira <code>istream</code> i (eventualno) čita prvu vrijednost</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>*it</code></p></td>
+<td align="left" valign="top"><p class="table">Vraća pročitanu vrijednost</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>it++</code></p></td>
+<td align="left" valign="top"><p class="table">Čita sljedeću vrijednost.</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>++it</code></p></td>
+<td align="left" valign="top"><p class="table">Čita sljedeću vrijednost.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="c1">// istream iteratori</span>
+<span class="n">std</span><span class="o">::</span><span class="n">istream_iterator</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span> <span class="n">isi</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">cin</span><span class="p">);</span>
+<span class="n">std</span><span class="o">::</span><span class="n">istream_iterator</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span> <span class="n">isi_end</span><span class="p">;</span>
+
+<span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span> <span class="n">fvec</span><span class="p">;</span>
+<span class="c1">// dereferenciranje operatora vraća pročitanu vrijednost. Operator ++</span>
+<span class="c1">// čita sljedeću vrijednost</span>
+<span class="k">while</span><span class="p">(</span><span class="n">isi</span> <span class="o">!=</span> <span class="n">isi_end</span><span class="p">){</span>
+    <span class="n">fvec</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="o">*</span><span class="n">isi</span><span class="o">++</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">// Malo korisniji primjer -- čitanje iz datoteke.</span>
+<span class="n">std</span><span class="o">::</span><span class="n">ifstream</span> <span class="n">in</span><span class="p">(</span><span class="s">"brojevi.txt"</span><span class="p">);</span>
+<span class="n">std</span><span class="o">::</span><span class="n">istream_iterator</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span> <span class="n">isi_in</span><span class="p">(</span><span class="n">in</span><span class="p">);</span>
+
+<span class="c1">// čitanje pri konstrukciji vektor.</span>
+<span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span> <span class="n">fvec2</span><span class="p">(</span><span class="n">isi_in</span><span class="p">,</span> <span class="n">isi_end</span><span class="p">);</span>
+</pre></div></div></div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_obevrijeivanje_iteratora">Obevrijeđivanje iteratora</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Neke operacije mogu <em>obezvrijediti</em> iteratore, pokazivače i
+reference na elemente. Jedna takva operacija je brisanje elementa.
+Kod vektora pri brisanju i umetanju elementa gube
+vrijednost svi iteratori, pokazivači i reference nakon
+upisanog/obrisanog elementa.
+Na primjer, sljedeći kod je neispravan:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="k">auto</span> <span class="n">badValue</span> <span class="o">=</span> <span class="p">[](</span><span class="kt">char</span> <span class="n">c</span><span class="p">){</span> <span class="k">return</span> <span class="n">c</span> <span class="o">&gt;</span> <span class="sc">'k'</span><span class="p">;};</span>
+
+<span class="k">for</span><span class="p">(</span><span class="k">auto</span> <span class="n">it</span> <span class="o">=</span> <span class="n">s1</span><span class="p">.</span><span class="n">begin</span><span class="p">();</span> <span class="n">it</span> <span class="o">!=</span> <span class="n">s1</span><span class="p">.</span><span class="n">end</span><span class="p">();</span> <span class="o">++</span><span class="n">it</span><span class="p">){</span>
+   <span class="k">if</span><span class="p">(</span><span class="n">badValue</span><span class="p">(</span><span class="o">*</span><span class="n">it</span><span class="p">))</span> <span class="n">s1</span><span class="p">.</span><span class="n">erase</span><span class="p">(</span><span class="n">it</span><span class="p">);</span> <span class="c1">// Neodređeno ponašanje -- it obezvrijeđen</span>
+<span class="p">}</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Funkcija <code>erase()</code> kod vektora obezvrijeđuje iterator na obrisani element i kasnije
+iteratore.   Ispravna verzija bi bila:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="k">for</span><span class="p">(</span><span class="k">auto</span> <span class="n">it</span> <span class="o">=</span> <span class="n">s1</span><span class="p">.</span><span class="n">begin</span><span class="p">();</span> <span class="n">it</span> <span class="o">!=</span> <span class="n">s1</span><span class="p">.</span><span class="n">end</span><span class="p">();</span> <span class="o">++</span><span class="n">it</span><span class="p">){</span>
+   <span class="k">if</span><span class="p">(</span><span class="n">badValue</span><span class="p">(</span><span class="o">*</span><span class="n">it</span><span class="p">))</span>
+       <span class="n">s1</span><span class="p">.</span><span class="n">erase</span><span class="p">(</span><span class="n">it</span><span class="o">--</span><span class="p">);</span> <span class="c1">// smanji it prije no što staru vrijednost predaš funkciji erase</span>
+<span class="p">}</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Nije samo brisanje elementa operacija koja može obezvrijediti iterator. Kod <strong>ubacivanja</strong>
+novog elementa u vektor mijenja se end iterator, a ako se pri tome vektor mora realocirati zbog
+nedostatka prostora obezvrijeđuju se svi iteratori.</p></div>
+<div class="paragraph"><p>Kod <strong>deque</strong> spremnika svi iteratori mogu
+izgubiti vrijednost kod brisanja i ubacivanja elementa. Jedino brisanje ili ubacivanje elementa na jednom od
+krajeva spremnika ne obezvrijeđuje iteratore (osim onog obrisanog elementa).</p></div>
+<div class="paragraph"><p>Kod <strong>liste</strong> i <strong>asocijativnih spremnika</strong> (map, set,
+multimap, multiset) brisanje obezvrijeđuje samo iterator na obrisani
+element, dok ubacivanje ne obezvrijeđuje iteratore.</p></div>
+</div>
+</div>
+</div>
+
+<div id="footer">
+<div id="footer-text">
+Version 1.0<br>
+Zadnja izmjena
+ 2019-05-14 19:36:25 CEST
+</div>
+</div>
+
+
+</body></html>

@@ -1,0 +1,1801 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<!-- saved from url=(0093)https://web.math.pmf.unizg.hr/nastava/opepp/Slides/Vjezbe/html-noslides/vjezbe-algoritmi.html -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="hr"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="generator" content="AsciiDoc 8.6.9">
+<title>Algoritmi</title>
+<style type="text/css">
+/* Shared CSS for AsciiDoc xhtml11 and html5 backends */
+
+/* Default font. */
+body {
+  font-family: Georgia,serif;
+}
+
+/* Title font. */
+h1, h2, h3, h4, h5, h6,
+div.title, caption.title,
+thead, p.table.header,
+#toctitle,
+#author, #revnumber, #revdate, #revremark,
+#footer {
+  font-family: Arial,Helvetica,sans-serif;
+}
+
+body {
+  margin: 1em 5% 1em 5%;
+}
+
+a {
+  color: blue;
+  text-decoration: underline;
+}
+a:visited {
+  color: fuchsia;
+}
+
+em {
+  font-style: italic;
+  color: navy;
+}
+
+strong {
+  font-weight: bold;
+  color: #083194;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #527bbd;
+  margin-top: 1.2em;
+  margin-bottom: 0.5em;
+  line-height: 1.3;
+}
+
+h1, h2, h3 {
+  border-bottom: 2px solid silver;
+}
+h2 {
+  padding-top: 0.5em;
+}
+h3 {
+  float: left;
+}
+h3 + * {
+  clear: left;
+}
+h5 {
+  font-size: 1.0em;
+}
+
+div.sectionbody {
+  margin-left: 0;
+}
+
+hr {
+  border: 1px solid silver;
+}
+
+p {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+ul, ol, li > p {
+  margin-top: 0;
+}
+ul > li     { color: #aaa; }
+ul > li > * { color: black; }
+
+.monospaced, code, pre {
+  font-family: "Courier New", Courier, monospace;
+  font-size: inherit;
+  color: navy;
+  padding: 0;
+  margin: 0;
+}
+pre {
+  white-space: pre-wrap;
+}
+
+#author {
+  color: #527bbd;
+  font-weight: bold;
+  font-size: 1.1em;
+}
+#email {
+}
+#revnumber, #revdate, #revremark {
+}
+
+#footer {
+  font-size: small;
+  border-top: 2px solid silver;
+  padding-top: 0.5em;
+  margin-top: 4.0em;
+}
+#footer-text {
+  float: left;
+  padding-bottom: 0.5em;
+}
+#footer-badges {
+  float: right;
+  padding-bottom: 0.5em;
+}
+
+#preamble {
+  margin-top: 1.5em;
+  margin-bottom: 1.5em;
+}
+div.imageblock, div.exampleblock, div.verseblock,
+div.quoteblock, div.literalblock, div.listingblock, div.sidebarblock,
+div.admonitionblock {
+  margin-top: 1.0em;
+  margin-bottom: 1.5em;
+}
+div.admonitionblock {
+  margin-top: 2.0em;
+  margin-bottom: 2.0em;
+  margin-right: 10%;
+  color: #606060;
+}
+
+div.content { /* Block element content. */
+  padding: 0;
+}
+
+/* Block element titles. */
+div.title, caption.title {
+  color: #527bbd;
+  font-weight: bold;
+  text-align: left;
+  margin-top: 1.0em;
+  margin-bottom: 0.5em;
+}
+div.title + * {
+  margin-top: 0;
+}
+
+td div.title:first-child {
+  margin-top: 0.0em;
+}
+div.content div.title:first-child {
+  margin-top: 0.0em;
+}
+div.content + div.title {
+  margin-top: 0.0em;
+}
+
+div.sidebarblock > div.content {
+  background: #ffffee;
+  border: 1px solid #dddddd;
+  border-left: 4px solid #f0f0f0;
+  padding: 0.5em;
+}
+
+div.listingblock > div.content {
+  border: 1px solid #dddddd;
+  border-left: 5px solid #f0f0f0;
+  background: #f8f8f8;
+  padding: 0.5em;
+}
+
+div.quoteblock, div.verseblock {
+  padding-left: 1.0em;
+  margin-left: 1.0em;
+  margin-right: 10%;
+  border-left: 5px solid #f0f0f0;
+  color: #888;
+}
+
+div.quoteblock > div.attribution {
+  padding-top: 0.5em;
+  text-align: right;
+}
+
+div.verseblock > pre.content {
+  font-family: inherit;
+  font-size: inherit;
+}
+div.verseblock > div.attribution {
+  padding-top: 0.75em;
+  text-align: left;
+}
+/* DEPRECATED: Pre version 8.2.7 verse style literal block. */
+div.verseblock + div.attribution {
+  text-align: left;
+}
+
+div.admonitionblock .icon {
+  vertical-align: top;
+  font-size: 1.1em;
+  font-weight: bold;
+  text-decoration: underline;
+  color: #527bbd;
+  padding-right: 0.5em;
+}
+div.admonitionblock td.content {
+  padding-left: 0.5em;
+  border-left: 3px solid #dddddd;
+}
+
+div.exampleblock > div.content {
+  border-left: 3px solid #dddddd;
+  padding-left: 0.5em;
+}
+
+div.imageblock div.content { padding-left: 0; }
+span.image img { border-style: none; vertical-align: text-bottom; }
+a.image:visited { color: white; }
+
+dl {
+  margin-top: 0.8em;
+  margin-bottom: 0.8em;
+}
+dt {
+  margin-top: 0.5em;
+  margin-bottom: 0;
+  font-style: normal;
+  color: navy;
+}
+dd > *:first-child {
+  margin-top: 0.1em;
+}
+
+ul, ol {
+    list-style-position: outside;
+}
+ol.arabic {
+  list-style-type: decimal;
+}
+ol.loweralpha {
+  list-style-type: lower-alpha;
+}
+ol.upperalpha {
+  list-style-type: upper-alpha;
+}
+ol.lowerroman {
+  list-style-type: lower-roman;
+}
+ol.upperroman {
+  list-style-type: upper-roman;
+}
+
+div.compact ul, div.compact ol,
+div.compact p, div.compact p,
+div.compact div, div.compact div {
+  margin-top: 0.1em;
+  margin-bottom: 0.1em;
+}
+
+tfoot {
+  font-weight: bold;
+}
+td > div.verse {
+  white-space: pre;
+}
+
+div.hdlist {
+  margin-top: 0.8em;
+  margin-bottom: 0.8em;
+}
+div.hdlist tr {
+  padding-bottom: 15px;
+}
+dt.hdlist1.strong, td.hdlist1.strong {
+  font-weight: bold;
+}
+td.hdlist1 {
+  vertical-align: top;
+  font-style: normal;
+  padding-right: 0.8em;
+  color: navy;
+}
+td.hdlist2 {
+  vertical-align: top;
+}
+div.hdlist.compact tr {
+  margin: 0;
+  padding-bottom: 0;
+}
+
+.comment {
+  background: yellow;
+}
+
+.footnote, .footnoteref {
+  font-size: 0.8em;
+}
+
+span.footnote, span.footnoteref {
+  vertical-align: super;
+}
+
+#footnotes {
+  margin: 20px 0 20px 0;
+  padding: 7px 0 0 0;
+}
+
+#footnotes div.footnote {
+  margin: 0 0 5px 0;
+}
+
+#footnotes hr {
+  border: none;
+  border-top: 1px solid silver;
+  height: 1px;
+  text-align: left;
+  margin-left: 0;
+  width: 20%;
+  min-width: 100px;
+}
+
+div.colist td {
+  padding-right: 0.5em;
+  padding-bottom: 0.3em;
+  vertical-align: top;
+}
+div.colist td img {
+  margin-top: 0.3em;
+}
+
+@media print {
+  #footer-badges { display: none; }
+}
+
+#toc {
+  margin-bottom: 2.5em;
+}
+
+#toctitle {
+  color: #527bbd;
+  font-size: 1.1em;
+  font-weight: bold;
+  margin-top: 1.0em;
+  margin-bottom: 0.1em;
+}
+
+div.toclevel0, div.toclevel1, div.toclevel2, div.toclevel3, div.toclevel4 {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+div.toclevel2 {
+  margin-left: 2em;
+  font-size: 0.9em;
+}
+div.toclevel3 {
+  margin-left: 4em;
+  font-size: 0.9em;
+}
+div.toclevel4 {
+  margin-left: 6em;
+  font-size: 0.9em;
+}
+
+span.aqua { color: aqua; }
+span.black { color: black; }
+span.blue { color: blue; }
+span.fuchsia { color: fuchsia; }
+span.gray { color: gray; }
+span.green { color: green; }
+span.lime { color: lime; }
+span.maroon { color: maroon; }
+span.navy { color: navy; }
+span.olive { color: olive; }
+span.purple { color: purple; }
+span.red { color: red; }
+span.silver { color: silver; }
+span.teal { color: teal; }
+span.white { color: white; }
+span.yellow { color: yellow; }
+
+span.aqua-background { background: aqua; }
+span.black-background { background: black; }
+span.blue-background { background: blue; }
+span.fuchsia-background { background: fuchsia; }
+span.gray-background { background: gray; }
+span.green-background { background: green; }
+span.lime-background { background: lime; }
+span.maroon-background { background: maroon; }
+span.navy-background { background: navy; }
+span.olive-background { background: olive; }
+span.purple-background { background: purple; }
+span.red-background { background: red; }
+span.silver-background { background: silver; }
+span.teal-background { background: teal; }
+span.white-background { background: white; }
+span.yellow-background { background: yellow; }
+
+span.big { font-size: 2em; }
+span.small { font-size: 0.6em; }
+
+span.underline { text-decoration: underline; }
+span.overline { text-decoration: overline; }
+span.line-through { text-decoration: line-through; }
+
+div.unbreakable { page-break-inside: avoid; }
+
+
+/*
+ * xhtml11 specific
+ *
+ * */
+
+div.tableblock {
+  margin-top: 1.0em;
+  margin-bottom: 1.5em;
+}
+div.tableblock > table {
+  border: 3px solid #527bbd;
+}
+thead, p.table.header {
+  font-weight: bold;
+  color: #527bbd;
+}
+p.table {
+  margin-top: 0;
+}
+/* Because the table frame attribute is overriden by CSS in most browsers. */
+div.tableblock > table[frame="void"] {
+  border-style: none;
+}
+div.tableblock > table[frame="hsides"] {
+  border-left-style: none;
+  border-right-style: none;
+}
+div.tableblock > table[frame="vsides"] {
+  border-top-style: none;
+  border-bottom-style: none;
+}
+
+
+/*
+ * html5 specific
+ *
+ * */
+
+table.tableblock {
+  margin-top: 1.0em;
+  margin-bottom: 1.5em;
+}
+thead, p.tableblock.header {
+  font-weight: bold;
+  color: #527bbd;
+}
+p.tableblock {
+  margin-top: 0;
+}
+table.tableblock {
+  border-width: 3px;
+  border-spacing: 0px;
+  border-style: solid;
+  border-color: #527bbd;
+  border-collapse: collapse;
+}
+th.tableblock, td.tableblock {
+  border-width: 1px;
+  padding: 4px;
+  border-style: solid;
+  border-color: #527bbd;
+}
+
+table.tableblock.frame-topbot {
+  border-left-style: hidden;
+  border-right-style: hidden;
+}
+table.tableblock.frame-sides {
+  border-top-style: hidden;
+  border-bottom-style: hidden;
+}
+table.tableblock.frame-none {
+  border-style: hidden;
+}
+
+th.tableblock.halign-left, td.tableblock.halign-left {
+  text-align: left;
+}
+th.tableblock.halign-center, td.tableblock.halign-center {
+  text-align: center;
+}
+th.tableblock.halign-right, td.tableblock.halign-right {
+  text-align: right;
+}
+
+th.tableblock.valign-top, td.tableblock.valign-top {
+  vertical-align: top;
+}
+th.tableblock.valign-middle, td.tableblock.valign-middle {
+  vertical-align: middle;
+}
+th.tableblock.valign-bottom, td.tableblock.valign-bottom {
+  vertical-align: bottom;
+}
+
+
+/*
+ * manpage specific
+ *
+ * */
+
+body.manpage h1 {
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+  border-top: 2px solid silver;
+  border-bottom: 2px solid silver;
+}
+body.manpage h2 {
+  border-style: none;
+}
+body.manpage div.sectionbody {
+  margin-left: 3em;
+}
+
+@media print {
+  body.manpage div#toc { display: none; }
+}
+.highlight .hll { background-color: #ffffcc }
+.highlight  { background: #f8f8f8; }
+.highlight .c { color: #408080; font-style: italic } /* Comment */
+.highlight .err { border: 1px solid #FF0000 } /* Error */
+.highlight .k { color: #008000; font-weight: bold } /* Keyword */
+.highlight .o { color: #666666 } /* Operator */
+.highlight .cm { color: #408080; font-style: italic } /* Comment.Multiline */
+.highlight .cp { color: #BC7A00 } /* Comment.Preproc */
+.highlight .c1 { color: #408080; font-style: italic } /* Comment.Single */
+.highlight .cs { color: #408080; font-style: italic } /* Comment.Special */
+.highlight .gd { color: #A00000 } /* Generic.Deleted */
+.highlight .ge { font-style: italic } /* Generic.Emph */
+.highlight .gr { color: #FF0000 } /* Generic.Error */
+.highlight .gh { color: #000080; font-weight: bold } /* Generic.Heading */
+.highlight .gi { color: #00A000 } /* Generic.Inserted */
+.highlight .go { color: #808080 } /* Generic.Output */
+.highlight .gp { color: #000080; font-weight: bold } /* Generic.Prompt */
+.highlight .gs { font-weight: bold } /* Generic.Strong */
+.highlight .gu { color: #800080; font-weight: bold } /* Generic.Subheading */
+.highlight .gt { color: #0040D0 } /* Generic.Traceback */
+.highlight .kc { color: #008000; font-weight: bold } /* Keyword.Constant */
+.highlight .kd { color: #008000; font-weight: bold } /* Keyword.Declaration */
+.highlight .kn { color: #008000; font-weight: bold } /* Keyword.Namespace */
+.highlight .kp { color: #008000 } /* Keyword.Pseudo */
+.highlight .kr { color: #008000; font-weight: bold } /* Keyword.Reserved */
+.highlight .kt { color: #B00040 } /* Keyword.Type */
+.highlight .m { color: #666666 } /* Literal.Number */
+.highlight .s { color: #BA2121 } /* Literal.String */
+.highlight .na { color: #7D9029 } /* Name.Attribute */
+.highlight .nb { color: #008000 } /* Name.Builtin */
+.highlight .nc { color: #0000FF; font-weight: bold } /* Name.Class */
+.highlight .no { color: #880000 } /* Name.Constant */
+.highlight .nd { color: #AA22FF } /* Name.Decorator */
+.highlight .ni { color: #999999; font-weight: bold } /* Name.Entity */
+.highlight .ne { color: #D2413A; font-weight: bold } /* Name.Exception */
+.highlight .nf { color: #0000FF } /* Name.Function */
+.highlight .nl { color: #A0A000 } /* Name.Label */
+.highlight .nn { color: #0000FF; font-weight: bold } /* Name.Namespace */
+.highlight .nt { color: #008000; font-weight: bold } /* Name.Tag */
+.highlight .nv { color: #19177C } /* Name.Variable */
+.highlight .ow { color: #AA22FF; font-weight: bold } /* Operator.Word */
+.highlight .w { color: #bbbbbb } /* Text.Whitespace */
+.highlight .mf { color: #666666 } /* Literal.Number.Float */
+.highlight .mh { color: #666666 } /* Literal.Number.Hex */
+.highlight .mi { color: #666666 } /* Literal.Number.Integer */
+.highlight .mo { color: #666666 } /* Literal.Number.Oct */
+.highlight .sb { color: #BA2121 } /* Literal.String.Backtick */
+.highlight .sc { color: #BA2121 } /* Literal.String.Char */
+.highlight .sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
+.highlight .s2 { color: #BA2121 } /* Literal.String.Double */
+.highlight .se { color: #BB6622; font-weight: bold } /* Literal.String.Escape */
+.highlight .sh { color: #BA2121 } /* Literal.String.Heredoc */
+.highlight .si { color: #BB6688; font-weight: bold } /* Literal.String.Interpol */
+.highlight .sx { color: #008000 } /* Literal.String.Other */
+.highlight .sr { color: #BB6688 } /* Literal.String.Regex */
+.highlight .s1 { color: #BA2121 } /* Literal.String.Single */
+.highlight .ss { color: #19177C } /* Literal.String.Symbol */
+.highlight .bp { color: #008000 } /* Name.Builtin.Pseudo */
+.highlight .vc { color: #19177C } /* Name.Variable.Class */
+.highlight .vg { color: #19177C } /* Name.Variable.Global */
+.highlight .vi { color: #19177C } /* Name.Variable.Instance */
+.highlight .il { color: #666666 } /* Literal.Number.Integer.Long */
+
+
+</style>
+<script type="text/javascript">
+/*<![CDATA[*/
+var asciidoc = {  // Namespace.
+
+/////////////////////////////////////////////////////////////////////
+// Table Of Contents generator
+/////////////////////////////////////////////////////////////////////
+
+/* Author: Mihai Bazon, September 2002
+ * http://students.infoiasi.ro/~mishoo
+ *
+ * Table Of Content generator
+ * Version: 0.4
+ *
+ * Feel free to use this script under the terms of the GNU General Public
+ * License, as long as you do not remove or alter this notice.
+ */
+
+ /* modified by Troy D. Hanson, September 2006. License: GPL */
+ /* modified by Stuart Rackham, 2006, 2009. License: GPL */
+
+// toclevels = 1..4.
+toc: function (toclevels) {
+
+  function getText(el) {
+    var text = "";
+    for (var i = el.firstChild; i != null; i = i.nextSibling) {
+      if (i.nodeType == 3 /* Node.TEXT_NODE */) // IE doesn't speak constants.
+        text += i.data;
+      else if (i.firstChild != null)
+        text += getText(i);
+    }
+    return text;
+  }
+
+  function TocEntry(el, text, toclevel) {
+    this.element = el;
+    this.text = text;
+    this.toclevel = toclevel;
+  }
+
+  function tocEntries(el, toclevels) {
+    var result = new Array;
+    var re = new RegExp('[hH]([1-'+(toclevels+1)+'])');
+    // Function that scans the DOM tree for header elements (the DOM2
+    // nodeIterator API would be a better technique but not supported by all
+    // browsers).
+    var iterate = function (el) {
+      for (var i = el.firstChild; i != null; i = i.nextSibling) {
+        if (i.nodeType == 1 /* Node.ELEMENT_NODE */) {
+          var mo = re.exec(i.tagName);
+          if (mo && (i.getAttribute("class") || i.getAttribute("className")) != "float") {
+            result[result.length] = new TocEntry(i, getText(i), mo[1]-1);
+          }
+          iterate(i);
+        }
+      }
+    }
+    iterate(el);
+    return result;
+  }
+
+  var toc = document.getElementById("toc");
+  if (!toc) {
+    return;
+  }
+
+  // Delete existing TOC entries in case we're reloading the TOC.
+  var tocEntriesToRemove = [];
+  var i;
+  for (i = 0; i < toc.childNodes.length; i++) {
+    var entry = toc.childNodes[i];
+    if (entry.nodeName.toLowerCase() == 'div'
+     && entry.getAttribute("class")
+     && entry.getAttribute("class").match(/^toclevel/))
+      tocEntriesToRemove.push(entry);
+  }
+  for (i = 0; i < tocEntriesToRemove.length; i++) {
+    toc.removeChild(tocEntriesToRemove[i]);
+  }
+
+  // Rebuild TOC entries.
+  var entries = tocEntries(document.getElementById("content"), toclevels);
+  for (var i = 0; i < entries.length; ++i) {
+    var entry = entries[i];
+    if (entry.element.id == "")
+      entry.element.id = "_toc_" + i;
+    var a = document.createElement("a");
+    a.href = "#" + entry.element.id;
+    a.appendChild(document.createTextNode(entry.text));
+    var div = document.createElement("div");
+    div.appendChild(a);
+    div.className = "toclevel" + entry.toclevel;
+    toc.appendChild(div);
+  }
+  if (entries.length == 0)
+    toc.parentNode.removeChild(toc);
+},
+
+
+/////////////////////////////////////////////////////////////////////
+// Footnotes generator
+/////////////////////////////////////////////////////////////////////
+
+/* Based on footnote generation code from:
+ * http://www.brandspankingnew.net/archive/2005/07/format_footnote.html
+ */
+
+footnotes: function () {
+  // Delete existing footnote entries in case we're reloading the footnodes.
+  var i;
+  var noteholder = document.getElementById("footnotes");
+  if (!noteholder) {
+    return;
+  }
+  var entriesToRemove = [];
+  for (i = 0; i < noteholder.childNodes.length; i++) {
+    var entry = noteholder.childNodes[i];
+    if (entry.nodeName.toLowerCase() == 'div' && entry.getAttribute("class") == "footnote")
+      entriesToRemove.push(entry);
+  }
+  for (i = 0; i < entriesToRemove.length; i++) {
+    noteholder.removeChild(entriesToRemove[i]);
+  }
+
+  // Rebuild footnote entries.
+  var cont = document.getElementById("content");
+  var spans = cont.getElementsByTagName("span");
+  var refs = {};
+  var n = 0;
+  for (i=0; i<spans.length; i++) {
+    if (spans[i].className == "footnote") {
+      n++;
+      var note = spans[i].getAttribute("data-note");
+      if (!note) {
+        // Use [\s\S] in place of . so multi-line matches work.
+        // Because JavaScript has no s (dotall) regex flag.
+        note = spans[i].innerHTML.match(/\s*\[([\s\S]*)]\s*/)[1];
+        spans[i].innerHTML =
+          "[<a id='_footnoteref_" + n + "' href='#_footnote_" + n +
+          "' title='View footnote' class='footnote'>" + n + "</a>]";
+        spans[i].setAttribute("data-note", note);
+      }
+      noteholder.innerHTML +=
+        "<div class='footnote' id='_footnote_" + n + "'>" +
+        "<a href='#_footnoteref_" + n + "' title='Return to text'>" +
+        n + "</a>. " + note + "</div>";
+      var id =spans[i].getAttribute("id");
+      if (id != null) refs["#"+id] = n;
+    }
+  }
+  if (n == 0)
+    noteholder.parentNode.removeChild(noteholder);
+  else {
+    // Process footnoterefs.
+    for (i=0; i<spans.length; i++) {
+      if (spans[i].className == "footnoteref") {
+        var href = spans[i].getElementsByTagName("a")[0].getAttribute("href");
+        href = href.match(/#.*/)[0];  // Because IE return full URL.
+        n = refs[href];
+        spans[i].innerHTML =
+          "[<a href='#_footnote_" + n +
+          "' title='View footnote' class='footnote'>" + n + "</a>]";
+      }
+    }
+  }
+},
+
+install: function(toclevels) {
+  var timerId;
+
+  function reinstall() {
+    asciidoc.footnotes();
+    if (toclevels) {
+      asciidoc.toc(toclevels);
+    }
+  }
+
+  function reinstallAndRemoveTimer() {
+    clearInterval(timerId);
+    reinstall();
+  }
+
+  timerId = setInterval(reinstall, 500);
+  if (document.addEventListener)
+    document.addEventListener("DOMContentLoaded", reinstallAndRemoveTimer, false);
+  else
+    window.onload = reinstallAndRemoveTimer;
+}
+
+}
+asciidoc.install();
+/*]]>*/
+</script>
+</head>
+<body class="article">
+<div id="header">
+<h1>Algoritmi</h1>
+<span id="author">Mladen Jurak</span><br>
+<span id="revnumber">version 1.1,</span>
+<span id="revdate">2019-03</span>
+</div>
+<div id="content">
+<div class="sect1">
+<h2 id="_algoritmi">Algoritmi</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Algoritmi djeluju na spremnike kroz iteratore.</p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+Algoritmi nikada ne izvršavaju
+operacije koje nude spremnici i ne mijenjaju veličinu spremnika.
+</p>
+</li>
+<li>
+<p>
+Svi su algoritmi
+definirani u zaglavlju <code>&lt;algorithm&gt;</code> osim nekoliko numeričkih koji su
+definirani u zaglavlju <code>&lt;numeric&gt;</code> te algoritama u <code>&lt;memory&gt;</code> zaglavlju.
+</p>
+</li>
+<li>
+<p>
+Algoritam se može pojaviti u više verzija i tada dobiva sufiks:
+</p>
+<div class="ulist"><ul>
+<li>
+<p>
+Sufiks <code>_if</code>. Ova verzija uzima predikat dok osnovna verzija uzima vrijednost. Na primjer, <code>find()</code> i <code>find_if()</code>.
+</p>
+</li>
+<li>
+<p>
+Sufiks <code>_copy</code>. Ova verzija kopira ulazni niz, dok osnovna radi na njemu. Na primjer, <code>reverse()</code> i  <code>reverse_copy()</code> .
+</p>
+</li>
+<li>
+<p>
+Sufiks <code>_n</code>. Ova verzija umjesto <code>end</code> iteratora uzima broj elemenata s kojima treba raditi.
+</p>
+</li>
+</ul></div>
+</li>
+<li>
+<p>
+Algoritmi koji imaju ulazan  i izlazan niz pretpostavljaju da izlazan niz ima isti broj elemenata kao i
+ulazan i stoga je izlazni niz zadan samo svojim početnim iteratorom.
+</p>
+</li>
+</ul></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_popis_algoritama_1">Popis algoritama  (1)</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Algoritmi su podijeljeni u nekoliko grupa:</p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+Nemodificirajući algoritmi
+</p>
+</li>
+<li>
+<p>
+Modificirajući algoritmi
+</p>
+</li>
+<li>
+<p>
+Operacije particioniranja
+</p>
+</li>
+<li>
+<p>
+Operacije sortiranja
+</p>
+</li>
+<li>
+<p>
+Operacije na sortiranim kolekcijama
+</p>
+</li>
+<li>
+<p>
+Skupovne operacije
+</p>
+</li>
+<li>
+<p>
+Opearcije na hrpi
+</p>
+</li>
+<li>
+<p>
+Minimum/maksimum operacije
+</p>
+</li>
+<li>
+<p>
+Opearacije uspoređivanja
+</p>
+</li>
+<li>
+<p>
+Permutacije
+</p>
+</li>
+<li>
+<p>
+Numeričke operacije
+</p>
+</li>
+<li>
+<p>
+Operacije na neinicijaliziranoj memoriji
+</p>
+</li>
+</ul></div>
+<div class="paragraph"><p>Osnovna literatura za algoritme je <a href="https://en.cppreference.com/">https://en.cppreference.com</a></p></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_popis_algoritama_2">Popis algoritama (2)</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_nemodificirajuci_algoritmi">Nemodificirajući algoritmi</h3>
+<div class="paragraph"><p>Definirani su u zaglavlju <code>&lt;algorithm&gt;</code>.</p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+<code>all_of</code>, <code>any_of</code>, <code>none_of</code> provjera predikata
+</p>
+</li>
+<li>
+<p>
+<code>for_each</code>,  <code>for_each_n</code> (C++17)  primjena funkcije na elemente
+</p>
+</li>
+<li>
+<p>
+<code>count</code>, <code>count_if</code> broj elemenata koji zadovoljavaju kriterij
+</p>
+</li>
+<li>
+<p>
+<code>mismatch</code> prvo mjesto razlikovanja
+</p>
+</li>
+<li>
+<p>
+<code>find</code>, <code>find_if</code>, <code>find_if_not</code> nalaženje elementa
+</p>
+</li>
+<li>
+<p>
+<code>find_end</code> nalaženje posljednjeg niza elemenata
+</p>
+</li>
+<li>
+<p>
+<code>find_first_of</code> nalaženje bilo koje elementa iz skupa
+</p>
+</li>
+<li>
+<p>
+<code>adjacent_find</code> nalaženje prva dva jednaka elementa
+</p>
+</li>
+<li>
+<p>
+<code>search</code>, <code>search_n</code> potraga za nizom elemenata
+</p>
+</li>
+</ul></div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_popis_algoritama_3">Popis algoritama (3)</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_modificirajuci_algoritmi">Modificirajući algoritmi</h3>
+<div class="paragraph"><p>Definirani su u zaglavlju <code>&lt;algorithm&gt;</code>.</p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+<code>copy</code>, <code>copy_if</code>, <code>copy_n</code>, <code>copy_backward</code> kopiranje elemenata
+</p>
+</li>
+<li>
+<p>
+<code>move</code>, <code>move_backward</code> micanje elemenata
+</p>
+</li>
+<li>
+<p>
+<code>fill</code>, <code>fill_n</code> kopiranje zadane vrijednosti
+</p>
+</li>
+<li>
+<p>
+<code>transform</code> primjeni funkciju na kolekciju
+</p>
+</li>
+<li>
+<p>
+<code>generate</code>, <code>generate_n</code>  sukcesivni funkcijski pozivi
+</p>
+</li>
+<li>
+<p>
+<code>remove</code>, <code>remove_if</code>, <code>remove_copy</code>, <code>remove_copy_if</code> uklanjanje elemenata
+</p>
+</li>
+<li>
+<p>
+<code>replace</code>, <code>replace_if</code>, <code>replace_copy</code> , <code>replace_copy_if</code> zamjena elemenata
+</p>
+</li>
+<li>
+<p>
+<code>swap</code>, <code>swap_ranges</code>, <code>iter_swap</code> međusobna zamjena elemenata
+</p>
+</li>
+<li>
+<p>
+<code>reverse</code>, <code>reverse_copy</code> inverzija kolekcije
+</p>
+</li>
+<li>
+<p>
+<code>rotate</code>, <code>rotate_copy</code>  rotacija elemenata kolekcije
+</p>
+</li>
+<li>
+<p>
+<code>shift_left</code>, <code>shift_right</code> (C++20)  pomak elemenata
+</p>
+</li>
+<li>
+<p>
+<code>shuffle</code>  slučajno preuređivanje
+</p>
+</li>
+<li>
+<p>
+<code>sample</code> (C++17) slučajni izbor elemenata
+</p>
+</li>
+<li>
+<p>
+<code>unique</code>, <code>unique_copy</code> ukloni konsekutivne duplikate
+</p>
+</li>
+</ul></div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_popis_algoritama_4">Popis algoritama (4)</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Definirani su u zaglavlju <code>&lt;algorithm&gt;</code>.</p></div>
+<div class="sect2">
+<h3 id="_operacije_particioniranja">Operacije particioniranja</h3>
+<div class="ulist"><ul>
+<li>
+<p>
+<code>is_partitioned</code>  ispitivanja particioniranosti
+</p>
+</li>
+<li>
+<p>
+<code>partition</code>,  <code>partition_copy</code>, <code>stable_partition</code>  particioniranje
+</p>
+</li>
+<li>
+<p>
+<code>partition_point</code> lociranje razdijelne točke
+</p>
+</li>
+</ul></div>
+</div>
+<div class="sect2">
+<h3 id="_operacije_sortiranja">Operacije sortiranja</h3>
+<div class="ulist"><ul>
+<li>
+<p>
+<code>is_sorted</code> provjera sortiranosti
+</p>
+</li>
+<li>
+<p>
+<code>is_sorted_until</code> najveći sortirani raspon
+</p>
+</li>
+<li>
+<p>
+<code>sort</code>, <code>stable_sort</code> sortiranje
+</p>
+</li>
+<li>
+<p>
+<code>partial_sort</code>,  <code>partial_sort_copy</code>, <code>nth_element</code> parcijalno sortiranje
+</p>
+</li>
+</ul></div>
+</div>
+<div class="sect2">
+<h3 id="_operacije_na_sortiranim_kolekcijama">Operacije na sortiranim kolekcijama</h3>
+<div class="ulist"><ul>
+<li>
+<p>
+<code>lower_bound</code> prvi element koji nije manji od zadanog
+</p>
+</li>
+<li>
+<p>
+<code>upper_bound</code> prvi element veći od zadanog
+</p>
+</li>
+<li>
+<p>
+<code>binary_search</code> binarno pretraživanje
+</p>
+</li>
+<li>
+<p>
+<code>equal_range</code> raspon ekvivalentnih elemenata
+</p>
+</li>
+<li>
+<p>
+<code>merge</code>, <code>inplace_merge</code> spajanje sortiranih kolekcija
+</p>
+</li>
+</ul></div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_popis_algoritama_5">Popis algoritama (5)</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Definirani su u zaglavlju <code>&lt;algorithm&gt;</code>.</p></div>
+<div class="sect2">
+<h3 id="_skupovne_operacije">Skupovne operacije</h3>
+<div class="ulist"><ul>
+<li>
+<p>
+<code>includes</code>  inkluzija
+</p>
+</li>
+<li>
+<p>
+<code>set_difference</code> skupovna razlika
+</p>
+</li>
+<li>
+<p>
+<code>set_intersection</code> presjek
+</p>
+</li>
+<li>
+<p>
+<code>set_symmetric_difference</code>  simetrična razliak
+</p>
+</li>
+<li>
+<p>
+<code>set_union</code> unija
+</p>
+</li>
+</ul></div>
+</div>
+<div class="sect2">
+<h3 id="_opearcije_na_hrpi">Opearcije na hrpi</h3>
+<div class="ulist"><ul>
+<li>
+<p>
+<code>is_heap</code> je li max hrpa
+</p>
+</li>
+<li>
+<p>
+<code>is_heap_until</code>  najveći raspon koji je max hrpa
+</p>
+</li>
+<li>
+<p>
+<code>make_heap</code>  učini max hrpom
+</p>
+</li>
+<li>
+<p>
+<code>push_heap</code>  dodaj element u max hrpu
+</p>
+</li>
+<li>
+<p>
+<code>pop_heap</code> ukloni element iz max hrpe
+</p>
+</li>
+<li>
+<p>
+<code>sort_heap</code>  pretvorimax hrpu u rastući  niz
+</p>
+</li>
+</ul></div>
+</div>
+<div class="sect2">
+<h3 id="_minimum_maksimum_operacije">Minimum/maksimum operacije</h3>
+<div class="ulist"><ul>
+<li>
+<p>
+<code>max</code> , <code>max_element</code>  maksimum
+</p>
+</li>
+<li>
+<p>
+<code>min</code> , <code>min_element</code> minimum
+</p>
+</li>
+<li>
+<p>
+<code>minmax</code> , <code>minmax_element</code>  minimum i maksimum
+</p>
+</li>
+<li>
+<p>
+<code>clamp</code> (C++17) odsjecanje između dva praga
+</p>
+</li>
+</ul></div>
+</div>
+<div class="sect2">
+<h3 id="_opearacije_usporeivanja">Opearacije uspoređivanja</h3>
+<div class="ulist"><ul>
+<li>
+<p>
+<code>equal</code>  jednakost
+</p>
+</li>
+<li>
+<p>
+<code>lexicographical_compare</code>  leksikografsko uspoređivanje
+</p>
+</li>
+<li>
+<p>
+<code>compare_3way</code>, <code>lexicographical_compare_3way</code> (C++20) trostruko uspoređivanje
+</p>
+</li>
+</ul></div>
+</div>
+<div class="sect2">
+<h3 id="_permutacije">Permutacije</h3>
+<div class="ulist"><ul>
+<li>
+<p>
+<code>is_permutation</code>  je li permutacija nečega
+</p>
+</li>
+<li>
+<p>
+<code>next_permutation</code>  sljedeća permutacija
+</p>
+</li>
+<li>
+<p>
+<code>prev_permutation</code> prethodna permutacija
+</p>
+</li>
+</ul></div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_popis_algoritama_6">Popis algoritama (6)</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_numericke_operacije">Numeričke operacije</h3>
+<div class="paragraph"><p>Definirani su u zaglavlju <code>&lt;numeric&gt;</code>.</p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+<code>iota</code>  ispuni suksesivnim inkrementima
+</p>
+</li>
+<li>
+<p>
+<code>accumulate</code>, <code>reduce</code> (C++17)  sumiraj
+</p>
+</li>
+<li>
+<p>
+<code>inner_product</code> skalarni produkt
+</p>
+</li>
+<li>
+<p>
+<code>adjacent_difference</code>  diferencije elemenata
+</p>
+</li>
+<li>
+<p>
+<code>partial_sum</code>, <code>exclusive_scan</code> (C++17), <code>inclusive_scan</code> (C++17) parcijalne sume
+</p>
+</li>
+<li>
+<p>
+<code>transform_reduce</code> (C++17) primjena funkcije i zatim redukcija
+</p>
+</li>
+<li>
+<p>
+<code>transform_exclusive_scan</code>  (C++17) primjena funkcije i  <code>exclusive_scan</code>
+</p>
+</li>
+<li>
+<p>
+<code>transform_inclusive_scan</code> (C++17) primjena funkcije i  <code>inclusive_scan</code>
+</p>
+</li>
+</ul></div>
+</div>
+<div class="sect2">
+<h3 id="_operacije_na_neinicijaliziranoj_memoriji">Operacije na neinicijaliziranoj memoriji</h3>
+<div class="paragraph"><p>Definirani su u zaglavlju <code>&lt;memory&gt;</code>.</p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+<code>uninitialized_copy</code> , <code>uninitialized_copy_n</code>  kopiranje
+</p>
+</li>
+<li>
+<p>
+<code>uninitialized_fill</code> , <code>uninitialized_fill_n</code>  ispunjavanje
+</p>
+</li>
+<li>
+<p>
+<code>uninitialized_move</code> (C++17), <code>uninitialized_move_n</code> (C++17) premještanje
+</p>
+</li>
+<li>
+<p>
+<code>uninitialized_default_construct</code> (C++17),  <code>uninitialized_default_construct_n</code> (C++17) defaultna konstrukcija
+</p>
+</li>
+<li>
+<p>
+<code>uninitialized_value_construct</code> (C++17),  <code>uninitialized_value_construct_n</code> (C++17) vrijednosna inicijalizacija
+</p>
+</li>
+<li>
+<p>
+<code>destroy_at</code> (C++17),  <code>destroy</code> (C++17),  <code>destroy_n</code> (C++17) destrukcija
+</p>
+</li>
+</ul></div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_kopiranje">Kopiranje</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Ovi algoritmi kopiraju <em>ulazni niz</em> u <em>izlazni niz</em>. Ulazni niz je dan kao raspon elemenata, a izlazni niz
+je dan samo iteratorom koji pokazuje na prvi element niza.</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="n">it</span> <span class="o">=</span> <span class="n">copy</span><span class="p">(</span><span class="n">srcBeg</span><span class="p">,</span> <span class="n">srcEnd</span><span class="p">,</span> <span class="n">destBeg</span><span class="p">)</span>
+<span class="n">it</span> <span class="o">=</span> <span class="n">copy_if</span><span class="p">(</span><span class="n">srcBeg</span><span class="p">,</span> <span class="n">srcEnd</span><span class="p">,</span> <span class="n">destBeg</span><span class="p">,</span> <span class="n">op</span><span class="p">)</span>
+<span class="n">it</span> <span class="o">=</span> <span class="n">copy_n</span> <span class="p">(</span><span class="n">srcBeg</span><span class="p">,</span> <span class="n">num</span><span class="p">,</span> <span class="n">destBeg</span><span class="p">)</span>
+<span class="n">it</span> <span class="o">=</span> <span class="n">copy_backward</span> <span class="p">(</span><span class="n">srcBeg</span><span class="p">,</span> <span class="n">srcEnd</span><span class="p">,</span> <span class="n">destEnd</span><span class="p">)</span>
+</pre></div></div></div>
+<div class="ulist"><ul>
+<li>
+<p>
+Algoritmi <code>copy</code> i <code>copy_if</code> uzimaju raspon elemenata koje kopiraju <code>[srcBeg,srcEnd)</code> i kopiraju ih u spremnik
+čiji je početni iterator <code>destBeg</code>.
+</p>
+</li>
+<li>
+<p>
+Algoritam <code>copy_n</code> uzima iterator na prvi element ulaznog niza i broj elemenata koje treba kopirati.
+</p>
+</li>
+<li>
+<p>
+Algoritmi <code>copy</code>, <code>copy_if</code> i  <code>copy_n</code>  iteriraju u pozitivnom smjeru pri kopiranju (od  <code>srcBeg</code> prema <code>srcEnd</code>)
+dok algoritam <code>copy_backward</code> iterira u negativnom smjeru  (od  <code>srcEnd</code> prema <code>srcBeg</code>). Stoga  <code>copy_backward</code> uzima
+end-iterator izlaznog niza.
+</p>
+</li>
+<li>
+<p>
+Algoritam <code>copy_if</code> kopira element samo ako predikat <code>op</code> vrati <code>true</code>.
+</p>
+</li>
+<li>
+<p>
+Svi algoritmi vraćaju iterator na mjesto iza zadnjeg kopiranog elementa u izlaznom nizu.
+</p>
+</li>
+<li>
+<p>
+Algoritmi pretpostavljaju da je izlazni niz dovoljno velik da primi sve elemente.
+</p>
+</li>
+<li>
+<p>
+Složenost: linearna
+</p>
+</li>
+</ul></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="n">list</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">lst</span><span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">};</span>
+<span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">vec</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span>
+
+<span class="n">copy</span><span class="p">(</span><span class="n">lst</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">lst</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span> <span class="n">vec</span><span class="p">.</span><span class="n">begin</span><span class="p">());</span> <span class="c1">// Kopiraj listu u vektor</span>
+
+<span class="n">fill</span><span class="p">(</span><span class="n">vec</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">vec</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span> <span class="mi">0</span><span class="p">);</span>
+<span class="c1">// Kopiraj samo neparne brojeve iz liste u vektor</span>
+<span class="n">copy_if</span><span class="p">(</span><span class="n">lst</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">lst</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span> <span class="n">vec</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span>
+                                <span class="p">[](</span><span class="kt">int</span> <span class="n">x</span><span class="p">){</span> <span class="k">return</span> <span class="n">x</span> <span class="o">%</span> <span class="mi">2</span><span class="p">;</span> <span class="p">});</span>
+
+<span class="c1">// Pisanje preko istog spremnika.</span>
+<span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">vec1</span><span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">};</span>
+<span class="n">copy_n</span><span class="p">(</span><span class="n">next</span><span class="p">(</span><span class="n">vec1</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span><span class="mi">4</span><span class="p">),</span><span class="mi">4</span><span class="p">,</span><span class="n">vec1</span><span class="p">.</span><span class="n">begin</span><span class="p">());</span> <span class="c1">// 5,6,7,8,5,6,7,8,9,</span>
+
+<span class="n">vector</span><span class="o">&lt;</span><span class="kt">char</span><span class="o">&gt;</span> <span class="n">vec2</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="sc">'.'</span><span class="p">);</span>
+<span class="n">vec2</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="sc">'a'</span><span class="p">);</span>
+<span class="n">vec2</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="sc">'b'</span><span class="p">);</span>
+<span class="n">vec2</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="sc">'c'</span><span class="p">);</span>
+<span class="n">print</span><span class="p">(</span><span class="n">vec2</span><span class="p">);</span>
+<span class="c1">// Insertiraj točkice s ulaza na kraj spremnika</span>
+<span class="n">vec2</span><span class="p">.</span><span class="n">insert</span><span class="p">(</span><span class="n">vec2</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span> <span class="mi">10</span><span class="p">,</span> <span class="sc">'.'</span><span class="p">);</span> <span class="c1">// ..........abc..........</span>
+<span class="c1">// Za kopiranje na kraj istog spremnika koristimo copy_backward</span>
+<span class="n">copy_backward</span><span class="p">(</span><span class="n">vec2</span><span class="p">.</span><span class="n">begin</span><span class="p">()</span><span class="o">+</span><span class="mi">10</span><span class="p">,</span> <span class="n">vec2</span><span class="p">.</span><span class="n">begin</span><span class="p">()</span><span class="o">+</span><span class="mi">13</span><span class="p">,</span> <span class="n">vec2</span><span class="p">.</span><span class="n">end</span><span class="p">());</span>
+<span class="c1">// ..........abc.......abc</span>
+</pre></div></div></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_code_for_each_code_i_code_transform_code"><code>for_each</code> i <code>transform</code></h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_code_for_each_code"><code>for_each</code></h3>
+<div class="paragraph"><p>Algoritam <code>for_each</code> djeluje na kolekciji zadanoj sa dva iteratora i na svakom elementu kolekcije
+poziva funkciju koja je treći argument algoritma. Signatura algoritma je sljedeća:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="n">UnaryProc</span> <span class="n">for_each</span> <span class="p">(</span><span class="n">InputIterator</span> <span class="n">beg</span><span class="p">,</span> <span class="n">InputIterator</span> <span class="n">end</span><span class="p">,</span> <span class="n">UnaryProc</span> <span class="n">op</span><span class="p">)</span>
+</pre></div></div></div>
+<div class="paragraph"><p>gdje je <code>UnaryProc</code> tip funkcije (funkcijskog objekta, lambda izraza) koji se poziva na svakom elementu kolekcije.
+Povratna vrijednost je kopija objekta <code>op</code>. Povratna vrijednost od <code>op</code> se ignorira.</p></div>
+<div class="paragraph"><p>Algoritam <code>for_each</code> može mijenjati elemente spremnika ako <code>op</code> uzima argument poreferenci. Ako <code>op</code>
+ima unutarnje stanje, to stanje će biti dohvatljivo kroz povratnu vrijednost algoritma.</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="kt">void</span> <span class="nf">f</span><span class="p">(</span><span class="kt">int</span><span class="o">&amp;</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span> <span class="n">n</span> <span class="o">=</span> <span class="n">n</span><span class="o">*</span><span class="n">n</span><span class="p">;</span> <span class="p">}</span>
+<span class="c1">// ...</span>
+<span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">vek</span><span class="p">{</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">};</span>
+
+<span class="n">std</span><span class="o">::</span><span class="n">for_each</span><span class="p">(</span><span class="n">vek</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">vek</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span> <span class="n">f</span><span class="p">);</span>
+<span class="c1">// sada je vek = {0, 1, 4, 9, 16, 25, 36, 49, 64, 81}</span>
+
+<span class="kt">int</span> <span class="n">noParni</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="n">std</span><span class="o">::</span><span class="n">for_each</span><span class="p">(</span><span class="n">vek</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">vek</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span> <span class="p">[</span><span class="o">&amp;</span><span class="n">noParni</span><span class="p">](</span><span class="kt">int</span> <span class="n">x</span><span class="p">){</span>
+         <span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="p">(</span><span class="n">x</span> <span class="o">%</span> <span class="mi">2</span><span class="p">))</span>
+             <span class="n">noParni</span><span class="o">++</span><span class="p">;</span>
+     <span class="p">});</span>
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">noParni</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span> <span class="c1">// 5</span>
+</pre></div></div></div>
+</div>
+<div class="sect2">
+<h3 id="_code_transform_code"><code>transform</code></h3>
+<div class="paragraph"><p>Algoritam <code>transform</code> prolazi kroz ulaznu kolekciju, na svakom elementu kolekcije poziva funkciju <code>op</code> i rezultat
+ispisuje u izlaznu kolekciju.  Vraća iterator koji pokazuje iza zadnjeg transformiranog elementa u izlaznoj kolekciji.
+Signatura algoritma je sljedeća:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="n">OutputIterator</span> <span class="n">transform</span><span class="p">(</span><span class="n">InputIterator</span> <span class="n">srcBeg</span><span class="p">,</span> <span class="n">InputIterator</span> <span class="n">srcEnd</span><span class="p">,</span> <span class="n">OutputIterator</span> <span class="n">destBeg</span><span class="p">,</span> <span class="n">UnaryFunc</span> <span class="n">op</span><span class="p">)</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Na primjer,</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="kt">int</span> <span class="nf">f</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="n">n</span><span class="o">*</span><span class="n">n</span><span class="p">;</span> <span class="p">}</span>
+<span class="c1">// ...</span>
+<span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">vek</span><span class="p">{</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">};</span>
+<span class="n">std</span><span class="o">::</span><span class="n">transform</span><span class="p">(</span><span class="n">vek</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">vek</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span> <span class="n">vek</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">f</span><span class="p">);</span>
+<span class="c1">// vek = 0 1 4 9 16 25 36 49 64 81</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Algoritam ima verziju koja uzima dva ulazna niza i funkciju sa dva argumenta koja ulazne nizove
+transformira u izlazni. Na primjer,</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="kt">int</span> <span class="nf">f2</span><span class="p">(</span><span class="kt">int</span> <span class="n">n</span><span class="p">,</span> <span class="kt">int</span> <span class="n">m</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="n">n</span><span class="o">-</span><span class="n">m</span><span class="p">;</span> <span class="p">}</span>
+<span class="c1">// ...</span>
+<span class="n">std</span><span class="o">::</span><span class="n">random_device</span> <span class="n">rd</span><span class="p">;</span> <span class="c1">// zaglavlje &lt;random&gt;</span>
+<span class="n">std</span><span class="o">::</span><span class="n">mt19937</span> <span class="n">g</span><span class="p">(</span><span class="n">rd</span><span class="p">());</span>
+<span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">vek1</span> <span class="o">=</span> <span class="n">vek</span><span class="p">,</span> <span class="n">vek2</span><span class="p">(</span><span class="n">vek</span><span class="p">.</span><span class="n">size</span><span class="p">());</span>
+<span class="n">std</span><span class="o">::</span><span class="n">shuffle</span><span class="p">(</span><span class="n">vek1</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">vek1</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span> <span class="n">g</span><span class="p">);</span>  <span class="c1">// slučajna permutacija</span>
+<span class="n">std</span><span class="o">::</span><span class="n">transform</span><span class="p">(</span><span class="n">vek</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">vek</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span> <span class="n">vek1</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">vek2</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">f2</span><span class="p">);</span>
+<span class="c1">// vek2 = vek - vek1</span>
+</pre></div></div></div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_nalazenje_elementa">Nalaženje elementa</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_code_count_code"><code>count</code></h3>
+<div class="paragraph"><p>Algoritam <code>count()</code> vraća broj pojavljivanja vrijednosti u nizu: <code>count_if</code> vraća broj elemenata na kojima je
+predikat istinit.</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="n">n</span> <span class="o">=</span> <span class="n">count</span><span class="p">(</span><span class="n">beg</span><span class="p">,</span> <span class="n">end</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+<span class="n">n</span> <span class="o">=</span> <span class="n">count_if</span><span class="p">(</span><span class="n">beg</span><span class="p">,</span> <span class="n">end</span><span class="p">,</span> <span class="n">op</span><span class="p">)</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Na primjer,</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="kt">int</span> <span class="n">A</span><span class="p">[]</span> <span class="o">=</span> <span class="p">{</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">7</span> <span class="p">};</span>
+<span class="k">const</span> <span class="kt">int</span> <span class="n">N</span> <span class="o">=</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">A</span><span class="p">)</span> <span class="o">/</span> <span class="k">sizeof</span><span class="p">(</span><span class="kt">int</span><span class="p">);</span>
+
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Broj nula: "</span>
+          <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">count</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">A</span> <span class="o">+</span> <span class="n">N</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Broj brojeva &gt; 2: "</span>
+          <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">count_if</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">A</span> <span class="o">+</span> <span class="n">N</span><span class="p">,</span> <span class="p">[](</span><span class="kt">int</span> <span class="n">x</span><span class="p">){</span> <span class="k">return</span> <span class="n">x</span><span class="o">&gt;</span><span class="mi">2</span><span class="p">;</span> <span class="p">})</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+</pre></div></div></div>
+</div>
+<div class="sect2">
+<h3 id="_code_find_code"><code>find</code></h3>
+<div class="paragraph"><p>Ovi algoritmi vraćaju iterator na prvi nađeni element ili <code>end</code> iterator. Osnovna verzija traži vrijednost,
+a druge dvije traže prvi element na kojem je predikat istinit (<code>find_if</code>) ili neistinit (<code>find_if_not</code>).</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="n">it</span> <span class="o">=</span> <span class="n">find</span> <span class="p">(</span><span class="n">beg</span><span class="p">,</span> <span class="n">end</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+<span class="n">it</span> <span class="o">=</span> <span class="n">find_if</span><span class="p">(</span><span class="n">beg</span><span class="p">,</span> <span class="n">end</span><span class="p">,</span> <span class="n">op</span><span class="p">)</span>
+<span class="n">it</span> <span class="o">=</span> <span class="n">find_if_not</span><span class="p">(</span><span class="n">beg</span><span class="p">,</span> <span class="n">end</span><span class="p">,</span> <span class="n">op</span><span class="p">)</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Na primjer,</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">vec</span><span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">4</span><span class="p">};</span>
+<span class="k">auto</span> <span class="n">it</span> <span class="o">=</span> <span class="n">find</span><span class="p">(</span><span class="n">vec</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">vec</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span> <span class="mi">4</span><span class="p">);</span>
+<span class="n">assert</span><span class="p">(</span><span class="o">*</span><span class="n">it</span> <span class="o">==</span> <span class="mi">4</span><span class="p">);</span>
+<span class="n">assert</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">distance</span><span class="p">(</span><span class="n">vec</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">it</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">);</span>
+
+<span class="n">it</span> <span class="o">=</span> <span class="n">find_if_not</span><span class="p">(</span><span class="n">vec</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">vec</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span> <span class="p">[](</span><span class="kt">int</span> <span class="n">x</span><span class="p">){</span> <span class="k">return</span> <span class="n">x</span><span class="o">&lt;</span><span class="mi">7</span><span class="p">;});</span>
+<span class="n">assert</span><span class="p">(</span><span class="o">*</span><span class="n">it</span> <span class="o">==</span> <span class="mi">9</span><span class="p">);</span>
+<span class="n">assert</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">distance</span><span class="p">(</span><span class="n">vec</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">it</span><span class="p">)</span> <span class="o">==</span> <span class="mi">3</span><span class="p">);</span>
+</pre></div></div></div>
+</div>
+<div class="sect2">
+<h3 id="_code_search_code"><code>search</code></h3>
+<div class="paragraph"><p>Algoritam <code>search</code> traži niz elemenata u kolekciji. Kolekcija koja se pretražuje je dana s prvim parom
+iteratora (<code>beg</code> i <code>end</code>), a niz elemenata koji tražimo je zadan s drugim parom iteratora (<code>beg1</code> i <code>end1</code>).
+Za uspoređivanje elemenata se u prvoj verziji algoritma koristi operator <code>==</code>, a u drugoj binarni predikat
+<code>op</code>: <code>op(elem,searchElem)</code> vraća "istinu" ako su elementi isti, a u suprotnom laž.</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="n">it</span> <span class="o">=</span> <span class="n">search</span><span class="p">(</span><span class="n">beg</span><span class="p">,</span> <span class="n">end</span><span class="p">,</span> <span class="n">beg1</span><span class="p">,</span> <span class="n">end1</span><span class="p">)</span>
+<span class="n">it</span> <span class="o">=</span> <span class="n">search</span><span class="p">(</span><span class="n">beg</span><span class="p">,</span> <span class="n">end</span><span class="p">,</span> <span class="n">beg1</span><span class="p">,</span> <span class="n">end1</span><span class="p">,</span> <span class="n">op</span><span class="p">)</span>
+</pre></div></div></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">list</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">li</span><span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">};</span>
+<span class="n">std</span><span class="o">::</span><span class="n">array</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span><span class="mi">3</span><span class="o">&gt;</span>  <span class="n">niz</span><span class="p">{</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">};</span>
+
+<span class="k">auto</span> <span class="n">it1</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">search</span><span class="p">(</span><span class="n">li</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">li</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span> <span class="n">niz</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">niz</span><span class="p">.</span><span class="n">end</span><span class="p">());</span>
+<span class="k">if</span><span class="p">(</span><span class="n">it1</span> <span class="o">!=</span> <span class="n">li</span><span class="p">.</span><span class="n">end</span><span class="p">()){</span>
+  <span class="n">it1</span><span class="o">++</span><span class="p">;</span>  <span class="c1">// Nađi drugu grupu "niz"</span>
+  <span class="k">auto</span> <span class="n">it2</span> <span class="o">=</span>  <span class="n">std</span><span class="o">::</span><span class="n">search</span><span class="p">(</span><span class="n">it1</span><span class="p">,</span> <span class="n">li</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span> <span class="n">niz</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">niz</span><span class="p">.</span><span class="n">end</span><span class="p">());</span>
+  <span class="n">assert</span><span class="p">(</span><span class="o">*</span><span class="n">it2</span> <span class="o">==</span> <span class="mi">3</span><span class="p">);</span>
+  <span class="n">assert</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">distance</span><span class="p">(</span><span class="n">li</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span><span class="n">it2</span><span class="p">)</span> <span class="o">==</span> <span class="mi">7</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Algoritam <code>search</code> traži prvi podniz u nizu i vraća iterator na prvu poziciju nađenog podniza ili <code>end</code> iterator.</p></div>
+<div class="paragraph"><p>Algoritam koji traži zadnji podniz  u nizu naziva se <code>find_end</code> (umjesto search_end, što bi bilo konzistentno).</p></div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_generiranje_vrijednosti">Generiranje vrijednosti</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_code_fill_code"><code>fill</code></h3>
+<div class="paragraph"><p>Ovaj algoritam inicijalizira svaki element kolekcije sa zadanom vrijednošću.
+Ne vraća ništa.</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;cmath&gt;</span><span class="cp"></span>
+
+<span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="n">vec</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
+<span class="n">std</span><span class="o">::</span><span class="n">fill</span><span class="p">(</span><span class="n">vec</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">vec</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span> <span class="n">M_PI</span><span class="p">);</span>
+</pre></div></div></div>
+</div>
+<div class="sect2">
+<h3 id="_code_generate_code"><code>generate</code></h3>
+<div class="paragraph"><p>Ovaj algoritam inicijalizira svaki element kolekcije pozivom funkcije <code>op()</code> koja ne uzima argumente.</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;cstdlib&gt;  // za rand</span><span class="cp"></span>
+
+<span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">vec</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span>
+<span class="n">std</span><span class="o">::</span><span class="n">generate</span><span class="p">(</span><span class="n">vec</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">vec</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span> <span class="n">rand</span><span class="p">);</span> <span class="c1">// 1804289383,846930886,1681692777,1714636915,1957747793</span>
+</pre></div></div></div>
+</div>
+<div class="sect2">
+<h3 id="_code_iota_code"><code>iota</code></h3>
+<div class="paragraph"><p>Algoritam <code>iota</code> generira niz sikcesivnih vrijednosti (svaka sljedeća je veća za 1)
+polazeći od dane vrijednosti.</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;numeric&gt;  // za iota</span><span class="cp"></span>
+
+<span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span> <span class="n">vec</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span>
+<span class="n">std</span><span class="o">::</span><span class="n">iota</span><span class="p">(</span><span class="n">vec</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">vec</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span> <span class="mi">15</span><span class="p">);</span><span class="c1">// 15,16,17,18,19</span>
+</pre></div></div></div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_zamjena_vrijednosti">Zamjena vrijednosti</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Algoritam <code>replace</code> svako pojavljivanje stare vrijednsti zamijenjuje s novom.
+Verzija <code>replace_if</code>  zamijenjuje svaki element na kojem unarni predikat <code>op</code> vrati istinu s
+novom vrijednošću. Verzija <code>_copy</code> ovog algoritma kombinira <code>copy</code> i <code>replace</code> i smješta transformirane
+elemente u izlaznu kolekciju.</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="n">replace</span><span class="p">(</span><span class="n">beg</span><span class="p">,</span> <span class="n">end</span><span class="p">,</span> <span class="n">oldValue</span><span class="p">,</span> <span class="n">newValue</span><span class="p">)</span>
+<span class="n">replace_if</span><span class="p">(</span><span class="n">beg</span><span class="p">,</span> <span class="n">end</span><span class="p">,</span> <span class="n">op</span><span class="p">,</span> <span class="n">newValue</span><span class="p">)</span>
+<span class="n">replace_copy</span><span class="p">(</span><span class="n">beg</span><span class="p">,</span> <span class="n">end</span><span class="p">,</span> <span class="n">destBeg</span><span class="p">,</span> <span class="n">oldValue</span><span class="p">,</span> <span class="n">newValue</span><span class="p">)</span>
+<span class="n">replace_copy_if</span><span class="p">(</span><span class="n">beg</span><span class="p">,</span> <span class="n">end</span><span class="p">,</span> <span class="n">destBeg</span><span class="p">,</span> <span class="n">op</span><span class="p">,</span> <span class="n">newValue</span><span class="p">)</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Na primjer,</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">char</span><span class="o">&gt;</span> <span class="n">vec</span><span class="p">{</span><span class="sc">'a'</span><span class="p">,</span><span class="sc">'b'</span><span class="p">,</span><span class="sc">'c'</span><span class="p">,</span><span class="sc">'d'</span><span class="p">,</span><span class="sc">'e'</span><span class="p">,</span><span class="sc">'f'</span><span class="p">};</span>
+<span class="n">std</span><span class="o">::</span><span class="n">replace</span><span class="p">(</span><span class="n">vec</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">vec</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span> <span class="sc">'a'</span><span class="p">,</span> <span class="sc">'x'</span><span class="p">);</span>  <span class="c1">// x,b,c,d,e,f</span>
+
+<span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">char</span><span class="o">&gt;</span> <span class="n">vec1</span><span class="p">;</span>
+<span class="n">std</span><span class="o">::</span><span class="n">replace_copy</span><span class="p">(</span><span class="n">vec</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">vec</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span> <span class="n">std</span><span class="o">::</span><span class="n">back_inserter</span><span class="p">(</span><span class="n">vec1</span><span class="p">),</span> <span class="sc">'e'</span><span class="p">,</span> <span class="sc">'x'</span><span class="p">);</span>
+ <span class="c1">// x,b,c,d,x,f</span>
+</pre></div></div></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_brisanje_elemenata">Brisanje elemenata</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Algoritmi ne mogu  brisati elemente spremnika te stoga  samo
+prebacuje elemente određene za brisanje na kraj spremnika i
+vraća novi <code>end</code>  iterator spremnika (iterator koji pokazuje na prvi eliminirani element).
+Pri tome algoritam ne garantira da će elementi određeni za brisanje biti prebačeni na
+kraj spremnika. U većini implementacija oni će biti jednostavno prebrisani.</p></div>
+<div class="sect2">
+<h3 id="_code_remove_code"><code>remove</code></h3>
+<div class="paragraph"><p>Algoritam <a href="http://en.cppreference.com/w/cpp/algorithm/remove">remove</a> briše sve sve elemente
+jednake zadanom iz kolekcije. Na primjer,</p></div>
+<div class="paragraph"><p>Nakon prolaza <code>remove</code> algoritma potrebno je zvati funkciju spremnika <code>erase</code> kako bi se
+izvršilo stvarno brisanje elemenata.</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">ivecc</span><span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">0</span><span class="p">};</span>
+<span class="k">auto</span> <span class="n">newend</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">remove</span><span class="p">(</span><span class="n">ivecc</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">ivecc</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span> <span class="mi">1</span><span class="p">);</span> <span class="c1">// samo premještanje elemenata</span>
+<span class="n">ivecc</span><span class="p">.</span><span class="n">erase</span><span class="p">(</span><span class="n">newend</span><span class="p">,</span> <span class="n">ivecc</span><span class="p">.</span><span class="n">end</span><span class="p">());</span>    <span class="c1">// stvarno brisanje elemenata</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Verzija <code>remove_if</code> briše one elemente na kojima predikat vrati istinu.</p></div>
+<div class="paragraph"><p>Verzija <code>remove_copy</code> kombinira <code>copy</code> i <code>remove</code>. Ulazni niz ostaje isti, a na izlazni se kopiraju
+samo oni elementi koji nisu izbrisani. Na primjer,</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">char</span><span class="o">&gt;</span> <span class="n">vec</span><span class="p">{</span><span class="sc">'a'</span><span class="p">,</span><span class="sc">'b'</span><span class="p">,</span><span class="sc">'c'</span><span class="p">,</span><span class="sc">'a'</span><span class="p">,</span><span class="sc">'d'</span><span class="p">,</span><span class="sc">'e'</span><span class="p">,</span><span class="sc">'f'</span><span class="p">};</span>
+
+<span class="n">std</span><span class="o">::</span><span class="n">remove_copy</span><span class="p">(</span><span class="n">vec</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">vec</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span> <span class="n">std</span><span class="o">::</span><span class="n">ostream_iterator</span><span class="o">&lt;</span><span class="kt">char</span><span class="o">&gt;</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="p">,</span> <span class="s">" "</span><span class="p">),</span> <span class="sc">'a'</span><span class="p">);</span>  <span class="c1">// b,c,d,e,f</span>
+</pre></div></div></div>
+<div class="ulist"><ul>
+<li>
+<p>
+<code>remove</code> algoritam se <strong>ne koristi</strong> sa listom koja ima (efikasniju)
+<code>remove</code> metodu. S listom se ne koristi niti <code>sort</code> algoritam jer ona ima <code>sort</code> metodu koja je efikasnija.
+</p>
+</li>
+<li>
+<p>
+<code>remove</code> algoritam se ne koristi sa asocijativnim spremnicima koji imaju
+verziju <code>erase</code> metode koja radi istu operaciju.
+Asocijativni spremnici <code>map</code>, <code>set</code>, <code>multimap</code> i <code>multiset</code> se ne sortiraju jer
+su u njima po konstrukciji elementi sortirani.
+</p>
+</li>
+</ul></div>
+</div>
+<div class="sect2">
+<h3 id="_code_unique_code"><code>unique</code></h3>
+<div class="paragraph"><p>Algoritam
+<a href="http://en.cppreference.com/w/cpp/algorithm/unique">unique</a>
+eliminira sve <em>kosekutivne</em> duplikate u spremiku (otkrivene operatorom
+<code>==</code>).</p></div>
+<div class="paragraph"><p>Metoda <a href="http://en.cppreference.com/w/cpp/algorithm/sort">std::sort</a> služi
+sortiranju spremika (pomoću operatora &lt;) i pozivamo ju prije
+<code>std::unique()</code> kako bismo osigurali da su duplikati konsekutivni:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="c1">// Izbacivanje duplikata</span>
+<span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;</span> <span class="n">lista_imena</span><span class="p">;</span>
+<span class="c1">// Ubacimo neka imena</span>
+<span class="n">lista_imena</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="s">"Ante"</span><span class="p">);</span>
+<span class="n">lista_imena</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="s">"Lovre"</span><span class="p">);</span>
+<span class="n">lista_imena</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="s">"Karmela"</span><span class="p">);</span>
+<span class="n">lista_imena</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="s">"Ante"</span><span class="p">);</span>
+<span class="n">lista_imena</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="s">"Lovre"</span><span class="p">);</span>
+<span class="c1">// Sortirajmo listu kako bi se ista imena našla jedna do drugih</span>
+<span class="n">std</span><span class="o">::</span><span class="n">sort</span><span class="p">(</span><span class="n">lista_imena</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">lista_imena</span><span class="p">.</span><span class="n">end</span><span class="p">());</span>
+<span class="c1">// "brisanje" duplikata</span>
+<span class="k">auto</span> <span class="n">it_unique</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">unique</span><span class="p">(</span><span class="n">lista_imena</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">lista_imena</span><span class="p">.</span><span class="n">end</span><span class="p">());</span>
+<span class="c1">// stvarno brisanje</span>
+<span class="n">lista_imena</span><span class="p">.</span><span class="n">erase</span><span class="p">(</span><span class="n">it_unique</span><span class="p">,</span> <span class="n">lista_imena</span><span class="p">.</span><span class="n">end</span><span class="p">());</span> <span class="c1">// Ante Karmela Lovre</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Kao i kod <code>remove</code> algoritma, postoje i <code>unique_if</code> i <code>unique_copy</code> algoritmi.</p></div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_algoritmi_na_sortiranim_rasponima">Algoritmi na sortiranim rasponima</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Na spremnicima čiji su elementi sortirani za pretraživanja možemo
+koristiti algoritme:</p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+<a href="http://en.cppreference.com/w/cpp/algorithm/lower_bound">lower_bound</a>,
+</p>
+</li>
+<li>
+<p>
+<a href="http://en.cppreference.com/w/cpp/algorithm/upper_bound">upper_bound</a>,
+</p>
+</li>
+<li>
+<p>
+<a href="http://en.cppreference.com/w/cpp/algorithm/equal_range">equal_range</a>,
+</p>
+</li>
+<li>
+<p>
+<a href="http://en.cppreference.com/w/cpp/algorithm/binary_search">binary_search</a>.
+</p>
+</li>
+</ul></div>
+<div class="paragraph"><p>Asocijativni spremnici <code>map</code>, <code>multimap</code>, <code>set</code> i <code>multiset</code> imaju
+implementirane metode <code>lower_bound</code>, <code>upper_bound</code> i <code>equal_range</code>.
+Nesortirani asocijativni spremnici <code>unordered_map</code>, itd. imaju
+implementiranu metodu <code>equal_range</code>.</p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+<a href="http://en.cppreference.com/w/cpp/algorithm/lower_bound">lower_bound</a> za
+dani element vraća iterator na prvu poziciju koja je <strong>veća ili jednaka</strong>
+od danog elementa.  Kada tražene pozicije nema vraća se end iterator.
+</p>
+</li>
+<li>
+<p>
+<a href="http://en.cppreference.com/w/cpp/algorithm/upper_bound">upper_bound</a> za
+dani element vraća iterator na prvu poziciju koja je <strong>strogo veća</strong> od
+danog elementa. Kada tražene pozicije nema vraća se end iterator.
+</p>
+</li>
+<li>
+<p>
+<a href="http://en.cppreference.com/w/cpp/algorithm/equal_range">equal_range</a> za
+dani element vraća par iteratora. Prvi je onaj koji vraća <code>lower_bound</code>,
+a drugi je onaj koji vraća <code>upper_bound</code>. Ako su vraćeni iteratori
+jednaki onda element nije nađen. Ako je vraćeni raspon neprazan, onda on
+sadrži sve elemente ekvivalentne traženom elementu.
+</p>
+</li>
+<li>
+<p>
+<a href="http://en.cppreference.com/w/cpp/algorithm/binary_search">binary_search</a>
+ispituje dali je zadani element u rasponu metodom binarnog pretraživanja
+(i stoga raspon mora biti sortiran).
+</p>
+</li>
+</ul></div>
+<div class="paragraph"><p>Primjer:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">default_random_engine</span> <span class="n">r_engine</span><span class="p">;</span>
+<span class="n">r_engine</span><span class="p">.</span><span class="n">seed</span><span class="p">(</span> <span class="n">std</span><span class="o">::</span><span class="n">time</span><span class="p">(</span><span class="k">nullptr</span><span class="p">)</span> <span class="p">);</span>
+<span class="n">std</span><span class="o">::</span><span class="n">uniform_int_distribution</span><span class="o">&lt;</span><span class="kt">unsigned</span> <span class="kt">int</span><span class="o">&gt;</span> <span class="n">dist</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">7</span><span class="p">);</span>
+
+<span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">unsigned</span> <span class="kt">int</span><span class="o">&gt;</span> <span class="n">vec</span><span class="p">(</span><span class="mi">20</span><span class="p">);</span>
+<span class="n">std</span><span class="o">::</span><span class="n">generate</span><span class="p">(</span><span class="n">vec</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">vec</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span> <span class="p">[</span><span class="o">&amp;</span><span class="n">dist</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">r_engine</span><span class="p">]()</span> <span class="p">{</span> <span class="k">return</span> <span class="n">dist</span><span class="p">(</span><span class="n">r_engine</span><span class="p">);</span> <span class="p">}</span> <span class="p">);</span>
+<span class="c1">// npr.  3,7,3,4,7,4,1,6,2,6,6,7,4,0,2,5,1,6,2,2</span>
+
+<span class="n">std</span><span class="o">::</span><span class="n">sort</span><span class="p">(</span><span class="n">vec</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">vec</span><span class="p">.</span><span class="n">end</span><span class="p">());</span>
+<span class="c1">// 0,1,1,2,2,2,2,3,3,4,4,4,5,6,6,6,6,7,7,7</span>
+
+<span class="k">auto</span> <span class="n">its</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">equal_range</span><span class="p">(</span><span class="n">vec</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">vec</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span> <span class="mi">4</span><span class="p">);</span>
+<span class="k">for</span><span class="p">(</span><span class="k">auto</span> <span class="n">it</span> <span class="o">=</span> <span class="n">its</span><span class="p">.</span><span class="n">first</span><span class="p">;</span> <span class="n">it</span> <span class="o">!=</span> <span class="n">its</span><span class="p">.</span><span class="n">second</span><span class="p">;</span> <span class="o">++</span><span class="n">it</span><span class="p">)</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"vec["</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">distance</span><span class="p">(</span><span class="n">vec</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">it</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="s">"]="</span> <span class="o">&lt;&lt;</span> <span class="o">*</span><span class="n">it</span> <span class="o">&lt;&lt;</span> <span class="s">","</span><span class="p">;</span>
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span> <span class="c1">// vec[9]=4,vec[10]=4,vec[11]=4</span>
+</pre></div></div></div>
+</div>
+</div>
+</div>
+
+<div id="footer">
+<div id="footer-text">
+Version 1.1<br>
+Zadnja izmjena
+ 2019-05-31 21:19:20 CEST
+</div>
+</div>
+
+
+</body></html>

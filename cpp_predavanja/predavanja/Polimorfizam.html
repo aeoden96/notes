@@ -1,0 +1,1742 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<!-- saved from url=(0089)https://web.math.pmf.unizg.hr/nastava/opepp/Slides/Predavanja/html-noslides/slides-6.html -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="hr"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="generator" content="AsciiDoc 8.6.9">
+<title>Polimorfizam</title>
+<style type="text/css">
+/* Shared CSS for AsciiDoc xhtml11 and html5 backends */
+
+/* Default font. */
+body {
+  font-family: Georgia,serif;
+}
+
+/* Title font. */
+h1, h2, h3, h4, h5, h6,
+div.title, caption.title,
+thead, p.table.header,
+#toctitle,
+#author, #revnumber, #revdate, #revremark,
+#footer {
+  font-family: Arial,Helvetica,sans-serif;
+}
+
+body {
+  margin: 1em 5% 1em 5%;
+}
+
+a {
+  color: blue;
+  text-decoration: underline;
+}
+a:visited {
+  color: fuchsia;
+}
+
+em {
+  font-style: italic;
+  color: navy;
+}
+
+strong {
+  font-weight: bold;
+  color: #083194;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #527bbd;
+  margin-top: 1.2em;
+  margin-bottom: 0.5em;
+  line-height: 1.3;
+}
+
+h1, h2, h3 {
+  border-bottom: 2px solid silver;
+}
+h2 {
+  padding-top: 0.5em;
+}
+h3 {
+  float: left;
+}
+h3 + * {
+  clear: left;
+}
+h5 {
+  font-size: 1.0em;
+}
+
+div.sectionbody {
+  margin-left: 0;
+}
+
+hr {
+  border: 1px solid silver;
+}
+
+p {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+ul, ol, li > p {
+  margin-top: 0;
+}
+ul > li     { color: #aaa; }
+ul > li > * { color: black; }
+
+.monospaced, code, pre {
+  font-family: "Courier New", Courier, monospace;
+  font-size: inherit;
+  color: navy;
+  padding: 0;
+  margin: 0;
+}
+pre {
+  white-space: pre-wrap;
+}
+
+#author {
+  color: #527bbd;
+  font-weight: bold;
+  font-size: 1.1em;
+}
+#email {
+}
+#revnumber, #revdate, #revremark {
+}
+
+#footer {
+  font-size: small;
+  border-top: 2px solid silver;
+  padding-top: 0.5em;
+  margin-top: 4.0em;
+}
+#footer-text {
+  float: left;
+  padding-bottom: 0.5em;
+}
+#footer-badges {
+  float: right;
+  padding-bottom: 0.5em;
+}
+
+#preamble {
+  margin-top: 1.5em;
+  margin-bottom: 1.5em;
+}
+div.imageblock, div.exampleblock, div.verseblock,
+div.quoteblock, div.literalblock, div.listingblock, div.sidebarblock,
+div.admonitionblock {
+  margin-top: 1.0em;
+  margin-bottom: 1.5em;
+}
+div.admonitionblock {
+  margin-top: 2.0em;
+  margin-bottom: 2.0em;
+  margin-right: 10%;
+  color: #606060;
+}
+
+div.content { /* Block element content. */
+  padding: 0;
+}
+
+/* Block element titles. */
+div.title, caption.title {
+  color: #527bbd;
+  font-weight: bold;
+  text-align: left;
+  margin-top: 1.0em;
+  margin-bottom: 0.5em;
+}
+div.title + * {
+  margin-top: 0;
+}
+
+td div.title:first-child {
+  margin-top: 0.0em;
+}
+div.content div.title:first-child {
+  margin-top: 0.0em;
+}
+div.content + div.title {
+  margin-top: 0.0em;
+}
+
+div.sidebarblock > div.content {
+  background: #ffffee;
+  border: 1px solid #dddddd;
+  border-left: 4px solid #f0f0f0;
+  padding: 0.5em;
+}
+
+div.listingblock > div.content {
+  border: 1px solid #dddddd;
+  border-left: 5px solid #f0f0f0;
+  background: #f8f8f8;
+  padding: 0.5em;
+}
+
+div.quoteblock, div.verseblock {
+  padding-left: 1.0em;
+  margin-left: 1.0em;
+  margin-right: 10%;
+  border-left: 5px solid #f0f0f0;
+  color: #888;
+}
+
+div.quoteblock > div.attribution {
+  padding-top: 0.5em;
+  text-align: right;
+}
+
+div.verseblock > pre.content {
+  font-family: inherit;
+  font-size: inherit;
+}
+div.verseblock > div.attribution {
+  padding-top: 0.75em;
+  text-align: left;
+}
+/* DEPRECATED: Pre version 8.2.7 verse style literal block. */
+div.verseblock + div.attribution {
+  text-align: left;
+}
+
+div.admonitionblock .icon {
+  vertical-align: top;
+  font-size: 1.1em;
+  font-weight: bold;
+  text-decoration: underline;
+  color: #527bbd;
+  padding-right: 0.5em;
+}
+div.admonitionblock td.content {
+  padding-left: 0.5em;
+  border-left: 3px solid #dddddd;
+}
+
+div.exampleblock > div.content {
+  border-left: 3px solid #dddddd;
+  padding-left: 0.5em;
+}
+
+div.imageblock div.content { padding-left: 0; }
+span.image img { border-style: none; vertical-align: text-bottom; }
+a.image:visited { color: white; }
+
+dl {
+  margin-top: 0.8em;
+  margin-bottom: 0.8em;
+}
+dt {
+  margin-top: 0.5em;
+  margin-bottom: 0;
+  font-style: normal;
+  color: navy;
+}
+dd > *:first-child {
+  margin-top: 0.1em;
+}
+
+ul, ol {
+    list-style-position: outside;
+}
+ol.arabic {
+  list-style-type: decimal;
+}
+ol.loweralpha {
+  list-style-type: lower-alpha;
+}
+ol.upperalpha {
+  list-style-type: upper-alpha;
+}
+ol.lowerroman {
+  list-style-type: lower-roman;
+}
+ol.upperroman {
+  list-style-type: upper-roman;
+}
+
+div.compact ul, div.compact ol,
+div.compact p, div.compact p,
+div.compact div, div.compact div {
+  margin-top: 0.1em;
+  margin-bottom: 0.1em;
+}
+
+tfoot {
+  font-weight: bold;
+}
+td > div.verse {
+  white-space: pre;
+}
+
+div.hdlist {
+  margin-top: 0.8em;
+  margin-bottom: 0.8em;
+}
+div.hdlist tr {
+  padding-bottom: 15px;
+}
+dt.hdlist1.strong, td.hdlist1.strong {
+  font-weight: bold;
+}
+td.hdlist1 {
+  vertical-align: top;
+  font-style: normal;
+  padding-right: 0.8em;
+  color: navy;
+}
+td.hdlist2 {
+  vertical-align: top;
+}
+div.hdlist.compact tr {
+  margin: 0;
+  padding-bottom: 0;
+}
+
+.comment {
+  background: yellow;
+}
+
+.footnote, .footnoteref {
+  font-size: 0.8em;
+}
+
+span.footnote, span.footnoteref {
+  vertical-align: super;
+}
+
+#footnotes {
+  margin: 20px 0 20px 0;
+  padding: 7px 0 0 0;
+}
+
+#footnotes div.footnote {
+  margin: 0 0 5px 0;
+}
+
+#footnotes hr {
+  border: none;
+  border-top: 1px solid silver;
+  height: 1px;
+  text-align: left;
+  margin-left: 0;
+  width: 20%;
+  min-width: 100px;
+}
+
+div.colist td {
+  padding-right: 0.5em;
+  padding-bottom: 0.3em;
+  vertical-align: top;
+}
+div.colist td img {
+  margin-top: 0.3em;
+}
+
+@media print {
+  #footer-badges { display: none; }
+}
+
+#toc {
+  margin-bottom: 2.5em;
+}
+
+#toctitle {
+  color: #527bbd;
+  font-size: 1.1em;
+  font-weight: bold;
+  margin-top: 1.0em;
+  margin-bottom: 0.1em;
+}
+
+div.toclevel0, div.toclevel1, div.toclevel2, div.toclevel3, div.toclevel4 {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+div.toclevel2 {
+  margin-left: 2em;
+  font-size: 0.9em;
+}
+div.toclevel3 {
+  margin-left: 4em;
+  font-size: 0.9em;
+}
+div.toclevel4 {
+  margin-left: 6em;
+  font-size: 0.9em;
+}
+
+span.aqua { color: aqua; }
+span.black { color: black; }
+span.blue { color: blue; }
+span.fuchsia { color: fuchsia; }
+span.gray { color: gray; }
+span.green { color: green; }
+span.lime { color: lime; }
+span.maroon { color: maroon; }
+span.navy { color: navy; }
+span.olive { color: olive; }
+span.purple { color: purple; }
+span.red { color: red; }
+span.silver { color: silver; }
+span.teal { color: teal; }
+span.white { color: white; }
+span.yellow { color: yellow; }
+
+span.aqua-background { background: aqua; }
+span.black-background { background: black; }
+span.blue-background { background: blue; }
+span.fuchsia-background { background: fuchsia; }
+span.gray-background { background: gray; }
+span.green-background { background: green; }
+span.lime-background { background: lime; }
+span.maroon-background { background: maroon; }
+span.navy-background { background: navy; }
+span.olive-background { background: olive; }
+span.purple-background { background: purple; }
+span.red-background { background: red; }
+span.silver-background { background: silver; }
+span.teal-background { background: teal; }
+span.white-background { background: white; }
+span.yellow-background { background: yellow; }
+
+span.big { font-size: 2em; }
+span.small { font-size: 0.6em; }
+
+span.underline { text-decoration: underline; }
+span.overline { text-decoration: overline; }
+span.line-through { text-decoration: line-through; }
+
+div.unbreakable { page-break-inside: avoid; }
+
+
+/*
+ * xhtml11 specific
+ *
+ * */
+
+div.tableblock {
+  margin-top: 1.0em;
+  margin-bottom: 1.5em;
+}
+div.tableblock > table {
+  border: 3px solid #527bbd;
+}
+thead, p.table.header {
+  font-weight: bold;
+  color: #527bbd;
+}
+p.table {
+  margin-top: 0;
+}
+/* Because the table frame attribute is overriden by CSS in most browsers. */
+div.tableblock > table[frame="void"] {
+  border-style: none;
+}
+div.tableblock > table[frame="hsides"] {
+  border-left-style: none;
+  border-right-style: none;
+}
+div.tableblock > table[frame="vsides"] {
+  border-top-style: none;
+  border-bottom-style: none;
+}
+
+
+/*
+ * html5 specific
+ *
+ * */
+
+table.tableblock {
+  margin-top: 1.0em;
+  margin-bottom: 1.5em;
+}
+thead, p.tableblock.header {
+  font-weight: bold;
+  color: #527bbd;
+}
+p.tableblock {
+  margin-top: 0;
+}
+table.tableblock {
+  border-width: 3px;
+  border-spacing: 0px;
+  border-style: solid;
+  border-color: #527bbd;
+  border-collapse: collapse;
+}
+th.tableblock, td.tableblock {
+  border-width: 1px;
+  padding: 4px;
+  border-style: solid;
+  border-color: #527bbd;
+}
+
+table.tableblock.frame-topbot {
+  border-left-style: hidden;
+  border-right-style: hidden;
+}
+table.tableblock.frame-sides {
+  border-top-style: hidden;
+  border-bottom-style: hidden;
+}
+table.tableblock.frame-none {
+  border-style: hidden;
+}
+
+th.tableblock.halign-left, td.tableblock.halign-left {
+  text-align: left;
+}
+th.tableblock.halign-center, td.tableblock.halign-center {
+  text-align: center;
+}
+th.tableblock.halign-right, td.tableblock.halign-right {
+  text-align: right;
+}
+
+th.tableblock.valign-top, td.tableblock.valign-top {
+  vertical-align: top;
+}
+th.tableblock.valign-middle, td.tableblock.valign-middle {
+  vertical-align: middle;
+}
+th.tableblock.valign-bottom, td.tableblock.valign-bottom {
+  vertical-align: bottom;
+}
+
+
+/*
+ * manpage specific
+ *
+ * */
+
+body.manpage h1 {
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+  border-top: 2px solid silver;
+  border-bottom: 2px solid silver;
+}
+body.manpage h2 {
+  border-style: none;
+}
+body.manpage div.sectionbody {
+  margin-left: 3em;
+}
+
+@media print {
+  body.manpage div#toc { display: none; }
+}
+.highlight .hll { background-color: #ffffcc }
+.highlight  { background: #f8f8f8; }
+.highlight .c { color: #408080; font-style: italic } /* Comment */
+.highlight .err { border: 1px solid #FF0000 } /* Error */
+.highlight .k { color: #008000; font-weight: bold } /* Keyword */
+.highlight .o { color: #666666 } /* Operator */
+.highlight .cm { color: #408080; font-style: italic } /* Comment.Multiline */
+.highlight .cp { color: #BC7A00 } /* Comment.Preproc */
+.highlight .c1 { color: #408080; font-style: italic } /* Comment.Single */
+.highlight .cs { color: #408080; font-style: italic } /* Comment.Special */
+.highlight .gd { color: #A00000 } /* Generic.Deleted */
+.highlight .ge { font-style: italic } /* Generic.Emph */
+.highlight .gr { color: #FF0000 } /* Generic.Error */
+.highlight .gh { color: #000080; font-weight: bold } /* Generic.Heading */
+.highlight .gi { color: #00A000 } /* Generic.Inserted */
+.highlight .go { color: #808080 } /* Generic.Output */
+.highlight .gp { color: #000080; font-weight: bold } /* Generic.Prompt */
+.highlight .gs { font-weight: bold } /* Generic.Strong */
+.highlight .gu { color: #800080; font-weight: bold } /* Generic.Subheading */
+.highlight .gt { color: #0040D0 } /* Generic.Traceback */
+.highlight .kc { color: #008000; font-weight: bold } /* Keyword.Constant */
+.highlight .kd { color: #008000; font-weight: bold } /* Keyword.Declaration */
+.highlight .kn { color: #008000; font-weight: bold } /* Keyword.Namespace */
+.highlight .kp { color: #008000 } /* Keyword.Pseudo */
+.highlight .kr { color: #008000; font-weight: bold } /* Keyword.Reserved */
+.highlight .kt { color: #B00040 } /* Keyword.Type */
+.highlight .m { color: #666666 } /* Literal.Number */
+.highlight .s { color: #BA2121 } /* Literal.String */
+.highlight .na { color: #7D9029 } /* Name.Attribute */
+.highlight .nb { color: #008000 } /* Name.Builtin */
+.highlight .nc { color: #0000FF; font-weight: bold } /* Name.Class */
+.highlight .no { color: #880000 } /* Name.Constant */
+.highlight .nd { color: #AA22FF } /* Name.Decorator */
+.highlight .ni { color: #999999; font-weight: bold } /* Name.Entity */
+.highlight .ne { color: #D2413A; font-weight: bold } /* Name.Exception */
+.highlight .nf { color: #0000FF } /* Name.Function */
+.highlight .nl { color: #A0A000 } /* Name.Label */
+.highlight .nn { color: #0000FF; font-weight: bold } /* Name.Namespace */
+.highlight .nt { color: #008000; font-weight: bold } /* Name.Tag */
+.highlight .nv { color: #19177C } /* Name.Variable */
+.highlight .ow { color: #AA22FF; font-weight: bold } /* Operator.Word */
+.highlight .w { color: #bbbbbb } /* Text.Whitespace */
+.highlight .mf { color: #666666 } /* Literal.Number.Float */
+.highlight .mh { color: #666666 } /* Literal.Number.Hex */
+.highlight .mi { color: #666666 } /* Literal.Number.Integer */
+.highlight .mo { color: #666666 } /* Literal.Number.Oct */
+.highlight .sb { color: #BA2121 } /* Literal.String.Backtick */
+.highlight .sc { color: #BA2121 } /* Literal.String.Char */
+.highlight .sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
+.highlight .s2 { color: #BA2121 } /* Literal.String.Double */
+.highlight .se { color: #BB6622; font-weight: bold } /* Literal.String.Escape */
+.highlight .sh { color: #BA2121 } /* Literal.String.Heredoc */
+.highlight .si { color: #BB6688; font-weight: bold } /* Literal.String.Interpol */
+.highlight .sx { color: #008000 } /* Literal.String.Other */
+.highlight .sr { color: #BB6688 } /* Literal.String.Regex */
+.highlight .s1 { color: #BA2121 } /* Literal.String.Single */
+.highlight .ss { color: #19177C } /* Literal.String.Symbol */
+.highlight .bp { color: #008000 } /* Name.Builtin.Pseudo */
+.highlight .vc { color: #19177C } /* Name.Variable.Class */
+.highlight .vg { color: #19177C } /* Name.Variable.Global */
+.highlight .vi { color: #19177C } /* Name.Variable.Instance */
+.highlight .il { color: #666666 } /* Literal.Number.Integer.Long */
+
+
+</style>
+<script type="text/javascript">
+/*<![CDATA[*/
+var asciidoc = {  // Namespace.
+
+/////////////////////////////////////////////////////////////////////
+// Table Of Contents generator
+/////////////////////////////////////////////////////////////////////
+
+/* Author: Mihai Bazon, September 2002
+ * http://students.infoiasi.ro/~mishoo
+ *
+ * Table Of Content generator
+ * Version: 0.4
+ *
+ * Feel free to use this script under the terms of the GNU General Public
+ * License, as long as you do not remove or alter this notice.
+ */
+
+ /* modified by Troy D. Hanson, September 2006. License: GPL */
+ /* modified by Stuart Rackham, 2006, 2009. License: GPL */
+
+// toclevels = 1..4.
+toc: function (toclevels) {
+
+  function getText(el) {
+    var text = "";
+    for (var i = el.firstChild; i != null; i = i.nextSibling) {
+      if (i.nodeType == 3 /* Node.TEXT_NODE */) // IE doesn't speak constants.
+        text += i.data;
+      else if (i.firstChild != null)
+        text += getText(i);
+    }
+    return text;
+  }
+
+  function TocEntry(el, text, toclevel) {
+    this.element = el;
+    this.text = text;
+    this.toclevel = toclevel;
+  }
+
+  function tocEntries(el, toclevels) {
+    var result = new Array;
+    var re = new RegExp('[hH]([1-'+(toclevels+1)+'])');
+    // Function that scans the DOM tree for header elements (the DOM2
+    // nodeIterator API would be a better technique but not supported by all
+    // browsers).
+    var iterate = function (el) {
+      for (var i = el.firstChild; i != null; i = i.nextSibling) {
+        if (i.nodeType == 1 /* Node.ELEMENT_NODE */) {
+          var mo = re.exec(i.tagName);
+          if (mo && (i.getAttribute("class") || i.getAttribute("className")) != "float") {
+            result[result.length] = new TocEntry(i, getText(i), mo[1]-1);
+          }
+          iterate(i);
+        }
+      }
+    }
+    iterate(el);
+    return result;
+  }
+
+  var toc = document.getElementById("toc");
+  if (!toc) {
+    return;
+  }
+
+  // Delete existing TOC entries in case we're reloading the TOC.
+  var tocEntriesToRemove = [];
+  var i;
+  for (i = 0; i < toc.childNodes.length; i++) {
+    var entry = toc.childNodes[i];
+    if (entry.nodeName.toLowerCase() == 'div'
+     && entry.getAttribute("class")
+     && entry.getAttribute("class").match(/^toclevel/))
+      tocEntriesToRemove.push(entry);
+  }
+  for (i = 0; i < tocEntriesToRemove.length; i++) {
+    toc.removeChild(tocEntriesToRemove[i]);
+  }
+
+  // Rebuild TOC entries.
+  var entries = tocEntries(document.getElementById("content"), toclevels);
+  for (var i = 0; i < entries.length; ++i) {
+    var entry = entries[i];
+    if (entry.element.id == "")
+      entry.element.id = "_toc_" + i;
+    var a = document.createElement("a");
+    a.href = "#" + entry.element.id;
+    a.appendChild(document.createTextNode(entry.text));
+    var div = document.createElement("div");
+    div.appendChild(a);
+    div.className = "toclevel" + entry.toclevel;
+    toc.appendChild(div);
+  }
+  if (entries.length == 0)
+    toc.parentNode.removeChild(toc);
+},
+
+
+/////////////////////////////////////////////////////////////////////
+// Footnotes generator
+/////////////////////////////////////////////////////////////////////
+
+/* Based on footnote generation code from:
+ * http://www.brandspankingnew.net/archive/2005/07/format_footnote.html
+ */
+
+footnotes: function () {
+  // Delete existing footnote entries in case we're reloading the footnodes.
+  var i;
+  var noteholder = document.getElementById("footnotes");
+  if (!noteholder) {
+    return;
+  }
+  var entriesToRemove = [];
+  for (i = 0; i < noteholder.childNodes.length; i++) {
+    var entry = noteholder.childNodes[i];
+    if (entry.nodeName.toLowerCase() == 'div' && entry.getAttribute("class") == "footnote")
+      entriesToRemove.push(entry);
+  }
+  for (i = 0; i < entriesToRemove.length; i++) {
+    noteholder.removeChild(entriesToRemove[i]);
+  }
+
+  // Rebuild footnote entries.
+  var cont = document.getElementById("content");
+  var spans = cont.getElementsByTagName("span");
+  var refs = {};
+  var n = 0;
+  for (i=0; i<spans.length; i++) {
+    if (spans[i].className == "footnote") {
+      n++;
+      var note = spans[i].getAttribute("data-note");
+      if (!note) {
+        // Use [\s\S] in place of . so multi-line matches work.
+        // Because JavaScript has no s (dotall) regex flag.
+        note = spans[i].innerHTML.match(/\s*\[([\s\S]*)]\s*/)[1];
+        spans[i].innerHTML =
+          "[<a id='_footnoteref_" + n + "' href='#_footnote_" + n +
+          "' title='View footnote' class='footnote'>" + n + "</a>]";
+        spans[i].setAttribute("data-note", note);
+      }
+      noteholder.innerHTML +=
+        "<div class='footnote' id='_footnote_" + n + "'>" +
+        "<a href='#_footnoteref_" + n + "' title='Return to text'>" +
+        n + "</a>. " + note + "</div>";
+      var id =spans[i].getAttribute("id");
+      if (id != null) refs["#"+id] = n;
+    }
+  }
+  if (n == 0)
+    noteholder.parentNode.removeChild(noteholder);
+  else {
+    // Process footnoterefs.
+    for (i=0; i<spans.length; i++) {
+      if (spans[i].className == "footnoteref") {
+        var href = spans[i].getElementsByTagName("a")[0].getAttribute("href");
+        href = href.match(/#.*/)[0];  // Because IE return full URL.
+        n = refs[href];
+        spans[i].innerHTML =
+          "[<a href='#_footnote_" + n +
+          "' title='View footnote' class='footnote'>" + n + "</a>]";
+      }
+    }
+  }
+},
+
+install: function(toclevels) {
+  var timerId;
+
+  function reinstall() {
+    asciidoc.footnotes();
+    if (toclevels) {
+      asciidoc.toc(toclevels);
+    }
+  }
+
+  function reinstallAndRemoveTimer() {
+    clearInterval(timerId);
+    reinstall();
+  }
+
+  timerId = setInterval(reinstall, 500);
+  if (document.addEventListener)
+    document.addEventListener("DOMContentLoaded", reinstallAndRemoveTimer, false);
+  else
+    window.onload = reinstallAndRemoveTimer;
+}
+
+}
+asciidoc.install();
+/*]]>*/
+</script>
+</head>
+<body class="article">
+<div id="header">
+<h1>Polimorfizam</h1>
+<span id="author">Mladen Jurak</span><br>
+<span id="revnumber">version 2.0,</span>
+<span id="revdate">2018-02</span>
+</div>
+<div id="content">
+<div class="sect1">
+<h2 id="_pitanje">Pitanje</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Prerađivanjem metode iz bazne klase u proširenoj klasi želimo <em>nasljediti</em> sučelje metode i
+<em>promijeniti</em> implementaciju.</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Window</span><span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+    <span class="kt">void</span> <span class="n">resize</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="kt">int</span> <span class="n">y</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Window::resize"</span>  <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+    <span class="c1">// ....</span>
+<span class="p">}</span>
+<span class="c1">// .....</span>
+<span class="p">};</span>
+
+<span class="k">class</span> <span class="nc">SimpleDialog</span> <span class="o">:</span> <span class="k">public</span> <span class="n">Window</span><span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+    <span class="kt">void</span> <span class="n">resize</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="kt">int</span> <span class="n">y</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">Window</span><span class="o">::</span><span class="n">resize</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">);</span>   <span class="c1">// Neka bazna klasa napravi svoj dio posla ...</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"SimpleDialog::resize"</span>  <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+    <span class="c1">// ....</span>
+<span class="p">}</span>
+<span class="c1">// .....</span>
+<span class="p">};</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Funkcija <code>update()</code> je klijent klase <code>Window</code>. Kako uzima referencu na <code>Window</code>
+može raditi sa svakom klasom koja je izvedena iz klase <code>Window</code>.</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="kt">void</span> <span class="nf">update</span><span class="p">(</span><span class="n">Window</span><span class="o">&amp;</span> <span class="n">obj</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="c1">// ...</span>
+    <span class="kt">int</span> <span class="n">x</span><span class="o">=</span><span class="mi">80</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mi">170</span><span class="p">;</span>
+    <span class="c1">//</span>
+    <span class="n">obj</span><span class="p">.</span><span class="n">resize</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">);</span>
+    <span class="c1">// ...</span>
+<span class="p">}</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Koja će metoda <code>resize()</code> biti pozvana kada <code>update()</code> dobije <code>SimpleDialog</code> objekt?</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="n">SimpleDialog</span> <span class="n">dialog</span><span class="p">;</span>
+<span class="n">update</span><span class="p">(</span><span class="n">dialog</span><span class="p">);</span>
+</pre></div></div></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_odgovor">Odgovor</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Bit će pozvana metoda <code>resize()</code> iz klase <code>Window</code>!</p></div>
+<div class="paragraph"><p>Da bi se funkcija <code>update()</code> zaista ponašala <strong>polimorfno</strong>, ona bi morala pozvati verziju metode
+<code>resize()</code> implementiranu u klasi  <code>SimpleDialog</code>. Bez toga ne može adekvatno promijeniti dimenziju
+ <code>SimpleDialog</code> prozora.</p></div>
+<div class="paragraph"><p>Da bismo postigli polimorfno ponašanje moramo izmijeniti baznu klasu  <code>Window</code>.
+U njoj funkciju <code>resize()</code> trebamo proglasiti <strong>virtualnom</strong>:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Window</span><span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+    <span class="k">virtual</span> <span class="kt">void</span> <span class="n">resize</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="kt">int</span> <span class="n">y</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Window::resize"</span>  <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+        <span class="c1">// ....</span>
+    <span class="p">}</span>
+    <span class="c1">// .....</span>
+<span class="p">};</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Kada se <strong>virtualna metoda</strong> poziva kroz pokazivač ili referencu  na baznu klasu
+poziva se verzija metode iz klase koja je određena <strong>dinamičkim tipom</strong> pokazivača,
+odnosno reference.</p></div>
+<div class="paragraph"><p>Sada se u kodu</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="n">SimpleDialog</span> <span class="n">dialog</span><span class="p">;</span>
+<span class="n">update</span><span class="p">(</span><span class="n">dialog</span><span class="p">);</span>    <span class="c1">// zove SimpleDialog::resize()</span>
+</pre></div></div></div>
+<div class="paragraph"><p>na referenci <code>dialog</code> zove metoda <code>update()</code> iz klase <code>SimpleDialog</code>.</p></div>
+<div class="admonitionblock">
+<table><tbody><tr>
+<td class="icon">
+<div class="title">Napomena</div>
+</td>
+<td class="content"><strong>Polimorfizam</strong> je termin koji označava primjenu jednog te istog koda na različite vrste
+objekata. Objekti moraju pripadati istoj hijerarhiji klasa, a postiže se kroz mehanizam virtualnih
+funkcija. Polimorfno se mogu ponašati samo klase koje definiraju barem jednu
+virtualnu funkciju te se stoga takve klase nazivaju <strong>polimornim klasama</strong>.</td>
+</tr></tbody></table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_jednostavan_primjer">Jednostavan primjer</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_bazna_klasa">Bazna klasa</h3>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Base</span><span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+    <span class="k">virtual</span> <span class="kt">void</span> <span class="n">f</span><span class="p">(){</span> <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Base::f()</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span> <span class="p">}</span>
+    <span class="kt">void</span> <span class="n">g</span><span class="p">(){</span> <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Base::g()</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span> <span class="p">}</span>
+    <span class="k">virtual</span> <span class="kt">void</span> <span class="n">h</span><span class="p">(){</span> <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Base::h()</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span> <span class="p">}</span>
+<span class="p">};</span>
+</pre></div></div></div>
+</div>
+<div class="sect2">
+<h3 id="_izvedena_klasa">Izvedena klasa</h3>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Derived</span> <span class="o">:</span> <span class="k">public</span> <span class="n">Base</span><span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+    <span class="k">virtual</span> <span class="kt">void</span> <span class="n">f</span><span class="p">(){</span> <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Derived::f()</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span> <span class="p">}</span>
+    <span class="kt">void</span> <span class="n">g</span><span class="p">(){</span> <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Derived::g()</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span> <span class="p">}</span>
+    <span class="kt">void</span> <span class="n">z</span><span class="p">(){</span> <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Derived::z()</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span> <span class="p">}</span>
+<span class="p">};</span>
+</pre></div></div></div>
+</div>
+<div class="sect2">
+<h3 id="_klijent">Klijent</h3>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="kt">void</span> <span class="nf">client</span><span class="p">(</span><span class="n">Base</span> <span class="o">*</span> <span class="n">pb</span><span class="p">){</span>
+    <span class="n">pb</span><span class="o">-&gt;</span><span class="n">f</span><span class="p">();</span>
+    <span class="n">pb</span><span class="o">-&gt;</span><span class="n">g</span><span class="p">();</span>
+    <span class="n">pb</span><span class="o">-&gt;</span><span class="n">h</span><span class="p">();</span>
+<span class="c1">//  pb-&gt;z(); - daje grešku pri kompilaciju</span>
+<span class="p">}</span>
+</pre></div></div></div>
+</div>
+<div class="sect2">
+<h3 id="_poziv_klijenta">Poziv klijenta</h3>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">Derived</span> <span class="n">d</span><span class="p">;</span>
+    <span class="n">client</span><span class="p">(</span><span class="o">&amp;</span><span class="n">d</span><span class="p">);</span>
+
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div></div></div>
+</div>
+<div class="sect2">
+<h3 id="_rezultat">Rezultat</h3>
+<div class="listingblock">
+<div class="content">
+<pre><code>Derived::f()
+Base::g()
+Base::h()</code></pre>
+</div></div>
+<div class="ulist"><ul>
+<li>
+<p>
+Funkcija <em>f()</em> je virtualna i prerađena je u izvedenoj bazi te dobivamo prerađenu verziju metode.
+</p>
+</li>
+<li>
+<p>
+Funkcija <em>g()</em> nije virtualna i premda je prerađena u izvedenoj klasi dobivamo verziju metode iz bazne klase.
+</p>
+</li>
+<li>
+<p>
+Funkcija <em>h()</em> je virtualna ali nije prerađena je u izvedenoj klasi te dobivamo  metodu iz bazne klase.
+</p>
+</li>
+<li>
+<p>
+Funkcija <em>z()</em> ne postoji u baznoj klasi i stoga ju klijent ne može pozvati.
+</p>
+</li>
+</ul></div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_virtualne_metode">Virtualne metode</h2>
+<div class="sectionbody">
+<div class="ulist"><ul>
+<li>
+<p>
+Kada je funkcija članica bazne klase označena <code>virtual</code> onda se mijenja
+način na koji se funkcija poziva ako poziv ide kroz <em>pokazivač</em> ili <em>referencu</em>.
+Ako se statički i dinamički tip pokazivača ili reference razlikuju, onda će biti pozvana
+verzija virtualne funkcije iz klase koja odgovara dinamičkom tipu.
+</p>
+</li>
+<li>
+<p>
+<em>Dinamički tip neke reference ili pokazivača nije poznat za vrijeme kompilacije</em> i stoga
+se odluka koja će verzija virtualne funkcije biti pozvana ne može donijeti tijekom
+kompilacije: ona se donosi za vrijeme  izvršavanja programa i taj se proces naziva
+<em>dinamičko vezanje</em> (eng. <em>dynamic binding</em>).
+</p>
+</li>
+<li>
+<p>
+Metodu činimo virtualnom u baznoj klasi kada ju želimo redefinirati u proširenim klasama
+i kada želimo da implementacija iz proširene klase bude korištena u metodama koje su klijenti
+bazne klase (kroz pokazivače i reference). Oznaka <code>virtual</code>   znači da proširena
+klasa nasljeđuje samo sučelje (deklaraciju) funkcije, ali može supstituirati vlastitu implementaciju.
+</p>
+</li>
+</ul></div>
+<div class="admonitionblock">
+<table><tbody><tr>
+<td class="icon">
+<div class="title">Napomena</div>
+</td>
+<td class="content">Objekti nemaju dinamički tip. Kada funkciju zovemo na objektu (na primjer, <code>A a; a.f()</code>)
+tada nema nikakve razlike između virtualne i nevirtualne funkcije. Uvijek se zove funkcija <code>A::f()</code>.</td>
+</tr></tbody></table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_implementacija_polimorfizma">Implementacija polimorfizma</h2>
+<div class="sectionbody">
+<div class="ulist"><ul>
+<li>
+<p>
+Za svaku klasu koja sadrži barem jednu virtualnu funkciju prevodilac kreira <strong><em>virtualnu tabelu klase</em></strong>
+koja sadrži pokazivače na virtualne funkcije klase. Nevirtualne funkcije klase ne ulaze u tu tabelu.
+Virtualna tabela je jedna za sve instance (objekte) dane klase.
+</p>
+</li>
+<li>
+<p>
+U svaku instancu klase prevodilac stavlja pokazivač na virtualnu tabelu klase
+<code>vtp</code> (<em>virtual table pointer</em>). Radi se o jednom
+pokazivaču, neovisno o tome koliko ima virtualnih funkcija u klasi. Prisustvo virtualne funkcije
+u klasi povećava stoga svaku instancu klase za jedan pokazivač. K tome se još stavlja "skriveni kod"
+u konstruktor koji inicijalizira <code>vtp</code> pokazivač.
+</p>
+</li>
+<li>
+<p>
+Kada treba pozvati virtualnu funkciju prvo se dohvati pokazivač na virtualnu tabelu (<code>vtp</code>) koji sadrži
+svaki objekt. On je određen tipom objekta  i stoga se selekcija virtualne metode vrši prema dinamičkom tipu.
+Odgovarajuću metodu prevodilac selektira računanjem offset-a u virtualnoj tabeli (koji se zna za vrijeme
+kompilacije) i zatim se funkcija poziva kroz njen pokazivač.
+</p>
+</li>
+</ul></div>
+<div class="imageblock" style="text-align:center;">
+<div class="content">
+<img alt="vptr.png" src="data:image/png;base64,%0A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%0A+vW+Y3au8H9yiajoBaZagwAAAABJRU5ErkJggg==">
+</div>
+</div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Base</span><span class="p">{</span>
+    <span class="k">public</span><span class="o">:</span>
+        <span class="k">virtual</span> <span class="kt">int</span> <span class="n">f</span><span class="p">(</span><span class="kt">int</span><span class="p">);</span>
+        <span class="k">virtual</span> <span class="kt">void</span> <span class="nf">g</span><span class="p">(</span><span class="kt">int</span><span class="p">);</span>
+        <span class="kt">int</span> <span class="nf">h</span><span class="p">();</span>
+    <span class="k">private</span><span class="o">:</span>
+        <span class="kt">int</span> <span class="n">a</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="k">class</span> <span class="nc">Derived</span> <span class="o">:</span> <span class="k">public</span> <span class="n">Base</span> <span class="p">{</span>
+    <span class="k">public</span><span class="o">:</span>
+        <span class="k">virtual</span> <span class="kt">int</span> <span class="n">f</span><span class="p">(</span><span class="kt">int</span><span class="p">);</span>
+        <span class="k">virtual</span> <span class="kt">void</span> <span class="nf">w</span><span class="p">(</span><span class="kt">int</span><span class="p">);</span>
+    <span class="k">private</span><span class="o">:</span>
+        <span class="kt">int</span> <span class="n">b</span><span class="p">;</span>
+<span class="p">};</span>
+</pre></div></div></div>
+<div class="imageblock" style="text-align:center;">
+<div class="content">
+<img alt="base-derived.png" src="data:image/png;base64,%0A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">
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_kovarijantni_povratni_tip">Kovarijantni povratni tip</h2>
+<div class="sectionbody">
+<div class="ulist"><ul>
+<li>
+<p>
+<em>Reimplementacija virtualne funkcije u proširenoj klasi mora imati isti broj i tip parametara
+te isti povratni tip kao i funkcija u baznoj klasi</em>. To pravilo ima jednu iznimku. Ako virtualna
+funkcija u baznoj klasi vraća  pokazivač ili referencu   na baznu klasu, onda njena prerađena
+verzija u proširenoj klasi može vratiti  pokazivač ili referencu   na proširenu klasu klasu.
+</p>
+</li>
+</ul></div>
+<div class="sect2">
+<h3 id="_bazna_klasa_metoda_code_window_code_vraca_referencu_na_baznu_klasu">Bazna klasa - metoda <code>window()</code> vraća referencu na baznu klasu</h3>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Window</span><span class="p">{</span>
+    <span class="k">public</span><span class="o">:</span>
+        <span class="c1">// .....</span>
+        <span class="k">virtual</span> <span class="n">Window</span><span class="o">&amp;</span> <span class="n">window</span><span class="p">(){</span>
+         <span class="c1">// Vraća referencu na Window</span>
+         <span class="c1">// ...</span>
+            <span class="k">return</span> <span class="o">*</span><span class="k">this</span><span class="p">;</span>
+        <span class="p">}</span>
+<span class="p">};</span>
+</pre></div></div></div>
+</div>
+<div class="sect2">
+<h3 id="_izvedena_klasa_metoda_code_window_code_vraca_referencu_na_izvedenu_klasu">Izvedena klasa - metoda <code>window()</code> vraća referencu na izvedenu klasu</h3>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">SimpleDialog</span> <span class="o">:</span> <span class="k">public</span> <span class="n">Window</span><span class="p">{</span>
+    <span class="k">public</span><span class="o">:</span>
+        <span class="c1">// .....</span>
+        <span class="k">virtual</span> <span class="n">SimpleDialog</span><span class="o">&amp;</span> <span class="n">window</span><span class="p">(){</span>
+         <span class="c1">// O.K. Vraća referencu na SimpleDialog a ne Window</span>
+         <span class="c1">// ...</span>
+            <span class="k">return</span> <span class="o">*</span><span class="k">this</span><span class="p">;</span>
+        <span class="p">}</span>
+<span class="p">};</span>
+</pre></div></div></div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_funkciju_je_dovoljno_deklarirati_virtualnom_samo_u_baznoj_klasi">Funkciju je dovoljno deklarirati virtualnom samo u baznoj klasi</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Prerađene verzije funkcije su automatski virtualne.</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Window</span><span class="p">{</span>
+  <span class="k">public</span><span class="o">:</span>
+      <span class="k">virtual</span> <span class="kt">void</span> <span class="n">resize</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="kt">int</span> <span class="n">y</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// Ovdje je deklaracija virtual bitna</span>
+        <span class="c1">// ....</span>
+      <span class="p">}</span>
+      <span class="c1">// .....</span>
+<span class="p">};</span>
+
+<span class="k">class</span> <span class="nc">SimpleDialog</span> <span class="o">:</span> <span class="k">public</span> <span class="n">Window</span><span class="p">{</span>
+  <span class="k">public</span><span class="o">:</span>
+      <span class="kt">void</span> <span class="n">resize</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="kt">int</span> <span class="n">y</span><span class="p">)</span> <span class="p">{</span>
+          <span class="c1">// Ovdje je deklaracija virtual nije potrebna</span>
+          <span class="c1">// i stavlja se samo kao informacija</span>
+          <span class="c1">// ....</span>
+      <span class="p">}</span>
+      <span class="c1">// .....</span>
+<span class="p">};</span>
+</pre></div></div></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_operator_dosega_zaobilazi_virtualni_mehanizam">Operator dosega :: zaobilazi virtualni mehanizam</h2>
+<div class="sectionbody">
+<div class="ulist"><ul>
+<li>
+<p>
+Virtualni mehanizam se može zaobići pomoću operatora dosega. Tako na primjer u metodi <code>update</code>
+možemo pomoću  <code>obj.Window::resize(x,y);</code> pozvati metodu <code>resize</code> iz bazne klase
+neovisno o dinamičkom tipu reference <code>obj</code>. Analogno vrijedi za poziv kroz pokazivače.
+</p>
+</li>
+</ul></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="kt">void</span> <span class="nf">update</span><span class="p">(</span><span class="n">Window</span><span class="o">&amp;</span> <span class="n">obj</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="c1">// ...</span>
+    <span class="kt">int</span> <span class="n">x</span><span class="o">=</span><span class="mi">80</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="mi">170</span><span class="p">;</span>
+    <span class="c1">//</span>
+    <span class="n">obj</span><span class="p">.</span><span class="n">Window</span><span class="o">::</span><span class="n">resize</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">);</span> <span class="c1">// Poništava virtualni mehanizam</span>
+                             <span class="c1">// i uvijek zove metodu iz bazne klase ...</span>
+<span class="p">}</span>
+</pre></div></div></div>
+<div class="sect2">
+<h3 id="_napomene">Napomene</h3>
+<div class="ulist"><ul>
+<li>
+<p>
+<em>Konstruktori</em> nikad nisu virtualni: to ne bi imalo smisla jer dok se konstruktor izvršava
+objekt još nije kompletan i njegov dinamički tip nije poznat.
+</p>
+</li>
+<li>
+<p>
+<em>Operator pridruživanja</em> se može učiniti virtualnim, ali to nije korisno.
+</p>
+</li>
+<li>
+<p>
+Ako virtualna funkcija ima defaultne parametre i pozvana je kroz pokazivač ili referencu
+koriste se defaultni parametri prema statičkom tipu pokazivača ili reference. Stoga
+prerađena funkcija mora zadržati defaultne vrijednosti bazne funkcije, inače ponašanje može biti
+neočekivano.
+</p>
+</li>
+</ul></div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_virtualni_destruktor">Virtualni destruktor</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Čak ako i nemamo
+potrebe za destruktorom u baznoj klasi trebamo definirati <em>virtualni destruktor</em> ako želimo
+da klasa služi kao baza za definiciju proširenih klasa.</p></div>
+<div class="sect2">
+<h3 id="_bazna_klasa_bez_virtualnog_destruktora">Bazna klasa bez virtualnog destruktora</h3>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="k">struct</span> <span class="n">A</span> <span class="p">{</span>
+    <span class="n">A</span><span class="p">(</span><span class="kt">double</span> <span class="n">x</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="kt">double</span> <span class="n">y</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="kt">double</span> <span class="n">z</span><span class="o">=</span><span class="mf">0.0</span><span class="p">)</span>
+    <span class="p">{</span> <span class="n">coo</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">=</span><span class="n">x</span><span class="p">;</span> <span class="n">coo</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">=</span><span class="n">y</span><span class="p">;</span> <span class="n">coo</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">=</span><span class="n">z</span><span class="p">;</span> <span class="p">}</span>
+
+    <span class="kr">inline</span> <span class="kt">double</span> <span class="n">mean</span><span class="p">(){</span>
+        <span class="c1">// ....</span>
+    <span class="p">}</span>
+    <span class="kt">double</span> <span class="n">coo</span><span class="p">[</span><span class="mi">3</span><span class="p">];</span>
+    <span class="o">~</span><span class="n">A</span><span class="p">(){</span> <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"~A()"</span><span class="o">&lt;&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span> <span class="p">}</span>  <span class="c1">// nevirtualni konstruktor</span>
+<span class="p">};</span>
+</pre></div></div></div>
+</div>
+<div class="sect2">
+<h3 id="_izvedena_klasa_2">Izvedena klasa</h3>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="k">struct</span> <span class="nl">B</span> <span class="p">:</span>  <span class="n">A</span> <span class="c1">// javno nasljeđivanje (default)</span>
+<span class="p">{</span>
+    <span class="n">B</span><span class="p">(</span><span class="kt">double</span> <span class="n">x</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="kt">double</span> <span class="n">y</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="kt">double</span> <span class="n">z</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span> <span class="n">_name</span><span class="o">=</span><span class="s">"B"</span><span class="p">)</span> <span class="o">:</span>
+                         <span class="n">A</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">z</span><span class="p">),</span> <span class="n">name</span><span class="p">(</span><span class="n">_name</span><span class="p">)</span> <span class="p">{}</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">get_name</span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="n">name</span><span class="p">;</span> <span class="p">}</span>
+    <span class="o">~</span><span class="n">B</span><span class="p">(){</span> <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"~B()"</span><span class="o">&lt;&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span> <span class="p">}</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">name</span><span class="p">;</span>
+<span class="p">};</span>
+</pre></div></div></div>
+</div>
+<div class="sect2">
+<h3 id="_gubitak_memorije">Gubitak memorije</h3>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">A</span> <span class="o">*</span><span class="n">pa</span> <span class="o">=</span> <span class="k">new</span> <span class="n">B</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">3</span><span class="p">);</span>
+    <span class="c1">// ...</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">pa</span><span class="o">-&gt;</span><span class="n">mean</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+    <span class="k">delete</span> <span class="n">pa</span><span class="p">;</span>  <span class="c1">// Gubitak memorije: pozvan je samo destruktor klase A</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div></div></div>
+<div class="ulist"><ul>
+<li>
+<p>
+Ovdje smo (u naredbi <code>delete pa;</code>) kroz pokazivač čiji je statički tip jednak baznom tipu pozvali nevirtualni destruktor
+bazne klase. Posljedica toga je da se izvršila destrukcija samo baznog dijela objekta.
+</p>
+</li>
+</ul></div>
+<div class="imageblock" style="text-align:center;">
+<div class="content">
+<img alt="delete_base.png" src="data:image/png;base64,%0A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%0AAABJRU5ErkJggg==">
+</div>
+</div>
+<div class="ulist"><ul>
+<li>
+<p>
+Kada destruktor definiramo virtualnim onda se zove destruktor prema dinamičkom tipu objekta — dakle,
+destruktor izvedene klase. Prevodilac nakon destrukcije izvedenog dijela klase automatski poziva i
+destruktor baznog dijela i objekt će biti potpuno uništen.
+</p>
+</li>
+</ul></div>
+<div class="imageblock" style="text-align:center;">
+<div class="content">
+<img alt="delete_derived.png" src="data:image/png;base64,%0A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%0AEwAAAABJRU5ErkJggg==">
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_cista_virtualna_funkcija_i_apstraktna_klasa">Čista virtualna funkcija i apstraktna klasa</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>U baznoj klasi ponekad nemamo pravu implementaciju za neku od virtualnih funkcija. U tom slučaju
+funkciju možemo deklarirati kao čistu virtualnu funkciju tako što ćemo ju izjednačiti s nulom. Na primjer,</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="k">virtual</span> <span class="kt">void</span> <span class="nf">resize</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="kt">int</span> <span class="n">y</span><span class="p">)</span>  <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Tom deklaracijom kažemo da funkcija nema implementaciju; nju će dati proširene klase.
+Klasa koja ima barem jednu čistu virtualnu metodu je <strong><em>apstraktna klasa</em></strong>. Prevodilac neće
+dozvoliti instanciranje objekata apstraktne klase. Njena uloga je da služi kao bazna klasa za
+hijerarhiju klasa koja će biti izvedena iz nje i stoga možemo koristiti samo pokazivače i
+reference na apstraktnu klasu.</p></div>
+<div class="paragraph"><p>Sljedeći primjer ilustrira apstraktnu baznu klasu.</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="c1">// apstraktna bazna klasa</span>
+<span class="k">class</span> <span class="nc">Base</span><span class="p">{</span>
+    <span class="k">public</span><span class="o">:</span>
+        <span class="k">virtual</span> <span class="kt">void</span> <span class="n">f</span><span class="p">()</span> <span class="k">const</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="c1">// čista virtualna funkcija</span>
+        <span class="k">virtual</span> <span class="kt">void</span> <span class="nf">g</span><span class="p">()</span> <span class="k">const</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="c1">// čista virtualna funkcija</span>
+<span class="p">};</span>
+<span class="c1">// konkretna klasa daje implementaciju čistim virtualnim</span>
+<span class="c1">// funkcijama</span>
+<span class="k">class</span> <span class="nc">Derived</span> <span class="o">:</span> <span class="k">public</span> <span class="n">Base</span><span class="p">{</span>
+    <span class="k">public</span><span class="o">:</span>
+        <span class="kt">void</span> <span class="n">f</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span> <span class="cm">/*  implementacija */</span> <span class="p">}</span>
+        <span class="kt">void</span> <span class="n">g</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span> <span class="cm">/*  implementacija */</span> <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="c1">// klijent bazne klase. Može uzeti samo referencu ili pokazivač na</span>
+<span class="c1">// Base.</span>
+<span class="kt">void</span> <span class="nf">process</span><span class="p">(</span><span class="n">Base</span> <span class="k">const</span> <span class="o">&amp;</span> <span class="n">obj</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">obj</span><span class="p">.</span><span class="n">f</span><span class="p">();</span>
+    <span class="n">obj</span><span class="p">.</span><span class="n">g</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(){</span>
+    <span class="n">Base</span> <span class="n">obj</span><span class="p">;</span>     <span class="c1">// greška - apstraktna klasa</span>
+    <span class="n">Derived</span> <span class="n">obj</span><span class="p">;</span>  <span class="c1">// o.k.</span>
+    <span class="n">process</span><span class="p">(</span><span class="n">obj</span><span class="p">);</span> <span class="c1">// o.k.</span>
+<span class="p">}</span>
+</pre></div></div></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_override_c_2011">override, C++2011</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Kod prerađivanja virtualne bazne funkcije lako je pogriješiti kao u sljedećem primjeru:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="k">struct</span> <span class="n">Base</span><span class="p">{</span>
+    <span class="k">virtual</span> <span class="kt">void</span> <span class="n">f</span><span class="p">()</span> <span class="p">;</span>
+<span class="p">};</span>
+<span class="k">struct</span> <span class="nl">Derived</span> <span class="p">:</span> <span class="n">Base</span><span class="p">{</span>
+    <span class="kt">void</span> <span class="n">f</span><span class="p">(</span><span class="kt">int</span><span class="p">);</span>  <span class="c1">// prerađujemo f() ali, greška!</span>
+                  <span class="c1">// Base::f() ne uzima parametar int.</span>
+<span class="p">};</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Mislili smo da prerađujemo funkciju  <code>void f()</code> iz <code>Base</code>, ali smo ju samo sakrili novom funkcijom u <code>Derived</code>.
+Za prevodilac to nije greška, premda najčešće jeste.</p></div>
+<div class="paragraph"><p>U standardu C++11 možemo izraziti namjeru prerađivanja virtualne funkcije pomoću <code>override</code>.
+U tom slučaju gornja situacija završava greškom pri kompilaciji.</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="k">struct</span> <span class="n">Base</span><span class="p">{</span>
+  <span class="k">virtual</span> <span class="kt">void</span> <span class="n">f</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span> <span class="k">const</span><span class="p">;</span>
+  <span class="k">virtual</span> <span class="kt">void</span> <span class="nf">g</span><span class="p">();</span>
+  <span class="kt">void</span> <span class="nf">h</span><span class="p">();</span>
+<span class="p">};</span>
+
+<span class="k">struct</span> <span class="nl">Derived</span> <span class="p">:</span> <span class="n">Base</span><span class="p">{</span>
+  <span class="kt">void</span> <span class="n">f</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span> <span class="k">const</span> <span class="k">override</span><span class="p">;</span> <span class="c1">// ok: f odgovara f iz bazne klase</span>
+  <span class="kt">void</span> <span class="nf">g</span><span class="p">(</span><span class="kt">int</span><span class="p">)</span> <span class="k">override</span><span class="p">;</span>       <span class="c1">// greška: Base nema g(int)</span>
+  <span class="kt">void</span> <span class="nf">h</span><span class="p">()</span> <span class="k">override</span><span class="p">;</span>          <span class="c1">// greška: h nije virtualna</span>
+  <span class="kt">void</span> <span class="nf">k</span><span class="p">()</span> <span class="k">override</span><span class="p">;</span>          <span class="c1">// greška: B nema funkciju k()</span>
+
+<span class="p">};</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Sada prevodilac javlja grešku u tri slučaja u kojima funkcija ne prerađuje virtualnu funkciju iz bazne klase.</p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+<code>override</code> dolazi na kraj deklaracije funkcije.
+</p>
+</li>
+</ul></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_final_c_11">final, C++11</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Ukoliko želimo zabraniti (daljnje) prerađivanje virtualne funkcije možemo ju proglasiti finalnom pomoću <code>final</code>.
+Ključna riječ <code>final</code> dolazi na kraju deklaracije. Primjer:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Base</span><span class="p">{</span>
+    <span class="k">public</span><span class="o">:</span>
+        <span class="k">virtual</span> <span class="kt">void</span> <span class="n">f</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
+        <span class="kt">void</span> <span class="nf">g</span><span class="p">();</span>
+<span class="p">};</span>
+
+<span class="k">class</span> <span class="nc">Derived</span> <span class="o">:</span> <span class="k">public</span> <span class="n">Base</span><span class="p">{</span>
+    <span class="k">public</span><span class="o">:</span>
+        <span class="kt">void</span> <span class="n">f</span><span class="p">()</span> <span class="k">const</span> <span class="k">final</span><span class="p">;</span> <span class="c1">// zabranjujemo daljnje prerađivanje</span>
+        <span class="kt">void</span> <span class="nf">g</span><span class="p">()</span> <span class="k">final</span><span class="p">;</span>       <span class="c1">// greška final se može primijeniti samo</span>
+                              <span class="c1">// na virtualnu funkciju</span>
+<span class="p">};</span>
+
+<span class="k">class</span> <span class="nc">D2</span> <span class="o">:</span> <span class="k">public</span> <span class="n">Derived</span><span class="p">{</span>
+    <span class="k">public</span><span class="o">:</span>
+        <span class="kt">void</span> <span class="n">f</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>  <span class="c1">// greška: prerađujemo finalnu funkciju</span>
+<span class="p">};</span>
+</pre></div></div></div>
+<div class="ulist"><ul>
+<li>
+<p>
+<code>final</code> se može primijeniti samo na virtualnu funkciju i ne ponavlja se u definiciji fukcije izvan klase.
+</p>
+</li>
+</ul></div>
+<div class="paragraph"><p>Ako želimo spriječiti proširivanje neke klase možemo ju deklarirati kao <code>final</code>.
+Ključna riječ <code>final</code> dolazi iza imena klase, a ispred eventualne derivacijske liste (dvotočke).</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="k">class</span>  <span class="nc">A</span> <span class="p">{</span>
+  <span class="c1">// ...</span>
+<span class="p">};</span>
+
+<span class="k">class</span> <span class="nc">B</span> <span class="k">final</span> <span class="o">:</span> <span class="k">public</span> <span class="n">A</span><span class="p">{</span>
+  <span class="c1">// ...</span>
+<span class="p">};</span>
+
+<span class="k">class</span> <span class="nc">C</span> <span class="o">:</span> <span class="k">public</span> <span class="n">B</span> <span class="p">{</span> <span class="c1">// greška, ne možemo proširivati B</span>
+  <span class="c1">// ...</span>
+<span class="p">};</span>
+</pre></div></div></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_polimorfizam_i_spremnici">Polimorfizam i spremnici</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Stablo nasljeđivanja:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">A</span> <span class="p">{</span>
+   <span class="k">public</span><span class="o">:</span>
+      <span class="k">virtual</span> <span class="kt">void</span> <span class="n">name</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span>  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"class A"</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span> <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="k">class</span> <span class="nc">B</span> <span class="o">:</span> <span class="k">public</span> <span class="n">A</span>
+<span class="p">{</span>
+   <span class="k">public</span><span class="o">:</span>
+      <span class="k">virtual</span> <span class="kt">void</span> <span class="n">name</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span>  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"class B"</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span> <span class="p">}</span>
+<span class="p">};</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Koja će metoda biti pozvana?</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">A</span><span class="o">&gt;</span>  <span class="n">vec_A</span><span class="p">;</span>
+    <span class="n">A</span> <span class="n">a</span><span class="p">;</span>
+    <span class="n">B</span> <span class="n">b</span><span class="p">;</span>
+    <span class="n">vec_A</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">a</span><span class="p">);</span>
+    <span class="n">vec_A</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">b</span><span class="p">);</span>
+
+    <span class="n">vec_A</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">name</span><span class="p">();</span>
+    <span class="n">vec_A</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="n">name</span><span class="p">();</span>
+
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div></div></div>
+<div class="ulist"><ul>
+<li>
+<p>
+Kako se objekti predaju spremnicima kopiranjem doći će do izrezivanja baznog podobjekta u
+naredbi <code>vec_A.push_back(b);</code> Stoga će uvijek biti pozvana metoda <code>name()</code> iz bazne klase.
+</p>
+</li>
+<li>
+<p>
+Kako se objekti <em>ne ponašaju polimorfno</em> u spremnicima trebamo raditi s pokazivačima.
+</p>
+</li>
+</ul></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_polimorfno_ponasanje_dobivamo_ako_spremamo_pokazivace">Polimorfno ponašanje dobivamo ako spremamo pokazivače</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">A</span><span class="o">*&gt;</span> <span class="n">vec_pA</span><span class="p">;</span>
+
+    <span class="n">A</span> <span class="n">a</span><span class="p">;</span>
+    <span class="n">B</span> <span class="n">b</span><span class="p">;</span>
+
+    <span class="n">vec_pA</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="o">&amp;</span><span class="n">a</span><span class="p">);</span>
+    <span class="n">vec_pA</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="o">&amp;</span><span class="n">b</span><span class="p">);</span>
+
+    <span class="n">vec_pA</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="n">name</span><span class="p">();</span>
+    <span class="n">vec_pA</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-&gt;</span><span class="n">name</span><span class="p">();</span>
+
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div></div></div>
+<div class="ulist"><ul>
+<li>
+<p>
+Sada se ispravno poziva metoda prema dinamičkom tipu pokazivača.
+</p>
+</li>
+<li>
+<p>
+Ponovo se javlja problem dealokacije memorije (ako ju dinamički alociramo)! Izlaz je u
+korištenju <strong>pametnih pokazivača</strong>, na primjer <code>unique_ptr&lt;A&gt;</code>.
+</p>
+</li>
+</ul></div>
+<div class="paragraph"><p>U svrhu primjera generalizirajmo našu klasu <code>SmartBFC</code> tako da može uzeti pokazivač
+na proizvoljan tip.</p></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_pametni_pokazivaci_osiguravaju_polimorfno_ponasanje_i_automatsku_dealokaciju">Pametni pokazivači osiguravaju polimorfno ponašanje i automatsku dealokaciju</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>U spremnik treba umjesto golih pokazivača spremati pametne pokazivače.</p></div>
+<div class="paragraph"><p>Sljedeći kod sada funkcionira korektno i virtualna funkcija će biti pozvana prema svojem
+dinamičkom tipu:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;memory&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;vector&gt;</span><span class="cp"></span>
+
+<span class="k">class</span> <span class="nc">A</span> <span class="p">{</span>
+   <span class="k">public</span><span class="o">:</span>
+      <span class="k">virtual</span> <span class="kt">void</span> <span class="n">name</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span>  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"class A"</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span> <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="k">class</span> <span class="nc">B</span> <span class="o">:</span> <span class="k">public</span> <span class="n">A</span>
+<span class="p">{</span>
+   <span class="k">public</span><span class="o">:</span>
+      <span class="k">virtual</span> <span class="kt">void</span> <span class="n">name</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span>  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"class B"</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span> <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">A</span><span class="o">&gt;&gt;</span> <span class="n">vec</span><span class="p">;</span>
+    <span class="n">vec</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">A</span><span class="o">&gt;</span><span class="p">(</span><span class="k">new</span> <span class="n">A</span><span class="p">()));</span>
+    <span class="n">vec</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">A</span><span class="o">&gt;</span><span class="p">(</span><span class="k">new</span> <span class="n">B</span><span class="p">()));</span>
+
+    <span class="n">vec</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="n">name</span><span class="p">();</span>  <span class="c1">// ispisuje class A</span>
+    <span class="n">vec</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-&gt;</span><span class="n">name</span><span class="p">();</span>  <span class="c1">// ispisuje class B</span>
+
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div></div></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_polimorfizam_i_kreiranje_objekta_nepoznatog_tipa">Polimorfizam i kreiranje objekta nepoznatog tipa</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_problem">Problem</h3>
+<div class="paragraph"><p>Pametni pokazivač funkcionira samo s objektima kreiranim na hrpi (dinamički alociranim).
+Sljedeći kod završava  sa greškom:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="n">B</span> <span class="n">bb</span><span class="p">;</span>
+<span class="n">SmartPointer</span><span class="o">&lt;</span><span class="n">B</span><span class="o">&gt;</span> <span class="n">spbb</span><span class="p">(</span><span class="o">&amp;</span><span class="n">bb</span><span class="p">);</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Zašto?</p></div>
+</div>
+<div class="sect2">
+<h3 id="_rjesenje">Rješenje</h3>
+<div class="paragraph"><p>Da bismo riješili taj problem <code>SmartPointer</code> treba dobiti konstruktor koji
+će umjesto pokazivača na dinamički alocirani objekt dobiti kao argument referencu na objekt:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="n">SmartPointer</span><span class="p">(</span><span class="k">const</span> <span class="n">T</span> <span class="o">&amp;</span> <span class="n">t</span><span class="p">);</span>
+</pre></div></div></div>
+<div class="paragraph"><p><code>SmartPointer</code> će sada lokalno dinamički alocirati
+kopiju objekta i držati pokazivač na nju. Pri izlasku iz dosega dinamički alocirana
+kopija objekta će biti dealocirana. Ostaje nam još osigurati <strong>polimorfno ponašanje</strong>.</p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+To znači da pametni pokazivač koji <em>drži pokazivač statičkog tipa <code>T</code>
+treba korektno dinamički alocirati objekt      svakog tipa koji proširuje <code>T</code></em>.
+Drugim riječima, moramo korektno dinamički locirati objekt nepoznatog tipa.
+</p>
+</li>
+</ul></div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_kloniranje">Kloniranje</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Tu smo se susreli s problemom konstrukcije objekta čiji nam tip  nije poznat
+ali za koji znamo da proširuje danu baznu klasu.</p></div>
+<div class="paragraph"><p>On se rješava tako što se u
+svakoj klasi u lancu nasljeđivanja definira <strong>virtualna</strong> funkcija koja  dinamički alocira objekt tipa klase
+i vraća pokazivač na njega. Tu ćemo funkciju zvati <code>clone()</code>.</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">A</span> <span class="p">{</span>
+  <span class="k">public</span><span class="o">:</span>
+     <span class="c1">// ...</span>
+     <span class="k">virtual</span> <span class="kt">void</span> <span class="n">name</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span>  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"class A"</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span> <span class="p">}</span>
+     <span class="k">virtual</span> <span class="n">A</span><span class="o">*</span> <span class="n">clone</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span> <span class="k">return</span> <span class="k">new</span> <span class="n">A</span><span class="p">(</span><span class="o">*</span><span class="k">this</span><span class="p">);</span> <span class="p">}</span> <span class="c1">// Kloniraj objekt</span>
+<span class="p">};</span>
+
+<span class="k">class</span> <span class="nc">B</span> <span class="o">:</span> <span class="k">public</span> <span class="n">A</span>
+<span class="p">{</span>
+  <span class="k">public</span><span class="o">:</span>
+     <span class="c1">// ...</span>
+     <span class="k">virtual</span> <span class="kt">void</span> <span class="n">name</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span>  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"class B"</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span> <span class="p">}</span>
+     <span class="k">virtual</span> <span class="n">B</span><span class="o">*</span> <span class="n">clone</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span> <span class="k">return</span>  <span class="k">new</span> <span class="n">B</span><span class="p">(</span><span class="o">*</span><span class="k">this</span><span class="p">);</span> <span class="p">}</span>  <span class="c1">// Kloniraj objekt</span>
+<span class="p">};</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Nova klasa <code>SmartPointer</code> je sada dana ovdje:</p></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_novi_konstruktor_code_smartpointer_code_klase">Novi konstruktor <code>SmartPointer</code> klase</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>U našoj implementaciji pametnog pokativača na bazi brojanja referenci (<code>SmartPointer</code>)
+dodajemo  novi konstruktor koji uzima objekt i klonira ga:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="k">template</span> <span class="o">&lt;</span><span class="k">class</span> <span class="nc">T</span><span class="o">&gt;</span>
+<span class="k">class</span> <span class="nc">SmartPointer</span><span class="p">{</span>
+  <span class="k">public</span><span class="o">:</span>
+    <span class="n">SmartPointer</span><span class="p">(</span><span class="n">T</span> <span class="o">*</span><span class="n">p</span><span class="p">)</span> <span class="o">:</span> <span class="n">ptr</span><span class="p">(</span><span class="n">p</span><span class="p">),</span> <span class="n">cnt</span><span class="p">(</span><span class="k">new</span> <span class="kt">int</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span> <span class="p">{}</span>
+      <span class="c1">// Novi konstruktor</span>
+    <span class="n">SmartPointer</span><span class="p">(</span><span class="k">const</span> <span class="n">T</span> <span class="o">&amp;</span><span class="n">t</span><span class="p">)</span> <span class="o">:</span> <span class="n">ptr</span><span class="p">(</span><span class="n">t</span><span class="p">.</span><span class="n">clone</span><span class="p">()),</span> <span class="n">cnt</span><span class="p">(</span><span class="k">new</span> <span class="kt">int</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span> <span class="p">{}</span>
+     <span class="c1">// ...</span>
+  <span class="k">private</span><span class="o">:</span>
+    <span class="n">T</span>     <span class="o">*</span> <span class="n">ptr</span><span class="p">;</span>
+    <span class="kt">int</span>   <span class="o">*</span> <span class="n">cnt</span><span class="p">;</span>
+<span class="p">};</span>
+</pre></div></div></div>
+<div class="sect2">
+<h3 id="_problem_je_rijesen_uz_dva_ogranicenja">Problem je riješen uz dva ograničenja:</h3>
+<div class="ulist"><ul>
+<li>
+<p>
+Klase koje želimo koristiti polimorfno moraju
+se znati <em>klonirati</em>;
+</p>
+</li>
+<li>
+<p>
+Korisnik mora znati da <code>SmartPointer</code>
+klasi ne smije  dati adresu objekta koji nije dinamički alociran. Umjesto adrese u toj situaciji treba
+<code>SmartPointer</code> klasi predati objekt.
+</p>
+</li>
+</ul></div>
+<div class="paragraph"><p>Sljedeći kod je sada korektan:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="n">A</span><span class="o">*</span> <span class="n">pa</span> <span class="o">=</span> <span class="k">new</span> <span class="n">A</span><span class="p">();</span>
+<span class="n">SmartPointer</span><span class="o">&lt;</span><span class="n">A</span><span class="o">&gt;</span> <span class="n">spa</span><span class="p">(</span><span class="n">pa</span><span class="p">);</span>   <span class="c1">// Dinamički alociran objekt</span>
+
+<span class="n">B</span><span class="o">*</span> <span class="n">pb</span> <span class="o">=</span> <span class="k">new</span> <span class="n">B</span><span class="p">();</span>
+<span class="n">SmartPointer</span><span class="o">&lt;</span><span class="n">A</span><span class="o">&gt;</span> <span class="n">spb</span><span class="p">(</span><span class="n">pb</span><span class="p">);</span>   <span class="c1">// Dinamički alociran objekt</span>
+
+<span class="n">B</span> <span class="n">bb</span><span class="p">;</span>                      <span class="c1">// Statički objekt</span>
+
+<span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span> <span class="n">SmartPointer</span><span class="o">&lt;</span><span class="n">A</span><span class="o">&gt;</span> <span class="o">&gt;</span> <span class="n">vect_A</span><span class="p">;</span>
+
+<span class="n">vect_A</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">spa</span><span class="p">);</span>
+<span class="n">vect_A</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">spb</span><span class="p">);</span>
+<span class="n">vect_A</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">SmartPointer</span><span class="o">&lt;</span><span class="n">A</span><span class="o">&gt;</span><span class="p">(</span><span class="n">bb</span><span class="p">));</span>
+
+<span class="n">vect_A</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-&gt;</span><span class="n">name</span><span class="p">();</span>   <span class="c1">// daje "class A"</span>
+<span class="n">vect_A</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-&gt;</span><span class="n">name</span><span class="p">();</span>   <span class="c1">// daje "class B"</span>
+<span class="n">vect_A</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">-&gt;</span><span class="n">name</span><span class="p">();</span>   <span class="c1">// daje "class B"</span>
+
+<span class="c1">// Dealokacija se dešava automatski</span>
+</pre></div></div></div>
+<div class="paragraph"><p><strong>Pitanje</strong>. Kako novi konstruktor dodati klasi <code>std::shared_ptr&lt;T&gt;</code> ?</p></div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_oblikovni_obrasci_design_patterns">Oblikovni obrasci (Design Patterns)</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Oblikovni obrasci (eng. <em>design patterns</em>) naziv su za rješenja problema koji se često
+javljaju u konstrukciji koda. Svaki obrazac predstavlja <strong>rješenje</strong> za jedan oblikovni
+<strong>problem</strong>. Opis problema koji obrazac rješava objašnjava nam kada obrazac treba primijeniti;
+rješenje koje obrazac nudi  objašnjava nam kako ćemo ga implementirati u danoj situaciji.</p></div>
+<div class="paragraph"><p>Svaki obrazac ima <strong>ime</strong>, što je važno za komunikaciju među programerima.</p></div>
+<div class="paragraph"><p>Temeljna literatura o o oblikovnim obrascima je</p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+<em>Erich Gamma, Richard Helm, Ralph Johnson, John Vlissides: <strong>Design Patterns</strong>.  Addison-Wesley; 1995</em>.
+</p>
+</li>
+</ul></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_obrasci_se_obicno_dijele_u_tri_grupe">Obrasci se obično dijele u tri grupe</h2>
+<div class="sectionbody">
+<div class="ulist"><ul>
+<li>
+<p>
+Obrasci stvaranja [Creational Patterns]
+</p>
+</li>
+<li>
+<p>
+<em>Abstract Factory, Builder, Factory Method, Object Pool, Prototype, Singleton</em>
+</p>
+</li>
+<li>
+<p>
+Strukturni obrasci [Structural Patterns]
+</p>
+</li>
+<li>
+<p>
+<em>Adapter, Bridge, Composite,  Decorator,  Facade, Flyweight,  Proxy</em>
+</p>
+</li>
+<li>
+<p>
+Obrasci ponašanja [Behavioral Patterns]
+</p>
+</li>
+<li>
+<p>
+<em>Chain of responsibility, Command, Interpreter,  Iterator,  Mediator,
+Memento,  Observer, State, Strategy,  Template method, Visitor</em>
+</p>
+</li>
+</ul></div>
+<div class="paragraph"><p>Kloniranje objekta koje smo prikazali kao rješenje našeg problema je u stvari primjena
+oblikovnog obrasca <strong>Prototype</strong>.</p></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_prototype">Prototype</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Ovaj obrazac koristimo kada želimo kreirati objekt polazeći od danog prototipa.</p></div>
+<div class="sect2">
+<h3 id="_struktura">Struktura</h3>
+<div class="imageblock" style="text-align:center;">
+<div class="content">
+<img alt="Prototype.png" src="data:image/png;base64,%0A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%0AYII=">
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_sudionici">Sudionici</h3>
+<div class="ulist"><ul>
+<li>
+<p>
+<strong>Prototype</strong>. Bazna klasa koja deklarira virtualnu funkciju <code>clone()</code>.
+</p>
+</li>
+<li>
+<p>
+<strong>ConcretePrototype</strong>. Izvedene klase koje implementiraju funkciju <code>clone()</code> koja
+kreira objekt tipa klase.
+</p>
+</li>
+<li>
+<p>
+<strong>Client</strong>.  Kreira novi objekt tražeći prototip da se klonira.
+</p>
+</li>
+</ul></div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="footer">
+<div id="footer-text">
+Version 2.0<br>
+Zadnja izmjena
+ 2019-05-14 11:17:30 CEST
+</div>
+</div>
+
+
+</body></html>

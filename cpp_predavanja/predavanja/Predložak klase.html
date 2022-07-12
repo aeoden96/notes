@@ -1,0 +1,1939 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<!-- saved from url=(0090)https://web.math.pmf.unizg.hr/nastava/opepp/Slides/Predavanja/html-noslides/slides-10.html -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="hr"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="generator" content="AsciiDoc 8.6.9">
+<title>Predložak klase</title>
+<style type="text/css">
+/* Shared CSS for AsciiDoc xhtml11 and html5 backends */
+
+/* Default font. */
+body {
+  font-family: Georgia,serif;
+}
+
+/* Title font. */
+h1, h2, h3, h4, h5, h6,
+div.title, caption.title,
+thead, p.table.header,
+#toctitle,
+#author, #revnumber, #revdate, #revremark,
+#footer {
+  font-family: Arial,Helvetica,sans-serif;
+}
+
+body {
+  margin: 1em 5% 1em 5%;
+}
+
+a {
+  color: blue;
+  text-decoration: underline;
+}
+a:visited {
+  color: fuchsia;
+}
+
+em {
+  font-style: italic;
+  color: navy;
+}
+
+strong {
+  font-weight: bold;
+  color: #083194;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #527bbd;
+  margin-top: 1.2em;
+  margin-bottom: 0.5em;
+  line-height: 1.3;
+}
+
+h1, h2, h3 {
+  border-bottom: 2px solid silver;
+}
+h2 {
+  padding-top: 0.5em;
+}
+h3 {
+  float: left;
+}
+h3 + * {
+  clear: left;
+}
+h5 {
+  font-size: 1.0em;
+}
+
+div.sectionbody {
+  margin-left: 0;
+}
+
+hr {
+  border: 1px solid silver;
+}
+
+p {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+ul, ol, li > p {
+  margin-top: 0;
+}
+ul > li     { color: #aaa; }
+ul > li > * { color: black; }
+
+.monospaced, code, pre {
+  font-family: "Courier New", Courier, monospace;
+  font-size: inherit;
+  color: navy;
+  padding: 0;
+  margin: 0;
+}
+pre {
+  white-space: pre-wrap;
+}
+
+#author {
+  color: #527bbd;
+  font-weight: bold;
+  font-size: 1.1em;
+}
+#email {
+}
+#revnumber, #revdate, #revremark {
+}
+
+#footer {
+  font-size: small;
+  border-top: 2px solid silver;
+  padding-top: 0.5em;
+  margin-top: 4.0em;
+}
+#footer-text {
+  float: left;
+  padding-bottom: 0.5em;
+}
+#footer-badges {
+  float: right;
+  padding-bottom: 0.5em;
+}
+
+#preamble {
+  margin-top: 1.5em;
+  margin-bottom: 1.5em;
+}
+div.imageblock, div.exampleblock, div.verseblock,
+div.quoteblock, div.literalblock, div.listingblock, div.sidebarblock,
+div.admonitionblock {
+  margin-top: 1.0em;
+  margin-bottom: 1.5em;
+}
+div.admonitionblock {
+  margin-top: 2.0em;
+  margin-bottom: 2.0em;
+  margin-right: 10%;
+  color: #606060;
+}
+
+div.content { /* Block element content. */
+  padding: 0;
+}
+
+/* Block element titles. */
+div.title, caption.title {
+  color: #527bbd;
+  font-weight: bold;
+  text-align: left;
+  margin-top: 1.0em;
+  margin-bottom: 0.5em;
+}
+div.title + * {
+  margin-top: 0;
+}
+
+td div.title:first-child {
+  margin-top: 0.0em;
+}
+div.content div.title:first-child {
+  margin-top: 0.0em;
+}
+div.content + div.title {
+  margin-top: 0.0em;
+}
+
+div.sidebarblock > div.content {
+  background: #ffffee;
+  border: 1px solid #dddddd;
+  border-left: 4px solid #f0f0f0;
+  padding: 0.5em;
+}
+
+div.listingblock > div.content {
+  border: 1px solid #dddddd;
+  border-left: 5px solid #f0f0f0;
+  background: #f8f8f8;
+  padding: 0.5em;
+}
+
+div.quoteblock, div.verseblock {
+  padding-left: 1.0em;
+  margin-left: 1.0em;
+  margin-right: 10%;
+  border-left: 5px solid #f0f0f0;
+  color: #888;
+}
+
+div.quoteblock > div.attribution {
+  padding-top: 0.5em;
+  text-align: right;
+}
+
+div.verseblock > pre.content {
+  font-family: inherit;
+  font-size: inherit;
+}
+div.verseblock > div.attribution {
+  padding-top: 0.75em;
+  text-align: left;
+}
+/* DEPRECATED: Pre version 8.2.7 verse style literal block. */
+div.verseblock + div.attribution {
+  text-align: left;
+}
+
+div.admonitionblock .icon {
+  vertical-align: top;
+  font-size: 1.1em;
+  font-weight: bold;
+  text-decoration: underline;
+  color: #527bbd;
+  padding-right: 0.5em;
+}
+div.admonitionblock td.content {
+  padding-left: 0.5em;
+  border-left: 3px solid #dddddd;
+}
+
+div.exampleblock > div.content {
+  border-left: 3px solid #dddddd;
+  padding-left: 0.5em;
+}
+
+div.imageblock div.content { padding-left: 0; }
+span.image img { border-style: none; vertical-align: text-bottom; }
+a.image:visited { color: white; }
+
+dl {
+  margin-top: 0.8em;
+  margin-bottom: 0.8em;
+}
+dt {
+  margin-top: 0.5em;
+  margin-bottom: 0;
+  font-style: normal;
+  color: navy;
+}
+dd > *:first-child {
+  margin-top: 0.1em;
+}
+
+ul, ol {
+    list-style-position: outside;
+}
+ol.arabic {
+  list-style-type: decimal;
+}
+ol.loweralpha {
+  list-style-type: lower-alpha;
+}
+ol.upperalpha {
+  list-style-type: upper-alpha;
+}
+ol.lowerroman {
+  list-style-type: lower-roman;
+}
+ol.upperroman {
+  list-style-type: upper-roman;
+}
+
+div.compact ul, div.compact ol,
+div.compact p, div.compact p,
+div.compact div, div.compact div {
+  margin-top: 0.1em;
+  margin-bottom: 0.1em;
+}
+
+tfoot {
+  font-weight: bold;
+}
+td > div.verse {
+  white-space: pre;
+}
+
+div.hdlist {
+  margin-top: 0.8em;
+  margin-bottom: 0.8em;
+}
+div.hdlist tr {
+  padding-bottom: 15px;
+}
+dt.hdlist1.strong, td.hdlist1.strong {
+  font-weight: bold;
+}
+td.hdlist1 {
+  vertical-align: top;
+  font-style: normal;
+  padding-right: 0.8em;
+  color: navy;
+}
+td.hdlist2 {
+  vertical-align: top;
+}
+div.hdlist.compact tr {
+  margin: 0;
+  padding-bottom: 0;
+}
+
+.comment {
+  background: yellow;
+}
+
+.footnote, .footnoteref {
+  font-size: 0.8em;
+}
+
+span.footnote, span.footnoteref {
+  vertical-align: super;
+}
+
+#footnotes {
+  margin: 20px 0 20px 0;
+  padding: 7px 0 0 0;
+}
+
+#footnotes div.footnote {
+  margin: 0 0 5px 0;
+}
+
+#footnotes hr {
+  border: none;
+  border-top: 1px solid silver;
+  height: 1px;
+  text-align: left;
+  margin-left: 0;
+  width: 20%;
+  min-width: 100px;
+}
+
+div.colist td {
+  padding-right: 0.5em;
+  padding-bottom: 0.3em;
+  vertical-align: top;
+}
+div.colist td img {
+  margin-top: 0.3em;
+}
+
+@media print {
+  #footer-badges { display: none; }
+}
+
+#toc {
+  margin-bottom: 2.5em;
+}
+
+#toctitle {
+  color: #527bbd;
+  font-size: 1.1em;
+  font-weight: bold;
+  margin-top: 1.0em;
+  margin-bottom: 0.1em;
+}
+
+div.toclevel0, div.toclevel1, div.toclevel2, div.toclevel3, div.toclevel4 {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+div.toclevel2 {
+  margin-left: 2em;
+  font-size: 0.9em;
+}
+div.toclevel3 {
+  margin-left: 4em;
+  font-size: 0.9em;
+}
+div.toclevel4 {
+  margin-left: 6em;
+  font-size: 0.9em;
+}
+
+span.aqua { color: aqua; }
+span.black { color: black; }
+span.blue { color: blue; }
+span.fuchsia { color: fuchsia; }
+span.gray { color: gray; }
+span.green { color: green; }
+span.lime { color: lime; }
+span.maroon { color: maroon; }
+span.navy { color: navy; }
+span.olive { color: olive; }
+span.purple { color: purple; }
+span.red { color: red; }
+span.silver { color: silver; }
+span.teal { color: teal; }
+span.white { color: white; }
+span.yellow { color: yellow; }
+
+span.aqua-background { background: aqua; }
+span.black-background { background: black; }
+span.blue-background { background: blue; }
+span.fuchsia-background { background: fuchsia; }
+span.gray-background { background: gray; }
+span.green-background { background: green; }
+span.lime-background { background: lime; }
+span.maroon-background { background: maroon; }
+span.navy-background { background: navy; }
+span.olive-background { background: olive; }
+span.purple-background { background: purple; }
+span.red-background { background: red; }
+span.silver-background { background: silver; }
+span.teal-background { background: teal; }
+span.white-background { background: white; }
+span.yellow-background { background: yellow; }
+
+span.big { font-size: 2em; }
+span.small { font-size: 0.6em; }
+
+span.underline { text-decoration: underline; }
+span.overline { text-decoration: overline; }
+span.line-through { text-decoration: line-through; }
+
+div.unbreakable { page-break-inside: avoid; }
+
+
+/*
+ * xhtml11 specific
+ *
+ * */
+
+div.tableblock {
+  margin-top: 1.0em;
+  margin-bottom: 1.5em;
+}
+div.tableblock > table {
+  border: 3px solid #527bbd;
+}
+thead, p.table.header {
+  font-weight: bold;
+  color: #527bbd;
+}
+p.table {
+  margin-top: 0;
+}
+/* Because the table frame attribute is overriden by CSS in most browsers. */
+div.tableblock > table[frame="void"] {
+  border-style: none;
+}
+div.tableblock > table[frame="hsides"] {
+  border-left-style: none;
+  border-right-style: none;
+}
+div.tableblock > table[frame="vsides"] {
+  border-top-style: none;
+  border-bottom-style: none;
+}
+
+
+/*
+ * html5 specific
+ *
+ * */
+
+table.tableblock {
+  margin-top: 1.0em;
+  margin-bottom: 1.5em;
+}
+thead, p.tableblock.header {
+  font-weight: bold;
+  color: #527bbd;
+}
+p.tableblock {
+  margin-top: 0;
+}
+table.tableblock {
+  border-width: 3px;
+  border-spacing: 0px;
+  border-style: solid;
+  border-color: #527bbd;
+  border-collapse: collapse;
+}
+th.tableblock, td.tableblock {
+  border-width: 1px;
+  padding: 4px;
+  border-style: solid;
+  border-color: #527bbd;
+}
+
+table.tableblock.frame-topbot {
+  border-left-style: hidden;
+  border-right-style: hidden;
+}
+table.tableblock.frame-sides {
+  border-top-style: hidden;
+  border-bottom-style: hidden;
+}
+table.tableblock.frame-none {
+  border-style: hidden;
+}
+
+th.tableblock.halign-left, td.tableblock.halign-left {
+  text-align: left;
+}
+th.tableblock.halign-center, td.tableblock.halign-center {
+  text-align: center;
+}
+th.tableblock.halign-right, td.tableblock.halign-right {
+  text-align: right;
+}
+
+th.tableblock.valign-top, td.tableblock.valign-top {
+  vertical-align: top;
+}
+th.tableblock.valign-middle, td.tableblock.valign-middle {
+  vertical-align: middle;
+}
+th.tableblock.valign-bottom, td.tableblock.valign-bottom {
+  vertical-align: bottom;
+}
+
+
+/*
+ * manpage specific
+ *
+ * */
+
+body.manpage h1 {
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+  border-top: 2px solid silver;
+  border-bottom: 2px solid silver;
+}
+body.manpage h2 {
+  border-style: none;
+}
+body.manpage div.sectionbody {
+  margin-left: 3em;
+}
+
+@media print {
+  body.manpage div#toc { display: none; }
+}
+.highlight .hll { background-color: #ffffcc }
+.highlight  { background: #f8f8f8; }
+.highlight .c { color: #408080; font-style: italic } /* Comment */
+.highlight .err { border: 1px solid #FF0000 } /* Error */
+.highlight .k { color: #008000; font-weight: bold } /* Keyword */
+.highlight .o { color: #666666 } /* Operator */
+.highlight .cm { color: #408080; font-style: italic } /* Comment.Multiline */
+.highlight .cp { color: #BC7A00 } /* Comment.Preproc */
+.highlight .c1 { color: #408080; font-style: italic } /* Comment.Single */
+.highlight .cs { color: #408080; font-style: italic } /* Comment.Special */
+.highlight .gd { color: #A00000 } /* Generic.Deleted */
+.highlight .ge { font-style: italic } /* Generic.Emph */
+.highlight .gr { color: #FF0000 } /* Generic.Error */
+.highlight .gh { color: #000080; font-weight: bold } /* Generic.Heading */
+.highlight .gi { color: #00A000 } /* Generic.Inserted */
+.highlight .go { color: #808080 } /* Generic.Output */
+.highlight .gp { color: #000080; font-weight: bold } /* Generic.Prompt */
+.highlight .gs { font-weight: bold } /* Generic.Strong */
+.highlight .gu { color: #800080; font-weight: bold } /* Generic.Subheading */
+.highlight .gt { color: #0040D0 } /* Generic.Traceback */
+.highlight .kc { color: #008000; font-weight: bold } /* Keyword.Constant */
+.highlight .kd { color: #008000; font-weight: bold } /* Keyword.Declaration */
+.highlight .kn { color: #008000; font-weight: bold } /* Keyword.Namespace */
+.highlight .kp { color: #008000 } /* Keyword.Pseudo */
+.highlight .kr { color: #008000; font-weight: bold } /* Keyword.Reserved */
+.highlight .kt { color: #B00040 } /* Keyword.Type */
+.highlight .m { color: #666666 } /* Literal.Number */
+.highlight .s { color: #BA2121 } /* Literal.String */
+.highlight .na { color: #7D9029 } /* Name.Attribute */
+.highlight .nb { color: #008000 } /* Name.Builtin */
+.highlight .nc { color: #0000FF; font-weight: bold } /* Name.Class */
+.highlight .no { color: #880000 } /* Name.Constant */
+.highlight .nd { color: #AA22FF } /* Name.Decorator */
+.highlight .ni { color: #999999; font-weight: bold } /* Name.Entity */
+.highlight .ne { color: #D2413A; font-weight: bold } /* Name.Exception */
+.highlight .nf { color: #0000FF } /* Name.Function */
+.highlight .nl { color: #A0A000 } /* Name.Label */
+.highlight .nn { color: #0000FF; font-weight: bold } /* Name.Namespace */
+.highlight .nt { color: #008000; font-weight: bold } /* Name.Tag */
+.highlight .nv { color: #19177C } /* Name.Variable */
+.highlight .ow { color: #AA22FF; font-weight: bold } /* Operator.Word */
+.highlight .w { color: #bbbbbb } /* Text.Whitespace */
+.highlight .mf { color: #666666 } /* Literal.Number.Float */
+.highlight .mh { color: #666666 } /* Literal.Number.Hex */
+.highlight .mi { color: #666666 } /* Literal.Number.Integer */
+.highlight .mo { color: #666666 } /* Literal.Number.Oct */
+.highlight .sb { color: #BA2121 } /* Literal.String.Backtick */
+.highlight .sc { color: #BA2121 } /* Literal.String.Char */
+.highlight .sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
+.highlight .s2 { color: #BA2121 } /* Literal.String.Double */
+.highlight .se { color: #BB6622; font-weight: bold } /* Literal.String.Escape */
+.highlight .sh { color: #BA2121 } /* Literal.String.Heredoc */
+.highlight .si { color: #BB6688; font-weight: bold } /* Literal.String.Interpol */
+.highlight .sx { color: #008000 } /* Literal.String.Other */
+.highlight .sr { color: #BB6688 } /* Literal.String.Regex */
+.highlight .s1 { color: #BA2121 } /* Literal.String.Single */
+.highlight .ss { color: #19177C } /* Literal.String.Symbol */
+.highlight .bp { color: #008000 } /* Name.Builtin.Pseudo */
+.highlight .vc { color: #19177C } /* Name.Variable.Class */
+.highlight .vg { color: #19177C } /* Name.Variable.Global */
+.highlight .vi { color: #19177C } /* Name.Variable.Instance */
+.highlight .il { color: #666666 } /* Literal.Number.Integer.Long */
+
+
+</style>
+<script type="text/javascript">
+/*<![CDATA[*/
+var asciidoc = {  // Namespace.
+
+/////////////////////////////////////////////////////////////////////
+// Table Of Contents generator
+/////////////////////////////////////////////////////////////////////
+
+/* Author: Mihai Bazon, September 2002
+ * http://students.infoiasi.ro/~mishoo
+ *
+ * Table Of Content generator
+ * Version: 0.4
+ *
+ * Feel free to use this script under the terms of the GNU General Public
+ * License, as long as you do not remove or alter this notice.
+ */
+
+ /* modified by Troy D. Hanson, September 2006. License: GPL */
+ /* modified by Stuart Rackham, 2006, 2009. License: GPL */
+
+// toclevels = 1..4.
+toc: function (toclevels) {
+
+  function getText(el) {
+    var text = "";
+    for (var i = el.firstChild; i != null; i = i.nextSibling) {
+      if (i.nodeType == 3 /* Node.TEXT_NODE */) // IE doesn't speak constants.
+        text += i.data;
+      else if (i.firstChild != null)
+        text += getText(i);
+    }
+    return text;
+  }
+
+  function TocEntry(el, text, toclevel) {
+    this.element = el;
+    this.text = text;
+    this.toclevel = toclevel;
+  }
+
+  function tocEntries(el, toclevels) {
+    var result = new Array;
+    var re = new RegExp('[hH]([1-'+(toclevels+1)+'])');
+    // Function that scans the DOM tree for header elements (the DOM2
+    // nodeIterator API would be a better technique but not supported by all
+    // browsers).
+    var iterate = function (el) {
+      for (var i = el.firstChild; i != null; i = i.nextSibling) {
+        if (i.nodeType == 1 /* Node.ELEMENT_NODE */) {
+          var mo = re.exec(i.tagName);
+          if (mo && (i.getAttribute("class") || i.getAttribute("className")) != "float") {
+            result[result.length] = new TocEntry(i, getText(i), mo[1]-1);
+          }
+          iterate(i);
+        }
+      }
+    }
+    iterate(el);
+    return result;
+  }
+
+  var toc = document.getElementById("toc");
+  if (!toc) {
+    return;
+  }
+
+  // Delete existing TOC entries in case we're reloading the TOC.
+  var tocEntriesToRemove = [];
+  var i;
+  for (i = 0; i < toc.childNodes.length; i++) {
+    var entry = toc.childNodes[i];
+    if (entry.nodeName.toLowerCase() == 'div'
+     && entry.getAttribute("class")
+     && entry.getAttribute("class").match(/^toclevel/))
+      tocEntriesToRemove.push(entry);
+  }
+  for (i = 0; i < tocEntriesToRemove.length; i++) {
+    toc.removeChild(tocEntriesToRemove[i]);
+  }
+
+  // Rebuild TOC entries.
+  var entries = tocEntries(document.getElementById("content"), toclevels);
+  for (var i = 0; i < entries.length; ++i) {
+    var entry = entries[i];
+    if (entry.element.id == "")
+      entry.element.id = "_toc_" + i;
+    var a = document.createElement("a");
+    a.href = "#" + entry.element.id;
+    a.appendChild(document.createTextNode(entry.text));
+    var div = document.createElement("div");
+    div.appendChild(a);
+    div.className = "toclevel" + entry.toclevel;
+    toc.appendChild(div);
+  }
+  if (entries.length == 0)
+    toc.parentNode.removeChild(toc);
+},
+
+
+/////////////////////////////////////////////////////////////////////
+// Footnotes generator
+/////////////////////////////////////////////////////////////////////
+
+/* Based on footnote generation code from:
+ * http://www.brandspankingnew.net/archive/2005/07/format_footnote.html
+ */
+
+footnotes: function () {
+  // Delete existing footnote entries in case we're reloading the footnodes.
+  var i;
+  var noteholder = document.getElementById("footnotes");
+  if (!noteholder) {
+    return;
+  }
+  var entriesToRemove = [];
+  for (i = 0; i < noteholder.childNodes.length; i++) {
+    var entry = noteholder.childNodes[i];
+    if (entry.nodeName.toLowerCase() == 'div' && entry.getAttribute("class") == "footnote")
+      entriesToRemove.push(entry);
+  }
+  for (i = 0; i < entriesToRemove.length; i++) {
+    noteholder.removeChild(entriesToRemove[i]);
+  }
+
+  // Rebuild footnote entries.
+  var cont = document.getElementById("content");
+  var spans = cont.getElementsByTagName("span");
+  var refs = {};
+  var n = 0;
+  for (i=0; i<spans.length; i++) {
+    if (spans[i].className == "footnote") {
+      n++;
+      var note = spans[i].getAttribute("data-note");
+      if (!note) {
+        // Use [\s\S] in place of . so multi-line matches work.
+        // Because JavaScript has no s (dotall) regex flag.
+        note = spans[i].innerHTML.match(/\s*\[([\s\S]*)]\s*/)[1];
+        spans[i].innerHTML =
+          "[<a id='_footnoteref_" + n + "' href='#_footnote_" + n +
+          "' title='View footnote' class='footnote'>" + n + "</a>]";
+        spans[i].setAttribute("data-note", note);
+      }
+      noteholder.innerHTML +=
+        "<div class='footnote' id='_footnote_" + n + "'>" +
+        "<a href='#_footnoteref_" + n + "' title='Return to text'>" +
+        n + "</a>. " + note + "</div>";
+      var id =spans[i].getAttribute("id");
+      if (id != null) refs["#"+id] = n;
+    }
+  }
+  if (n == 0)
+    noteholder.parentNode.removeChild(noteholder);
+  else {
+    // Process footnoterefs.
+    for (i=0; i<spans.length; i++) {
+      if (spans[i].className == "footnoteref") {
+        var href = spans[i].getElementsByTagName("a")[0].getAttribute("href");
+        href = href.match(/#.*/)[0];  // Because IE return full URL.
+        n = refs[href];
+        spans[i].innerHTML =
+          "[<a href='#_footnote_" + n +
+          "' title='View footnote' class='footnote'>" + n + "</a>]";
+      }
+    }
+  }
+},
+
+install: function(toclevels) {
+  var timerId;
+
+  function reinstall() {
+    asciidoc.footnotes();
+    if (toclevels) {
+      asciidoc.toc(toclevels);
+    }
+  }
+
+  function reinstallAndRemoveTimer() {
+    clearInterval(timerId);
+    reinstall();
+  }
+
+  timerId = setInterval(reinstall, 500);
+  if (document.addEventListener)
+    document.addEventListener("DOMContentLoaded", reinstallAndRemoveTimer, false);
+  else
+    window.onload = reinstallAndRemoveTimer;
+}
+
+}
+asciidoc.install();
+/*]]>*/
+</script>
+</head>
+<body class="article">
+<div id="header">
+<h1>Predložak klase</h1>
+<span id="author">Mladen Jurak</span><br>
+<span id="revnumber">version 2.0,</span>
+<span id="revdate">2018-02</span>
+</div>
+<div id="content">
+<div class="sect1">
+<h2 id="_definicija_predloska_klase">Definicija predloška klase</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Predložak klase (<em>class template</em>) je parametrizirana klasa koja služi prevodiocu za generiranje
+klase kada se specificiraju parametri predloška. Kao i funkcija,
+klasa može biti parametrizirana tipom ili konstantnim izrazom.</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+<span class="k">class</span> <span class="nc">Vect</span>
+<span class="p">{</span>
+<span class="k">public</span><span class="o">:</span>
+    <span class="k">typedef</span> <span class="kt">int</span> <span class="n">index</span><span class="p">;</span>
+
+    <span class="n">Vect</span><span class="p">()</span> <span class="o">:</span> <span class="n">size</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="n">data</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="p">{}</span>
+    <span class="k">explicit</span> <span class="n">Vect</span><span class="p">(</span><span class="n">index</span> <span class="n">n</span><span class="p">,</span> <span class="n">T</span> <span class="n">v</span><span class="o">=</span><span class="mi">0</span><span class="p">);</span>
+    <span class="n">Vect</span><span class="p">(</span><span class="k">const</span> <span class="n">Vect</span><span class="o">&amp;</span> <span class="n">v</span><span class="p">);</span>                            <span class="c1">// CCtor</span>
+    <span class="c1">// ....</span>
+   <span class="k">private</span><span class="o">:</span>
+    <span class="n">index</span>   <span class="n">size</span><span class="p">;</span>
+    <span class="n">T</span> <span class="o">*</span><span class="n">data</span><span class="p">;</span>
+<span class="p">};</span>
+</pre></div></div></div>
+<div class="sect2">
+<h3 id="_instancijacija_predloska_klase">Instancijacija predloška klase</h3>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="n">Vect</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span>    <span class="n">vi</span><span class="p">;</span>    <span class="c1">// Vektor cijelih brojeva</span>
+<span class="n">Vect</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="n">vc</span><span class="p">;</span>    <span class="c1">// Vektor brojeva dvostruke preciznosti</span>
+<span class="n">Vect</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span>  <span class="n">vf</span><span class="p">;</span>    <span class="c1">// Vektor brojeva jednostruke preciznosti</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Kada prevodilac naiđe na jednu od ovih deklaracija on generira klasu polazeći od
+predloška <code>Vect&lt;T&gt;</code>, supstituirajući za <code>T</code> odgovarajući parametar,
+i kompilira generiranu klasu.</p></div>
+<div class="paragraph"><p>Parametar koji smo supstituirali mora biti kompatibilan s
+predloškom klase (sve operacije nad supstituiranim tipom moraju biti dozvoljene).</p></div>
+<div class="paragraph"><p>Klase <code>Vect&lt;int&gt;</code>,  <code>Vect&lt;double&gt;</code> i <code>Vect&lt;float&gt;</code>
+sa stanovišta prevodioca su posve nezavisne jedna od druge i objekt jednog tipa ne može se
+tretitrati kao objekt drugog tipa.</p></div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_implementacija_metoda_clanica">Implementacija metoda članica</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Primjer implementacije:   konstruktor i operator pridruživanja.</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="c1">// Konstruktor</span>
+<span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+<span class="n">Vect</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;::</span><span class="n">Vect</span><span class="p">(</span><span class="n">index</span> <span class="n">n</span><span class="p">,</span> <span class="n">T</span> <span class="n">v</span><span class="p">)</span> <span class="o">:</span> <span class="n">size</span><span class="p">(</span><span class="n">n</span><span class="p">),</span> <span class="n">data</span><span class="p">(</span><span class="k">new</span> <span class="n">T</span><span class="p">[</span><span class="n">n</span><span class="p">])</span> <span class="p">{</span>
+    <span class="k">for</span><span class="p">(</span><span class="n">index</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">size</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span class="n">v</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Ime funkcije (ovdje konstruktora <code>Vect</code>) je kvalificirano punim imenom klase (<code>Vect&lt;T&gt;</code>)
+i nakon toga na ime klase referiramo
+bez parametra (kao <code>Vect</code>, a ne  <code>Vect&lt;T&gt;</code>).</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+<span class="n">Vect</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;&amp;</span> <span class="n">Vect</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;::</span><span class="k">operator</span><span class="o">=</span><span class="p">(</span><span class="n">T</span> <span class="n">x</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">for</span><span class="p">(</span><span class="n">index</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">size</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span class="n">x</span><span class="p">;</span>
+    <span class="k">return</span> <span class="o">*</span><span class="k">this</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div></div></div>
+<div class="sect2">
+<h3 id="_napomene">Napomene</h3>
+<div class="ulist"><ul>
+<li>
+<p>
+Ime template parametra u definiciji predloška klase je proizvoljno kao i ime
+formalnog parametra funkcije.
+</p>
+</li>
+<li>
+<p>
+Normalna pravila skrivanja imena iz vanjskog bloka deklaracijama u unutarnjem bloku vrijede i za
+parametar klase.
+</p>
+</li>
+<li>
+<p>
+Funkcije članice parametrizirane klase i same su parametrizirane funkcije, ali
+se kod njih određivanje template parametra ne radi na osnovu argumenta funkcije nego na osnovu
+tipa objekta na kojem je funkcija pozvana.
+</p>
+</li>
+<li>
+<p>
+Funkcija članica parametrizirane klase instancira samo onda kada se koristi.
+Funkcija članica koja se nikad ne poziva u programu neće biti instancirana.
+</p>
+</li>
+</ul></div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_tip_parametra">Tip parametra</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Predložak klase može imati tri tipa parametara:</p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+Parametar koji je tip.
+</p>
+</li>
+<li>
+<p>
+Parametar koji nije tip.
+</p>
+</li>
+<li>
+<p>
+<em>Template-template</em>  parametar.
+</p>
+</li>
+</ul></div>
+<div class="sect2">
+<h3 id="_parametar_koji_nije_tip">Parametar koji nije tip</h3>
+<div class="paragraph"><p>Parametar koji nije tip može biti:</p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+Cjelobrojnog ili enumeracijskog tipa;
+</p>
+</li>
+<li>
+<p>
+Referenca ili pokazivač na objekt ili na funkciju
+</p>
+</li>
+</ul></div>
+<div class="paragraph"><p>Takav parametar mora biti <strong>konstanta poznata za vrijeme kompilacije</strong>.</p></div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_primjer">Primjer:</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Vektora s duljinom fiksiranom za vrijeme kompilacije:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="p">,</span> <span class="kt">int</span> <span class="n">dim</span><span class="o">&gt;</span>
+<span class="k">class</span> <span class="nc">FixedVect</span>
+<span class="p">{</span>
+    <span class="k">public</span><span class="o">:</span>
+        <span class="k">typedef</span> <span class="kt">int</span> <span class="n">index</span><span class="p">;</span>
+        <span class="k">explicit</span> <span class="nf">FixedVect</span><span class="p">(</span><span class="n">T</span> <span class="n">v</span><span class="o">=</span><span class="mi">0</span><span class="p">);</span>
+
+        <span class="n">T</span><span class="o">&amp;</span> <span class="k">operator</span><span class="p">[](</span><span class="n">index</span> <span class="n">i</span><span class="p">)</span> <span class="p">{</span><span class="k">return</span> <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">];</span> <span class="p">}</span>
+        <span class="k">const</span> <span class="n">T</span><span class="o">&amp;</span>  <span class="k">operator</span><span class="p">[](</span><span class="n">index</span> <span class="n">i</span><span class="p">)</span> <span class="k">const</span> <span class="p">{</span><span class="k">return</span> <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">];</span> <span class="p">}</span>
+
+        <span class="n">FixedVect</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">=</span><span class="p">(</span><span class="n">T</span> <span class="n">x</span><span class="p">);</span>
+        <span class="c1">// ...</span>
+        <span class="n">index</span>  <span class="nf">n</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span><span class="k">return</span> <span class="n">dim</span><span class="p">;</span> <span class="p">}</span>
+    <span class="k">private</span><span class="o">:</span>
+        <span class="n">T</span> <span class="n">data</span><span class="p">[</span><span class="n">dim</span><span class="p">];</span>
+<span class="p">};</span>
+</pre></div></div></div>
+<div class="sect2">
+<h3 id="_implementacija">Implementacija</h3>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="c1">// Konstruktor</span>
+<span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="p">,</span> <span class="kt">int</span> <span class="n">dim</span><span class="o">&gt;</span>
+<span class="n">FixedVect</span><span class="o">&lt;</span><span class="n">T</span><span class="p">,</span><span class="n">dim</span><span class="o">&gt;::</span><span class="n">FixedVect</span><span class="p">(</span><span class="n">T</span> <span class="n">v</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">for</span><span class="p">(</span><span class="n">index</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">dim</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">=</span><span class="n">v</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div></div></div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_code_class_code_i_code_typename_code"><code>class</code> i <code>typename</code></h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Umjesto ključne riječi <code>typename</code> za deklaraciju parametra u predlošku klase ili funkcije
+koji je <em>tip</em> možemo koristiti <code>class</code>:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="k">template</span> <span class="o">&lt;</span><span class="k">class</span> <span class="nc">T</span><span class="o">&gt;</span>
+<span class="k">class</span> <span class="nc">Vect</span><span class="p">{</span>
+<span class="p">....</span>
+<span class="p">};</span>
+</pre></div></div></div>
+<div class="sect2">
+<h3 id="_typename_u_deklaraciji_varijabli">typename u deklaraciji varijabli</h3>
+<div class="paragraph"><p>Kad su tipovi definirani unutar predloška klase, kao što je to <code>index</code> u <code>Vect&lt;T&gt;</code>,
+prevodilac ne može, uvijek, razlikovati radi li se radi o tipu ili vrijednosti. <em>Kada mu to nije moguće on
+pretpostavlja da se radi o vrijednosti.</em> Ako se pak radi o tipu moramo mu to naglasiti s <code>typename</code>
+ispred tipa.</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="p">,</span> <span class="kt">int</span> <span class="n">dim</span><span class="o">&gt;</span>
+<span class="kt">void</span> <span class="n">print</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span> <span class="n">str</span><span class="p">,</span> <span class="n">FixedVect</span><span class="o">&lt;</span><span class="n">T</span><span class="p">,</span><span class="n">dim</span><span class="o">&gt;&amp;</span> <span class="n">v</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">FixedVect</span><span class="o">&lt;</span><span class="n">T</span><span class="p">,</span><span class="n">dim</span><span class="o">&gt;::</span><span class="n">index</span> <span class="o">*</span> <span class="n">pi</span><span class="p">;</span><span class="c1">// Množenje, a ne deklaracija pokazivača</span>
+<span class="c1">// ....</span>
+<span class="p">}</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Time dobivamo grešku pri kompilaciji. Da bismo to ispravili treba koristiti <code>typename</code>, koji će reći
+prevodiocu da je prvi argument tip:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="p">,</span> <span class="kt">int</span> <span class="n">dim</span><span class="o">&gt;</span>
+<span class="kt">void</span> <span class="n">print</span><span class="p">(</span><span class="k">const</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span> <span class="n">str</span><span class="p">,</span> <span class="n">FixedVect</span><span class="o">&lt;</span><span class="n">T</span><span class="p">,</span><span class="n">dim</span><span class="o">&gt;&amp;</span> <span class="n">v</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">typename</span> <span class="n">FixedVect</span><span class="o">&lt;</span><span class="n">T</span><span class="p">,</span><span class="n">dim</span><span class="o">&gt;::</span><span class="n">index</span> <span class="o">*</span> <span class="n">pi</span><span class="p">;</span><span class="c1">// Deklaracija pokazivača</span>
+<span class="c1">// ....</span>
+<span class="p">}</span>
+</pre></div></div></div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_instancijacija_predloska">Instancijacija predloška</h2>
+<div class="sectionbody">
+<div class="ulist"><ul>
+<li>
+<p>
+Predložak klase ili funkcije predstavlja samo nacrt po kojem prevodilac konstruira klasu ili funkciju.
+</p>
+</li>
+<li>
+<p>
+Konstrukciju klase/funkcije iz predloška nazivamo <em>instancijacija</em> klase/funkcije,
+odnosno kreiranje instance predloška.
+</p>
+</li>
+<li>
+<p>
+Do instancijacije predloška dolazi kada je to nužno, odnosno kad se instanca predloška koristi
+u programu.
+</p>
+</li>
+</ul></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="n">Vect</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span>    <span class="n">vi</span><span class="p">;</span>     <span class="c1">// Instancira klasu i kreira objekt vi</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Ako koristimo samo pokazivač ili referencu na instancu klase neće doći do instanciranja klase:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="n">Vect</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="o">*</span> <span class="n">vc</span><span class="p">;</span>    <span class="c1">// Ne povlači instanciranje klase</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Ista ekonomičnost se primijenjuje i na funkcije članice predloška klase.
+Ako se neka funkcija članica ne koristi, ona neće biti niti instancirana.</p></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_organizacija_koda">Organizacija koda</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Kada prevodilac naiđe na mjesto na kome se prvi puta koristi neka instanca predloška klase ili funkcije
+on treba kreirati i kompilirati instancu. Da bi to mogao učiniti nije mu dovoljna samo deklaracija predloška.</p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+Na mjestu instancijacije prevodilac mora vidjeti čitavu definiciju predloška.
+</p>
+</li>
+<li>
+<p>
+Posljedica: Čitav kod predloška se uključuje u <strong>datoteke zaglavlja</strong> koja se uključuje u sve
+datoteke koje koriste predložak (tzv. <em>inclusion compilation model</em>).
+</p>
+</li>
+</ul></div>
+<div class="paragraph"><p>Negativna posljedica takve organizacije:</p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+U više translacijskih jedinica može biti
+kompilirana jedna te ista klasa ili funkcija. Takve višestruke definicije rješava prevodilac
+koji zanemaruje sve instance osim jedne.
+</p>
+</li>
+<li>
+<p>
+Kod u datotekama zaglavlja svakom je vidljiv.
+</p>
+</li>
+</ul></div>
+<div class="paragraph"><p>C++ standard predviđa klasičnu organizaciju koda i za predloške (tzv. <em>separate compilation model</em>),
+ali ona za sada nije široko podržana od strane prevodilaca.</p></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_kompilacijski_polimorfizam">Kompilacijski polimorfizam</h2>
+<div class="sectionbody">
+<div class="ulist"><ul>
+<li>
+<p>
+<strong>Dinamički polimorfizam</strong> (<em>Run time polymorphism</em>):
+Objektima pristupamo kroz sučelja, a pozivi virtualnim metodama se razrješavaju tijekom
+izvršavanja programa.
+</p>
+</li>
+<li>
+<p>
+<strong>Statički polimorfizam</strong> (<em>Compile time polymorphism</em>): Prevodilac generira funkciju ili klasu
+polazeći od predloška i na taj način omogućava da isti kod radi s različitim međusobno nepovezanim tipovima.
+</p>
+</li>
+</ul></div>
+<div class="paragraph"><p><strong>Primjer</strong>: Dinamički polimorfizam</p></div>
+<div class="imageblock" style="text-align:center;">
+<div class="content">
+<img alt="dynamic.png" src="data:image/png;base64,%0A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">
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_dinamicki_polimorfizam_klase">Dinamički polimorfizam: Klase</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="c1">// Javno sučelje za sve figure</span>
+<span class="k">class</span> <span class="nc">Figura</span><span class="p">{</span>
+    <span class="k">public</span><span class="o">:</span>
+        <span class="k">virtual</span> <span class="kt">void</span> <span class="n">crtaj</span><span class="p">()</span> <span class="k">const</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="k">virtual</span> <span class="kt">double</span> <span class="nf">centar</span><span class="p">()</span> <span class="k">const</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="k">class</span> <span class="nc">Krug</span> <span class="o">:</span> <span class="k">public</span> <span class="n">Figura</span><span class="p">{</span>
+    <span class="k">public</span><span class="o">:</span>
+        <span class="k">virtual</span> <span class="kt">void</span> <span class="n">crtaj</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
+        <span class="k">virtual</span> <span class="kt">double</span> <span class="nf">centar</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
+        <span class="c1">// ...</span>
+<span class="p">};</span>
+
+<span class="k">class</span> <span class="nc">Kvadrat</span> <span class="o">:</span> <span class="k">public</span> <span class="n">Figura</span><span class="p">{</span>
+    <span class="k">public</span><span class="o">:</span>
+        <span class="k">virtual</span> <span class="kt">void</span> <span class="n">crtaj</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
+        <span class="k">virtual</span> <span class="kt">double</span> <span class="nf">centar</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
+        <span class="c1">// ...</span>
+<span class="p">};</span>
+
+<span class="k">class</span> <span class="nc">Trokut</span> <span class="o">:</span> <span class="k">public</span> <span class="n">Figura</span><span class="p">{</span>
+    <span class="k">public</span><span class="o">:</span>
+        <span class="k">virtual</span> <span class="kt">void</span> <span class="n">crtaj</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
+        <span class="k">virtual</span> <span class="kt">double</span> <span class="nf">centar</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
+        <span class="c1">// ...</span>
+<span class="p">};</span>
+</pre></div></div></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_dinamicki_polimorfizam_klijenti">Dinamički polimorfizam: Klijenti</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="kt">void</span> <span class="nf">nacrtaj</span><span class="p">(</span><span class="k">const</span> <span class="n">Figura</span><span class="o">&amp;</span> <span class="n">fig</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">fig</span><span class="p">.</span><span class="n">crtaj</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="kt">double</span> <span class="nf">udaljenost</span><span class="p">(</span><span class="k">const</span> <span class="n">Figura</span><span class="o">&amp;</span> <span class="n">fig1</span><span class="p">,</span> <span class="k">const</span> <span class="n">Figura</span><span class="o">&amp;</span> <span class="n">fig2</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">return</span> <span class="n">std</span><span class="o">::</span><span class="n">abs</span><span class="p">(</span> <span class="n">fig2</span><span class="p">.</span><span class="n">centar</span><span class="p">()</span> <span class="o">-</span> <span class="n">fig1</span><span class="p">.</span><span class="n">centar</span><span class="p">()</span> <span class="p">);</span>
+<span class="p">}</span>
+</pre></div></div></div>
+<div class="sect2">
+<h3 id="_primjena">Primjena</h3>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">Krug</span> <span class="n">k</span><span class="p">;</span>
+    <span class="n">Trokut</span> <span class="n">t</span><span class="p">;</span>
+
+    <span class="n">nacrtaj</span><span class="p">(</span><span class="n">k</span><span class="p">);</span>
+    <span class="n">nacrtaj</span><span class="p">(</span><span class="n">t</span><span class="p">);</span>
+
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">udaljenost</span><span class="p">(</span><span class="n">k</span><span class="p">,</span><span class="n">t</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div></div></div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_staticki_polimorfizam">Statički polimorfizam</h2>
+<div class="sectionbody">
+<div class="imageblock" style="text-align:center;">
+<div class="content">
+<img alt="static.png" src="data:image/png;base64,%0A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">
+</div>
+</div>
+<div class="sect2">
+<h3 id="_klase">Klase</h3>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Krug</span><span class="p">{</span>
+    <span class="k">public</span><span class="o">:</span>
+         <span class="kt">void</span> <span class="n">crtaj</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
+         <span class="kt">double</span> <span class="nf">centar</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
+        <span class="c1">// ...</span>
+<span class="p">};</span>
+
+<span class="k">class</span> <span class="nc">Kvadrat</span><span class="p">{</span>
+    <span class="k">public</span><span class="o">:</span>
+         <span class="kt">void</span> <span class="n">crtaj</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
+         <span class="kt">double</span> <span class="nf">centar</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
+        <span class="c1">// ...</span>
+<span class="p">};</span>
+
+<span class="k">class</span> <span class="nc">Trokut</span><span class="p">{</span>
+    <span class="k">public</span><span class="o">:</span>
+         <span class="kt">void</span> <span class="n">crtaj</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
+         <span class="kt">double</span> <span class="nf">centar</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
+        <span class="c1">// ...</span>
+<span class="p">};</span>
+</pre></div></div></div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_staticki_polimorfizam_klijenti">Statički polimorfizam: Klijenti</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">Figura</span><span class="o">&gt;</span>
+<span class="kt">void</span> <span class="n">nacrtaj</span><span class="p">(</span><span class="k">const</span> <span class="n">Figura</span><span class="o">&amp;</span> <span class="n">fig</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">fig</span><span class="p">.</span><span class="n">crtaj</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">Figura1</span><span class="p">,</span> <span class="k">typename</span> <span class="n">Figura2</span><span class="o">&gt;</span>
+<span class="kt">double</span> <span class="n">udaljenost</span><span class="p">(</span><span class="k">const</span> <span class="n">Figura1</span><span class="o">&amp;</span> <span class="n">fig1</span><span class="p">,</span> <span class="k">const</span> <span class="n">Figura2</span><span class="o">&amp;</span> <span class="n">fig2</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="kt">double</span> <span class="n">tmp</span> <span class="o">=</span><span class="n">std</span><span class="o">::</span><span class="n">abs</span><span class="p">(</span> <span class="n">fig2</span><span class="p">.</span><span class="n">centar</span><span class="p">()</span> <span class="o">-</span> <span class="n">fig1</span><span class="p">.</span><span class="n">centar</span><span class="p">()</span> <span class="p">);</span>
+    <span class="k">return</span> <span class="n">tmp</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div></div></div>
+<div class="sect2">
+<h3 id="_primjena_2">Primjena</h3>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">Krug</span> <span class="n">k</span><span class="p">;</span>
+    <span class="n">Trokut</span> <span class="n">t</span><span class="p">;</span>
+
+    <span class="n">nacrtaj</span><span class="p">(</span><span class="n">k</span><span class="p">);</span>
+    <span class="n">nacrtaj</span><span class="p">(</span><span class="n">t</span><span class="p">);</span>
+
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">udaljenost</span><span class="p">(</span><span class="n">k</span><span class="p">,</span><span class="n">t</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div></div></div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_predlozak_funkcije_kao_clanica_klase">Predložak funkcije kao članica klase</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Predložak funkcije može biti članica klase:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">X</span><span class="p">{</span>
+    <span class="k">private</span><span class="o">:</span>
+        <span class="kt">int</span> <span class="n">i</span><span class="p">;</span>
+    <span class="k">public</span><span class="o">:</span>
+        <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span> <span class="kt">void</span> <span class="n">assign</span><span class="p">(</span><span class="n">T</span> <span class="n">x</span><span class="p">)</span> <span class="p">{</span> <span class="n">i</span><span class="o">=</span><span class="n">x</span><span class="p">;</span> <span class="p">}</span>
+        <span class="kt">void</span> <span class="n">print</span><span class="p">(){</span> <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">i</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span> <span class="p">}</span>
+<span class="p">};</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Klasa <code>X</code> nije parametrizirana, ali sadrži parametriziranu funkciju <code>assign</code>.</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="n">X</span> <span class="n">xi</span><span class="p">;</span>
+<span class="n">xi</span><span class="p">.</span><span class="n">assign</span><span class="p">(</span><span class="mi">3L</span><span class="p">);</span>
+<span class="n">xi</span><span class="p">.</span><span class="n">print</span><span class="p">();</span>
+<span class="n">xi</span><span class="p">.</span><span class="n">assign</span><span class="p">(</span><span class="mf">45.6</span><span class="n">L</span><span class="p">);</span>
+<span class="n">xi</span><span class="p">.</span><span class="n">print</span><span class="p">();</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Generira se funkcija <code>assign</code> za <code>T=long int</code> i za <code>T=long double</code>.</p></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_predlozak_funkcije_kao_clanica_predloska_klase">Predložak funkcije kao članica predloška klase</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Parametrizirana funkcija članica može se naći unutar parametrizirane klase. U tom slučaju imamo
+dva parametra:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">TT</span><span class="o">&gt;</span>
+<span class="k">class</span> <span class="nc">XX</span><span class="p">{</span>
+    <span class="k">private</span><span class="o">:</span>
+        <span class="n">TT</span> <span class="n">i</span><span class="p">;</span>
+    <span class="k">public</span><span class="o">:</span>
+        <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span> <span class="kt">void</span> <span class="n">assign</span><span class="p">(</span><span class="n">T</span> <span class="n">x</span><span class="p">);</span>
+        <span class="kt">void</span> <span class="nf">print</span><span class="p">(){</span> <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">i</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span> <span class="p">}</span>
+<span class="p">};</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Definicija:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">TT</span><span class="o">&gt;</span>  <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+<span class="kt">void</span> <span class="n">XX</span><span class="o">&lt;</span><span class="n">TT</span><span class="o">&gt;::</span><span class="n">assign</span><span class="p">(</span><span class="n">T</span> <span class="n">x</span><span class="p">)</span> <span class="p">{</span> <span class="n">i</span> <span class="o">=</span> <span class="n">x</span><span class="p">;</span> <span class="p">}</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Instancijacija se vrši prema tipu parametra:
+prvo se određuje parametar klase
+iz tipa objekta na kome je funkcija pozvana, a zatim parametri metode.</p></div>
+<div class="paragraph"><p><strong>Napomena</strong>. Parametrizirana funkcija članica <strong>ne može biti virtualna</strong>.</p></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_konstruktor_kopije_i_op_ne_mogu_biti_predlosci">Konstruktor kopije i OP ne mogu biti predlošci</h2>
+<div class="sectionbody">
+<div class="admonitionblock">
+<table><tbody><tr>
+<td class="icon">
+<div class="title">Napomena</div>
+</td>
+<td class="content">Prevodilac nikad neće uzeti u obzir predložak za generiranje konstruktora kopije
+   ili operatora pridruživanja.
+  Tada pored predloška moramo napisati neparametrizirane verzije tih funkcija.</td>
+</tr></tbody></table>
+</div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+<span class="k">using</span> <span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="p">;</span>
+
+<span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+<span class="k">class</span> <span class="nc">X</span><span class="p">{</span>
+  <span class="k">public</span><span class="o">:</span>
+    <span class="n">X</span><span class="p">(){}</span>
+    <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T1</span><span class="o">&gt;</span>
+      <span class="n">X</span><span class="p">(</span><span class="n">X</span><span class="o">&lt;</span><span class="n">T1</span><span class="o">&gt;</span> <span class="k">const</span> <span class="o">&amp;</span> <span class="n">rhs</span><span class="p">){</span>
+        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"template CCtor</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+      <span class="p">}</span>
+    <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T1</span><span class="o">&gt;</span>
+    <span class="n">X</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">=</span><span class="p">(</span><span class="n">X</span><span class="o">&lt;</span><span class="n">T1</span><span class="o">&gt;</span><span class="k">const</span> <span class="o">&amp;</span> <span class="n">rhs</span><span class="p">){</span>
+      <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"template OP</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+      <span class="k">return</span> <span class="o">*</span><span class="k">this</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+  <span class="n">X</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">x</span><span class="p">;</span>
+  <span class="n">X</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">y</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>   <span class="c1">// nema ispisa -- sintetizirani CCtor</span>
+  <span class="n">X</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="n">z</span><span class="p">(</span><span class="n">x</span><span class="p">);</span><span class="c1">// ispis, template CCtor</span>
+
+  <span class="n">y</span> <span class="o">=</span> <span class="n">x</span><span class="p">;</span> <span class="c1">// nema ispisa -- sintetizirani OP</span>
+  <span class="n">z</span> <span class="o">=</span> <span class="n">x</span><span class="p">;</span> <span class="c1">// ispis -- template OP</span>
+
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div></div></div>
+<div class="paragraph"><p>U klasu trebamo dodati svoje verzije CCtor-a i OP-a. Pri tome kako je svaki parametrizirani konstruktor običan
+konstruktor s jednim parametrom dobro ga je učiniti eksplicitnim.</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+<span class="k">using</span> <span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="p">;</span>
+
+<span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+<span class="k">class</span> <span class="nc">X</span><span class="p">{</span>
+  <span class="k">public</span><span class="o">:</span>
+    <span class="n">X</span><span class="p">(){}</span>
+    <span class="c1">// Konstruktor kopije</span>
+    <span class="n">X</span><span class="p">(</span><span class="n">X</span> <span class="k">const</span> <span class="o">&amp;</span> <span class="n">rhs</span><span class="p">)</span> <span class="p">{</span> <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"CCtor</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span> <span class="p">}</span>
+
+    <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T1</span><span class="o">&gt;</span>
+      <span class="k">explicit</span> <span class="n">X</span><span class="p">(</span><span class="n">X</span><span class="o">&lt;</span><span class="n">T1</span><span class="o">&gt;</span> <span class="k">const</span> <span class="o">&amp;</span> <span class="n">rhs</span><span class="p">){</span>
+        <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"template CCtor</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+      <span class="p">}</span>
+
+    <span class="c1">// Operator pridruživanja</span>
+    <span class="n">X</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">=</span><span class="p">(</span><span class="n">X</span> <span class="k">const</span> <span class="o">&amp;</span> <span class="n">rhs</span><span class="p">){</span>
+      <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"OP</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+      <span class="k">return</span> <span class="o">*</span><span class="k">this</span><span class="p">;</span>
+    <span class="p">}</span>
+
+
+    <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T1</span><span class="o">&gt;</span>
+    <span class="n">X</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">=</span><span class="p">(</span><span class="n">X</span><span class="o">&lt;</span><span class="n">T1</span><span class="o">&gt;</span><span class="k">const</span> <span class="o">&amp;</span> <span class="n">rhs</span><span class="p">){</span>
+      <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"template OP</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+      <span class="k">return</span> <span class="o">*</span><span class="k">this</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+  <span class="n">X</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">x</span><span class="p">;</span>
+  <span class="n">X</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">y</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>   <span class="c1">// CCtor</span>
+  <span class="n">X</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="n">z</span><span class="p">(</span><span class="n">x</span><span class="p">);</span><span class="c1">// template CCtor</span>
+
+  <span class="n">y</span> <span class="o">=</span> <span class="n">x</span><span class="p">;</span> <span class="c1">// OP</span>
+  <span class="n">z</span> <span class="o">=</span> <span class="n">x</span><span class="p">;</span> <span class="c1">// template OP</span>
+
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div></div></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_friend_deklaracije_u_predlosku_klase">Friend deklaracije u predlošku klase</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Pretpostavimo da u predlošku klase želimo imati deklaraciju <code>friend</code> "funkcije" koja je i sama predložak
+funkcije. Na primjer,</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+<span class="k">class</span> <span class="nc">A</span><span class="p">{</span>
+    <span class="k">public</span><span class="o">:</span>
+        <span class="n">A</span><span class="p">(</span><span class="n">T</span> <span class="n">_i</span><span class="p">)</span> <span class="o">:</span> <span class="n">i</span><span class="p">(</span><span class="n">_i</span><span class="p">)</span> <span class="p">{}</span>
+    <span class="k">private</span><span class="o">:</span>
+        <span class="n">T</span> <span class="n">i</span><span class="p">;</span>
+        <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">S</span><span class="o">&gt;</span> <span class="k">friend</span> <span class="kt">void</span> <span class="n">f</span><span class="p">(</span><span class="k">const</span> <span class="n">S</span><span class="o">&amp;</span><span class="p">);</span>
+<span class="p">};</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Definicija predloška funkcije
+prijatelja može doći iza definicije predloška klase :</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">S</span><span class="o">&gt;</span>
+<span class="kt">void</span> <span class="n">f</span><span class="p">(</span><span class="k">const</span> <span class="n">S</span><span class="o">&amp;</span> <span class="n">a</span><span class="p">){</span>
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"f: i = "</span> <span class="o">&lt;&lt;</span> <span class="n">a</span><span class="p">.</span><span class="n">i</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Glavni program:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">A</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">a</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span>
+    <span class="n">A</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span> <span class="n">b</span><span class="p">(</span><span class="s">"A&lt;string&gt;"</span><span class="p">);</span>
+
+    <span class="n">f</span><span class="p">(</span><span class="n">a</span><span class="p">);</span>  <span class="c1">// f(const A&lt;int&gt;&amp;)</span>
+    <span class="n">f</span><span class="p">(</span><span class="n">b</span><span class="p">);</span>  <span class="c1">// f(const A&lt;string&gt;&amp;)</span>
+
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div></div></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_friend_deklaracije_u_predlosku_klase_2">Friend deklaracije u predlošku klase (2)</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Ovdje ostvarujemo "užu" povezanost dva predloška:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span> <span class="k">class</span> <span class="nc">A</span><span class="p">;</span>
+
+<span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+<span class="kt">void</span> <span class="n">f</span><span class="p">(</span><span class="k">const</span> <span class="n">A</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;&amp;</span> <span class="n">a</span><span class="p">);</span>   <span class="c1">// deklaracija je obavezna</span>
+
+<span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+<span class="k">class</span> <span class="nc">A</span><span class="p">{</span>
+    <span class="k">public</span><span class="o">:</span>
+        <span class="n">A</span><span class="p">(</span><span class="n">T</span> <span class="n">_i</span><span class="p">)</span> <span class="o">:</span> <span class="n">i</span><span class="p">(</span><span class="n">_i</span><span class="p">)</span> <span class="p">{}</span>
+    <span class="k">private</span><span class="o">:</span>
+        <span class="n">T</span> <span class="n">i</span><span class="p">;</span>
+        <span class="k">friend</span> <span class="kt">void</span> <span class="n">f</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">(</span><span class="k">const</span> <span class="n">A</span><span class="o">&amp;</span><span class="p">);</span> <span class="c1">// A je ovdje A&lt;T&gt;</span>
+<span class="p">};</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Sada je klasa funkcija sužena na samo one koje mogu biti prijatelji klase.</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">A</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">a</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span>
+    <span class="n">A</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span> <span class="n">b</span><span class="p">(</span><span class="s">"A&lt;string&gt;"</span><span class="p">);</span>
+
+    <span class="n">f</span><span class="p">(</span><span class="n">a</span><span class="p">);</span>  <span class="c1">// f(const A&lt;int&gt;&amp;)</span>
+    <span class="n">f</span><span class="p">(</span><span class="n">b</span><span class="p">);</span>  <span class="c1">// f(const A&lt;string&gt;&amp;)</span>
+
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div></div></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_friends_3">Friends (3)</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Prema C++11 standardu parametar predloška se može deklarirati kao <code>friend</code> predloška.</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;utility&gt;</span><span class="cp"></span>
+<span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+<span class="k">class</span> <span class="nc">X</span><span class="p">{</span>
+<span class="k">friend</span> <span class="n">T</span><span class="p">;</span> <span class="c1">// T ima pristup do X&lt;T&gt;</span>
+ <span class="c1">// ....</span>
+<span class="p">};</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Prema C++11 standardu pomoću <code>using</code> možemo uvesti parametrizirani alias za neko ime:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span> <span class="k">using</span> <span class="n">twin</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">pair</span><span class="o">&lt;</span><span class="n">T</span><span class="p">,</span><span class="n">T</span><span class="o">&gt;</span><span class="p">;</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">twin</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">a</span><span class="p">;</span>
+    <span class="n">a</span><span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">make_pair</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>
+
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div></div></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_staticki_clanovi_predloska_klase">Statički članovi predloška klase</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Svaka instancijacija parametrizirane klase
+ima svoje statičke varijable koje dijele sve njene instance (objekti):</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+<span class="k">struct</span> <span class="n">X</span><span class="p">{</span>
+     <span class="n">T</span> <span class="n">val</span><span class="p">;</span>
+     <span class="k">static</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span>  <span class="n">error_message</span><span class="p">;</span>
+     <span class="k">static</span> <span class="kt">void</span> <span class="nf">print_error_message</span><span class="p">();</span>
+<span class="p">};</span>
+
+<span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+<span class="kt">void</span> <span class="n">X</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;::</span><span class="n">print_error_message</span><span class="p">(){</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">error_message</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Definicija statičke varijable iz predloška klase može biti u datoteci zaglavlja:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="c1">// Definicija statičkog člana</span>
+<span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+<span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">X</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;::</span><span class="n">error_message</span> <span class="o">=</span> <span class="s">"Error!"</span><span class="p">;</span>
+</pre></div></div></div>
+<div class="paragraph"><p>U sljedećem primjeru imamo dvije statičke varijable:
+<code>X&lt;int&gt;::error_messge</code> i
+<code>X&lt;double&gt;::error_messge</code>:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">X</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">x</span><span class="p">;</span>
+    <span class="n">x</span><span class="p">.</span><span class="n">print_error_message</span><span class="p">();</span>
+    <span class="n">X</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="n">xx</span><span class="p">;</span>
+    <span class="n">xx</span><span class="p">.</span><span class="n">print_error_message</span><span class="p">();</span>
+
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div></div></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_specijalizacija_predloska">Specijalizacija predloška</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Predloške klasa možemo  specijalizirati i tada
+specijaliziramo sve funkcije članice:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="p">,</span> <span class="k">typename</span> <span class="n">S</span><span class="o">&gt;</span>
+<span class="k">class</span> <span class="nc">A</span>
+<span class="p">{</span>
+    <span class="k">private</span><span class="o">:</span>
+        <span class="n">T</span> <span class="n">x</span><span class="p">;</span>
+        <span class="n">S</span> <span class="n">y</span><span class="p">;</span>
+    <span class="k">public</span><span class="o">:</span>
+        <span class="n">A</span><span class="p">(</span><span class="n">T</span> <span class="n">_x</span><span class="p">,</span> <span class="n">S</span> <span class="n">_y</span><span class="p">)</span> <span class="o">:</span> <span class="n">x</span><span class="p">(</span><span class="n">_x</span><span class="p">),</span> <span class="n">y</span><span class="p">(</span><span class="n">_y</span><span class="p">)</span> <span class="p">{}</span>
+        <span class="n">T</span> <span class="n">get_x</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span><span class="k">return</span> <span class="n">x</span><span class="p">;}</span>
+        <span class="n">S</span> <span class="n">get_y</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span><span class="k">return</span> <span class="n">y</span><span class="p">;}</span>
+        <span class="kt">void</span> <span class="n">h</span><span class="p">()</span> <span class="p">{</span> <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Predložak klase A"</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span> <span class="p">}</span>
+<span class="p">};</span>
+</pre></div></div></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="c1">// Specijalizacija T=int, S=double</span>
+<span class="k">template</span> <span class="o">&lt;&gt;</span>
+<span class="k">class</span> <span class="nc">A</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span><span class="kt">double</span><span class="o">&gt;</span>  <span class="c1">// tip mora biti naveden jer se "ne deducira"</span>
+<span class="p">{</span>
+    <span class="k">private</span><span class="o">:</span>
+        <span class="kt">int</span> <span class="n">x</span><span class="p">;</span>
+        <span class="kt">double</span> <span class="n">y</span><span class="p">;</span>
+    <span class="k">public</span><span class="o">:</span>
+        <span class="n">A</span><span class="p">(</span><span class="kt">int</span> <span class="n">_x</span><span class="p">,</span> <span class="kt">double</span> <span class="n">_y</span><span class="p">)</span> <span class="o">:</span> <span class="n">x</span><span class="p">(</span><span class="n">_x</span><span class="p">),</span> <span class="n">y</span><span class="p">(</span><span class="n">_y</span><span class="p">)</span> <span class="p">{}</span>
+        <span class="kt">int</span> <span class="n">get_x</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span><span class="k">return</span> <span class="n">x</span><span class="p">;}</span>
+        <span class="kt">double</span> <span class="n">get_y</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span><span class="k">return</span> <span class="n">y</span><span class="p">;}</span>
+        <span class="kt">void</span> <span class="n">h</span><span class="p">()</span> <span class="p">{</span> <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Specijalizacija 1 klase A"</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span> <span class="p">}</span>
+<span class="p">};</span>
+</pre></div></div></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_specijalizacija_predloska_ne_mora_slijediti_ni_sucelje_ni_implementaciju_predloska">Specijalizacija predloška ne mora slijediti ni sučelje ni implementaciju predloška</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="c1">// Specijalizacija T=char *, S=char *</span>
+<span class="c1">//</span>
+<span class="k">template</span> <span class="o">&lt;&gt;</span>
+<span class="k">class</span> <span class="nc">A</span><span class="o">&lt;</span><span class="kt">char</span> <span class="o">*</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*&gt;</span>  <span class="c1">// tip mora biti naveden jer se "ne deducira"</span>
+<span class="p">{</span>
+    <span class="k">private</span><span class="o">:</span>
+        <span class="kt">char</span> <span class="o">*</span> <span class="n">x</span><span class="p">;</span>
+        <span class="kt">char</span> <span class="o">*</span> <span class="n">y</span><span class="p">;</span>
+    <span class="k">public</span><span class="o">:</span>
+        <span class="n">A</span><span class="p">(</span><span class="kt">char</span><span class="o">*</span> <span class="n">_x</span><span class="p">,</span> <span class="kt">char</span><span class="o">*</span> <span class="n">_y</span><span class="p">)</span> <span class="o">:</span> <span class="n">x</span><span class="p">(</span><span class="n">_x</span><span class="p">),</span> <span class="n">y</span><span class="p">(</span><span class="n">_y</span><span class="p">)</span> <span class="p">{}</span>
+        <span class="kt">ptrdiff_t</span> <span class="n">get_xy</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span><span class="k">return</span> <span class="n">y</span> <span class="o">-</span> <span class="n">x</span><span class="p">;}</span>
+        <span class="kt">void</span> <span class="n">h</span><span class="p">()</span> <span class="p">{</span> <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Specijalizacija 2 klase A"</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span> <span class="p">}</span>
+<span class="p">};</span>
+</pre></div></div></div>
+<div class="ulist"><ul>
+<li>
+<p>
+Specijalizacija predloška je obična klasa, a ne predložak. Članovi specijalizacije se definiraju izvan datoteke
+zaglavlja, <strong>bez</strong> prethodnog  <code>template &lt;&gt;</code>.
+</p>
+</li>
+<li>
+<p>
+Specijalizacija predloška klase se stavlja u datoteku zaglavlja s predloškom koji specijalizira kako bi bila
+vidljiva. Specijalizacija mora doći nakon predloška.
+</p>
+</li>
+<li>
+<p>
+Ako postoji specijalizacija predloška prevodilac ju koristiti umjesto da generira klasu iz predloška.
+</p>
+</li>
+<li>
+<p>
+Specijalizacija daje novu implementaciju klase koja ne mora imati ništa zajedničko s implementacijom u predlošku.
+Specijalizaciju (potpunu i djelomičnu) pišemo kada želimo promijeniti implementaciju.
+</p>
+</li>
+</ul></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_parcijalne_specijalizacije_1">Parcijalne specijalizacije (1)</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>U parcijalnim specijalizacijama specijalizirani predložak je ponovo predložak.
+Ilustracija:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+
+<span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="p">,</span> <span class="k">typename</span> <span class="n">S</span><span class="o">&gt;</span>
+<span class="k">class</span> <span class="nc">A</span>
+<span class="p">{</span>
+    <span class="k">private</span><span class="o">:</span>
+        <span class="n">T</span> <span class="n">x</span><span class="p">;</span>
+        <span class="n">S</span> <span class="n">y</span><span class="p">;</span>
+    <span class="k">public</span><span class="o">:</span>
+        <span class="n">A</span><span class="p">(</span><span class="n">T</span> <span class="n">_x</span><span class="p">,</span> <span class="n">S</span> <span class="n">_y</span><span class="p">)</span> <span class="o">:</span> <span class="n">x</span><span class="p">(</span><span class="n">_x</span><span class="p">),</span> <span class="n">y</span><span class="p">(</span><span class="n">_y</span><span class="p">)</span> <span class="p">{}</span>
+        <span class="n">T</span> <span class="n">get_x</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span><span class="k">return</span> <span class="n">x</span><span class="p">;}</span>
+        <span class="n">S</span> <span class="n">get_y</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span><span class="k">return</span> <span class="n">y</span><span class="p">;}</span>
+<span class="p">};</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Napravimo tri djelomične (parcijalne) specijalizacije:</p></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_parcijalne_specijalizacije_2">Parcijalne specijalizacije (2)</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="c1">// Specijalizacija S = T</span>
+<span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+<span class="k">class</span> <span class="nc">A</span><span class="o">&lt;</span><span class="n">T</span><span class="p">,</span><span class="n">T</span><span class="o">&gt;</span>
+<span class="p">{</span>
+    <span class="k">private</span><span class="o">:</span>
+        <span class="n">T</span> <span class="n">x</span><span class="p">;</span>
+        <span class="n">T</span> <span class="n">y</span><span class="p">;</span>
+    <span class="k">public</span><span class="o">:</span>
+        <span class="n">A</span><span class="p">(</span><span class="kt">int</span> <span class="n">_x</span><span class="p">,</span> <span class="kt">double</span> <span class="n">_y</span><span class="p">)</span> <span class="o">:</span> <span class="n">x</span><span class="p">(</span><span class="n">_x</span><span class="p">),</span> <span class="n">y</span><span class="p">(</span><span class="n">_y</span><span class="p">)</span> <span class="p">{}</span>
+        <span class="n">T</span> <span class="n">get_x</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span><span class="k">return</span> <span class="n">x</span><span class="p">;}</span>
+        <span class="n">T</span> <span class="n">get_y</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span><span class="k">return</span> <span class="n">y</span><span class="p">;}</span>
+<span class="p">};</span>
+
+<span class="c1">// Specijalizacija T = int</span>
+<span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">S</span><span class="o">&gt;</span>
+<span class="k">class</span> <span class="nc">A</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span><span class="n">S</span><span class="o">&gt;</span>
+<span class="p">{</span>
+    <span class="k">private</span><span class="o">:</span>
+        <span class="kt">int</span> <span class="n">x</span><span class="p">;</span>
+        <span class="n">S</span> <span class="n">y</span><span class="p">;</span>
+    <span class="k">public</span><span class="o">:</span>
+        <span class="n">A</span><span class="p">(</span><span class="kt">int</span> <span class="n">_x</span><span class="p">,</span> <span class="kt">double</span> <span class="n">_y</span><span class="p">)</span> <span class="o">:</span> <span class="n">x</span><span class="p">(</span><span class="n">_x</span><span class="p">),</span> <span class="n">y</span><span class="p">(</span><span class="n">_y</span><span class="p">)</span> <span class="p">{}</span>
+        <span class="kt">int</span> <span class="n">get_x</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span><span class="k">return</span> <span class="n">x</span><span class="p">;}</span>
+        <span class="n">S</span> <span class="n">get_y</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span><span class="k">return</span> <span class="n">y</span><span class="p">;}</span>
+<span class="p">};</span>
+
+<span class="c1">// Specijalizacija T -&gt; T *, S -&gt; S *</span>
+<span class="c1">//</span>
+<span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="p">,</span> <span class="k">typename</span> <span class="n">S</span><span class="o">&gt;</span>
+<span class="k">class</span> <span class="nc">A</span><span class="o">&lt;</span><span class="n">T</span> <span class="o">*</span><span class="p">,</span> <span class="n">S</span> <span class="o">*&gt;</span>
+<span class="p">{</span>
+    <span class="k">private</span><span class="o">:</span>
+        <span class="n">T</span> <span class="o">*</span> <span class="n">x</span><span class="p">;</span>
+        <span class="n">S</span> <span class="o">*</span> <span class="n">y</span><span class="p">;</span>
+    <span class="k">public</span><span class="o">:</span>
+        <span class="n">A</span><span class="p">(</span><span class="n">T</span><span class="o">*</span> <span class="n">_x</span><span class="p">,</span> <span class="n">S</span><span class="o">*</span> <span class="n">_y</span><span class="p">)</span> <span class="o">:</span> <span class="n">x</span><span class="p">(</span><span class="n">_x</span><span class="p">),</span> <span class="n">y</span><span class="p">(</span><span class="n">_y</span><span class="p">)</span> <span class="p">{}</span>
+        <span class="n">T</span><span class="o">*</span> <span class="n">get_x</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span><span class="k">return</span> <span class="n">x</span><span class="p">;}</span>
+        <span class="n">S</span><span class="o">*</span> <span class="n">get_y</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span><span class="k">return</span> <span class="n">y</span><span class="p">;}</span>
+<span class="p">};</span>
+</pre></div></div></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_parcijalne_specijalizacije_3">Parcijalne specijalizacije (3)</h2>
+<div class="sectionbody">
+<div class="paragraph"><p><strong>Princip</strong>: prevodilac će pri instanciranju klase uvijek preferirati (naj)specijaliziraniju verziju.</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">A</span><span class="o">&lt;</span><span class="kt">char</span><span class="p">,</span><span class="kt">int</span><span class="o">&gt;</span>     <span class="n">a</span><span class="p">(</span><span class="sc">'a'</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span> <span class="c1">// A&lt;T,S&gt;</span>
+    <span class="n">A</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span><span class="kt">double</span><span class="o">&gt;</span>   <span class="n">b</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">);</span>   <span class="c1">// A&lt;int,S&gt;</span>
+    <span class="n">A</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">*</span><span class="p">,</span><span class="kt">double</span><span class="o">*&gt;</span> <span class="n">c</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>   <span class="c1">// A&lt;T*,S*&gt;</span>
+
+    <span class="c1">// Greške zbog dvosmislenosti</span>
+    <span class="n">A</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span><span class="kt">int</span><span class="o">&gt;</span>      <span class="n">d</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>    <span class="c1">// A&lt;int,S&gt; ili A&lt;T,T&gt; ?</span>
+    <span class="n">A</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">*</span><span class="p">,</span><span class="kt">int</span><span class="o">*&gt;</span>    <span class="n">e</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">);</span>    <span class="c1">// A&lt;T*,S*&gt; ili A&lt;T,T&gt; ?</span>
+
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div></div></div>
+<div class="ulist"><ul>
+<li>
+<p>
+Parcijalne specijalizacije definiraju predložak za užu klasu tipova.
+</p>
+</li>
+</ul></div>
+<div class="paragraph"><p><strong>Zaključak</strong>: Treba paziti da se ne generiraju dvosmislene situacije.</p></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_dodijeljeni_em_default_em_parametri_predloska">Dodijeljeni (<em>default</em>) parametri predloška</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Neki parametri u predlošku klase ili funkcije mogu imati dodijeljenu vrijednost
+ (to nije vrijedilo za predložak funkcije prije C++11).</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;vector&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;stdexcept&gt;</span><span class="cp"></span>
+
+<span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="p">,</span> <span class="k">typename</span> <span class="n">CONTAINER</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="o">&gt;</span>
+<span class="k">class</span> <span class="nc">Stack</span><span class="p">{</span>
+    <span class="k">public</span><span class="o">:</span>
+        <span class="kt">void</span> <span class="n">push</span><span class="p">(</span><span class="n">T</span> <span class="k">const</span><span class="o">&amp;</span> <span class="n">x</span><span class="p">){</span> <span class="n">data</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">x</span><span class="p">);</span> <span class="p">}</span>
+        <span class="kt">void</span> <span class="n">pop</span><span class="p">();</span>               <span class="c1">// pop element</span>
+        <span class="k">const</span> <span class="n">T</span><span class="o">&amp;</span> <span class="n">top</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>     <span class="c1">// vrati const referencu na top element</span>
+        <span class="n">T</span><span class="o">&amp;</span> <span class="n">top</span><span class="p">();</span>                 <span class="c1">// vrati referencu na top element</span>
+        <span class="kt">bool</span> <span class="nf">empty</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span> <span class="k">return</span> <span class="n">data</span><span class="p">.</span><span class="n">empty</span><span class="p">();</span> <span class="p">}</span>
+    <span class="k">private</span><span class="o">:</span>
+        <span class="n">CONTAINER</span> <span class="n">data</span><span class="p">;</span>     <span class="c1">// elementi</span>
+<span class="p">};</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Primjer korištenja ove klase dan je ovdje:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="c1">// stack int-ova s defaultnim spremnikom (vektorom)</span>
+<span class="n">Stack</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">stack_i</span><span class="p">;</span>
+<span class="c1">// stack doubleova se deque-om kao spremnikom</span>
+<span class="n">Stack</span><span class="o">&lt;</span><span class="kt">double</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">deque</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="o">&gt;</span> <span class="n">stack_d</span><span class="p">;</span>
+<span class="c1">// ...</span>
+</pre></div></div></div>
+<div class="paragraph"><p><strong>Zadatak</strong>: Implementirajte u klasi <code>Stack</code> operator pridruživanja koji može uzeti
+kao desni operand <code>Stack</code> bilo kojeg tipa. Deklaracija operatora treba biti sljedeća:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="p">,</span> <span class="k">typename</span> <span class="n">CONTAINER</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="o">&gt;</span>
+<span class="k">class</span> <span class="nc">Stack</span><span class="p">{</span>
+        <span class="c1">// ...</span>
+        <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">S</span><span class="p">,</span> <span class="k">typename</span> <span class="n">CONTAINER2</span><span class="o">&gt;</span>
+        <span class="n">Stack</span><span class="o">&lt;</span><span class="n">T</span><span class="p">,</span><span class="n">CONTAINER</span><span class="o">&gt;&amp;</span> <span class="k">operator</span><span class="o">=</span><span class="p">(</span><span class="n">Stack</span><span class="o">&lt;</span><span class="n">S</span><span class="p">,</span><span class="n">CONTAINER2</span><span class="o">&gt;</span><span class="k">const</span> <span class="o">&amp;</span><span class="p">);</span>
+    <span class="k">private</span><span class="o">:</span>
+        <span class="n">CONTAINER</span> <span class="n">data</span><span class="p">;</span>     <span class="c1">// elementi</span>
+<span class="p">};</span>
+</pre></div></div></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_em_template_template_em_parametar"><em>Template template</em> parametar</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Gornji primjer upotrebe klase <code>Stack</code> pokazuje kako je u nekim situacijama prirodno da parametar predloška
+bude i sam  predložak. Željeli bismo, na primjer, umjesto</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="n">Stack</span><span class="o">&lt;</span><span class="kt">double</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">deque</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="o">&gt;</span> <span class="n">stack_d</span><span class="p">;</span>
+</pre></div></div></div>
+<div class="paragraph"><p>pisati</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="n">Stack</span><span class="o">&lt;</span><span class="kt">double</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">deque</span><span class="o">&gt;</span> <span class="n">stack_d</span><span class="p">;</span>
+</pre></div></div></div>
+<div class="paragraph"><p>no za to je potrebno da drugi parametar predloška klase <code>Stack</code> (<code>CONTAINER</code>) bude predložak a ne klasa.
+Jezik nam dozvoljava da parametar predloška deklariramo kao predložak klase.</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="p">,</span> <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">S</span><span class="o">&gt;</span> <span class="k">class</span> <span class="nc">CONTAINER</span><span class="o">&gt;</span>
+<span class="k">class</span> <span class="nc">Stack</span><span class="p">{</span>
+    <span class="k">public</span><span class="o">:</span>
+        <span class="kt">void</span> <span class="n">push</span><span class="p">(</span><span class="n">T</span> <span class="k">const</span><span class="o">&amp;</span> <span class="n">x</span><span class="p">){</span> <span class="n">data</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">x</span><span class="p">);</span> <span class="p">}</span>
+        <span class="kt">void</span> <span class="n">pop</span><span class="p">();</span>               <span class="c1">// pop element</span>
+        <span class="k">const</span> <span class="n">T</span><span class="o">&amp;</span> <span class="n">top</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>     <span class="c1">// vrati const referencu na top element</span>
+        <span class="n">T</span><span class="o">&amp;</span> <span class="n">top</span><span class="p">();</span>                 <span class="c1">// vrati referencu na top element</span>
+        <span class="kt">bool</span> <span class="nf">empty</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span> <span class="k">return</span> <span class="n">data</span><span class="p">.</span><span class="n">empty</span><span class="p">();</span> <span class="p">}</span>
+        <span class="kt">void</span> <span class="nf">clear</span><span class="p">();</span>
+    <span class="k">private</span><span class="o">:</span>
+        <span class="n">CONTAINER</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">data</span><span class="p">;</span>     <span class="c1">// elementi</span>
+<span class="p">};</span>
+</pre></div></div></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_em_template_template_em_parametar_implementacija"><em>Template template</em> parametar: implementacija</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Na primjer, metoda <code>top</code>:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="p">,</span> <span class="k">template</span><span class="o">&lt;</span><span class="k">typename</span><span class="o">&gt;</span> <span class="k">class</span> <span class="nc">CONTAINER</span><span class="o">&gt;</span>
+<span class="n">T</span><span class="o">&amp;</span> <span class="n">Stack</span><span class="o">&lt;</span><span class="n">T</span><span class="p">,</span> <span class="n">CONTAINER</span><span class="o">&gt;::</span><span class="n">top</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">data</span><span class="p">.</span><span class="n">empty</span><span class="p">())</span> <span class="k">throw</span> <span class="n">std</span><span class="o">::</span><span class="n">out_of_range</span><span class="p">(</span><span class="s">"Stack::top: empty stack"</span><span class="p">);</span>
+    <span class="k">return</span> <span class="n">data</span><span class="p">.</span><span class="n">back</span><span class="p">();</span>      <span class="c1">// vrati const referencu na top element</span>
+<span class="p">}</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Uočimo da smo ovdje (u <em>template deklaraciji</em>) ispustili ime template parametra klase CONTAINER,
+što je dozvoljeno budući da se to ime ne koristi.</p></div>
+<div class="paragraph"><p><strong>Napomena:</strong> To smo mogli napraviti i u deklaraciji klase, tako da bismo
+prirodnije pisali:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="p">,</span> <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span><span class="o">&gt;</span> <span class="k">class</span> <span class="nc">CONTAINER</span><span class="o">&gt;</span>
+<span class="k">class</span> <span class="nc">Stack</span><span class="p">{</span>
+        <span class="c1">// ...</span>
+<span class="p">};</span>
+</pre></div></div></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_em_template_template_em_parametar_dodijeljeni_parametar"><em>Template template</em> parametar: dodijeljeni parametar</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Htjeli bismo template template parametru dati dodijeljenu vrijednost. Na primjer,</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="p">,</span> <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span><span class="o">&gt;</span> <span class="k">class</span> <span class="nc">CONTAINER</span><span class="o">=</span><span class="n">std</span><span class="o">::</span><span class="n">deque</span><span class="o">&gt;</span>
+<span class="k">class</span> <span class="nc">Stack</span><span class="p">{</span>
+        <span class="c1">// ...</span>
+<span class="p">};</span>
+</pre></div></div></div>
+<div class="paragraph"><p>no dobili bismo grešku pri kompilaciji. <em>Problem</em>: standardni spremnici imaju jedna dodatni
+template parametar — <em>alokator</em>, koji ima defaultnu vrijednost.</p></div>
+<div class="paragraph"><p>Ispravna deklaracija:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="p">,</span> <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">S</span><span class="p">,</span>
+                               <span class="k">typename</span> <span class="n">ALLOC</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">allocator</span><span class="o">&lt;</span><span class="n">S</span><span class="o">&gt;</span>
+                               <span class="o">&gt;</span>
+                               <span class="k">class</span> <span class="nc">CONTAINER</span>  <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">deque</span>
+        <span class="o">&gt;</span>
+<span class="k">class</span> <span class="nc">Stack</span><span class="p">{</span>
+   <span class="k">public</span><span class="o">:</span>
+       <span class="kt">void</span> <span class="n">push</span><span class="p">(</span><span class="n">T</span> <span class="k">const</span><span class="o">&amp;</span> <span class="n">x</span><span class="p">){</span> <span class="n">data</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">x</span><span class="p">);</span> <span class="p">}</span>
+       <span class="kt">void</span> <span class="n">pop</span><span class="p">();</span>               <span class="c1">// pop element</span>
+       <span class="k">const</span> <span class="n">T</span><span class="o">&amp;</span> <span class="n">top</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>     <span class="c1">// vrati const referencu na top element</span>
+       <span class="n">T</span><span class="o">&amp;</span> <span class="n">top</span><span class="p">();</span>                 <span class="c1">// vrati referencu na top element</span>
+       <span class="kt">bool</span> <span class="nf">empty</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span> <span class="k">return</span> <span class="n">data</span><span class="p">.</span><span class="n">empty</span><span class="p">();</span> <span class="p">}</span>
+       <span class="kt">void</span> <span class="nf">clear</span><span class="p">();</span>
+       <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">U</span><span class="p">,</span> <span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">V</span><span class="p">,</span>
+                             <span class="k">typename</span> <span class="n">ALLOC</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">allocator</span><span class="o">&lt;</span><span class="n">V</span><span class="o">&gt;</span> <span class="o">&gt;</span> <span class="k">class</span> <span class="nc">CONT</span><span class="o">&gt;</span>
+           <span class="n">Stack</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">=</span><span class="p">(</span><span class="k">const</span> <span class="n">Stack</span><span class="o">&lt;</span><span class="n">U</span><span class="p">,</span> <span class="n">CONT</span><span class="o">&gt;&amp;</span><span class="p">);</span>
+   <span class="k">private</span><span class="o">:</span>
+       <span class="n">CONTAINER</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="n">data</span><span class="p">;</span>     <span class="c1">// elementi</span>
+<span class="p">};</span>
+</pre></div></div></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_predlosci_klasa_i_nasljeivanje">Predlošci klasa i nasljeđivanje</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Klase generirane iz predložaka mogu se koristiti polimorfno i sve što smo naučili o nasljeđivanju
+i virtualnim funkcijama jednako se odnosi i na parametrizirane klase. Ipak, kada klasa ima
+parametriziranu bazu javlja se jedan problem vezan uz način na koji prevodilac traži imena.
+Sljedeći kod ilustrira problem.</p></div>
+<div class="sect2">
+<h3 id="_primjer_2">Primjer</h3>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+<span class="k">class</span> <span class="nc">Base</span> <span class="p">{</span>
+    <span class="k">public</span><span class="o">:</span>
+        <span class="kt">void</span> <span class="n">bar</span><span class="p">(){}</span>
+<span class="p">};</span>
+
+<span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+<span class="k">class</span> <span class="nc">Derived</span> <span class="o">:</span> <span class="k">public</span> <span class="n">Base</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="p">{</span>
+    <span class="k">public</span><span class="o">:</span>
+        <span class="kt">void</span> <span class="n">foo</span><span class="p">()</span> <span class="p">{</span> <span class="n">bar</span><span class="p">();</span> <span class="p">}</span>
+<span class="p">};</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Premda je funkcija <code>bar()</code> javna u baznoj klasi prevodilac je neće naći
+i javit će grešku.</p></div>
+<div class="listingblock">
+<div class="content">
+<pre><code>baza.cpp: In member function ‘void Derived&lt;T&gt;::foo()’:
+baza.cpp:10:26: error: there are no arguments to ‘bar’ that depend on a template parameter, so a declaration of ‘bar’ must be available [-fpermissive]
+         void foo() { bar(); }
+                          ^
+baza.cpp:10:26: note: (if you use ‘-fpermissive’, G++ will accept your code, but allowing the use of an undeclared name is deprecated)</code></pre>
+</div></div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_zavisna_i_nezavisna_imena">Zavisna i nezavisna imena</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Imena unutar predloška klase dijele se  na ona koja ne ovise o template parametrima i ona koja
+o njima ovise. Za prva imena kažemo da su <strong>nezavisna</strong>, dok su druga <strong>zavisna</strong> (o parametru predloška).</p></div>
+<div class="sect2">
+<h3 id="_em_two_phase_lookup_em"><em>Two phase lookup</em></h3>
+<div class="ulist"><ul>
+<li>
+<p>
+Imena koja ne ovise  o parametrima predloška (<em>nezavisna imena</em>) traže se čim prevodilac na njih
+naiđe, a to znači u trenutku prolaska kroz definiciju predloška.
+</p>
+</li>
+<li>
+<p>
+Imena koja ovise o parametrima predloška (<em>zavisna imena</em>)
+traže se tek na mjestu instancijacije predloška, jer je tek tu poznat tip parametara
+te se može odrediti tip imena koje se traži.
+</p>
+</li>
+</ul></div>
+</div>
+<div class="sect2">
+<h3 id="_two_phase_lookup_8230">Two phase lookup …</h3>
+<div class="ulist"><ul>
+<li>
+<p>
+prevodilac nikad neće tražiti nezavisno ime u parametriziranoj baznoj klasi jer se takva imena moraju naći prije
+instanciranja klase.
+</p>
+</li>
+</ul></div>
+<div class="paragraph"><p>Naime, ako imamo parametriziranu bazu, onda njene varijable i funkcije članice
+nisu poznate sve do trenutka instanciranja jer do tog trenutka baza može biti potpuno izmijenjena
+specijalizacijom za pojedine tipove.</p></div>
+<div class="paragraph"><p><strong>Rješenje</strong>: nezavisno ime iz bazne klase treba učiniti zavisnim. Na primjer, <code>bar()</code> zamijenimo s
+<code>Base&lt;T&gt;::bar()</code> ili <code>this-&gt;bar()</code>.</p></div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_primjer_nastavak">Primjer, nastavak</h2>
+<div class="sectionbody">
+<div class="paragraph"><p><strong>Rješenje</strong>: dovoljno
+je učiniti ime <code>bar</code> ovisnim (na implicitan način) o parametru <code>T</code>, što možemo učiniti
+tako da na njega referiramo kao <code>Base&lt;T&gt;::bar()</code> ili kao <code>this-&gt;bar()</code>.
+Na primjer, sljedeći kod je ispravan:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+<span class="k">class</span> <span class="nc">Base</span> <span class="p">{</span>
+    <span class="k">public</span><span class="o">:</span>
+        <span class="kt">void</span> <span class="n">bar</span><span class="p">(){}</span>
+<span class="p">};</span>
+
+<span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+<span class="k">class</span> <span class="nc">Derived</span> <span class="o">:</span> <span class="k">public</span> <span class="n">Base</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="p">{</span>
+    <span class="k">public</span><span class="o">:</span>
+        <span class="kt">void</span> <span class="n">foo</span><span class="p">()</span> <span class="p">{</span> <span class="k">this</span><span class="o">-&gt;</span><span class="n">bar</span><span class="p">();</span> <span class="p">}</span>
+<span class="p">};</span>
+</pre></div></div></div>
+</div>
+</div>
+</div>
+
+<div id="footer">
+<div id="footer-text">
+Version 2.0<br>
+Zadnja izmjena
+ 2019-05-28 14:24:06 CEST
+</div>
+</div>
+
+
+</body></html>

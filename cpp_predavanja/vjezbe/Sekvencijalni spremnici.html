@@ -1,0 +1,2370 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<!-- saved from url=(0087)https://web.math.pmf.unizg.hr/nastava/opepp/Slides/Vjezbe/html-noslides/vjezbe-seq.html -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="hr"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="generator" content="AsciiDoc 8.6.9">
+<title>Sekvencijalni spremnici</title>
+<style type="text/css">
+/* Shared CSS for AsciiDoc xhtml11 and html5 backends */
+
+/* Default font. */
+body {
+  font-family: Georgia,serif;
+}
+
+/* Title font. */
+h1, h2, h3, h4, h5, h6,
+div.title, caption.title,
+thead, p.table.header,
+#toctitle,
+#author, #revnumber, #revdate, #revremark,
+#footer {
+  font-family: Arial,Helvetica,sans-serif;
+}
+
+body {
+  margin: 1em 5% 1em 5%;
+}
+
+a {
+  color: blue;
+  text-decoration: underline;
+}
+a:visited {
+  color: fuchsia;
+}
+
+em {
+  font-style: italic;
+  color: navy;
+}
+
+strong {
+  font-weight: bold;
+  color: #083194;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #527bbd;
+  margin-top: 1.2em;
+  margin-bottom: 0.5em;
+  line-height: 1.3;
+}
+
+h1, h2, h3 {
+  border-bottom: 2px solid silver;
+}
+h2 {
+  padding-top: 0.5em;
+}
+h3 {
+  float: left;
+}
+h3 + * {
+  clear: left;
+}
+h5 {
+  font-size: 1.0em;
+}
+
+div.sectionbody {
+  margin-left: 0;
+}
+
+hr {
+  border: 1px solid silver;
+}
+
+p {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+ul, ol, li > p {
+  margin-top: 0;
+}
+ul > li     { color: #aaa; }
+ul > li > * { color: black; }
+
+.monospaced, code, pre {
+  font-family: "Courier New", Courier, monospace;
+  font-size: inherit;
+  color: navy;
+  padding: 0;
+  margin: 0;
+}
+pre {
+  white-space: pre-wrap;
+}
+
+#author {
+  color: #527bbd;
+  font-weight: bold;
+  font-size: 1.1em;
+}
+#email {
+}
+#revnumber, #revdate, #revremark {
+}
+
+#footer {
+  font-size: small;
+  border-top: 2px solid silver;
+  padding-top: 0.5em;
+  margin-top: 4.0em;
+}
+#footer-text {
+  float: left;
+  padding-bottom: 0.5em;
+}
+#footer-badges {
+  float: right;
+  padding-bottom: 0.5em;
+}
+
+#preamble {
+  margin-top: 1.5em;
+  margin-bottom: 1.5em;
+}
+div.imageblock, div.exampleblock, div.verseblock,
+div.quoteblock, div.literalblock, div.listingblock, div.sidebarblock,
+div.admonitionblock {
+  margin-top: 1.0em;
+  margin-bottom: 1.5em;
+}
+div.admonitionblock {
+  margin-top: 2.0em;
+  margin-bottom: 2.0em;
+  margin-right: 10%;
+  color: #606060;
+}
+
+div.content { /* Block element content. */
+  padding: 0;
+}
+
+/* Block element titles. */
+div.title, caption.title {
+  color: #527bbd;
+  font-weight: bold;
+  text-align: left;
+  margin-top: 1.0em;
+  margin-bottom: 0.5em;
+}
+div.title + * {
+  margin-top: 0;
+}
+
+td div.title:first-child {
+  margin-top: 0.0em;
+}
+div.content div.title:first-child {
+  margin-top: 0.0em;
+}
+div.content + div.title {
+  margin-top: 0.0em;
+}
+
+div.sidebarblock > div.content {
+  background: #ffffee;
+  border: 1px solid #dddddd;
+  border-left: 4px solid #f0f0f0;
+  padding: 0.5em;
+}
+
+div.listingblock > div.content {
+  border: 1px solid #dddddd;
+  border-left: 5px solid #f0f0f0;
+  background: #f8f8f8;
+  padding: 0.5em;
+}
+
+div.quoteblock, div.verseblock {
+  padding-left: 1.0em;
+  margin-left: 1.0em;
+  margin-right: 10%;
+  border-left: 5px solid #f0f0f0;
+  color: #888;
+}
+
+div.quoteblock > div.attribution {
+  padding-top: 0.5em;
+  text-align: right;
+}
+
+div.verseblock > pre.content {
+  font-family: inherit;
+  font-size: inherit;
+}
+div.verseblock > div.attribution {
+  padding-top: 0.75em;
+  text-align: left;
+}
+/* DEPRECATED: Pre version 8.2.7 verse style literal block. */
+div.verseblock + div.attribution {
+  text-align: left;
+}
+
+div.admonitionblock .icon {
+  vertical-align: top;
+  font-size: 1.1em;
+  font-weight: bold;
+  text-decoration: underline;
+  color: #527bbd;
+  padding-right: 0.5em;
+}
+div.admonitionblock td.content {
+  padding-left: 0.5em;
+  border-left: 3px solid #dddddd;
+}
+
+div.exampleblock > div.content {
+  border-left: 3px solid #dddddd;
+  padding-left: 0.5em;
+}
+
+div.imageblock div.content { padding-left: 0; }
+span.image img { border-style: none; vertical-align: text-bottom; }
+a.image:visited { color: white; }
+
+dl {
+  margin-top: 0.8em;
+  margin-bottom: 0.8em;
+}
+dt {
+  margin-top: 0.5em;
+  margin-bottom: 0;
+  font-style: normal;
+  color: navy;
+}
+dd > *:first-child {
+  margin-top: 0.1em;
+}
+
+ul, ol {
+    list-style-position: outside;
+}
+ol.arabic {
+  list-style-type: decimal;
+}
+ol.loweralpha {
+  list-style-type: lower-alpha;
+}
+ol.upperalpha {
+  list-style-type: upper-alpha;
+}
+ol.lowerroman {
+  list-style-type: lower-roman;
+}
+ol.upperroman {
+  list-style-type: upper-roman;
+}
+
+div.compact ul, div.compact ol,
+div.compact p, div.compact p,
+div.compact div, div.compact div {
+  margin-top: 0.1em;
+  margin-bottom: 0.1em;
+}
+
+tfoot {
+  font-weight: bold;
+}
+td > div.verse {
+  white-space: pre;
+}
+
+div.hdlist {
+  margin-top: 0.8em;
+  margin-bottom: 0.8em;
+}
+div.hdlist tr {
+  padding-bottom: 15px;
+}
+dt.hdlist1.strong, td.hdlist1.strong {
+  font-weight: bold;
+}
+td.hdlist1 {
+  vertical-align: top;
+  font-style: normal;
+  padding-right: 0.8em;
+  color: navy;
+}
+td.hdlist2 {
+  vertical-align: top;
+}
+div.hdlist.compact tr {
+  margin: 0;
+  padding-bottom: 0;
+}
+
+.comment {
+  background: yellow;
+}
+
+.footnote, .footnoteref {
+  font-size: 0.8em;
+}
+
+span.footnote, span.footnoteref {
+  vertical-align: super;
+}
+
+#footnotes {
+  margin: 20px 0 20px 0;
+  padding: 7px 0 0 0;
+}
+
+#footnotes div.footnote {
+  margin: 0 0 5px 0;
+}
+
+#footnotes hr {
+  border: none;
+  border-top: 1px solid silver;
+  height: 1px;
+  text-align: left;
+  margin-left: 0;
+  width: 20%;
+  min-width: 100px;
+}
+
+div.colist td {
+  padding-right: 0.5em;
+  padding-bottom: 0.3em;
+  vertical-align: top;
+}
+div.colist td img {
+  margin-top: 0.3em;
+}
+
+@media print {
+  #footer-badges { display: none; }
+}
+
+#toc {
+  margin-bottom: 2.5em;
+}
+
+#toctitle {
+  color: #527bbd;
+  font-size: 1.1em;
+  font-weight: bold;
+  margin-top: 1.0em;
+  margin-bottom: 0.1em;
+}
+
+div.toclevel0, div.toclevel1, div.toclevel2, div.toclevel3, div.toclevel4 {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+div.toclevel2 {
+  margin-left: 2em;
+  font-size: 0.9em;
+}
+div.toclevel3 {
+  margin-left: 4em;
+  font-size: 0.9em;
+}
+div.toclevel4 {
+  margin-left: 6em;
+  font-size: 0.9em;
+}
+
+span.aqua { color: aqua; }
+span.black { color: black; }
+span.blue { color: blue; }
+span.fuchsia { color: fuchsia; }
+span.gray { color: gray; }
+span.green { color: green; }
+span.lime { color: lime; }
+span.maroon { color: maroon; }
+span.navy { color: navy; }
+span.olive { color: olive; }
+span.purple { color: purple; }
+span.red { color: red; }
+span.silver { color: silver; }
+span.teal { color: teal; }
+span.white { color: white; }
+span.yellow { color: yellow; }
+
+span.aqua-background { background: aqua; }
+span.black-background { background: black; }
+span.blue-background { background: blue; }
+span.fuchsia-background { background: fuchsia; }
+span.gray-background { background: gray; }
+span.green-background { background: green; }
+span.lime-background { background: lime; }
+span.maroon-background { background: maroon; }
+span.navy-background { background: navy; }
+span.olive-background { background: olive; }
+span.purple-background { background: purple; }
+span.red-background { background: red; }
+span.silver-background { background: silver; }
+span.teal-background { background: teal; }
+span.white-background { background: white; }
+span.yellow-background { background: yellow; }
+
+span.big { font-size: 2em; }
+span.small { font-size: 0.6em; }
+
+span.underline { text-decoration: underline; }
+span.overline { text-decoration: overline; }
+span.line-through { text-decoration: line-through; }
+
+div.unbreakable { page-break-inside: avoid; }
+
+
+/*
+ * xhtml11 specific
+ *
+ * */
+
+div.tableblock {
+  margin-top: 1.0em;
+  margin-bottom: 1.5em;
+}
+div.tableblock > table {
+  border: 3px solid #527bbd;
+}
+thead, p.table.header {
+  font-weight: bold;
+  color: #527bbd;
+}
+p.table {
+  margin-top: 0;
+}
+/* Because the table frame attribute is overriden by CSS in most browsers. */
+div.tableblock > table[frame="void"] {
+  border-style: none;
+}
+div.tableblock > table[frame="hsides"] {
+  border-left-style: none;
+  border-right-style: none;
+}
+div.tableblock > table[frame="vsides"] {
+  border-top-style: none;
+  border-bottom-style: none;
+}
+
+
+/*
+ * html5 specific
+ *
+ * */
+
+table.tableblock {
+  margin-top: 1.0em;
+  margin-bottom: 1.5em;
+}
+thead, p.tableblock.header {
+  font-weight: bold;
+  color: #527bbd;
+}
+p.tableblock {
+  margin-top: 0;
+}
+table.tableblock {
+  border-width: 3px;
+  border-spacing: 0px;
+  border-style: solid;
+  border-color: #527bbd;
+  border-collapse: collapse;
+}
+th.tableblock, td.tableblock {
+  border-width: 1px;
+  padding: 4px;
+  border-style: solid;
+  border-color: #527bbd;
+}
+
+table.tableblock.frame-topbot {
+  border-left-style: hidden;
+  border-right-style: hidden;
+}
+table.tableblock.frame-sides {
+  border-top-style: hidden;
+  border-bottom-style: hidden;
+}
+table.tableblock.frame-none {
+  border-style: hidden;
+}
+
+th.tableblock.halign-left, td.tableblock.halign-left {
+  text-align: left;
+}
+th.tableblock.halign-center, td.tableblock.halign-center {
+  text-align: center;
+}
+th.tableblock.halign-right, td.tableblock.halign-right {
+  text-align: right;
+}
+
+th.tableblock.valign-top, td.tableblock.valign-top {
+  vertical-align: top;
+}
+th.tableblock.valign-middle, td.tableblock.valign-middle {
+  vertical-align: middle;
+}
+th.tableblock.valign-bottom, td.tableblock.valign-bottom {
+  vertical-align: bottom;
+}
+
+
+/*
+ * manpage specific
+ *
+ * */
+
+body.manpage h1 {
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+  border-top: 2px solid silver;
+  border-bottom: 2px solid silver;
+}
+body.manpage h2 {
+  border-style: none;
+}
+body.manpage div.sectionbody {
+  margin-left: 3em;
+}
+
+@media print {
+  body.manpage div#toc { display: none; }
+}
+.highlight .hll { background-color: #ffffcc }
+.highlight  { background: #f8f8f8; }
+.highlight .c { color: #408080; font-style: italic } /* Comment */
+.highlight .err { border: 1px solid #FF0000 } /* Error */
+.highlight .k { color: #008000; font-weight: bold } /* Keyword */
+.highlight .o { color: #666666 } /* Operator */
+.highlight .cm { color: #408080; font-style: italic } /* Comment.Multiline */
+.highlight .cp { color: #BC7A00 } /* Comment.Preproc */
+.highlight .c1 { color: #408080; font-style: italic } /* Comment.Single */
+.highlight .cs { color: #408080; font-style: italic } /* Comment.Special */
+.highlight .gd { color: #A00000 } /* Generic.Deleted */
+.highlight .ge { font-style: italic } /* Generic.Emph */
+.highlight .gr { color: #FF0000 } /* Generic.Error */
+.highlight .gh { color: #000080; font-weight: bold } /* Generic.Heading */
+.highlight .gi { color: #00A000 } /* Generic.Inserted */
+.highlight .go { color: #808080 } /* Generic.Output */
+.highlight .gp { color: #000080; font-weight: bold } /* Generic.Prompt */
+.highlight .gs { font-weight: bold } /* Generic.Strong */
+.highlight .gu { color: #800080; font-weight: bold } /* Generic.Subheading */
+.highlight .gt { color: #0040D0 } /* Generic.Traceback */
+.highlight .kc { color: #008000; font-weight: bold } /* Keyword.Constant */
+.highlight .kd { color: #008000; font-weight: bold } /* Keyword.Declaration */
+.highlight .kn { color: #008000; font-weight: bold } /* Keyword.Namespace */
+.highlight .kp { color: #008000 } /* Keyword.Pseudo */
+.highlight .kr { color: #008000; font-weight: bold } /* Keyword.Reserved */
+.highlight .kt { color: #B00040 } /* Keyword.Type */
+.highlight .m { color: #666666 } /* Literal.Number */
+.highlight .s { color: #BA2121 } /* Literal.String */
+.highlight .na { color: #7D9029 } /* Name.Attribute */
+.highlight .nb { color: #008000 } /* Name.Builtin */
+.highlight .nc { color: #0000FF; font-weight: bold } /* Name.Class */
+.highlight .no { color: #880000 } /* Name.Constant */
+.highlight .nd { color: #AA22FF } /* Name.Decorator */
+.highlight .ni { color: #999999; font-weight: bold } /* Name.Entity */
+.highlight .ne { color: #D2413A; font-weight: bold } /* Name.Exception */
+.highlight .nf { color: #0000FF } /* Name.Function */
+.highlight .nl { color: #A0A000 } /* Name.Label */
+.highlight .nn { color: #0000FF; font-weight: bold } /* Name.Namespace */
+.highlight .nt { color: #008000; font-weight: bold } /* Name.Tag */
+.highlight .nv { color: #19177C } /* Name.Variable */
+.highlight .ow { color: #AA22FF; font-weight: bold } /* Operator.Word */
+.highlight .w { color: #bbbbbb } /* Text.Whitespace */
+.highlight .mf { color: #666666 } /* Literal.Number.Float */
+.highlight .mh { color: #666666 } /* Literal.Number.Hex */
+.highlight .mi { color: #666666 } /* Literal.Number.Integer */
+.highlight .mo { color: #666666 } /* Literal.Number.Oct */
+.highlight .sb { color: #BA2121 } /* Literal.String.Backtick */
+.highlight .sc { color: #BA2121 } /* Literal.String.Char */
+.highlight .sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
+.highlight .s2 { color: #BA2121 } /* Literal.String.Double */
+.highlight .se { color: #BB6622; font-weight: bold } /* Literal.String.Escape */
+.highlight .sh { color: #BA2121 } /* Literal.String.Heredoc */
+.highlight .si { color: #BB6688; font-weight: bold } /* Literal.String.Interpol */
+.highlight .sx { color: #008000 } /* Literal.String.Other */
+.highlight .sr { color: #BB6688 } /* Literal.String.Regex */
+.highlight .s1 { color: #BA2121 } /* Literal.String.Single */
+.highlight .ss { color: #19177C } /* Literal.String.Symbol */
+.highlight .bp { color: #008000 } /* Name.Builtin.Pseudo */
+.highlight .vc { color: #19177C } /* Name.Variable.Class */
+.highlight .vg { color: #19177C } /* Name.Variable.Global */
+.highlight .vi { color: #19177C } /* Name.Variable.Instance */
+.highlight .il { color: #666666 } /* Literal.Number.Integer.Long */
+
+
+</style>
+<script type="text/javascript">
+/*<![CDATA[*/
+var asciidoc = {  // Namespace.
+
+/////////////////////////////////////////////////////////////////////
+// Table Of Contents generator
+/////////////////////////////////////////////////////////////////////
+
+/* Author: Mihai Bazon, September 2002
+ * http://students.infoiasi.ro/~mishoo
+ *
+ * Table Of Content generator
+ * Version: 0.4
+ *
+ * Feel free to use this script under the terms of the GNU General Public
+ * License, as long as you do not remove or alter this notice.
+ */
+
+ /* modified by Troy D. Hanson, September 2006. License: GPL */
+ /* modified by Stuart Rackham, 2006, 2009. License: GPL */
+
+// toclevels = 1..4.
+toc: function (toclevels) {
+
+  function getText(el) {
+    var text = "";
+    for (var i = el.firstChild; i != null; i = i.nextSibling) {
+      if (i.nodeType == 3 /* Node.TEXT_NODE */) // IE doesn't speak constants.
+        text += i.data;
+      else if (i.firstChild != null)
+        text += getText(i);
+    }
+    return text;
+  }
+
+  function TocEntry(el, text, toclevel) {
+    this.element = el;
+    this.text = text;
+    this.toclevel = toclevel;
+  }
+
+  function tocEntries(el, toclevels) {
+    var result = new Array;
+    var re = new RegExp('[hH]([1-'+(toclevels+1)+'])');
+    // Function that scans the DOM tree for header elements (the DOM2
+    // nodeIterator API would be a better technique but not supported by all
+    // browsers).
+    var iterate = function (el) {
+      for (var i = el.firstChild; i != null; i = i.nextSibling) {
+        if (i.nodeType == 1 /* Node.ELEMENT_NODE */) {
+          var mo = re.exec(i.tagName);
+          if (mo && (i.getAttribute("class") || i.getAttribute("className")) != "float") {
+            result[result.length] = new TocEntry(i, getText(i), mo[1]-1);
+          }
+          iterate(i);
+        }
+      }
+    }
+    iterate(el);
+    return result;
+  }
+
+  var toc = document.getElementById("toc");
+  if (!toc) {
+    return;
+  }
+
+  // Delete existing TOC entries in case we're reloading the TOC.
+  var tocEntriesToRemove = [];
+  var i;
+  for (i = 0; i < toc.childNodes.length; i++) {
+    var entry = toc.childNodes[i];
+    if (entry.nodeName.toLowerCase() == 'div'
+     && entry.getAttribute("class")
+     && entry.getAttribute("class").match(/^toclevel/))
+      tocEntriesToRemove.push(entry);
+  }
+  for (i = 0; i < tocEntriesToRemove.length; i++) {
+    toc.removeChild(tocEntriesToRemove[i]);
+  }
+
+  // Rebuild TOC entries.
+  var entries = tocEntries(document.getElementById("content"), toclevels);
+  for (var i = 0; i < entries.length; ++i) {
+    var entry = entries[i];
+    if (entry.element.id == "")
+      entry.element.id = "_toc_" + i;
+    var a = document.createElement("a");
+    a.href = "#" + entry.element.id;
+    a.appendChild(document.createTextNode(entry.text));
+    var div = document.createElement("div");
+    div.appendChild(a);
+    div.className = "toclevel" + entry.toclevel;
+    toc.appendChild(div);
+  }
+  if (entries.length == 0)
+    toc.parentNode.removeChild(toc);
+},
+
+
+/////////////////////////////////////////////////////////////////////
+// Footnotes generator
+/////////////////////////////////////////////////////////////////////
+
+/* Based on footnote generation code from:
+ * http://www.brandspankingnew.net/archive/2005/07/format_footnote.html
+ */
+
+footnotes: function () {
+  // Delete existing footnote entries in case we're reloading the footnodes.
+  var i;
+  var noteholder = document.getElementById("footnotes");
+  if (!noteholder) {
+    return;
+  }
+  var entriesToRemove = [];
+  for (i = 0; i < noteholder.childNodes.length; i++) {
+    var entry = noteholder.childNodes[i];
+    if (entry.nodeName.toLowerCase() == 'div' && entry.getAttribute("class") == "footnote")
+      entriesToRemove.push(entry);
+  }
+  for (i = 0; i < entriesToRemove.length; i++) {
+    noteholder.removeChild(entriesToRemove[i]);
+  }
+
+  // Rebuild footnote entries.
+  var cont = document.getElementById("content");
+  var spans = cont.getElementsByTagName("span");
+  var refs = {};
+  var n = 0;
+  for (i=0; i<spans.length; i++) {
+    if (spans[i].className == "footnote") {
+      n++;
+      var note = spans[i].getAttribute("data-note");
+      if (!note) {
+        // Use [\s\S] in place of . so multi-line matches work.
+        // Because JavaScript has no s (dotall) regex flag.
+        note = spans[i].innerHTML.match(/\s*\[([\s\S]*)]\s*/)[1];
+        spans[i].innerHTML =
+          "[<a id='_footnoteref_" + n + "' href='#_footnote_" + n +
+          "' title='View footnote' class='footnote'>" + n + "</a>]";
+        spans[i].setAttribute("data-note", note);
+      }
+      noteholder.innerHTML +=
+        "<div class='footnote' id='_footnote_" + n + "'>" +
+        "<a href='#_footnoteref_" + n + "' title='Return to text'>" +
+        n + "</a>. " + note + "</div>";
+      var id =spans[i].getAttribute("id");
+      if (id != null) refs["#"+id] = n;
+    }
+  }
+  if (n == 0)
+    noteholder.parentNode.removeChild(noteholder);
+  else {
+    // Process footnoterefs.
+    for (i=0; i<spans.length; i++) {
+      if (spans[i].className == "footnoteref") {
+        var href = spans[i].getElementsByTagName("a")[0].getAttribute("href");
+        href = href.match(/#.*/)[0];  // Because IE return full URL.
+        n = refs[href];
+        spans[i].innerHTML =
+          "[<a href='#_footnote_" + n +
+          "' title='View footnote' class='footnote'>" + n + "</a>]";
+      }
+    }
+  }
+},
+
+install: function(toclevels) {
+  var timerId;
+
+  function reinstall() {
+    asciidoc.footnotes();
+    if (toclevels) {
+      asciidoc.toc(toclevels);
+    }
+  }
+
+  function reinstallAndRemoveTimer() {
+    clearInterval(timerId);
+    reinstall();
+  }
+
+  timerId = setInterval(reinstall, 500);
+  if (document.addEventListener)
+    document.addEventListener("DOMContentLoaded", reinstallAndRemoveTimer, false);
+  else
+    window.onload = reinstallAndRemoveTimer;
+}
+
+}
+asciidoc.install();
+/*]]>*/
+</script>
+</head>
+<body class="article">
+<div id="header">
+<h1>Sekvencijalni spremnici</h1>
+<span id="author">Mladen Jurak</span><br>
+<span id="revnumber">version 2.1,</span>
+<span id="revdate">2019-02</span>
+</div>
+<div id="content">
+<div class="sect1">
+<h2 id="_code_std_array_lt_t_dim_gt_code"><code>std::array&lt;T,dim&gt;</code></h2>
+<div class="sectionbody">
+<div class="paragraph"><p><code>std::array&lt;T, dim&gt;</code> je polje elemenata tipa <code>T</code> i dimenzije <code>dim</code>.
+Dimenzija mora biti konstanta poznata za vrijeme kompilacije.
+Tip je definiran u zaglavlju <code>&lt;array&gt;</code>.</p></div>
+<div class="paragraph"><p>Spremnik <code>std::array</code> ne dozvoljava promjenu broja elemenata. Njegovi se elementi
+(ako je moguće) alociraju na stogu, a ne u dinamičkoj memoriji (heap-u). Garantirano je da se
+elementi nalaze na konsekutivnim lokacijama.</p></div>
+<div class="paragraph"><p>Elementima u polju pristupamo ili pomoću indeksa ili pomoću iteratora.</p></div>
+<div class="paragraph"><p><strong>Primjer.</strong></p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;array&gt;</span><span class="cp"></span>
+
+<span class="n">std</span><span class="o">::</span><span class="n">array</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="mi">4</span><span class="o">&gt;</span> <span class="n">a</span><span class="p">{</span><span class="mi">2</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">1</span><span class="p">};</span>
+<span class="n">std</span><span class="o">::</span><span class="n">array</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="mi">6</span><span class="o">&gt;</span> <span class="n">b</span><span class="p">;</span> <span class="c1">// vrijednost elemenata nedefinirana</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">a</span><span class="p">;</span>  <span class="c1">// sve elemente iz a pridruži elementima iz b</span>
+
+<span class="k">for</span><span class="p">(</span><span class="k">auto</span> <span class="nl">x</span> <span class="p">:</span> <span class="n">a</span><span class="p">)</span> <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">x</span> <span class="o">&lt;&lt;</span> <span class="s">","</span><span class="p">;</span>
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+
+
+<span class="n">std</span><span class="o">::</span><span class="n">array</span><span class="o">&lt;</span><span class="kt">double</span><span class="p">,</span> <span class="mi">4</span><span class="o">&gt;</span> <span class="n">b</span><span class="p">{</span><span class="mf">3.14</span><span class="p">,</span> <span class="mf">2.71</span><span class="p">};</span> <span class="c1">// zadnja dva elementa</span>
+                                     <span class="c1">//inicijalizirana su nulom.</span>
+
+<span class="c1">// Koristima reverzne iteratore.</span>
+<span class="k">for</span><span class="p">(</span><span class="k">auto</span> <span class="n">it</span><span class="o">=</span><span class="n">b</span><span class="p">.</span><span class="n">rbegin</span><span class="p">();</span> <span class="n">it</span> <span class="o">!=</span> <span class="n">b</span><span class="p">.</span><span class="n">rend</span><span class="p">();</span> <span class="o">++</span><span class="n">it</span><span class="p">)</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="o">*</span><span class="n">it</span> <span class="o">&lt;&lt;</span><span class="s">","</span><span class="p">;</span>
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>    <span class="c1">// pristup preko indeksa</span>
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">b</span><span class="p">.</span><span class="n">at</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span> <span class="c1">// pristup preko indeksa s provjerom</span>
+                                   <span class="c1">// indeksa -- izbacuje izuzetak</span>
+</pre></div></div></div>
+<div class="sect2">
+<h3 id="_operacije">Operacije</h3>
+<div class="tableblock">
+<table rules="all" width="100%" frame="border" cellspacing="0" cellpadding="4">
+<caption class="title">Tabela 1. Konstrukcija</caption>
+<colgroup><col width="50%">
+<col width="50%">
+</colgroup><thead>
+<tr>
+<th align="left" valign="top"> Operacija </th>
+<th align="left" valign="top"> Značenje</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left" valign="top"><p class="table"><code>array&lt;Elem,N&gt; c</code></p></td>
+<td align="left" valign="top"><p class="table">Defaultni konstruktor</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>array&lt;Elem,N&gt; c(c2)</code></p></td>
+<td align="left" valign="top"><p class="table">Konstruktor kopije</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>array&lt;Elem,N&gt; c = c2</code></p></td>
+<td align="left" valign="top"><p class="table">Konstruktor kopije</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>array&lt;Elem,N&gt; c(rv)</code></p></td>
+<td align="left" valign="top"><p class="table">Konstruktor kopije premještanjem</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>array&lt;Elem,N&gt; c = rv</code></p></td>
+<td align="left" valign="top"><p class="table">Konstruktor kopije premještanjem</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>array&lt;Elem,N&gt; c = initlist</code></p></td>
+<td align="left" valign="top"><p class="table">Konstrukcija iz inicijalizacijske liste</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="tableblock">
+<table rules="all" width="100%" frame="border" cellspacing="0" cellpadding="4">
+<caption class="title">Tabela 2. Uspoređivane</caption>
+<colgroup><col width="50%">
+<col width="50%">
+</colgroup><thead>
+<tr>
+<th align="left" valign="top"> Operacija </th>
+<th align="left" valign="top"> Značenje</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left" valign="top"><p class="table"><code>c1 == c2</code></p></td>
+<td align="left" valign="top"><p class="table">Jednakost</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>c1 != c2</code></p></td>
+<td align="left" valign="top"><p class="table">Različitost</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="tableblock">
+<table rules="all" width="100%" frame="border" cellspacing="0" cellpadding="4">
+<caption class="title">Tabela 3. Pridruživanje</caption>
+<colgroup><col width="50%">
+<col width="50%">
+</colgroup><thead>
+<tr>
+<th align="left" valign="top"> Operacija </th>
+<th align="left" valign="top"> Značenje</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left" valign="top"><p class="table"><code>c1 = c2</code></p></td>
+<td align="left" valign="top"><p class="table">Pridruži sve elemente iz <code>c2</code> elementima iz <code>c1</code></p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>c1 = rv</code></p></td>
+<td align="left" valign="top"><p class="table">Pridruživane premještanjem</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>c.fill(val)</code></p></td>
+<td align="left" valign="top"><p class="table">Postavi sve elemente na <code>val</code></p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>c1.swap(c2)</code></p></td>
+<td align="left" valign="top"><p class="table">Podatke iz  <code>c1</code> zamijeni izmijeni s podacima iz  <code>c2</code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="tableblock">
+<table rules="all" width="100%" frame="border" cellspacing="0" cellpadding="4">
+<caption class="title">Tabela 4. Dohvat elemenata</caption>
+<colgroup><col width="50%">
+<col width="50%">
+</colgroup><thead>
+<tr>
+<th align="left" valign="top"> Operacija </th>
+<th align="left" valign="top"> Značenje</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left" valign="top"><p class="table"><code>c[idx]</code></p></td>
+<td align="left" valign="top"><p class="table">Vraća element s indeksom <code>idx</code> bez provjere indeksa</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>c.at(idx)</code></p></td>
+<td align="left" valign="top"><p class="table">Vraća element s indeksom <code>idx</code>. Izbacuje <code>range-error</code> izuzetak ako je indeks van granica</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>c.front()</code></p></td>
+<td align="left" valign="top"><p class="table">Vraća prvi element</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>c.back()</code></p></td>
+<td align="left" valign="top"><p class="table">Vraća zadnji element</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="tableblock">
+<table rules="all" width="100%" frame="border" cellspacing="0" cellpadding="4">
+<caption class="title">Tabela 5. Iteratori</caption>
+<colgroup><col width="50%">
+<col width="50%">
+</colgroup><thead>
+<tr>
+<th align="left" valign="top"> Operacija </th>
+<th align="left" valign="top"> Značenje</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left" valign="top"><p class="table"><code>c.begin()</code></p></td>
+<td align="left" valign="top"><p class="table">Vraća iterator na poziciju prvog elementa</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>c.end()</code></p></td>
+<td align="left" valign="top"><p class="table">Vraća iterator na poziciju iza zadnjeg elementa</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>c.cbegin()</code></p></td>
+<td align="left" valign="top"><p class="table">Vraća konstantan iterator na poziciju prvog elementa</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>c.cend()</code></p></td>
+<td align="left" valign="top"><p class="table">Vraća konstantan iterator na poziciju iza zadnjeg elementa</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>c.rbegin()</code></p></td>
+<td align="left" valign="top"><p class="table">Vraća reverzni iterator na poziciju prvog elementa reverznog niza</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>c.rend()</code></p></td>
+<td align="left" valign="top"><p class="table">Vraća reverzni iterator na poziciju iza zadnjeg elementa reverznog niza</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>c.crbegin()</code></p></td>
+<td align="left" valign="top"><p class="table">Vraća konstantan reverzni iterator  na poziciju prvog elementa reverznog niza</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>c.crend()</code></p></td>
+<td align="left" valign="top"><p class="table">Vraća  konstantan reverzni iterator na poziciju iza zadnjeg elementa reverznog niza</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_code_std_vector_lt_t_gt_code_konstrukcija"><code>std::vector&lt;T&gt;</code> - konstrukcija</h2>
+<div class="sectionbody">
+<div class="paragraph"><p><code>std::vector&lt;T&gt;</code> je dinamički alocirano polje tipa <code>T</code>. <code>vector</code> se brine o dinamičkoj alokaciji
+i dealokaciji memorije.
+Elementi u vektoru se nalaze u konsekutivnim lokacijama, što je važno radi efikasnosti pristupa.</p></div>
+<div class="paragraph"><p>Da bismo mogli koristiti <code>vector</code> treba uključiti njegovu datoteku zaglavlja:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;vector&gt;</span><span class="cp"></span>
+</pre></div></div></div>
+<div class="paragraph"><p>Konstruktor koji ne uzima argumente konstruira prazan vektor.</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;</span> <span class="n">svec</span><span class="p">;</span> <span class="c1">// prazan vector stringova</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Konstruktor može uzeti broj elemenata i inicijalizacijsku vrijednost.</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="n">a</span><span class="p">;</span>           <span class="c1">// prazan vektor. Ne sadrži niti jedan element</span>
+<span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="n">b</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>       <span class="c1">// vektor od 10 double-ova, inicijaliziranih nulom</span>
+<span class="n">vector</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;</span> <span class="n">e</span><span class="p">(</span><span class="mi">16</span><span class="p">)</span>   <span class="c1">// vektor od 16 praznih stringova</span>
+<span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="n">c</span><span class="p">(</span><span class="mi">128</span><span class="p">,</span><span class="mf">0.77</span><span class="p">);</span> <span class="c1">// Vektor od 128 double-ova,</span>
+                            <span class="c1">// inicijaliziranih sa 0.77</span>
+<span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="n">d</span><span class="p">{</span><span class="mf">1.1</span><span class="p">,</span><span class="mf">1.2</span><span class="p">,</span><span class="mf">1.3</span><span class="p">,</span><span class="mf">1.4</span><span class="p">};</span> <span class="c1">// inicijalizacija popisom elemenata</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Za inicijalizaciju možemo koristiti i raspon elemenata iz standardnog polja elemenata:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="kt">char</span> <span class="n">niz</span><span class="p">[]</span> <span class="o">=</span> <span class="p">{</span><span class="sc">'a'</span><span class="p">,</span><span class="sc">'b'</span><span class="p">,</span><span class="sc">'c'</span><span class="p">};</span>
+<span class="n">vector</span><span class="o">&lt;</span><span class="kt">char</span><span class="o">&gt;</span> <span class="n">vniz</span><span class="p">(</span><span class="n">niz</span><span class="p">,</span><span class="n">niz</span><span class="o">+</span><span class="mi">3</span><span class="p">);</span>  <span class="c1">//  {'a','b','c'}</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Ako želimo elemente incijalizirati elementima spremnika drugog tipa  trebamo koristiti iteratore:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">list</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">li</span><span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">};</span>
+<span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="n">vd</span><span class="p">(</span><span class="n">li</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">li</span><span class="p">.</span><span class="n">end</span><span class="p">());</span>  <span class="c1">// {1,2,3,4}</span>
+</pre></div></div></div>
+<div class="tableblock">
+<table rules="all" width="100%" frame="border" cellspacing="0" cellpadding="4">
+<caption class="title">Tabela 6. Konstrukcija</caption>
+<colgroup><col width="50%">
+<col width="50%">
+</colgroup><thead>
+<tr>
+<th align="left" valign="top">  Operacija </th>
+<th align="left" valign="top"> Značenje</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left" valign="top"><p class="table"><code>vector&lt;Elem&gt; c</code></p></td>
+<td align="left" valign="top"><p class="table">Dodijeljeni konstruktor; kreira prazan vektor</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>vector&lt;Elem&gt; c(c2)</code></p></td>
+<td align="left" valign="top"><p class="table">Konstruktor kopije</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>vector&lt;Elem&gt; c = c2</code></p></td>
+<td align="left" valign="top"><p class="table">Konstruktor kopije</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>vector&lt;Elem&gt; c(rv)</code></p></td>
+<td align="left" valign="top"><p class="table">Konstruktor kopije premještanjem</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>vector&lt;Elem&gt; c = rv</code></p></td>
+<td align="left" valign="top"><p class="table">Konstruktor kopije premještanjem</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>vector&lt;Elem&gt; c(n)</code></p></td>
+<td align="left" valign="top"><p class="table">Kreira vektor od <code>n</code> elemenata inicijaliziranih dodijeljenim konstruktorom (elementa)</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>vector&lt;Elem&gt; c(n,elem)</code></p></td>
+<td align="left" valign="top"><p class="table">Kreira vektor od <code>n</code> elemenata inicijaliziranih s <code>elem</code></p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>vector&lt;Elem&gt; c(beg,end)</code></p></td>
+<td align="left" valign="top"><p class="table">Kreira vektor inicijaliziran elementima iz raspona <code>[beg,end)</code></p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>vector&lt;Elem&gt; c(initlist)</code></p></td>
+<td align="left" valign="top"><p class="table">Kreira vektor inicijaliziran elementima iz inicijalizacijske  liste <code>initlist</code></p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>vector&lt;Elem&gt; c = initlist</code></p></td>
+<td align="left" valign="top"><p class="table">Kreira vektor inicijaliziran elementima iz inicijalizacijske  liste <code>initlist</code></p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>c.~vector()</code></p></td>
+<td align="left" valign="top"><p class="table">Destruktor</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_code_std_vector_lt_t_gt_code_code_size_code_i_code_capacity_code"><code>std::vector&lt;T&gt;</code> - <code>size</code> i <code>capacity</code></h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Vektor raste automatski kada nema više
+mjesta za novi element u vektoru. Metoda <code>size()</code> daje broj elemenata u vektoru, a metoda <code>capacity()</code>
+daje broj elemenata koji vektor može primiti bez realokacije.</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">a</span><span class="p">;</span>
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">a</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>     <span class="c1">//  ispisuje nulu</span>
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">a</span><span class="p">.</span><span class="n">capacity</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span> <span class="c1">//  ispisuje nulu</span>
+<span class="n">assert</span><span class="p">(</span><span class="n">a</span><span class="p">.</span><span class="n">empty</span><span class="p">());</span> <span class="c1">// a je prazan</span>
+
+<span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">b</span><span class="p">(</span><span class="mi">6</span><span class="p">);</span>
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">b</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>     <span class="c1">//  ispisuje 6</span>
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">b</span><span class="p">.</span><span class="n">capacity</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span> <span class="c1">//  ispisuje 6</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Metoda <code>empty()</code> vraća istinu ako je vektor prazan, odnosno laž ako nije. Makro
+<code>assert()</code> je definiran u zaglavlju <code>&lt;cassert&gt;</code>.</p></div>
+<div class="paragraph"><p>Metodom <code>push_back()</code> ubacujemo novi element iz zadnjeg. Ako nema dovoljno mjesta za novi element
+vektor se <strong>realocira</strong>: osigurava se dovoljno mjesta drugdje u memoriji, kopiraju se svi stari element i dodaje se novi.</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="c1">// Ubaci na kraj vektora novi element = 11</span>
+<span class="n">b</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">11</span><span class="p">);</span>
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">b</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>     <span class="c1">//  ispisuje 7</span>
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">b</span><span class="p">.</span><span class="n">capacity</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span> <span class="c1">//  ispisuje 12</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Pri realokaciji veličina vektora se približno podvostručuje.</p></div>
+<div class="paragraph"><p>Kapacitet vektora se može povećati i pomoću <code>reserve()</code> metode koja osigurava da vektor ima
+dovoljno prostora (ali ne mijenja broj elemenata u njemu).</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="n">b</span><span class="p">.</span><span class="n">reserve</span><span class="p">(</span><span class="mi">16</span><span class="p">);</span>
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">b</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>     <span class="c1">//  ispisuje 7</span>
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">b</span><span class="p">.</span><span class="n">capacity</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span> <span class="c1">//  ispisuje 16</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Broj elemenata se može promijeniti pomoću metode <code>resize(n)</code>. Ako se povećava broj elemenata, novi
+elementi će biti inicijalizirani nulom, odnosno bit će pozvan konstruktor koji ne uzima argumente.
+Ako se broj elementa smanjuje elementi koji ostaju u spremniku čuvaju svoju vrijednost. Kapacitet
+vektora najčešće ostaje isti.</p></div>
+<div class="admonitionblock">
+<table><tbody><tr>
+<td class="icon">
+<div class="title">Napomena</div>
+</td>
+<td class="content">Treba razlikovati <code>resize()</code> i <code>reserve()</code>. Ako na praznom vektoru <code>v</code> pozovemo <code>v.reserve(100)</code>
+on ostaje prazan, ali ima rezerviranu memoriju za 100 elemenata. S druge strane, ako na  praznom vektoru <code>v</code> pozovemo <code>v.resize(100)</code>
+on postaje vektor od 100 elementa  inicijaliziranih dodijeljenim konstruktorom.</td>
+</tr></tbody></table>
+</div>
+<div class="tableblock">
+<table rules="all" width="100%" frame="border" cellspacing="0" cellpadding="4">
+<caption class="title">Tabela 7. Manipulacije veličinom vektora</caption>
+<colgroup><col width="50%">
+<col width="50%">
+</colgroup><thead>
+<tr>
+<th align="left" valign="top">  Operacija </th>
+<th align="left" valign="top"> Značenje</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left" valign="top"><p class="table"><code>c.empty()</code></p></td>
+<td align="left" valign="top"><p class="table">Vraća <code>true</code> ako je vektor praza, a inače <code>false</code></p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>c.size()</code></p></td>
+<td align="left" valign="top"><p class="table">Vraća broj elemenata u vektoru</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>c.max_size()</code></p></td>
+<td align="left" valign="top"><p class="table">Vraća maksimalni mogući broj elemenata u vektoru</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>c.capacity()</code></p></td>
+<td align="left" valign="top"><p class="table">Vraća maksimalni mogući broj elemenata u vektoru bez realokacije</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>c.reserve(num)</code></p></td>
+<td align="left" valign="top"><p class="table">Povećava kapacitet na <code>num</code> ako je bio manji od <code>num</code></p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>c.resize(num)</code></p></td>
+<td align="left" valign="top"><p class="table">Promijeni broj elemenata spremnika na  <code>num</code> (ako spremnik pri tome raste nove elemente inicijaliziraj dodijeljenim konstruktorom)</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>c.resize(num,elem)</code></p></td>
+<td align="left" valign="top"><p class="table">Promijeni broj elemenata spremnika na  <code>num</code> (ako spremnik pri tome raste nove elemente inicijaliziraj kopijom od <code>elem</code>)</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>c.shrink_to_fit()</code></p></td>
+<td align="left" valign="top"><p class="table">Reducira kapacitet na broj elemenata u vektoru</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>c1 == c2</code></p></td>
+<td align="left" valign="top"><p class="table">Vraća <code>true</code> ako je <code>c1</code> jednak <code>c2</code> (zove  == na svakom elementu)</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>c1 != c2</code></p></td>
+<td align="left" valign="top"><p class="table">Vraća <code>true</code> ako <code>c1</code> nije jednak <code>c2</code> (isto što i <code>!(c1==c2)</code>)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_code_std_vector_lt_t_gt_code_operacije_na_citavom_spremniku"><code>std::vector&lt;T&gt;</code>  - operacije na čitavom spremniku</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Ako spremniku pridružujemo spremnik istog tipa za to možemo koristiti operator pridruživanja.
+Ako vektor na lijevoj strani nije prazan njegovi elementi će biti uništeni i zamijenjeni elementima
+vektora desne strane.</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="n">b</span><span class="p">{</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">2.0</span><span class="p">,</span><span class="mf">3.0</span><span class="p">}</span>
+<span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="n">d</span><span class="p">{</span><span class="mf">4.0</span><span class="p">,</span><span class="mf">3.0</span><span class="p">,</span><span class="mf">2.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">0.0</span><span class="p">};</span> <span class="c1">// 5 elemnata</span>
+<span class="n">d</span> <span class="o">=</span> <span class="n">b</span><span class="p">;</span>
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Size = "</span> <span class="o">&lt;&lt;</span> <span class="n">b</span><span class="p">.</span><span class="n">size</span><span class="p">();</span>  <span class="c1">// ispisuje 3</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Kada želimo vektoru pridružiti elemente iz spremnika drugog tipa trebamo koristiti metodu <code>assign()</code>.</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">array</span><span class="o">&lt;</span><span class="kt">double</span><span class="p">,</span> <span class="mi">3</span><span class="o">&gt;</span>  <span class="n">ar</span><span class="p">{</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">2.0</span><span class="p">,</span><span class="mf">3.0</span><span class="p">};</span>
+<span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="n">b</span><span class="p">;</span>   <span class="c1">// prazan vektor</span>
+<span class="n">b</span><span class="p">.</span><span class="n">assign</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">);</span>        <span class="c1">// sada ima 5 elementa jednakih 1.0</span>
+<span class="n">b</span><span class="p">.</span><span class="n">assign</span><span class="p">(</span><span class="n">ar</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span><span class="n">ar</span><span class="p">.</span><span class="n">end</span><span class="p">());</span> <span class="c1">// Sada ima 3 elementa: 1.0,2.0 i 3.0</span>
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Size = "</span> <span class="o">&lt;&lt;</span> <span class="n">b</span><span class="p">.</span><span class="n">size</span><span class="p">();</span> <span class="c1">// ispisuje 3</span>
+</pre></div></div></div>
+<div class="paragraph"><p>U svim ovim operacijama ako spremnik na lijevoj strani nije prazan njegovi elementi se uništavaju.</p></div>
+<div class="tableblock">
+<table rules="all" width="100%" frame="border" cellspacing="0" cellpadding="4">
+<caption class="title">Tabela 8. Operacije na čitavom spremniku</caption>
+<colgroup><col width="50%">
+<col width="50%">
+</colgroup><thead>
+<tr>
+<th align="left" valign="top"> Operacija </th>
+<th align="left" valign="top"> Značenje</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left" valign="top"><p class="table"><code>c = c2</code></p></td>
+<td align="left" valign="top"><p class="table">Pridruži sve elemente spremika <code>c2</code> spremniku <code>c</code></p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>c = rv</code></p></td>
+<td align="left" valign="top"><p class="table">Pridruži premještanjem sve elemente spremika <code>c2</code> spremniku <code>c</code></p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>c = initlist</code></p></td>
+<td align="left" valign="top"><p class="table">Pridruži sve elemente inicijalizacijske liste <code>initlist</code> spremniku <code>c</code></p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>c.assign(n,elem)</code></p></td>
+<td align="left" valign="top"><p class="table">Pridruži <code>n</code> kopija elementa <code>elem`</code></p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>c.assign(beg,end)</code></p></td>
+<td align="left" valign="top"><p class="table">Pridruži elemente iz raspona <code>[beg,end)</code></p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>c.assign(initlist)</code></p></td>
+<td align="left" valign="top"><p class="table">Pridruži sve elemente inicijalizacijske liste <code>initlist</code> spremniku <code>c</code></p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>c1.swap(c2)</code></p></td>
+<td align="left" valign="top"><p class="table">Zamjeni sadržaj spremnika <code>c1</code> i <code>c2</code></p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>swap(c1,c2)</code></p></td>
+<td align="left" valign="top"><p class="table">Zamjeni sadržaj spremnika <code>c1</code> i <code>c2</code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="admonitionblock">
+<table><tbody><tr>
+<td class="icon">
+<div class="title">Napomena</div>
+</td>
+<td class="content">C++ smatra iste spremnike s različitim tipom elemenata različitim tipovima. Tako su
+<code>std::vector&lt;double&gt;</code> i <code>std::vector&lt;float&gt;</code> različiti tipovi i između njih ne možemo koristiti
+operator pridruživanja.</td>
+</tr></tbody></table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_code_std_vector_lt_t_gt_code_dohvat_elemenata"><code>std::vector&lt;T&gt;</code>  - dohvat elemenata</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Dohvat elemenata ide kroz cjelobrojni indeks ili iterator.</p></div>
+<div class="paragraph"><p>Elemente vektora možemo dohvatiti pomoću uglatih zagrada i cjelobrojnih indeksa kao i kod običnog polja.</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="k">for</span><span class="p">(</span><span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">!=</span> <span class="n">b</span><span class="p">.</span><span class="n">size</span><span class="p">();</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="n">b</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">log</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">);</span>
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"b[1] = "</span><span class="o">&lt;&lt;</span> <span class="n">b</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span> <span class="c1">// nema provjere indeksa</span>
+<span class="kt">double</span> <span class="n">xx</span> <span class="o">=</span> <span class="n">b</span><span class="p">.</span><span class="n">at</span><span class="p">(</span><span class="mi">14</span><span class="p">);</span> <span class="c1">// at() umjesto []: dohvat pomoću indeksa s</span>
+                      <span class="c1">// provjerom granica - izbacuje izuzetak</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Indeks <strong>počinje od nule</strong>; metoda <code>size()</code> iz klase <code>vector&lt;T&gt;</code> nam daje broj elemenata u polju.</p></div>
+<div class="paragraph"><p><strong>Iteratori</strong> služe za kretanje kroz spremnike i ponašaju se kao pokazivači. Svaki spremnik ima metodu
+<code>begin()</code> koja vraća iterator koji pokazuje na prvi element spremnika i metodu <code>end()</code> koja vraća
+iterator koji pokazuje na jedno mjesto iz zadnjeg u spremiku.</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="k">for</span><span class="p">(</span><span class="k">auto</span> <span class="n">it</span> <span class="o">=</span> <span class="n">b</span><span class="p">.</span><span class="n">begin</span><span class="p">();</span> <span class="n">it</span> <span class="o">!=</span> <span class="n">b</span><span class="p">.</span><span class="n">end</span><span class="p">();</span> <span class="o">++</span><span class="n">it</span><span class="p">)</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="o">*</span><span class="n">it</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span> <span class="c1">// dohvat pomoću iteratora</span>
+<span class="n">assert</span><span class="p">(</span><span class="o">*</span><span class="n">b</span><span class="p">.</span><span class="n">begin</span><span class="p">()</span> <span class="o">==</span> <span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Moguće je direktno dobiti referencu na prvi odnosno zadnji element vektora kroz
+metode <code>front()</code> i <code>back()</code>:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="n">b</span><span class="p">.</span><span class="n">front</span><span class="p">()</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="n">b</span><span class="p">.</span><span class="n">back</span><span class="p">()</span> <span class="o">=</span> <span class="mi">7</span><span class="p">;</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Ne provjerava se da li element postoji.</p></div>
+<div class="paragraph"><p>Metode <code>data()</code> vraća pokazivač na prvi elemet u spremniku, dakle pokazivač na memoriju
+koja sadrži sve elemente. To omogućava da <code>vector</code> koristimo kao C-polje.</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="kt">int</span> <span class="o">*</span> <span class="n">pb</span> <span class="o">=</span> <span class="n">b</span><span class="p">.</span><span class="n">data</span><span class="p">();</span>
+<span class="n">assert</span><span class="p">(</span><span class="n">pb</span> <span class="o">==</span> <span class="o">&amp;</span><span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
+</pre></div></div></div>
+<div class="tableblock">
+<table rules="all" width="100%" frame="border" cellspacing="0" cellpadding="4">
+<caption class="title">Tabela 9. Dohvat elemenata</caption>
+<colgroup><col width="50%">
+<col width="50%">
+</colgroup><thead>
+<tr>
+<th align="left" valign="top"> Operacija </th>
+<th align="left" valign="top"> Značenje</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left" valign="top"><p class="table"><code>c[idx]</code></p></td>
+<td align="left" valign="top"><p class="table">Vraća element s indeksom <code>idx</code> bez provjere indeksa</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>c.at(idx)</code></p></td>
+<td align="left" valign="top"><p class="table">Vraća element s indeksom <code>idx</code>. Izbacuje <code>range-error</code> izuzetak ako je indeks van granica</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>c.front()</code></p></td>
+<td align="left" valign="top"><p class="table">Vraća prvi element</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>c.back()</code></p></td>
+<td align="left" valign="top"><p class="table">Vraća zadnji element</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>c.data()</code></p></td>
+<td align="left" valign="top"><p class="table">Vraća pokazivač na prvi element vektora.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="tableblock">
+<table rules="all" width="100%" frame="border" cellspacing="0" cellpadding="4">
+<caption class="title">Tabela 10. Iteratori</caption>
+<colgroup><col width="50%">
+<col width="50%">
+</colgroup><thead>
+<tr>
+<th align="left" valign="top"> Operacija </th>
+<th align="left" valign="top"> Značenje</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left" valign="top"><p class="table"><code>c.begin()</code></p></td>
+<td align="left" valign="top"><p class="table">Vraća iterator na poziciju prvog elementa</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>c.end()</code></p></td>
+<td align="left" valign="top"><p class="table">Vraća iterator na poziciju iza zadnjeg elementa</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>c.cbegin()</code></p></td>
+<td align="left" valign="top"><p class="table">Vraća konstantan iterator na poziciju prvog elementa</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>c.cend()</code></p></td>
+<td align="left" valign="top"><p class="table">Vraća konstantan iterator na poziciju iza zadnjeg elementa</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>c.rbegin()</code></p></td>
+<td align="left" valign="top"><p class="table">Vraća reverzni iterator na poziciju prvog elementa reverznog niza</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>c.rend()</code></p></td>
+<td align="left" valign="top"><p class="table">Vraća reverzni iterator na poziciju iza zadnjeg elementa reverznog niza</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>c.crbegin()</code></p></td>
+<td align="left" valign="top"><p class="table">Vraća konstantan reverzni iterator  na poziciju prvog elementa reverznog niza</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>c.crend()</code></p></td>
+<td align="left" valign="top"><p class="table">Vraća  konstantan reverzni iterator na poziciju iza zadnjeg elementa reverznog niza</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_code_std_vector_lt_t_gt_code_ubacivanje_elementa"><code>std::vector&lt;T&gt;</code>  -  ubacivanje elementa</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Kod vektora ubacivanje novog elementa je efikasno samo na kraju vektora. Za to koristimo metodu
+<code>push_back()</code>. Zadnji se element može efikasno izbaciti iz vektor metodom <code>pop_back()</code>.</p></div>
+<div class="paragraph"><p>Kada veličina vektora dosegne njegov kapacitet, pri ubacivanju novog elementa dolazi do realokacije vektora.
+Rezervira se nova memorijska lokacija za vektor, veća od trenutne. Svi se stari elementi vektora kopiraju
+na novu lokaciju i dodaje se novi element. Memorija koju je vektor ranije koristio se dealocira.</p></div>
+<div class="paragraph"><p>Elemente možemo ubacivati u vektor na bilo koje mjestu pomoću metode <code>insert()</code>. Ta operacija ima linearnu
+složenost. Za brisanje koristimo metodu <code>erase()</code>.</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">b</span><span class="p">;</span> <span class="c1">// b = prazan vektor</span>
+<span class="n">b</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="n">b</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+<span class="n">b</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>  <span class="c1">// b = 1,2,3</span>
+<span class="n">b</span><span class="p">.</span><span class="n">pop_back</span><span class="p">();</span>    <span class="c1">// b = 1,2</span>
+<span class="k">auto</span> <span class="n">it</span> <span class="o">=</span> <span class="n">b</span><span class="p">.</span><span class="n">begin</span><span class="p">();</span>
+<span class="n">it</span><span class="o">++</span><span class="p">;</span>
+<span class="n">b</span><span class="p">.</span><span class="n">insert</span><span class="p">(</span><span class="n">it</span><span class="p">,</span><span class="mi">3</span><span class="p">);</span>  <span class="c1">// b = 1,3,2</span>
+<span class="o">--</span><span class="n">it</span><span class="p">;</span>
+<span class="k">auto</span> <span class="n">it_beg</span> <span class="o">=</span> <span class="n">b</span><span class="p">.</span><span class="n">erase</span><span class="p">(</span><span class="n">it</span><span class="p">);</span> <span class="c1">// b = 3,2</span>
+<span class="n">assert</span><span class="p">(</span><span class="o">*</span><span class="n">it_beg</span> <span class="o">==</span> <span class="mi">3</span><span class="p">);</span>
+</pre></div></div></div>
+<div class="tableblock">
+<table rules="all" width="100%" frame="border" cellspacing="0" cellpadding="4">
+<caption class="title">Tabela 11. Ubacivanje i izbacivanje elemenata</caption>
+<colgroup><col width="50%">
+<col width="50%">
+</colgroup><thead>
+<tr>
+<th align="left" valign="top"> Operacija </th>
+<th align="left" valign="top"> Značenje</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left" valign="top"><p class="table"><code>c.push_back(elem)</code></p></td>
+<td align="left" valign="top"><p class="table">Dodaj element <code>elem</code> na kraj spremnika</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>c.pop_back()</code></p></td>
+<td align="left" valign="top"><p class="table">Ukloni  zadnji element iz spremnika (ne vraća ga)</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>c.insert(pos,elem)</code></p></td>
+<td align="left" valign="top"><p class="table">Ubaci kopiju elemente <code>elem</code> <strong>ispred</strong> pozicije na koju pokazuje iterator <code>pos</code> i vrati iterator koji pokazuje na
+poziciju novoubačenog elementa</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>c.insert(pos,n,elem)</code></p></td>
+<td align="left" valign="top"><p class="table">Ubaci <code>n</code> kopija elementa <code>elem</code> <strong>ispred</strong> pozicije na koju pokazuje iterator <code>pos</code> i vrati
+iterator koji pokazuje na poziciju prvog novoubačenog elementa</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>c.insert(pos,beg,end)</code></p></td>
+<td align="left" valign="top"><p class="table">Ubaci kopiju elemenata iz raspona  <code>[beg,end)</code> <strong>ispred</strong> pozicije na koju pokazuje iterator <code>pos</code> i vrati
+iterator koji pokazuje na poziciju prvog novoubačenog elementa (ili <code>pos</code> ako je raspon bio prazan)</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>c.insert(pos,initlist)</code></p></td>
+<td align="left" valign="top"><p class="table">Ubaci kopiju elemenata inicijalizacijske liste  <code>initlist</code> <strong>ispred</strong> pozicije na koju pokazuje
+ iterator <code>pos</code> i vrati iterator koji pokazuje na poziciju prvog novoubačenog elementa (ili <code>pos</code> ako je lista bila prazna)
+iterator position pos and returns the position of the f rst new element (or pos if there is no new element;</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>c.erase(pos)</code></p></td>
+<td align="left" valign="top"><p class="table">Obriši element na koji pokazuje iterator <code>pos</code> i vrati iterator koji pokazuje na poziciju sljedećeg elementa</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>c.erase(beg,end)</code></p></td>
+<td align="left" valign="top"><p class="table">Obriši elemente u rasponu <code>[beg,end)</code> i vrati iterator koji pokazuje na poziciju sljedećeg elementa</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>c.clear()</code></p></td>
+<td align="left" valign="top"><p class="table">Obriši sve elemente u spremniku.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_code_std_vector_lt_t_gt_code_brisanje_elementa"><code>std::vector&lt;T&gt;</code>  -  brisanje elementa</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Brisanje elementa vrši metoda <code>erase()</code>. Metoda uzima iterator koji pokazuje na
+element za brisanje ili raspon iteratora koji određuje elemente za brisanje:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">unsigned</span> <span class="kt">int</span><span class="o">&gt;</span> <span class="n">b</span><span class="p">(</span><span class="mi">7</span><span class="p">);</span>
+<span class="k">for</span><span class="p">(</span><span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">b</span><span class="p">.</span><span class="n">size</span><span class="p">();</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span>
+    <span class="n">b</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span>
+<span class="c1">// sada je b = 1,3,5,7,9,11,13</span>
+
+<span class="n">b</span><span class="p">.</span><span class="n">erase</span><span class="p">(</span><span class="n">b</span><span class="p">.</span><span class="n">begin</span><span class="p">()</span><span class="o">+</span><span class="mi">1</span><span class="p">);</span> <span class="c1">// obriši drugi element, b = 1,5,7,9,11,13</span>
+<span class="n">b</span><span class="p">.</span><span class="n">erase</span><span class="p">(</span><span class="n">b</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">b</span><span class="p">.</span><span class="n">begin</span><span class="p">()</span><span class="o">+</span><span class="mi">3</span><span class="p">);</span> <span class="c1">// obriši prva tri elementa, b = 9,11,13</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Brisanje elementa zadanog po vrijednosti vršimo pomoću <code>std::remove</code> algoritma
+(zaglavlje <code>&lt;algorithm&gt;</code>) i metode <code>erase()</code> koristeći <strong>erase-remove idiom</strong>.
+Algoritam   <code>std::remove(it_begin, it_end, val)</code> pronalazi <code>val</code> u rasponu <code>[it_begin, it_end)</code>
+izbacuje ga iz tog raspona i vraća iterator koji pokazuje na kraj skraćenog raspona.
+Kako algoritmi ne mogu vršiti operacije na spremniku on ne izbacuje element iz spremnika. Za taj dio
+posla moramo pozvati <code>erase()</code> metodu.</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="c1">// remove-erase idiom.</span>
+<span class="k">auto</span> <span class="n">it</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">remove</span><span class="p">(</span><span class="n">b</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">b</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span> <span class="mi">11</span><span class="p">);</span>  <span class="c1">// it je novi kraj raspona</span>
+<span class="n">b</span><span class="p">.</span><span class="n">erase</span><span class="p">(</span><span class="n">it</span><span class="p">,</span> <span class="n">b</span><span class="p">.</span><span class="n">end</span><span class="p">());</span>  <span class="c1">// b = 9,13</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Zadnji element se može ukloniti metodom <code>pop_back()</code>.</p></div>
+<div class="paragraph"><p>Svi elementi se mogu obrisati metodom <code>clear()</code>:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="n">vd</span><span class="p">.</span><span class="n">clear</span><span class="p">();</span>
+<span class="n">assert</span><span class="p">(</span><span class="n">vd</span><span class="p">.</span><span class="n">empty</span><span class="p">());</span>
+</pre></div></div></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_code_std_vector_lt_t_gt_code_smjestavanje_elementa"><code>std::vector&lt;T&gt;</code>  - smještavanje elementa</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Kada se element u vektor ubacuje pomoću <code>push_back()</code> metode vrši se konstrukcija elementa
+kopiranjem. Element se može direktno konstruirati u vektoru pomoću  <code>emplace_back()</code>
+metode. Ona konstruira element iza zadnjeg elementa u vektoru <strong>pozivajući direktno konstruktor</strong>;
+metoda zato uzima <strong>argumente konstruktora</strong>.</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="k">struct</span> <span class="n">X</span><span class="p">{</span>
+    <span class="n">X</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="kt">double</span> <span class="n">y</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">)</span> <span class="o">:</span> <span class="n">ii</span><span class="p">(</span><span class="n">i</span><span class="p">),</span> <span class="n">yy</span><span class="p">(</span><span class="n">y</span><span class="p">)</span> <span class="p">{}</span>
+    <span class="kt">int</span> <span class="n">ii</span><span class="p">;</span>
+    <span class="kt">double</span> <span class="n">yy</span><span class="p">;</span>
+<span class="p">};</span>
+
+
+<span class="n">X</span> <span class="n">xa</span><span class="p">,</span> <span class="n">xb</span><span class="p">;</span>
+<span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">X</span><span class="o">&gt;</span> <span class="n">xvec</span><span class="p">;</span>
+<span class="n">xvec</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">xa</span><span class="p">);</span> <span class="c1">// kopiranje</span>
+<span class="n">xvec</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">xb</span><span class="p">);</span> <span class="c1">// kopiranje</span>
+<span class="n">xvec</span><span class="p">.</span><span class="n">emplace_back</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mf">2.2</span><span class="p">);</span> <span class="c1">// konstrukcija</span>
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">xvec</span><span class="p">.</span><span class="n">at</span><span class="p">(</span><span class="mi">2</span><span class="p">).</span><span class="n">yy</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span> <span class="c1">// ispisuje 2.2</span>
+</pre></div></div></div>
+<div class="tableblock">
+<table rules="all" width="100%" frame="border" cellspacing="0" cellpadding="4">
+<caption class="title">Tabela 12. Smještavanje elementa</caption>
+<colgroup><col width="50%">
+<col width="50%">
+</colgroup><thead>
+<tr>
+<th align="left" valign="top"> Operacija </th>
+<th align="left" valign="top"> Značenje</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left" valign="top"><p class="table"><code>c.emplace(pos,args...)</code></p></td>
+<td align="left" valign="top"><p class="table">Ubacuje kopiju elementa inicijaliziranog pomoću <code>args</code> ispred pozicije na koju pokazuje iterator
+<code>pos</code> i vraća iterator koji pokazuje na novi element.</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>c.emplace_back(args...)</code></p></td>
+<td align="left" valign="top"><p class="table">Dodaje kopiju elementa inicijaliziranog pomoću <code>args</code> na kraj spremnika. Ne vraća ništa</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_svojstva_vektora">Svojstva vektora</h2>
+<div class="sectionbody">
+<div class="ulist"><ul>
+<li>
+<p>
+Vektor čuva elemente na uzastopnim lokacijama u jednom bloku memorije i stoga je memorijski efikasan.
+</p>
+</li>
+<li>
+<p>
+Brine o dinamičkoj alokaciji i dealokaciji memorije te predstavlja vektor neograničene veličine.
+</p>
+</li>
+<li>
+<p>
+Pri ekspanziji može biti realociran što obezvrijeđuje iteratore i reference na elemente.
+</p>
+</li>
+<li>
+<p>
+Direktno može dohvatiti svaki element u konstantnom vremenu.
+</p>
+</li>
+<li>
+<p>
+Daje iteratore izravnog dohvata.
+</p>
+</li>
+<li>
+<p>
+Efikasan je kod ubacivanja i brisanja elemenata na kraju vektora.
+</p>
+</li>
+<li>
+<p>
+<strong>Nije efikasan</strong> kod ubacivanja i brisanja elemenata na početku i u sredini vektora.
+</p>
+</li>
+<li>
+<p>
+Ako je izbačen izuzetak u metodi <code>push_back()</code> onda ta metoda nema efekta; <code>pop_back()</code> ne izbacuje izuzetke.
+</p>
+</li>
+<li>
+<p>
+Ako tip podatka koji koristimo u vektoru ne izbacuje izuzetke pri kopiranju i premještanju, onda sve
+operacije na vektoru imaju svojstvo da su ili uspješne ili nemaju efekta.
+</p>
+</li>
+</ul></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_code_std_vector_lt_bool_gt_code"><code>std::vector&lt;bool&gt;</code></h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Specijalizacija vektora  <code>std::vector&lt;bool&gt;</code> je specifična jer optimizira dinamički
+alociranu memoriju. Umjesto da za svaki element vektora alocira jedan <code>bool</code> (jedan bajt)
+<code>std::vector&lt;bool&gt;</code> svaki svoj element reprezentira jednim bitom.</p></div>
+<div class="paragraph"><p>Posljedica toga je da  <code>std::vector&lt;bool&gt;</code> nema sva svojstva pravog sekvencijalnog spremnika.
+Pored toga, ima metodu <code>flip()</code> koja mijenja poljedini bit iz nule u jedan ili obratno.</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">bool</span><span class="o">&gt;</span> <span class="n">vec</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="nb">true</span><span class="p">);</span>
+<span class="c1">// Ispis vektora.</span>
+<span class="k">for</span><span class="p">(</span><span class="k">auto</span> <span class="nl">x</span> <span class="p">:</span> <span class="n">vec</span><span class="p">)</span> <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">x</span><span class="p">;</span>  <span class="c1">// 111111111111</span>
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="c1">// Promijeni sve jedinice u nulu i obratno.</span>
+<span class="n">vec</span><span class="p">.</span><span class="n">flip</span><span class="p">();</span> <span class="c1">// 0-&gt;1, 1-&gt;0</span>
+<span class="k">for</span><span class="p">(</span><span class="k">auto</span> <span class="nl">x</span> <span class="p">:</span> <span class="n">vec</span><span class="p">)</span> <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">x</span><span class="p">;</span>  <span class="c1">// 000000000000</span>
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+
+<span class="c1">// Promijeni samo 4. i 11. element</span>
+<span class="n">vec</span><span class="p">[</span><span class="mi">3</span><span class="p">].</span><span class="n">flip</span><span class="p">();</span>
+<span class="n">vec</span><span class="p">[</span><span class="mi">10</span><span class="p">].</span><span class="n">flip</span><span class="p">();</span>
+<span class="n">vec</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span> <span class="c1">// standardno prodruživanje</span>
+<span class="k">for</span><span class="p">(</span><span class="k">auto</span> <span class="nl">x</span> <span class="p">:</span> <span class="n">vec</span><span class="p">)</span> <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">x</span><span class="p">;</span>  <span class="c1">// 100100000010</span>
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+
+<span class="c1">// Dodaj nove elemente na kraj spremnika.</span>
+<span class="n">vec</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="nb">true</span><span class="p">);</span>
+<span class="n">vec</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="nb">false</span><span class="p">);</span>
+<span class="n">vec</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="nb">true</span><span class="p">);</span>
+
+<span class="k">for</span><span class="p">(</span><span class="k">auto</span> <span class="nl">x</span> <span class="p">:</span> <span class="n">vec</span><span class="p">)</span> <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">x</span><span class="p">;</span>  <span class="c1">// 100100000010101</span>
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Operator indeksiranja vraća <em>proxy</em> objekt a ne referencu na <code>bool</code> tako da je sljedeći kod neispravan:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="k">auto</span> <span class="o">&amp;</span> <span class="n">v</span>  <span class="o">=</span> <span class="n">vec</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>        <span class="c1">// greška, [] vraća privremeni proxy objekt</span>
+<span class="k">auto</span> <span class="o">&amp;</span> <span class="n">vv</span> <span class="o">=</span> <span class="o">*</span><span class="n">vec</span><span class="p">.</span><span class="n">begin</span><span class="p">();</span>  <span class="c1">// greška, izraz vraća privremeni proxy objekt</span>
+</pre></div></div></div>
+<div class="sect2">
+<h3 id="_code_std_bitset_lt_n_gt_code"><code>std::bitset&lt;N&gt;</code></h3>
+<div class="paragraph"><p>Ako trebamo vektor bitova konačne duljine onda je bolje koristiti <code>std::bitset&lt;N&gt;</code>.
+Spremnik <code>bitset</code> kao parametar predloška uzima broj bitova, a kao i <code>std::vector&lt;bool&gt;</code> pamti bitove na optimalan
+način. Sučelje <code>bitset</code>-a se može vidjeti u ovom primjeru:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;bitset&gt;</span><span class="cp"></span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">bitset</span><span class="o">&lt;</span><span class="mi">32</span><span class="o">&gt;</span> <span class="n">flags</span><span class="p">;</span>  <span class="c1">// flags = 00000000000000000000000000000000</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"flags = "</span>
+             <span class="o">&lt;&lt;</span> <span class="n">flags</span><span class="p">.</span><span class="n">to_string</span><span class="p">()</span> <span class="c1">// to_string() pretvara bitset u string</span>
+             <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>        <span class="c1">// nula i jedinica</span>
+  <span class="n">flags</span><span class="p">.</span><span class="n">set</span><span class="p">(</span><span class="mi">11</span><span class="p">);</span> <span class="c1">// postavi dvanaesti bit</span>
+  <span class="n">flags</span><span class="p">[</span><span class="mi">10</span><span class="p">]</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span> <span class="c1">// postavi jedanaesti bit</span>
+  <span class="n">flags</span><span class="p">.</span><span class="n">flip</span><span class="p">(</span><span class="mi">9</span><span class="p">);</span>    <span class="c1">// deseti bit promijeni iz nule u jedinicu</span>
+  <span class="c1">// sada je flags = 00000000000000000000111000000000</span>
+  <span class="n">flags</span><span class="p">.</span><span class="n">flip</span><span class="p">();</span> <span class="c1">// invertiraj sve bitove</span>
+  <span class="c1">// sada je flags = 11111111111111111111000111111111</span>
+
+  <span class="n">std</span><span class="o">::</span><span class="n">bitset</span><span class="o">&lt;</span><span class="mi">4</span><span class="o">&gt;</span> <span class="n">fl1</span><span class="p">(</span><span class="s">"0011"</span><span class="p">);</span> <span class="c1">// konstruiraj bitset iz stringa</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">bitset</span><span class="o">&lt;</span><span class="mi">4</span><span class="o">&gt;</span> <span class="n">fl2</span><span class="p">(</span><span class="s">"0101"</span><span class="p">);</span>
+
+  <span class="c1">// Logičke operacije nad bitset objektima</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"fl1 &amp; fl2: "</span> <span class="o">&lt;&lt;</span> <span class="p">(</span><span class="n">fl1</span> <span class="o">&amp;</span> <span class="n">fl2</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span> <span class="c1">// fl1 &amp; fl2: 0001</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"fl1 | fl2: "</span> <span class="o">&lt;&lt;</span> <span class="p">(</span><span class="n">fl1</span> <span class="o">|</span> <span class="n">fl2</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span> <span class="c1">// fl1 | fl2: 0111</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"fl1 ^ fl2: "</span> <span class="o">&lt;&lt;</span> <span class="p">(</span><span class="n">fl1</span> <span class="o">^</span> <span class="n">fl2</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span> <span class="c1">// fl1 ^ fl2: 0110</span>
+
+  <span class="c1">// Ispiši vrijednost kao broj</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">fl1</span><span class="p">.</span><span class="n">to_ulong</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>  <span class="c1">// ispisuje 3</span>
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div></div></div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_code_std_deque_lt_t_gt_code"><code>std::deque&lt;T&gt;</code></h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Da bismo mogli koristiti <code>deque</code>  (<em>double-ended queue</em>) treba uključiti njegovu datoteku zaglavlja:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;deque&gt;</span><span class="cp"></span>
+</pre></div></div></div>
+<div class="paragraph"><p>Spremnik <code>deque</code> je vrlo sličan vektoru. Dinamički alocira i dealocira memoriju
+te dozvoljava direktan pristup elementima  pomoću operatora indeksiranja i iteratora.</p></div>
+<div class="paragraph"><p>Za razliku od vektora  <code>deque</code> dozvoljava efikasno ubacivanje elemenata na oba kraja spremnika.
+Stoga ima, pored metode <code>push_back()</code> i metodu <code>push_front()</code>; zatim <code>pop_back()</code> i <code>pop_front()</code> te
+<code>emplace_back()</code> i <code>emplace_front()</code>.</p></div>
+<div class="paragraph"><p><code>deque</code> se obično implementira kao više blokova memorije koji ne čine nužno jedan kontinuirani
+blok memorije, kao što je to slučaj kod vektora. Stoga je memorijski manje efikasan od vektora.</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">deque</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span> <span class="n">dec</span><span class="p">;</span>
+
+<span class="n">dec</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="mf">1.0</span><span class="p">);</span>
+<span class="n">dec</span><span class="p">.</span><span class="n">push_front</span><span class="p">(</span><span class="o">-</span><span class="mf">1.0</span><span class="p">);</span>
+
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">dec</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span> <span class="c1">// ispisuje -1.0</span>
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">dec</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span> <span class="c1">// ispisuje 1.0</span>
+</pre></div></div></div>
+<div class="ulist"><ul>
+<li>
+<p>
+<code>deque</code> ima gotovo isto sučelje kao i <code>vector</code>. Iznimka je što <strong>nema metode</strong>
+<code>capacity()</code> i <code>reserve()</code>. Ima metode <code>push_front()</code> i  <code>pop_front()</code> koje vektor nema. Sve ostale metode
+su iste kao i kod vektora.
+</p>
+</li>
+<li>
+<p>
+Ubacivanje i brisanje elementa na oba kraja spremnika je brzo, ali je u sredini spremnika sporo.
+</p>
+</li>
+<li>
+<p>
+Daje iteratore izravnog dohvata.
+</p>
+</li>
+<li>
+<p>
+Iteratori su mu sporiji od  vektorovih iteratora.  Svako ubacivanje elementa i svako brisanje elementa
+obezvrijeđuje sve iteratore i reference na elemente spremnika.
+</p>
+</li>
+<li>
+<p>
+Ako je izbačen izuzetak u metodi <code>push_back()</code> ili <code>push_front()</code> onda ta metoda nema efekta; <code>pop_back()</code>
+i <code>pop_front()</code> ne izbacuju izuzetke.
+</p>
+</li>
+<li>
+<p>
+Kao i kod vektora, ako tip podatka koji koristimo ne izbacuje izuzetke pri kopiranju i premještanju, onda sve
+operacije na <code>deque</code>-u imaju svojstvo da su ili uspješne ili nemaju efekta.
+</p>
+</li>
+</ul></div>
+<div class="paragraph"><p>Spremnik  <code>std::deque&lt;T&gt;</code> treba koristiti samo kada je bitno da se elementi mogu ubacivati/izbacivati
+na oba kraja spremnika (dakle, kada nam treba <strong>red</strong>). Bez toga  <code>std::deque&lt;T&gt;</code> nema nikakve
+prednosti pred vektorom.</p></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_code_std_list_lt_t_gt_code_konstrukcija"><code>std::list&lt;T&gt;</code> - konstrukcija</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Da bismo mogli koristiti <code>list</code> treba uključiti njegovu datoteku zaglavlja:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;list&gt;</span><span class="cp"></span>
+</pre></div></div></div>
+<div class="paragraph"><p>Ovaj spremnik predstavlja dvostruko povezanu listu. Stoga nudi samo dvosmjerne iteratore,
+a ne iteratore izravnog dohvata kao <code>vector</code> i <code>deque</code>.</p></div>
+<div class="paragraph"><p>Elementi liste mogu se nalaziti bilo gdje u memoriji, a povezani su pokazivačima, te stoga lista nije memorijski efikasna.</p></div>
+<div class="paragraph"><p>Lista ima iste konstruktore kao i <code>vector</code>:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">list</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">li1</span><span class="p">;</span> <span class="c1">// prazna lista</span>
+<span class="n">std</span><span class="o">::</span><span class="n">list</span><span class="o">&lt;</span><span class="kt">char</span><span class="o">&gt;</span> <span class="n">lc1</span><span class="p">(</span><span class="mi">16</span><span class="p">);</span> <span class="c1">// lista od 16 elemenata (inicijalizirani nulama)</span>
+<span class="n">std</span><span class="o">::</span><span class="n">list</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span> <span class="n">lf1</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mf">1.2f</span><span class="p">);</span> <span class="c1">// lista od 8 elemenata inicijaliziranih sa 1.2f</span>
+<span class="n">std</span><span class="o">::</span><span class="n">list</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">li2</span><span class="p">(</span><span class="n">lf1</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">lf1</span><span class="p">.</span><span class="n">end</span><span class="p">());</span> <span class="c1">// lista inicijalizirana elementima</span>
+                                            <span class="c1">// drugog spremnika</span>
+<span class="n">std</span><span class="o">::</span><span class="n">list</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">li3</span><span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">};</span>  <span class="c1">// inicijalizacija navođenjem elemenata</span>
+</pre></div></div></div>
+<div class="tableblock">
+<table rules="all" width="100%" frame="border" cellspacing="0" cellpadding="4">
+<caption class="title">Tabela 13. Konstrukcija</caption>
+<colgroup><col width="50%">
+<col width="50%">
+</colgroup><thead>
+<tr>
+<th align="left" valign="top">  Operacija </th>
+<th align="left" valign="top"> Značenje</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left" valign="top"><p class="table"><code>list&lt;Elem&gt; c</code></p></td>
+<td align="left" valign="top"><p class="table">Dodijeljeni konstruktor; kreira praznu listu</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>list&lt;Elem&gt; c(c2)</code></p></td>
+<td align="left" valign="top"><p class="table">Konstruktor kopije</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>list&lt;Elem&gt; c = c2</code></p></td>
+<td align="left" valign="top"><p class="table">Konstruktor kopije</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>list&lt;Elem&gt; c(rv)</code></p></td>
+<td align="left" valign="top"><p class="table">Konstruktor kopije premještanjem</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>list&lt;Elem&gt; c = rv</code></p></td>
+<td align="left" valign="top"><p class="table">Konstruktor kopije premještanjem</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>list&lt;Elem&gt; c(n)</code></p></td>
+<td align="left" valign="top"><p class="table">Kreira listu od <code>n</code> elemenata inicijaliziranih dodijeljenim konstruktorom (elementa)</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>list&lt;Elem&gt; c(n,elem)</code></p></td>
+<td align="left" valign="top"><p class="table">Kreira listu od <code>n</code> elemenata inicijaliziranih s <code>elem</code></p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>list&lt;Elem&gt; c(beg,end)</code></p></td>
+<td align="left" valign="top"><p class="table">Kreira listu inicijaliziran elementima iz raspona <code>[beg,end)</code></p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>list&lt;Elem&gt; c(initlist)</code></p></td>
+<td align="left" valign="top"><p class="table">Kreira listu inicijaliziran elementima iz inicijalizacijske  liste <code>initlist</code></p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>list&lt;Elem&gt; c = initlist</code></p></td>
+<td align="left" valign="top"><p class="table">Kreira listu inicijaliziran elementima iz inicijalizacijske  liste <code>initlist</code></p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>c.~list()</code></p></td>
+<td align="left" valign="top"><p class="table">Destruktor</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="paragraph"><p>Kao i kod ostalih sekvencijalnih spremnika postoje sljedeće operacije koje ne mijenjaju stanje spremika.</p></div>
+<div class="tableblock">
+<table rules="all" width="100%" frame="border" cellspacing="0" cellpadding="4">
+<caption class="title">Tabela 14. Manipulacije veličinom vektora</caption>
+<colgroup><col width="50%">
+<col width="50%">
+</colgroup><thead>
+<tr>
+<th align="left" valign="top">  Operacija </th>
+<th align="left" valign="top"> Značenje</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left" valign="top"><p class="table"><code>c.empty()</code></p></td>
+<td align="left" valign="top"><p class="table">Vraća <code>true</code> ako je lista  prazna, a inače <code>false</code></p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>c.size()</code></p></td>
+<td align="left" valign="top"><p class="table">Vraća broj elemenata u listi</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>c.max_size()</code></p></td>
+<td align="left" valign="top"><p class="table">Vraća maksimalni mogući broj elemenata u listi</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>c1 == c2</code></p></td>
+<td align="left" valign="top"><p class="table">Vraća <code>true</code> ako je <code>c1</code> jednak <code>c2</code> (zove  == na svakom elementu)</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>c1 != c2</code></p></td>
+<td align="left" valign="top"><p class="table">Vraća <code>true</code> ako <code>c1</code> nije jednak <code>c2</code> (isto što i <code>!(c1==c2)</code>)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="paragraph"><p>Metode  <code>capacity()</code>,  <code>reserve()</code> i   <code>shrink_to_fit()</code>  ne postoje jer nema potrebe za njima.</p></div>
+<div class="paragraph"><p>Operacije na čitavom spremniku su iste kao i kod ostalih sekvencijalnih spremnika:</p></div>
+<div class="tableblock">
+<table rules="all" width="100%" frame="border" cellspacing="0" cellpadding="4">
+<caption class="title">Tabela 15. Operacije na čitavom spremniku</caption>
+<colgroup><col width="50%">
+<col width="50%">
+</colgroup><thead>
+<tr>
+<th align="left" valign="top"> Operacija </th>
+<th align="left" valign="top"> Značenje</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left" valign="top"><p class="table"><code>c = c2</code></p></td>
+<td align="left" valign="top"><p class="table">Pridruži sve elemente spremika <code>c2</code> spremniku <code>c</code></p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>c = rv</code></p></td>
+<td align="left" valign="top"><p class="table">Pridruži premještanjem sve elemente spremika <code>c2</code> spremniku <code>c</code></p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>c = initlist</code></p></td>
+<td align="left" valign="top"><p class="table">Pridruži sve elemente inicijalizacijske liste <code>initlist</code> spremniku <code>c</code></p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>c.assign(n,elem)</code></p></td>
+<td align="left" valign="top"><p class="table">Pridruži <code>n</code> kopija elementa <code>elem`</code></p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>c.assign(beg,end)</code></p></td>
+<td align="left" valign="top"><p class="table">Pridruži elemente iz raspona <code>[beg,end)</code></p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>c.assign(initlist)</code></p></td>
+<td align="left" valign="top"><p class="table">Pridruži sve elemente inicijalizacijske liste <code>initlist</code> spremniku <code>c</code></p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>c1.swap(c2)</code></p></td>
+<td align="left" valign="top"><p class="table">Zamjeni sadržaj spremnika <code>c1</code> i <code>c2</code></p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>swap(c1,c2)</code></p></td>
+<td align="left" valign="top"><p class="table">Zamjeni sadržaj spremnika <code>c1</code> i <code>c2</code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_code_std_list_lt_t_gt_code_dohvat_elemenata"><code>std::list&lt;T&gt;</code> - dohvat elemenata</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Dohvat elemenata ide kroz pokazivače (nema operatora dohvata <code>[]</code>) te kroz metode <code>front()</code> i
+<code>back()</code>.</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="c1">// Dohvat elemenata kroz pokazivač</span>
+<span class="k">for</span><span class="p">(</span><span class="k">auto</span> <span class="n">it</span><span class="o">=</span><span class="n">lf1</span><span class="p">.</span><span class="n">begin</span><span class="p">();</span> <span class="n">it</span> <span class="o">!=</span> <span class="n">lf1</span><span class="p">.</span><span class="n">end</span><span class="p">();</span> <span class="o">++</span><span class="n">it</span><span class="p">)</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="o">*</span><span class="n">it</span> <span class="o">&lt;&lt;</span> <span class="s">","</span><span class="p">;</span>
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+
+<span class="c1">// range-for petlja</span>
+<span class="k">for</span><span class="p">(</span><span class="k">auto</span> <span class="nl">x</span> <span class="p">:</span> <span class="n">li2</span><span class="p">)</span>
+     <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">x</span> <span class="o">&lt;&lt;</span> <span class="s">","</span><span class="p">;</span>
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+
+<span class="k">if</span><span class="p">(</span><span class="o">!</span><span class="n">li3</span><span class="p">.</span><span class="n">empty</span><span class="p">()){</span>  <span class="c1">// ili li3.size() != 0</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">li3</span><span class="p">.</span><span class="n">front</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span> <span class="c1">// nema provjere da li</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">li3</span><span class="p">.</span><span class="n">back</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>  <span class="c1">// element postoji</span>
+<span class="p">}</span>
+</pre></div></div></div>
+<div class="tableblock">
+<table rules="all" width="100%" frame="border" cellspacing="0" cellpadding="4">
+<caption class="title">Tabela 16. Dohvat elemenata</caption>
+<colgroup><col width="50%">
+<col width="50%">
+</colgroup><thead>
+<tr>
+<th align="left" valign="top"> Operacija </th>
+<th align="left" valign="top"> Značenje</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left" valign="top"><p class="table"><code>c.front()</code></p></td>
+<td align="left" valign="top"><p class="table">Vrati prvi element (ne provjerava je li lista prazna)</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>c.back()</code></p></td>
+<td align="left" valign="top"><p class="table">Vrati zadnji element (ne provjerava je li lista prazna)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="paragraph"><p>Dohvat proizvoljnog elementa ide kroz iteratore. Funkcije koje vraćaju iteratore su iste kao i kod
+ostalih sekvencijalnih spremnika. Razlika je ovdje ta što vraćaju dvosmjerni iterator koji nije iterator
+izravnog pristupa.</p></div>
+<div class="tableblock">
+<table rules="all" width="100%" frame="border" cellspacing="0" cellpadding="4">
+<caption class="title">Tabela 17. Iteratori</caption>
+<colgroup><col width="50%">
+<col width="50%">
+</colgroup><thead>
+<tr>
+<th align="left" valign="top"> Operacija </th>
+<th align="left" valign="top"> Značenje</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left" valign="top"><p class="table"><code>c.begin()</code></p></td>
+<td align="left" valign="top"><p class="table">Vraća iterator na poziciju prvog elementa</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>c.end()</code></p></td>
+<td align="left" valign="top"><p class="table">Vraća iterator na poziciju iza zadnjeg elementa</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>c.cbegin()</code></p></td>
+<td align="left" valign="top"><p class="table">Vraća konstantan iterator na poziciju prvog elementa</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>c.cend()</code></p></td>
+<td align="left" valign="top"><p class="table">Vraća konstantan iterator na poziciju iza zadnjeg elementa</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>c.rbegin()</code></p></td>
+<td align="left" valign="top"><p class="table">Vraća reverzni iterator na poziciju prvog elementa reverznog niza</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>c.rend()</code></p></td>
+<td align="left" valign="top"><p class="table">Vraća reverzni iterator na poziciju iza zadnjeg elementa reverznog niza</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>c.crbegin()</code></p></td>
+<td align="left" valign="top"><p class="table">Vraća konstantan reverzni iterator  na poziciju prvog elementa reverznog niza</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>c.crend()</code></p></td>
+<td align="left" valign="top"><p class="table">Vraća  konstantan reverzni iterator na poziciju iza zadnjeg elementa reverznog niza</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_code_std_list_lt_t_gt_code_ubacivanje_i_izbacivanje_elemenata"><code>std::list&lt;T&gt;</code> - ubacivanje i izbacivanje elemenata</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Za ubacivanje koristimo <code>push_back()</code>, <code>push_front()</code> i <code>insert()</code> (koji ima više verzija).
+Za izbacivanje koristimo  <code>pop_back()</code>, <code>pop_front()</code> i <code>remove()</code>.
+Ubacivanje i izbacivanje je efikasno na svakom mjestu.
+Radi efikasnosti umjesto  <code>remove()</code> <em>algoritma</em> uvijek treba koristiti  <code>remove()</code> <em>metodu klase</em>  <code>std::list&lt;T&gt;</code>.</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="c1">// li2 = {1,2,3,4,5}</span>
+<span class="n">li3</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">6</span><span class="p">);</span>  <span class="c1">// 1,2,3,4,5,6</span>
+<span class="n">li3</span><span class="p">.</span><span class="n">push_front</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span> <span class="c1">// 0,1,2,3,4,5,6</span>
+<span class="n">li3</span><span class="p">.</span><span class="n">remove</span><span class="p">(</span><span class="mi">4</span><span class="p">);</span>  <span class="c1">// ukloni sve elemente jednake 4 -&gt; 0,1,2,3,5,6</span>
+<span class="n">li3</span><span class="p">.</span><span class="n">remove_if</span><span class="p">([](</span><span class="kt">int</span> <span class="n">x</span><span class="p">){</span> <span class="k">return</span> <span class="n">x</span> <span class="o">%</span> <span class="mi">2</span><span class="p">;</span> <span class="p">});</span> <span class="c1">// ukloni neparne elemente</span>
+                                           <span class="c1">// 0,2,6</span>
+<span class="n">li3</span><span class="p">.</span><span class="n">pop_back</span><span class="p">();</span>  <span class="c1">// 0,2</span>
+<span class="n">li3</span><span class="p">.</span><span class="n">pop_front</span><span class="p">();</span> <span class="c1">// 2</span>
+<span class="n">li3</span><span class="p">.</span><span class="n">insert</span><span class="p">(</span><span class="n">li3</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">7</span><span class="p">);</span> <span class="c1">// ubaci na kraj liste dva puta element 7.</span>
+                             <span class="c1">// 2,7,7</span>
+<span class="n">li3</span><span class="p">.</span><span class="n">insert</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">prev</span><span class="p">(</span><span class="n">li3</span><span class="p">.</span><span class="n">end</span><span class="p">()),</span> <span class="mi">17</span><span class="p">);</span>  <span class="c1">// ubaci 17 ispred zadnjeg elementa</span>
+                                       <span class="c1">// 2,7,17,7</span>
+<span class="n">li3</span><span class="p">.</span><span class="n">resize</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span>   <span class="c1">// odredi novu veličinu liste. Nove elemente stavi na nulu.</span>
+                 <span class="c1">// 2,7,17,7,0</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Metoda <code>remove()</code> eliminira elemente zadane vrijednosti. Metoda <code>erase()</code> eleiminira element na koji
+pokazuje iterator (ili sve elemente iz raspona).</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="n">li3</span><span class="p">.</span><span class="n">erase</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">next</span><span class="p">(</span><span class="n">li3</span><span class="p">.</span><span class="n">begin</span><span class="p">()));</span> <span class="c1">// obriši drugi element -&gt; 2,17,7,0</span>
+<span class="n">li3</span><span class="p">.</span><span class="n">erase</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">next</span><span class="p">(</span><span class="n">li3</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span><span class="mi">2</span><span class="p">),</span> <span class="n">li3</span><span class="p">.</span><span class="n">end</span><span class="p">());</span> <span class="c1">// obriši od trećeg do</span>
+                                        <span class="c1">// zadnjeg elementa -&gt; 2,17</span>
+</pre></div></div></div>
+<div class="tableblock">
+<table rules="all" width="100%" frame="border" cellspacing="0" cellpadding="4">
+<caption class="title">Tabela 18. Ubacivanje i izbacivanje elemenata</caption>
+<colgroup><col width="50%">
+<col width="50%">
+</colgroup><thead>
+<tr>
+<th align="left" valign="top"> Operacija </th>
+<th align="left" valign="top"> Značenje</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left" valign="top"><p class="table"><code>c.push_back(elem)</code></p></td>
+<td align="left" valign="top"><p class="table">Dodaj element <code>elem</code> na kraj spremnika</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>c.pop_back()</code></p></td>
+<td align="left" valign="top"><p class="table">Ukloni  zadnji element iz spremnika (ne vraća ga)</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>c.push_front(elem)</code></p></td>
+<td align="left" valign="top"><p class="table">Dodaj element <code>elem</code> na početak spremnika</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>c.pop_front()</code></p></td>
+<td align="left" valign="top"><p class="table">Ukloni  prvi element iz spremnika (ne vraća ga)</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>c.insert(pos,elem)</code></p></td>
+<td align="left" valign="top"><p class="table">Ubaci kopiju elemente <code>elem</code> <strong>ispred</strong> pozicije na koju pokazuje iterator <code>pos</code> i vrati iterator koji pokazuje na
+poziciju novoubačenog elementa</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>c.insert(pos,n,elem)</code></p></td>
+<td align="left" valign="top"><p class="table">Ubaci <code>n</code> kopija elementa <code>elem</code> <strong>ispred</strong> pozicije na koju pokazuje iterator <code>pos</code> i vrati
+iterator koji pokazuje na poziciju prvog novoubačenog elementa</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>c.insert(pos,beg,end)</code></p></td>
+<td align="left" valign="top"><p class="table">Ubaci kopiju elemenata iz raspona  <code>[beg,end)</code> <strong>ispred</strong> pozicije na koju pokazuje iterator <code>pos</code> i vrati
+iterator koji pokazuje na poziciju prvog novoubačenog elementa (ili <code>pos</code> ako je raspon bio prazan)</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>c.insert(pos,initlist)</code></p></td>
+<td align="left" valign="top"><p class="table">Ubaci kopiju elemenata inicijalizacijske liste  <code>initlist</code> <strong>ispred</strong> pozicije na koju pokazuje
+ iterator <code>pos</code> i vrati iterator koji pokazuje na poziciju prvog novoubačenog elementa (ili <code>pos</code> ako je lista bila prazna)
+iterator position pos and returns the position of the f rst new element (or pos if there is no new element;</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>c.erase(pos)</code></p></td>
+<td align="left" valign="top"><p class="table">Obriši element na koji pokazuje iterator <code>pos</code> i vrati iterator koji pokazuje na poziciju sljedećeg elementa</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>c.erase(beg,end)</code></p></td>
+<td align="left" valign="top"><p class="table">Obriši elemente u rasponu <code>[beg,end)</code> i vrati iterator koji pokazuje na poziciju sljedećeg elementa</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>c.clear()</code></p></td>
+<td align="left" valign="top"><p class="table">Obriši sve elemente u spremniku.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="paragraph"><p>Prisutne su i operacije smještavanja elementa u spremnik. Metode <code>emplace</code> uzimaju argumnete konstruktora i
+konstruiraju element na odgovarajućem mjestu.</p></div>
+<div class="tableblock">
+<table rules="all" width="100%" frame="border" cellspacing="0" cellpadding="4">
+<caption class="title">Tabela 19. Smještavanje elementa</caption>
+<colgroup><col width="50%">
+<col width="50%">
+</colgroup><thead>
+<tr>
+<th align="left" valign="top"> Operacija </th>
+<th align="left" valign="top"> Značenje</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left" valign="top"><p class="table"><code>c.emplace(pos,args...)</code></p></td>
+<td align="left" valign="top"><p class="table">Ubacuje kopiju elementa inicijaliziranog pomoću <code>args</code> ispred pozicije na koju pokazuje iterator
+<code>pos</code> i vraća iterator koji pokazuje na novi element.</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>c.emplace_back(args...)</code></p></td>
+<td align="left" valign="top"><p class="table">Dodaje kopiju elementa inicijaliziranog pomoću <code>args</code> na kraj spremnika. Ne vraća ništa</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>c.emplace_front(args...)</code></p></td>
+<td align="left" valign="top"><p class="table">Dodaje kopiju elementa inicijaliziranog pomoću <code>args</code> na početak spremnika. Ne vraća ništa</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="paragraph"><p>Lista ima iste <code>resize</code> metode kao i vektor:</p></div>
+<div class="tableblock">
+<table rules="all" width="100%" frame="border" cellspacing="0" cellpadding="4">
+<caption class="title">Tabela 20. Resize metode</caption>
+<colgroup><col width="50%">
+<col width="50%">
+</colgroup><thead>
+<tr>
+<th align="left" valign="top">  Operacija </th>
+<th align="left" valign="top"> Značenje</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left" valign="top"><p class="table"><code>c.resize(num)</code></p></td>
+<td align="left" valign="top"><p class="table">Promijeni broj elemenata spremnika na  <code>num</code> (ako spremnik pri tome raste nove elemente inicijaliziraj dodijeljenim konstruktorom)</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>c.resize(num,elem)</code></p></td>
+<td align="left" valign="top"><p class="table">Promijeni broj elemenata spremnika na  <code>num</code> (ako spremnik pri tome raste nove elemente inicijaliziraj kopijom od <code>elem</code>)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="paragraph"><p>Konačno <code>remove</code> algoritam je implementiran u samoj listi i efikasniji je od generalnog <code>remove</code> algoritma.</p></div>
+<div class="tableblock">
+<table rules="all" width="100%" frame="border" cellspacing="0" cellpadding="4">
+<caption class="title">Tabela 21. Uklanjane elemenata</caption>
+<colgroup><col width="50%">
+<col width="50%">
+</colgroup><thead>
+<tr>
+<th align="left" valign="top">  Operacija </th>
+<th align="left" valign="top"> Značenje</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left" valign="top"><p class="table"><code>c.remove(val)</code></p></td>
+<td align="left" valign="top"><p class="table">Ukloni iz spremnika sve elemente koji imaju vrijednost <code>val</code></p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>c.remove_if(op)</code></p></td>
+<td align="left" valign="top"><p class="table">Ukloni iz spremnika sve elemente za koje  <code>op(elem)</code> daje istinu</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_algoritmi_u_code_std_list_lt_t_gt_code">Algoritmi u  <code>std::list&lt;T&gt;</code></h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Klasa <code>std::list&lt;T&gt;</code> implementira neke algoritme kao funkcije članice jer na taj način postiže
+veću efikasnost od  generalih algoritama, ili se generalni algoritmi ne mogu primijeniti jer traže
+iteratore izravnog dohvata (kao <code>sort</code>).</p></div>
+<div class="paragraph"><p>Algoritmi implementirani u klasi <code>list</code> su efikasniji od generalih algoritama jer manipuliraju samo sa pokazivačim.
+Na primjer, algoritam <code>sort</code> sortira listu, <code>unique</code> eliminira uzastopne duplikate, a <code>reverse</code> invertira listu:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="n">list</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">li</span><span class="p">{</span><span class="mi">2</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">7</span><span class="p">};</span>
+<span class="n">li</span><span class="p">.</span><span class="n">sort</span><span class="p">();</span> <span class="c1">// 1,2,4,5,5,7,7,9,</span>
+<span class="n">li</span><span class="p">.</span><span class="n">unique</span><span class="p">();</span> <span class="c1">// 1,2,4,5,7,9,</span>
+<span class="n">li</span><span class="p">.</span><span class="n">reverse</span><span class="p">();</span> <span class="c1">// 9,7,5,4,2,1,</span>
+<span class="n">li</span><span class="p">.</span><span class="n">reverse</span><span class="p">();</span> <span class="c1">// nazad na 1,2,4,5,7,9,</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Algoritam <code>merge</code> vrši spajanje dvije sortirane liste u jednu sortiranu list.
+Pri tom nema kopiranja elemenata i lista koja se uključuje u polaznu listu ostaje prazna.</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="n">list</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">li2</span><span class="p">{</span><span class="mi">5</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">11</span><span class="p">};</span>
+<span class="n">li2</span><span class="p">.</span><span class="n">sort</span><span class="p">();</span>
+<span class="n">li</span><span class="p">.</span><span class="n">merge</span><span class="p">(</span><span class="n">li2</span><span class="p">);</span>  <span class="c1">//  1,2,4,4,5,5,7,8,9,11,</span>
+<span class="n">assert</span><span class="p">(</span><span class="n">li2</span><span class="p">.</span><span class="n">empty</span><span class="p">());</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Metoda <code>splice</code> dozvoljava da se elementi jednog spremnika transferiraju u drugi na danom mjestu.
+Pri tome nema kopiranja elemenata već se samo manipuliraju pokazivači. Može se transferirati čitav
+spremnik, samo jedan element ili raspon elemenata.</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="c1">// li2 je prazan</span>
+<span class="n">li2</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">17</span><span class="p">);</span>
+<span class="n">li2</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">18</span><span class="p">);</span>
+<span class="n">li2</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="mi">19</span><span class="p">);</span>
+<span class="n">li</span><span class="p">.</span><span class="n">splice</span><span class="p">(</span><span class="n">next</span><span class="p">(</span><span class="n">li</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span><span class="mi">3</span><span class="p">),</span> <span class="n">li2</span><span class="p">);</span>  <span class="c1">//1,2,4,17,18,19,4,5,5,7,8,9,11,</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Transfer se dešava <strong>ispred</strong> pokazivača <code>next(li.begin(),3)</code>, što znači ispred četvrtog elementa.</p></div>
+<div class="tableblock">
+<table rules="all" width="100%" frame="border" cellspacing="0" cellpadding="4">
+<caption class="title">Tabela 22. Resize metode</caption>
+<colgroup><col width="50%">
+<col width="50%">
+</colgroup><thead>
+<tr>
+<th align="left" valign="top">  Operacija </th>
+<th align="left" valign="top"> Značenje</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left" valign="top"><p class="table"><code>c.unique()</code></p></td>
+<td align="left" valign="top"><p class="table">Ukloni sve duplikate kod konsekutivnih elemenata iste vrijednosti</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>c.unique(op)</code></p></td>
+<td align="left" valign="top"><p class="table">Ukloni sve duplikate kod konsekutivnih elemenata za koje <code>op()</code> daje istinu</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>c.splice(pos,c2)</code></p></td>
+<td align="left" valign="top"><p class="table">Premjesti sve elemente iz <code>c2</code> u <code>c</code> ispred elementa na koji pokazuje iterator <code>pos</code></p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>c.splice(pos,c2,c2pos)</code></p></td>
+<td align="left" valign="top"><p class="table">Premjesti element na poziciji <code>c2pos</code> u spremniku <code>c2</code> ispred pozicije na koju referira <code>pos</code>
+u listi <code>c</code> (<code>c</code> i <code>c2</code> mogu biti isti)</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>c.splice(pos,c2,c2beg,c2end)</code></p></td>
+<td align="left" valign="top"><p class="table">Premjesti sve elemente iz raspona <code>[c2beg,c2end)</code> u <code>c2</code> ispred <code>pos</code> u listi <code>c</code> (<code>c</code> i <code>c2</code> mogu biti isti)</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>c.sort()</code></p></td>
+<td align="left" valign="top"><p class="table">Sortiraj elemente spremnika pomoću operatora &lt;</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>c.sort(op)</code></p></td>
+<td align="left" valign="top"><p class="table">Sortiraj elemente spremnika pomoću operatora uspoređivanja <code>op()</code></p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>c.merge(c2)</code></p></td>
+<td align="left" valign="top"><p class="table">Uz pretpostavku da su oba spremnika sortirana, premjesti sve elemente iz <code>c2</code> u <code>c</code> tako da elementi spojene liste budu
+sortirani</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>c.merge(c2,op)</code></p></td>
+<td align="left" valign="top"><p class="table">Uz pretpostavku da su oba spremnika sadrže elemente sortirane pomoću operatora uspoređivanja <code>op()</code>,
+premjesti sve elemente iz <code>c2</code>  u <code>c</code> tako da elementi spojene liste budu sortirani pomoću  operatora uspoređivanja <code>op()</code></p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>c.reverse()</code></p></td>
+<td align="left" valign="top"><p class="table">Invertiraj poredak svih elemenata</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_code_std_forward_list_lt_t_gt_code"><code>std::forward_list&lt;T&gt;</code></h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Da bismo mogli koristiti <code>forward_list</code> treba uključiti njegovu datoteku zaglavlja:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;forward_list&gt;</span><span class="cp"></span>
+</pre></div></div></div>
+<div class="paragraph"><p>Ovaj je spremnik uveden standardom iz 2011. godine i predstavlja <strong>jednostruko povezanu list</strong>.
+On zauzima manje memorije od <code>std::list&lt;T&gt;</code> spremnika i nudi podskup funkcionalnosti koju nudi  <code>std::list&lt;T&gt;</code>.</p></div>
+<div class="paragraph"><p><code>std::forward_list&lt;T&gt;</code> ima sljedeća svojstva:</p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+Nudi samo jednosmjerne iteratore;
+</p>
+</li>
+<li>
+<p>
+Nema metode <code>size()</code>, <code>push_back()</code>, <code>back()</code> i <code>pop_back()</code>;
+</p>
+</li>
+<li>
+<p>
+Metode za konstrukciju su iste kao i kod dvostruko povezane liste.
+</p>
+</li>
+</ul></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="n">forward_list</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">fli</span><span class="p">{</span><span class="mi">3</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">6</span><span class="p">};</span>
+
+<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"fli size = "</span> <span class="c1">// nema metode size,</span>
+     <span class="o">&lt;&lt;</span> <span class="n">distance</span><span class="p">(</span><span class="n">fli</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">fli</span><span class="p">.</span><span class="n">end</span><span class="p">())</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+     <span class="c1">// distance je u zaglavlju &lt;iterator&gt;</span>
+</pre></div></div></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_code_std_forward_list_lt_t_gt_code_insert_metode"><code>std::forward_list&lt;T&gt;</code> insert metode</h2>
+<div class="sectionbody">
+<div class="paragraph"><p><code>insert</code> metode u sekvencijalnim spremnicima vrše insertiranje <strong>ispred</strong> mjesta na kojem želimo
+ubacivanje. Kod  <code>std::forward_list&lt;T&gt;</code> to nije moguće zbog nemogućnosti kretanja unazad.
+Stoga je metoda <code>insert</code> preimenovana u <code>insert_after</code> i ubacuje element(e) iz lokacije na koju
+pokazuje dani iterator. Da bi bilo moguće ubacivati na početak liste metoda <code>before_begin()</code>
+vraća pokazivač na jedno mjesto prije prvog u spremniku.</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="n">list</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">li</span><span class="p">{</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">};</span>
+<span class="n">fli</span><span class="p">.</span><span class="n">insert_after</span><span class="p">(</span><span class="n">fli</span><span class="p">.</span><span class="n">before_begin</span><span class="p">(),</span> <span class="n">li</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">li</span><span class="p">.</span><span class="n">end</span><span class="p">());</span>
+<span class="c1">// dobivamo 0,0,0,3,5,1,6,4,6,</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Na isti način su metode <code>emplace</code> i <code>erase</code> zamijenjene sa <code>emplace_after</code> i <code>erase_after</code>:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="n">fli</span><span class="p">.</span><span class="n">erase_after</span><span class="p">(</span><span class="n">fli</span><span class="p">.</span><span class="n">begin</span><span class="p">());</span> <span class="c1">//  0,2,3,5,1,6,4,6,</span>
+<span class="n">fli</span><span class="p">.</span><span class="n">erase_after</span><span class="p">(</span><span class="n">next</span><span class="p">(</span><span class="n">fli</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span><span class="mi">5</span><span class="p">),</span> <span class="n">fli</span><span class="p">.</span><span class="n">end</span><span class="p">());</span> <span class="c1">//  0,2,3,5,1,6,</span>
+</pre></div></div></div>
+<div class="paragraph"><p><code>erase_after</code> briše element nakon onog na koji pokazuje iterator. Verzija koja uzima raspon
+iteratora briše sve elemente u rasponu osim prvog i zadnjeg.</p></div>
+<div class="paragraph"><p>Metode <code>splice</code> su također preimenovane  u <code>splice_after</code>. Ova metoda prebacuje elemente iz jednog
+<code>forward_list&lt;&gt;</code> spremnika u drugi <code>forward_list&lt;&gt;</code>, iza dane lokacije:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="n">forward_list</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span> <span class="n">fli2</span><span class="p">{</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">};</span>
+<span class="n">fli</span><span class="p">.</span><span class="n">splice_after</span><span class="p">(</span><span class="n">next</span><span class="p">(</span><span class="n">fli</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span><span class="mi">3</span><span class="p">),</span> <span class="n">fli2</span><span class="p">);</span> <span class="c1">//  0,2,3,5,2,2,2,1,6,</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Kao i  <code>std::list&lt;T&gt;</code>, spremnik  <code>std::forward_list&lt;T&gt;</code> ima algoritme <code>sort</code>, <code>unique</code>, <code>reverse</code>, <code>merge</code>
+i <code>remove</code>.</p></div>
+</div>
+</div>
+</div>
+
+<div id="footer">
+<div id="footer-text">
+Version 2.1<br>
+Zadnja izmjena
+ 2019-05-14 19:36:32 CEST
+</div>
+</div>
+
+
+</body></html>

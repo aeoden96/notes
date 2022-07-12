@@ -1,0 +1,1917 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<!-- saved from url=(0086)https://web.math.pmf.unizg.hr/nastava/opepp/Slides/Vjezbe/html-noslides/vjezbe-io.html -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="hr"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="generator" content="AsciiDoc 8.6.9">
+<title>Ulaz, izlaz</title>
+<style type="text/css">
+/* Shared CSS for AsciiDoc xhtml11 and html5 backends */
+
+/* Default font. */
+body {
+  font-family: Georgia,serif;
+}
+
+/* Title font. */
+h1, h2, h3, h4, h5, h6,
+div.title, caption.title,
+thead, p.table.header,
+#toctitle,
+#author, #revnumber, #revdate, #revremark,
+#footer {
+  font-family: Arial,Helvetica,sans-serif;
+}
+
+body {
+  margin: 1em 5% 1em 5%;
+}
+
+a {
+  color: blue;
+  text-decoration: underline;
+}
+a:visited {
+  color: fuchsia;
+}
+
+em {
+  font-style: italic;
+  color: navy;
+}
+
+strong {
+  font-weight: bold;
+  color: #083194;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #527bbd;
+  margin-top: 1.2em;
+  margin-bottom: 0.5em;
+  line-height: 1.3;
+}
+
+h1, h2, h3 {
+  border-bottom: 2px solid silver;
+}
+h2 {
+  padding-top: 0.5em;
+}
+h3 {
+  float: left;
+}
+h3 + * {
+  clear: left;
+}
+h5 {
+  font-size: 1.0em;
+}
+
+div.sectionbody {
+  margin-left: 0;
+}
+
+hr {
+  border: 1px solid silver;
+}
+
+p {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+ul, ol, li > p {
+  margin-top: 0;
+}
+ul > li     { color: #aaa; }
+ul > li > * { color: black; }
+
+.monospaced, code, pre {
+  font-family: "Courier New", Courier, monospace;
+  font-size: inherit;
+  color: navy;
+  padding: 0;
+  margin: 0;
+}
+pre {
+  white-space: pre-wrap;
+}
+
+#author {
+  color: #527bbd;
+  font-weight: bold;
+  font-size: 1.1em;
+}
+#email {
+}
+#revnumber, #revdate, #revremark {
+}
+
+#footer {
+  font-size: small;
+  border-top: 2px solid silver;
+  padding-top: 0.5em;
+  margin-top: 4.0em;
+}
+#footer-text {
+  float: left;
+  padding-bottom: 0.5em;
+}
+#footer-badges {
+  float: right;
+  padding-bottom: 0.5em;
+}
+
+#preamble {
+  margin-top: 1.5em;
+  margin-bottom: 1.5em;
+}
+div.imageblock, div.exampleblock, div.verseblock,
+div.quoteblock, div.literalblock, div.listingblock, div.sidebarblock,
+div.admonitionblock {
+  margin-top: 1.0em;
+  margin-bottom: 1.5em;
+}
+div.admonitionblock {
+  margin-top: 2.0em;
+  margin-bottom: 2.0em;
+  margin-right: 10%;
+  color: #606060;
+}
+
+div.content { /* Block element content. */
+  padding: 0;
+}
+
+/* Block element titles. */
+div.title, caption.title {
+  color: #527bbd;
+  font-weight: bold;
+  text-align: left;
+  margin-top: 1.0em;
+  margin-bottom: 0.5em;
+}
+div.title + * {
+  margin-top: 0;
+}
+
+td div.title:first-child {
+  margin-top: 0.0em;
+}
+div.content div.title:first-child {
+  margin-top: 0.0em;
+}
+div.content + div.title {
+  margin-top: 0.0em;
+}
+
+div.sidebarblock > div.content {
+  background: #ffffee;
+  border: 1px solid #dddddd;
+  border-left: 4px solid #f0f0f0;
+  padding: 0.5em;
+}
+
+div.listingblock > div.content {
+  border: 1px solid #dddddd;
+  border-left: 5px solid #f0f0f0;
+  background: #f8f8f8;
+  padding: 0.5em;
+}
+
+div.quoteblock, div.verseblock {
+  padding-left: 1.0em;
+  margin-left: 1.0em;
+  margin-right: 10%;
+  border-left: 5px solid #f0f0f0;
+  color: #888;
+}
+
+div.quoteblock > div.attribution {
+  padding-top: 0.5em;
+  text-align: right;
+}
+
+div.verseblock > pre.content {
+  font-family: inherit;
+  font-size: inherit;
+}
+div.verseblock > div.attribution {
+  padding-top: 0.75em;
+  text-align: left;
+}
+/* DEPRECATED: Pre version 8.2.7 verse style literal block. */
+div.verseblock + div.attribution {
+  text-align: left;
+}
+
+div.admonitionblock .icon {
+  vertical-align: top;
+  font-size: 1.1em;
+  font-weight: bold;
+  text-decoration: underline;
+  color: #527bbd;
+  padding-right: 0.5em;
+}
+div.admonitionblock td.content {
+  padding-left: 0.5em;
+  border-left: 3px solid #dddddd;
+}
+
+div.exampleblock > div.content {
+  border-left: 3px solid #dddddd;
+  padding-left: 0.5em;
+}
+
+div.imageblock div.content { padding-left: 0; }
+span.image img { border-style: none; vertical-align: text-bottom; }
+a.image:visited { color: white; }
+
+dl {
+  margin-top: 0.8em;
+  margin-bottom: 0.8em;
+}
+dt {
+  margin-top: 0.5em;
+  margin-bottom: 0;
+  font-style: normal;
+  color: navy;
+}
+dd > *:first-child {
+  margin-top: 0.1em;
+}
+
+ul, ol {
+    list-style-position: outside;
+}
+ol.arabic {
+  list-style-type: decimal;
+}
+ol.loweralpha {
+  list-style-type: lower-alpha;
+}
+ol.upperalpha {
+  list-style-type: upper-alpha;
+}
+ol.lowerroman {
+  list-style-type: lower-roman;
+}
+ol.upperroman {
+  list-style-type: upper-roman;
+}
+
+div.compact ul, div.compact ol,
+div.compact p, div.compact p,
+div.compact div, div.compact div {
+  margin-top: 0.1em;
+  margin-bottom: 0.1em;
+}
+
+tfoot {
+  font-weight: bold;
+}
+td > div.verse {
+  white-space: pre;
+}
+
+div.hdlist {
+  margin-top: 0.8em;
+  margin-bottom: 0.8em;
+}
+div.hdlist tr {
+  padding-bottom: 15px;
+}
+dt.hdlist1.strong, td.hdlist1.strong {
+  font-weight: bold;
+}
+td.hdlist1 {
+  vertical-align: top;
+  font-style: normal;
+  padding-right: 0.8em;
+  color: navy;
+}
+td.hdlist2 {
+  vertical-align: top;
+}
+div.hdlist.compact tr {
+  margin: 0;
+  padding-bottom: 0;
+}
+
+.comment {
+  background: yellow;
+}
+
+.footnote, .footnoteref {
+  font-size: 0.8em;
+}
+
+span.footnote, span.footnoteref {
+  vertical-align: super;
+}
+
+#footnotes {
+  margin: 20px 0 20px 0;
+  padding: 7px 0 0 0;
+}
+
+#footnotes div.footnote {
+  margin: 0 0 5px 0;
+}
+
+#footnotes hr {
+  border: none;
+  border-top: 1px solid silver;
+  height: 1px;
+  text-align: left;
+  margin-left: 0;
+  width: 20%;
+  min-width: 100px;
+}
+
+div.colist td {
+  padding-right: 0.5em;
+  padding-bottom: 0.3em;
+  vertical-align: top;
+}
+div.colist td img {
+  margin-top: 0.3em;
+}
+
+@media print {
+  #footer-badges { display: none; }
+}
+
+#toc {
+  margin-bottom: 2.5em;
+}
+
+#toctitle {
+  color: #527bbd;
+  font-size: 1.1em;
+  font-weight: bold;
+  margin-top: 1.0em;
+  margin-bottom: 0.1em;
+}
+
+div.toclevel0, div.toclevel1, div.toclevel2, div.toclevel3, div.toclevel4 {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+div.toclevel2 {
+  margin-left: 2em;
+  font-size: 0.9em;
+}
+div.toclevel3 {
+  margin-left: 4em;
+  font-size: 0.9em;
+}
+div.toclevel4 {
+  margin-left: 6em;
+  font-size: 0.9em;
+}
+
+span.aqua { color: aqua; }
+span.black { color: black; }
+span.blue { color: blue; }
+span.fuchsia { color: fuchsia; }
+span.gray { color: gray; }
+span.green { color: green; }
+span.lime { color: lime; }
+span.maroon { color: maroon; }
+span.navy { color: navy; }
+span.olive { color: olive; }
+span.purple { color: purple; }
+span.red { color: red; }
+span.silver { color: silver; }
+span.teal { color: teal; }
+span.white { color: white; }
+span.yellow { color: yellow; }
+
+span.aqua-background { background: aqua; }
+span.black-background { background: black; }
+span.blue-background { background: blue; }
+span.fuchsia-background { background: fuchsia; }
+span.gray-background { background: gray; }
+span.green-background { background: green; }
+span.lime-background { background: lime; }
+span.maroon-background { background: maroon; }
+span.navy-background { background: navy; }
+span.olive-background { background: olive; }
+span.purple-background { background: purple; }
+span.red-background { background: red; }
+span.silver-background { background: silver; }
+span.teal-background { background: teal; }
+span.white-background { background: white; }
+span.yellow-background { background: yellow; }
+
+span.big { font-size: 2em; }
+span.small { font-size: 0.6em; }
+
+span.underline { text-decoration: underline; }
+span.overline { text-decoration: overline; }
+span.line-through { text-decoration: line-through; }
+
+div.unbreakable { page-break-inside: avoid; }
+
+
+/*
+ * xhtml11 specific
+ *
+ * */
+
+div.tableblock {
+  margin-top: 1.0em;
+  margin-bottom: 1.5em;
+}
+div.tableblock > table {
+  border: 3px solid #527bbd;
+}
+thead, p.table.header {
+  font-weight: bold;
+  color: #527bbd;
+}
+p.table {
+  margin-top: 0;
+}
+/* Because the table frame attribute is overriden by CSS in most browsers. */
+div.tableblock > table[frame="void"] {
+  border-style: none;
+}
+div.tableblock > table[frame="hsides"] {
+  border-left-style: none;
+  border-right-style: none;
+}
+div.tableblock > table[frame="vsides"] {
+  border-top-style: none;
+  border-bottom-style: none;
+}
+
+
+/*
+ * html5 specific
+ *
+ * */
+
+table.tableblock {
+  margin-top: 1.0em;
+  margin-bottom: 1.5em;
+}
+thead, p.tableblock.header {
+  font-weight: bold;
+  color: #527bbd;
+}
+p.tableblock {
+  margin-top: 0;
+}
+table.tableblock {
+  border-width: 3px;
+  border-spacing: 0px;
+  border-style: solid;
+  border-color: #527bbd;
+  border-collapse: collapse;
+}
+th.tableblock, td.tableblock {
+  border-width: 1px;
+  padding: 4px;
+  border-style: solid;
+  border-color: #527bbd;
+}
+
+table.tableblock.frame-topbot {
+  border-left-style: hidden;
+  border-right-style: hidden;
+}
+table.tableblock.frame-sides {
+  border-top-style: hidden;
+  border-bottom-style: hidden;
+}
+table.tableblock.frame-none {
+  border-style: hidden;
+}
+
+th.tableblock.halign-left, td.tableblock.halign-left {
+  text-align: left;
+}
+th.tableblock.halign-center, td.tableblock.halign-center {
+  text-align: center;
+}
+th.tableblock.halign-right, td.tableblock.halign-right {
+  text-align: right;
+}
+
+th.tableblock.valign-top, td.tableblock.valign-top {
+  vertical-align: top;
+}
+th.tableblock.valign-middle, td.tableblock.valign-middle {
+  vertical-align: middle;
+}
+th.tableblock.valign-bottom, td.tableblock.valign-bottom {
+  vertical-align: bottom;
+}
+
+
+/*
+ * manpage specific
+ *
+ * */
+
+body.manpage h1 {
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+  border-top: 2px solid silver;
+  border-bottom: 2px solid silver;
+}
+body.manpage h2 {
+  border-style: none;
+}
+body.manpage div.sectionbody {
+  margin-left: 3em;
+}
+
+@media print {
+  body.manpage div#toc { display: none; }
+}
+.highlight .hll { background-color: #ffffcc }
+.highlight  { background: #f8f8f8; }
+.highlight .c { color: #408080; font-style: italic } /* Comment */
+.highlight .err { border: 1px solid #FF0000 } /* Error */
+.highlight .k { color: #008000; font-weight: bold } /* Keyword */
+.highlight .o { color: #666666 } /* Operator */
+.highlight .cm { color: #408080; font-style: italic } /* Comment.Multiline */
+.highlight .cp { color: #BC7A00 } /* Comment.Preproc */
+.highlight .c1 { color: #408080; font-style: italic } /* Comment.Single */
+.highlight .cs { color: #408080; font-style: italic } /* Comment.Special */
+.highlight .gd { color: #A00000 } /* Generic.Deleted */
+.highlight .ge { font-style: italic } /* Generic.Emph */
+.highlight .gr { color: #FF0000 } /* Generic.Error */
+.highlight .gh { color: #000080; font-weight: bold } /* Generic.Heading */
+.highlight .gi { color: #00A000 } /* Generic.Inserted */
+.highlight .go { color: #808080 } /* Generic.Output */
+.highlight .gp { color: #000080; font-weight: bold } /* Generic.Prompt */
+.highlight .gs { font-weight: bold } /* Generic.Strong */
+.highlight .gu { color: #800080; font-weight: bold } /* Generic.Subheading */
+.highlight .gt { color: #0040D0 } /* Generic.Traceback */
+.highlight .kc { color: #008000; font-weight: bold } /* Keyword.Constant */
+.highlight .kd { color: #008000; font-weight: bold } /* Keyword.Declaration */
+.highlight .kn { color: #008000; font-weight: bold } /* Keyword.Namespace */
+.highlight .kp { color: #008000 } /* Keyword.Pseudo */
+.highlight .kr { color: #008000; font-weight: bold } /* Keyword.Reserved */
+.highlight .kt { color: #B00040 } /* Keyword.Type */
+.highlight .m { color: #666666 } /* Literal.Number */
+.highlight .s { color: #BA2121 } /* Literal.String */
+.highlight .na { color: #7D9029 } /* Name.Attribute */
+.highlight .nb { color: #008000 } /* Name.Builtin */
+.highlight .nc { color: #0000FF; font-weight: bold } /* Name.Class */
+.highlight .no { color: #880000 } /* Name.Constant */
+.highlight .nd { color: #AA22FF } /* Name.Decorator */
+.highlight .ni { color: #999999; font-weight: bold } /* Name.Entity */
+.highlight .ne { color: #D2413A; font-weight: bold } /* Name.Exception */
+.highlight .nf { color: #0000FF } /* Name.Function */
+.highlight .nl { color: #A0A000 } /* Name.Label */
+.highlight .nn { color: #0000FF; font-weight: bold } /* Name.Namespace */
+.highlight .nt { color: #008000; font-weight: bold } /* Name.Tag */
+.highlight .nv { color: #19177C } /* Name.Variable */
+.highlight .ow { color: #AA22FF; font-weight: bold } /* Operator.Word */
+.highlight .w { color: #bbbbbb } /* Text.Whitespace */
+.highlight .mf { color: #666666 } /* Literal.Number.Float */
+.highlight .mh { color: #666666 } /* Literal.Number.Hex */
+.highlight .mi { color: #666666 } /* Literal.Number.Integer */
+.highlight .mo { color: #666666 } /* Literal.Number.Oct */
+.highlight .sb { color: #BA2121 } /* Literal.String.Backtick */
+.highlight .sc { color: #BA2121 } /* Literal.String.Char */
+.highlight .sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
+.highlight .s2 { color: #BA2121 } /* Literal.String.Double */
+.highlight .se { color: #BB6622; font-weight: bold } /* Literal.String.Escape */
+.highlight .sh { color: #BA2121 } /* Literal.String.Heredoc */
+.highlight .si { color: #BB6688; font-weight: bold } /* Literal.String.Interpol */
+.highlight .sx { color: #008000 } /* Literal.String.Other */
+.highlight .sr { color: #BB6688 } /* Literal.String.Regex */
+.highlight .s1 { color: #BA2121 } /* Literal.String.Single */
+.highlight .ss { color: #19177C } /* Literal.String.Symbol */
+.highlight .bp { color: #008000 } /* Name.Builtin.Pseudo */
+.highlight .vc { color: #19177C } /* Name.Variable.Class */
+.highlight .vg { color: #19177C } /* Name.Variable.Global */
+.highlight .vi { color: #19177C } /* Name.Variable.Instance */
+.highlight .il { color: #666666 } /* Literal.Number.Integer.Long */
+
+
+</style>
+<script type="text/javascript">
+/*<![CDATA[*/
+var asciidoc = {  // Namespace.
+
+/////////////////////////////////////////////////////////////////////
+// Table Of Contents generator
+/////////////////////////////////////////////////////////////////////
+
+/* Author: Mihai Bazon, September 2002
+ * http://students.infoiasi.ro/~mishoo
+ *
+ * Table Of Content generator
+ * Version: 0.4
+ *
+ * Feel free to use this script under the terms of the GNU General Public
+ * License, as long as you do not remove or alter this notice.
+ */
+
+ /* modified by Troy D. Hanson, September 2006. License: GPL */
+ /* modified by Stuart Rackham, 2006, 2009. License: GPL */
+
+// toclevels = 1..4.
+toc: function (toclevels) {
+
+  function getText(el) {
+    var text = "";
+    for (var i = el.firstChild; i != null; i = i.nextSibling) {
+      if (i.nodeType == 3 /* Node.TEXT_NODE */) // IE doesn't speak constants.
+        text += i.data;
+      else if (i.firstChild != null)
+        text += getText(i);
+    }
+    return text;
+  }
+
+  function TocEntry(el, text, toclevel) {
+    this.element = el;
+    this.text = text;
+    this.toclevel = toclevel;
+  }
+
+  function tocEntries(el, toclevels) {
+    var result = new Array;
+    var re = new RegExp('[hH]([1-'+(toclevels+1)+'])');
+    // Function that scans the DOM tree for header elements (the DOM2
+    // nodeIterator API would be a better technique but not supported by all
+    // browsers).
+    var iterate = function (el) {
+      for (var i = el.firstChild; i != null; i = i.nextSibling) {
+        if (i.nodeType == 1 /* Node.ELEMENT_NODE */) {
+          var mo = re.exec(i.tagName);
+          if (mo && (i.getAttribute("class") || i.getAttribute("className")) != "float") {
+            result[result.length] = new TocEntry(i, getText(i), mo[1]-1);
+          }
+          iterate(i);
+        }
+      }
+    }
+    iterate(el);
+    return result;
+  }
+
+  var toc = document.getElementById("toc");
+  if (!toc) {
+    return;
+  }
+
+  // Delete existing TOC entries in case we're reloading the TOC.
+  var tocEntriesToRemove = [];
+  var i;
+  for (i = 0; i < toc.childNodes.length; i++) {
+    var entry = toc.childNodes[i];
+    if (entry.nodeName.toLowerCase() == 'div'
+     && entry.getAttribute("class")
+     && entry.getAttribute("class").match(/^toclevel/))
+      tocEntriesToRemove.push(entry);
+  }
+  for (i = 0; i < tocEntriesToRemove.length; i++) {
+    toc.removeChild(tocEntriesToRemove[i]);
+  }
+
+  // Rebuild TOC entries.
+  var entries = tocEntries(document.getElementById("content"), toclevels);
+  for (var i = 0; i < entries.length; ++i) {
+    var entry = entries[i];
+    if (entry.element.id == "")
+      entry.element.id = "_toc_" + i;
+    var a = document.createElement("a");
+    a.href = "#" + entry.element.id;
+    a.appendChild(document.createTextNode(entry.text));
+    var div = document.createElement("div");
+    div.appendChild(a);
+    div.className = "toclevel" + entry.toclevel;
+    toc.appendChild(div);
+  }
+  if (entries.length == 0)
+    toc.parentNode.removeChild(toc);
+},
+
+
+/////////////////////////////////////////////////////////////////////
+// Footnotes generator
+/////////////////////////////////////////////////////////////////////
+
+/* Based on footnote generation code from:
+ * http://www.brandspankingnew.net/archive/2005/07/format_footnote.html
+ */
+
+footnotes: function () {
+  // Delete existing footnote entries in case we're reloading the footnodes.
+  var i;
+  var noteholder = document.getElementById("footnotes");
+  if (!noteholder) {
+    return;
+  }
+  var entriesToRemove = [];
+  for (i = 0; i < noteholder.childNodes.length; i++) {
+    var entry = noteholder.childNodes[i];
+    if (entry.nodeName.toLowerCase() == 'div' && entry.getAttribute("class") == "footnote")
+      entriesToRemove.push(entry);
+  }
+  for (i = 0; i < entriesToRemove.length; i++) {
+    noteholder.removeChild(entriesToRemove[i]);
+  }
+
+  // Rebuild footnote entries.
+  var cont = document.getElementById("content");
+  var spans = cont.getElementsByTagName("span");
+  var refs = {};
+  var n = 0;
+  for (i=0; i<spans.length; i++) {
+    if (spans[i].className == "footnote") {
+      n++;
+      var note = spans[i].getAttribute("data-note");
+      if (!note) {
+        // Use [\s\S] in place of . so multi-line matches work.
+        // Because JavaScript has no s (dotall) regex flag.
+        note = spans[i].innerHTML.match(/\s*\[([\s\S]*)]\s*/)[1];
+        spans[i].innerHTML =
+          "[<a id='_footnoteref_" + n + "' href='#_footnote_" + n +
+          "' title='View footnote' class='footnote'>" + n + "</a>]";
+        spans[i].setAttribute("data-note", note);
+      }
+      noteholder.innerHTML +=
+        "<div class='footnote' id='_footnote_" + n + "'>" +
+        "<a href='#_footnoteref_" + n + "' title='Return to text'>" +
+        n + "</a>. " + note + "</div>";
+      var id =spans[i].getAttribute("id");
+      if (id != null) refs["#"+id] = n;
+    }
+  }
+  if (n == 0)
+    noteholder.parentNode.removeChild(noteholder);
+  else {
+    // Process footnoterefs.
+    for (i=0; i<spans.length; i++) {
+      if (spans[i].className == "footnoteref") {
+        var href = spans[i].getElementsByTagName("a")[0].getAttribute("href");
+        href = href.match(/#.*/)[0];  // Because IE return full URL.
+        n = refs[href];
+        spans[i].innerHTML =
+          "[<a href='#_footnote_" + n +
+          "' title='View footnote' class='footnote'>" + n + "</a>]";
+      }
+    }
+  }
+},
+
+install: function(toclevels) {
+  var timerId;
+
+  function reinstall() {
+    asciidoc.footnotes();
+    if (toclevels) {
+      asciidoc.toc(toclevels);
+    }
+  }
+
+  function reinstallAndRemoveTimer() {
+    clearInterval(timerId);
+    reinstall();
+  }
+
+  timerId = setInterval(reinstall, 500);
+  if (document.addEventListener)
+    document.addEventListener("DOMContentLoaded", reinstallAndRemoveTimer, false);
+  else
+    window.onload = reinstallAndRemoveTimer;
+}
+
+}
+asciidoc.install();
+/*]]>*/
+</script>
+</head>
+<body class="article">
+<div id="header">
+<h1>Ulaz, izlaz</h1>
+<span id="author">Mladen Jurak</span><br>
+<span id="revnumber">version 1.0,</span>
+<span id="revdate">2018-02</span>
+</div>
+<div id="content">
+<div class="sect1">
+<h2 id="_ulazno_izlazna_biblioteka">Ulazno-izlazna biblioteka</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Standardna
+ulazno izlazna biblioteka brine o prijenosu podataka između programa, datoteka te standardnog ulaza
+(tastature) i standardnog izlaza (ekrana). Prijenos podataka je konceptualiziran kao <em>tok podataka</em>
+(eng. <em>stream</em>) između programa i vanjskog medija.</p></div>
+<div class="paragraph"><p>Ulazno izazni tipovi su definirani u tri datoteke zaglavlja:</p></div>
+<div class="tableblock">
+<table rules="all" style="margin-left:auto; margin-right:auto;" width="40%" frame="border" cellspacing="0" cellpadding="4">
+<colgroup><col width="33%">
+<col width="33%">
+<col width="33%">
+</colgroup><tbody>
+<tr>
+<td align="left" valign="top"><p class="table">&lt;iostream&gt;</p></td>
+<td align="left" valign="top"><p class="table">&lt;fstream&gt;</p></td>
+<td align="left" valign="top"><p class="table">&lt;sstream&gt;</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="paragraph"><p>Pojedini tipovi su u sljedećoj tabeli raspoređeni prema
+datotekama zaglavlja.</p></div>
+<div class="tableblock">
+<table rules="all" style="margin-left:auto; margin-right:auto;" width="70%" frame="border" cellspacing="0" cellpadding="4">
+<colgroup><col width="50%">
+<col width="50%">
+</colgroup><thead>
+<tr>
+<th align="center" valign="top"> Zaglavlje         </th>
+<th align="center" valign="top">    Tipovi</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td rowspan="3" align="center" valign="middle"><p class="table">&lt;iostream&gt;</p></td>
+<td align="center" valign="top"><p class="table"><em>istream</em> čita iz streama</p></td>
+</tr>
+<tr>
+<td align="center" valign="top"><p class="table"><em>ostream</em> piše u stream</p></td>
+</tr>
+<tr>
+<td align="center" valign="top"><p class="table"><em>iostream</em> čita iz i piše u stream</p></td>
+</tr>
+<tr>
+<td rowspan="3" align="center" valign="middle"><p class="table">&lt;fstream&gt;</p></td>
+<td align="center" valign="top"><p class="table"><em>ifstream</em> čita iz datoteke</p></td>
+</tr>
+<tr>
+<td align="center" valign="top"><p class="table"><em>ofstream</em> piše u datoteku</p></td>
+</tr>
+<tr>
+<td align="center" valign="top"><p class="table"><em>fstream</em> čita iz i piše u datoteku</p></td>
+</tr>
+<tr>
+<td rowspan="3" align="center" valign="middle"><p class="table">&lt;sstream&gt;</p></td>
+<td align="center" valign="top"><p class="table"><em>istringstream</em> čita iz stringa</p></td>
+</tr>
+<tr>
+<td align="center" valign="top"><p class="table"><em>ostringstream</em> piše u string</p></td>
+</tr>
+<tr>
+<td align="center" valign="top"><p class="table"><em>stringstream</em> čita iz i piše u string</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_standardni_ulaz_i_izlaz">Standardni ulaz i izlaz</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Za unos podataka koristimo <em>istream</em> objekt <strong>cin</strong> kojeg obično nazivamo
+<em>standardni ulaz</em>.</p></div>
+<div class="paragraph"><p>Za ispis podataka na <em>standardni izlaz</em> koristimo <em>ostream</em> objekt
+<strong>cout</strong>. Pored njega prisutna su još dva <em>ostreama</em> objekta, <strong>cerr</strong> i <strong>clog</strong>
+koji služe za ispis grešaka i logova (standardni izlazi za greške i logove).</p></div>
+<div class="paragraph"><p>Standardni ulazno-izlazni tokovi vezani su za terminal u kojem se
+program izvršava, no na većini operacijskih sustava mogu se preusmjeriti.</p></div>
+<div class="paragraph"><p>Primjer:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="cp">#include</span>  <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="n">v1</span><span class="p">,</span> <span class="n">v2</span><span class="p">;</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span>  <span class="s">"Unesite dva broja:"</span><span class="o">&lt;&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">v1</span> <span class="o">&gt;&gt;</span> <span class="n">v2</span><span class="p">;</span>
+
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span>  <span class="s">"Suma brojeva "</span> <span class="o">&lt;&lt;</span> <span class="n">v1</span> <span class="o">&lt;&lt;</span>  <span class="s">" i "</span> <span class="o">&lt;&lt;</span> <span class="n">v2</span>
+              <span class="o">&lt;&lt;</span>  <span class="s">" je jednaka "</span> <span class="o">&lt;&lt;</span> <span class="n">v1</span><span class="o">+</span><span class="n">v2</span> <span class="o">&lt;&lt;</span>  <span class="s">"."</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+
+     <span class="k">return</span>  <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div></div></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_ispis">Ispis</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Za ispis podataka na izlazni tok koristimo <strong>operator  &lt;&lt;</strong>. Taj se
+operator u primjeru</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span>  <span class="s">"Unesite dva broja:"</span><span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+</pre></div></div></div>
+<div class="paragraph"><p>koristi dva puta. Operator na lijevoj strani mora biti <em>ostream</em> objekt, dok je na desnoj strani
+operand koji se ispisuje.</p></div>
+<div class="paragraph"><p>To je ekvivalentno naredbama</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span>    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span>  <span class="s">"Unesite dva broja:"</span><span class="p">;</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+</pre></div></div></div>
+<div class="paragraph"><p><strong>endl</strong> je jedan od tzv. <strong>manipulatora</strong> i definiran je u imeniku
+<strong>std</strong>. Njegov efekt pri ispisu na izlazni tok je ispis znaka za prijelaz u
+novi red i slanje međuspremnika na izlaz (<em>flushing</em>) što osigurava trenutni ispis
+čitavog međuspremnika koji čuva podatke koji su poslani na izlazni tok ali
+još nisu ispisani.</p></div>
+<div class="paragraph"><p>Operator <code>&lt;&lt;</code> vrši formatirano ispisivanje. U kojem formatu će podatak biti ispisan
+ovisi o tipu podatka koji se ispisuje.</p></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_unos">Unos</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Čitanje podataka s ulaznog toka vrši se pomoću <strong>operatora &gt;&gt;</strong>.
+Lijevi operand je ulazni tok, a desni je varijabla u koju se podatak upisuje.
+Operacije čitanja možemo ulančavati.
+Izraz</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span>    <span class="n">std</span><span class="o">::</span><span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">v1</span> <span class="o">&gt;&gt;</span> <span class="n">v2</span><span class="p">;</span>
+</pre></div></div></div>
+<div class="paragraph"><p>je ekvivalentan s</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span>    <span class="n">std</span><span class="o">::</span><span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">v1</span><span class="p">;</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">v2</span><span class="p">;</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Operator <code>&gt;&gt;</code> služi za formatirano učitavanje. U kojem formatu će podatak biti
+učitan ovisi o tipu varijable u koju se učitavanje vrši.</p></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_testiranje_toka">Testiranje toka</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Podatke sa standardnog ulaza možemo sekvencijalno čitati se dok ne
+naiđemo na <em>kraj</em> ulaz tako da ispitujemo stanje toka u <code>while</code> petlji ili
+<code>if</code> naredbi. U sljedećem primjeru sumiramo sve učitane brojeve, ne znajući
+unaprijed koliko će ih biti.</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="cp">#include</span>  <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+     <span class="kt">int</span> <span class="n">v</span><span class="p">,</span> <span class="n">suma</span><span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+     <span class="k">while</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">v</span><span class="p">)</span>
+        <span class="n">suma</span> <span class="o">+=</span> <span class="n">v</span><span class="p">;</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span>  <span class="s">"Suma = "</span> <span class="o">&lt;&lt;</span> <span class="n">suma</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+
+     <span class="k">return</span>  <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Čitanje podatka sa standardnog ulaza dešava se u while petlji:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="k">while</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">v</span><span class="p">)</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Nakon što je podatak pročitan izraz vraća ulazni tok koji se testira u
+<code>while</code> naredbi. Prilikom testiranja toka vraća se njegovo <em>stanje</em>
+koje može biti <em>ispravno</em>  ili <em>neispravno</em>. Stanje ulaznog toka je ispravno
+ako je moguće pročitati sljedeći podatak iz toka. U suprotnom je neispravno i tada će <code>while</code>
+petlja završiti.</p></div>
+<div class="paragraph"><p>Ulazni tok dolazi u neispravno stanje u slučaju pogreške ili nailaska na kraj toka
+(<em>end-of-file</em> marker). Stoga u ovakvom kodu ta dva događaja nije moguće razlikovati.
+U oba slučaja petlja će se zaustaviti.</p></div>
+<div class="paragraph"><p>Pri čitanju sa standardnug ulaza, da bismo zaustavili čitanje, trebamo unijeti end-of-file
+marker. Na Linux i Mac OS-X sustavima to je obično <em>Enter</em> i <em>Ctrl-d</em>, a pod Windowsima <em>Enter</em> i
+<em>Ctrl-z</em>.</p></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_funkcije_za_citanje_getline">Funkcije za čitanje - getline</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Stringove možemo čitati sa standardnog ulaza kao i sve druge podatke pomoću operatora <code>&gt;&gt;</code>. Pri tome treba
+znati da se kao delimiter između različitih stringova koriste bjeline (koje pored bjelina
+uključuju tabulatore i znak za prijelaz u novi red). Dakle, pri upisu bit će preskočene
+prethodne bjeline i čitanje će biti zaustavljeno nailaskom na prvu bjelinu. To
+ilustrira sljedeći primjer:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="cp">#include</span>  <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+<span class="cp">#include</span>  <span class="cpf">&lt;string&gt;</span><span class="cp"></span>
+
+ <span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">word</span><span class="p">;</span>
+
+     <span class="k">while</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">word</span><span class="p">)</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">word</span><span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+     <span class="k">return</span>  <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Ukoliko želimo pročitati čitavu liniju sa svim eventualnim bjelinama trebamo koristiti
+globalnu funkciju <code>getline</code></p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="n">istream</span><span class="o">&amp;</span> <span class="n">std</span><span class="o">::</span><span class="n">getline</span> <span class="p">(</span> <span class="n">istream</span><span class="o">&amp;</span> <span class="n">is</span><span class="p">,</span> <span class="n">string</span><span class="o">&amp;</span> <span class="n">str</span> <span class="p">);</span>
+</pre></div></div></div>
+<div class="paragraph"><p>koja je deklarirana u zaglavlju  &lt;string&gt;.
+Ona čita do znaka za prijelaz u novi red, koji <strong>pročita i odbaci</strong>. Vraća ulazni tok
+koji se može testirati kao u sljedećem primjeru u kojem učitavom ulaz liniju po liniju sve
+do kraja ulaznog toka.</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="cp">#include</span>  <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+<span class="cp">#include</span>  <span class="cpf">&lt;string&gt;</span><span class="cp"></span>
+
+ <span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">line</span><span class="p">;</span>
+
+     <span class="k">while</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">getline</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">cin</span><span class="p">,</span> <span class="n">line</span><span class="p">))</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">line</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+     <span class="k">return</span>  <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Da li je učitavanje uspjelo saznajemo testiranjem ulaznog toka.</p></div>
+<div class="paragraph"><p><strong>Napomena</strong>. <code>std::getline()</code> pročita znak za prijelaz u novi red ali ga ne dodaje u
+string.</p></div>
+<div class="paragraph"><p><strong>Napomena</strong>. Ulazni tokovi imaju metodu članicu <code>getline()</code> istog imena i
+iste funkcionalnosti, ali ona radi
+sa C-stringovima (nizovima znakova završenim nul znakom).</p></div>
+<div class="paragraph"><p>Fukcija <code>getline()</code> ima i treći parametar koji ima predodređenu vrijednost.
+Taj parametar je separator i ako se ne zada ima vrijednost prijelaza u novi red (<em>\n</em>).</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="n">istream</span><span class="o">&amp;</span> <span class="n">std</span><span class="o">::</span><span class="n">getline</span> <span class="p">(</span> <span class="n">istream</span><span class="o">&amp;</span> <span class="n">is</span><span class="p">,</span> <span class="n">string</span><span class="o">&amp;</span> <span class="n">str</span><span class="p">,</span> <span class="kt">char</span> <span class="n">separator</span> <span class="p">);</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Zadavanjem bjeline kao separatora moguće je ulazni tekst čitati riječ po riječ.</p></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_funkcije_za_citanje_get">Funkcije za čitanje - get</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>U nekim situacijama zgodnije je čitanje vršiti znak po znak. Tome služi funkcija</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">istream</span> <span class="o">&amp;</span> <span class="n">std</span><span class="o">::</span><span class="n">istream</span><span class="o">::</span><span class="n">get</span><span class="p">(</span><span class="kt">char</span> <span class="o">&amp;</span> <span class="n">c</span><span class="p">)</span>
+</pre></div></div></div>
+<div class="paragraph"><p>koja će učitati sljedeći znak u varijablu c te vratiti ulazni tok na kome možemo provjeriti je li
+upis uspio. Sljedeći primjer ilustrira takav način učitavanja:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="cp">#include</span>  <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+<span class="cp">#include</span>  <span class="cpf">&lt;string&gt;</span><span class="cp"></span>
+
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="kt">char</span> <span class="n">c</span><span class="p">{</span><span class="sc">'\0'</span><span class="p">};</span>
+    <span class="n">string</span> <span class="n">text</span><span class="p">;</span>
+    <span class="c1">// Funkcija get će učitati svaki znak. Zaustavljanje</span>
+    <span class="c1">// unosa se postiže sa enter i Ctrl-D (linux)</span>
+    <span class="c1">// ili sa enter i Ctrl-Z (windows).</span>
+    <span class="k">while</span><span class="p">(</span> <span class="n">cin</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>  <span class="p">)</span>
+        <span class="n">text</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">c</span><span class="p">);</span>
+
+    <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">text</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+    <span class="k">return</span>  <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Isti efekt se postiže ako  na <code>cin</code> uklonimo zastavicu <code>skipws</code> koja određuje
+da se bjeline preskaču ako je postavljena, odnosno ne preskaču ako nije.</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="kt">char</span> <span class="n">c</span><span class="p">{</span><span class="sc">'\0'</span><span class="p">};</span>
+<span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">text</span><span class="p">;</span>
+<span class="n">cin</span><span class="p">.</span><span class="n">unsetf</span><span class="p">(</span><span class="n">ios</span><span class="o">::</span><span class="n">skipws</span><span class="p">);</span> <span class="c1">// ukloni zastavicu</span>
+<span class="k">while</span><span class="p">(</span><span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">c</span><span class="p">)</span>
+    <span class="n">text</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">c</span><span class="p">);</span>
+<span class="n">cin</span><span class="p">.</span><span class="n">setf</span><span class="p">(</span><span class="n">ios</span><span class="o">::</span><span class="n">skipws</span><span class="p">);</span>   <span class="c1">// vrati zastavicu</span>
+<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">text</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</pre></div></div></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_stanje_streama">Stanje streama</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Kod učitavanja podatak greške se redovito dešavaju.
+IO biblioteka ima stoga niz metoda koje indiciraju u kakvom je stanju stream (ulazni kao i izlazni).</p></div>
+<div class="paragraph"><p>Stanje streama je određeno variablom  tipa <code>std::iostate</code>
+definiranoj  u  klasi <code>std::ios_base</code>. Predefinirano je nekoliko konstanti tipa  <code>iostate</code>
+koje su dane u sljedećoj tabeli:</p></div>
+<div class="tableblock">
+<table rules="all" style="margin-left:auto; margin-right:auto;" width="100%" frame="border" cellspacing="0" cellpadding="4">
+<colgroup><col width="50%">
+<col width="50%">
+</colgroup><thead>
+<tr>
+<th align="left" valign="top">       Konstanta     </th>
+<th align="left" valign="top">      Značenje</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left" valign="top"><p class="table"><code>std::ios_base::goodbit</code></p></td>
+<td align="left" valign="top"><p class="table">Sve je uredu.</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>std::ios_base::eofbit</code></p></td>
+<td align="left" valign="top"><p class="table">Došlo se do kraja datoteke (nađen end-of-file).</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>std::ios_base::failbit</code></p></td>
+<td align="left" valign="top"><p class="table">Greška; operacija neuspješna.</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>std::ios_base::badbit</code></p></td>
+<td align="left" valign="top"><p class="table">Fatalna greška.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="paragraph"><p>Razlika između situacija koje signaliziraju  <code>failbit</code> i <code>badbit</code>
+je sljedeća: <code>badbit</code> signalizira da je stream korumpiran i podaci su eventualno
+izgubljeni. Čitanje stoga nije moguće nastaviti. <code>failbit</code>, s druge strane, kaže da je
+zadnje čitanje neuspjelo
+no stream je u konzistentnom stanju i čitanje se može nastaviti.</p></div>
+<div class="paragraph"><p><code>eofbit</code> se postavlja kada se pokuša čitati iza EOF znaka. Istovremeno s njim se postavlja i
+<code>failbit</code>.</p></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_funkcije_koje_daju_stanje_streama">Funkcije koje daju stanje streama</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Biblioteka definira niz funkcija za manipuliranjem sa stanjem streama. Kada želimo saznati stanje neke zastavice trebamo
+koristiti te funkcije budući da one vraćaju <code>true</code> ili <code>false</code>, dok je tip zastavice određen sustavom.</p></div>
+<div class="tableblock">
+<table rules="all" style="margin-left:auto; margin-right:auto;" width="100%" frame="border" cellspacing="0" cellpadding="4">
+<colgroup><col width="50%">
+<col width="50%">
+</colgroup><thead>
+<tr>
+<th align="left" valign="top"> Poziv funkcije </th>
+<th align="left" valign="top"> Povratna vrijednost</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left" valign="top"><p class="table"><code>s.eof()</code></p></td>
+<td align="left" valign="top"><p class="table"><em>true</em> ako je <code>eofbit</code> postavljen na streamu.</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>s.fail()</code></p></td>
+<td align="left" valign="top"><p class="table"><em>true</em> iako je <code>failbit</code> postavljen na streamu.</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>s.bad()</code></p></td>
+<td align="left" valign="top"><p class="table"><em>true</em> ako je <code>badbit</code> postavljen na streamu.</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>s.good()</code></p></td>
+<td align="left" valign="top"><p class="table"><em>true</em>  ako je stream u ispravnom stanju.</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>s.clear()</code></p></td>
+<td align="left" valign="top"><p class="table">Postavi sve vrijednosti stanja na "ispravno" na streamu <code>s</code>.</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>s.clear(flag)</code></p></td>
+<td align="left" valign="top"><p class="table">Stavi specifičnu zastavicu stanja na vrijednost flag, a druge poništi. Tip varijable  <code>flag</code> je <code>ios_base::iostate</code>.</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>s.setstate(flag)</code></p></td>
+<td align="left" valign="top"><p class="table">Postavljanje dodatnih zastavica.</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>s.rdstate()</code></p></td>
+<td align="left" valign="top"><p class="table">Vrati tekuće stanje streama kao varijablu tipa  <code>ios_base::iostate</code>.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_primjer">Primjer</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">**</span> <span class="n">argv</span><span class="p">)</span>
+<span class="p">{</span>
+   <span class="kt">int</span> <span class="n">ival</span><span class="p">;</span>
+   <span class="c1">// čitaj cin i testiraj samo na EOF;</span>
+   <span class="k">while</span> <span class="p">(</span><span class="o">!</span><span class="n">std</span><span class="o">::</span><span class="n">cin</span><span class="p">.</span><span class="n">eof</span><span class="p">())</span> <span class="p">{</span>
+       <span class="n">std</span><span class="o">::</span><span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">ival</span><span class="p">;</span>     <span class="c1">// Čitaj podatak</span>
+       <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"ival = "</span> <span class="o">&lt;&lt;</span> <span class="n">ival</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+
+       <span class="k">if</span> <span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">cin</span><span class="p">.</span><span class="n">bad</span><span class="p">())</span>  <span class="c1">// input stream korumpiran; izađi</span>
+          <span class="k">throw</span> <span class="n">std</span><span class="o">::</span><span class="n">runtime_error</span><span class="p">(</span><span class="s">"IO stream defektan"</span> <span class="p">);</span>
+
+       <span class="k">if</span> <span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">cin</span><span class="p">.</span><span class="n">fail</span><span class="p">())</span> <span class="c1">// loš ulaz</span>
+       <span class="p">{</span>
+            <span class="n">std</span><span class="o">::</span><span class="n">cin</span><span class="p">.</span><span class="n">clear</span><span class="p">();</span> <span class="c1">// resetiraj stream</span>
+            <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">t</span><span class="p">;</span>
+           <span class="c1">//čitaj podatak koji nije mogao biti konvertiran u int</span>
+            <span class="n">std</span><span class="o">::</span><span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">t</span><span class="p">;</span>
+            <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Pogresan podatak na ulazu (procitao "</span>
+                      <span class="o">&lt;&lt;</span> <span class="n">t</span> <span class="o">&lt;&lt;</span> <span class="s">"). Pokusajte ponovo."</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+            <span class="k">continue</span><span class="p">;</span> <span class="c1">// idi na novi ulaz</span>
+       <span class="p">}</span>
+      <span class="c1">// ok, procesiraj ival</span>
+      <span class="c1">// ...</span>
+   <span class="p">}</span>
+   <span class="k">return</span> <span class="p">(</span><span class="n">EXIT_SUCCESS</span> <span class="p">);</span>
+<span class="p">}</span>
+</pre></div></div></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_datoteke">Datoteke</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Datoteka zaglavlja  <em>&lt;fstream&gt;</em> definira tri tipa:</p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+<em>ifstream</em>, koji proširuje <em>istream</em> i služi čitanju iz datoteke;
+</p>
+</li>
+<li>
+<p>
+<em>ofstream</em>, koji proširuje <em>ostream</em> i služi pisanju u datoteku;
+</p>
+</li>
+<li>
+<p>
+<em>fstream</em>, koji proširuje <em>iostream</em> i služi čitanju i pisanju u/iz iste datoteke.
+</p>
+</li>
+</ul></div>
+<div class="paragraph"><p>Iz činjenice da su klase za rad s datotekama nastale proširenjem klasa za rad sa standardnim
+ulazom/izlazom proizlazi da one dijele isto sučelje, odnosno da formatirano pisanje i čitanje vršimo
+pomoću operatora <code>&lt;&lt;</code> i <code>&gt;&gt;</code>, te da stanje streama ispitujemo na isti način.</p></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_otvaranje_streama">Otvaranje  streama</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>File stream možemo otvoriti tako da konstruktoru damo ime datoteke.</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="c1">// Ime datoteke koju želimo čitati</span>
+<span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">file_name</span><span class="p">(</span><span class="s">"datoteka.txt"</span> <span class="p">);</span>
+
+<span class="c1">// Otvori ulazni stream prema datoteci "datoteka.txt"</span>
+<span class="n">std</span><span class="o">::</span><span class="n">ifstream</span> <span class="n">infile</span><span class="p">(</span><span class="n">file_name</span><span class="p">);</span>
+<span class="c1">// Otvori izlazni stream prema datoteci "output.txt"</span>
+<span class="n">std</span><span class="o">::</span><span class="n">ofstream</span> <span class="n">outfile</span><span class="p">(</span><span class="s">"output.txt"</span> <span class="p">);</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Nakon ovih operacija možemo koristiti stream <code>infile</code> za čitanje iz datoteke <em>datoteka.txt</em>, a stream
+<code>outfile</code> za pisanje u datoteku <em>output.txt</em>.</p></div>
+<div class="paragraph"><p>Druga mogućnostje iskoristiti defaultne konstruktore i metodu <em>open</em>:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="c1">// Otvori stream prema datoteci "datoteka.txt"</span>
+<span class="n">std</span><span class="o">::</span><span class="n">ifstream</span> <span class="n">infile</span><span class="p">;</span> <span class="c1">// Defaultni konstruktor ifstream klase</span>
+<span class="n">infile</span><span class="p">.</span><span class="n">open</span><span class="p">(</span><span class="n">file_name</span><span class="p">);</span>
+
+<span class="n">std</span><span class="o">::</span><span class="n">ofstream</span> <span class="n">outfile</span><span class="p">;</span> <span class="c1">// Defaultni konstruktor ofstream klase</span>
+<span class="n">outfile</span><span class="p">.</span><span class="n">open</span><span class="p">(</span><span class="s">"output.txt"</span> <span class="p">);</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Oba načina povezivanja streama s datotekom su ekvivalentna.</p></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_zatvaranje_streama">Zatvaranje streama</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Nakon otvaranja datoteke treba provjeriti je li operacija uspjela. To se čini
+ispitivanjem streama u <code>if</code> naredbi.</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">infile</span><span class="p">)</span>
+<span class="p">{</span>
+   <span class="n">std</span><span class="o">::</span><span class="n">cerr</span> <span class="o">&lt;&lt;</span> <span class="s">"Greška: ne mogu otvoriti ulaznu datoteku: "</span>
+             <span class="o">&lt;&lt;</span> <span class="n">file_name</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+   <span class="k">return</span> <span class="n">EXIT_FAILURE</span> <span class="p">;</span>
+<span class="p">}</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Nakon što smo koristili stream moramo ga zatvoriti metodom <em>close</em>.
+Jednom zatvoreni stream može se ponovo otvoriti pomoću <em>open</em> i povezati s nekom drugom datotekom.</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span>     <span class="n">infile</span><span class="p">.</span><span class="n">close</span><span class="p">();</span>                         <span class="c1">// Zatvori ulazni stream.</span>
+     <span class="n">infile</span><span class="p">.</span><span class="n">clear</span><span class="p">();</span>
+     <span class="n">infile</span><span class="p">.</span><span class="n">open</span><span class="p">(</span><span class="s">"neka_druga_datoteka"</span><span class="p">);</span>     <span class="c1">// Ponovo otvori isti stream.</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Prije ponovnog otvaranje streama treba pozvati metodu <code>clear</code>
+radi eliminacije grešaka koje su se eventualno pojavile u prethodnom procesiranju.</p></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_primjer_2">Primjer</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Ovdje imamo potpun primjer čitanja cijelih brojeva iz jedne datoteke i njihovog prepisivanja u drugu.</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="cp">#include</span>  <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+<span class="cp">#include</span>  <span class="cpf">&lt;fstream&gt;</span><span class="cp"></span>
+<span class="cp">#include</span>  <span class="cpf">&lt;string&gt;</span><span class="cp"></span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">file_name</span><span class="p">(</span><span class="s">"datoteka.txt"</span> <span class="p">);</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">ifstream</span> <span class="n">infile</span><span class="p">;</span>
+    <span class="n">infile</span><span class="p">.</span><span class="n">open</span><span class="p">(</span><span class="n">file_name</span><span class="p">.</span><span class="n">c_str</span><span class="p">());</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">infile</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">cerr</span> <span class="o">&lt;&lt;</span> <span class="s">"Greška: ne mogu otvoriti ulaznu datoteku: "</span>
+                  <span class="o">&lt;&lt;</span> <span class="n">file_name</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+        <span class="k">return</span> <span class="n">EXIT_FAILURE</span> <span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="n">std</span><span class="o">::</span><span class="n">ofstream</span> <span class="n">outfile</span><span class="p">;</span>
+    <span class="n">outfile</span><span class="p">.</span><span class="n">open</span><span class="p">(</span><span class="s">"output.txt"</span> <span class="p">);</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">outfile</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">cerr</span> <span class="o">&lt;&lt;</span> <span class="s">"Greška: ne mogu otvoriti izlaznu datoteku: "</span>
+                  <span class="o">&lt;&lt;</span> <span class="s">"output.txt"</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+        <span class="k">return</span> <span class="n">EXIT_FAILURE</span> <span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kt">int</span> <span class="n">tmp</span><span class="p">;</span>
+    <span class="c1">// Čitaj cijele brojeve is datoteke datotek.txt</span>
+    <span class="c1">// i ispiši ih u datoteku output.txt</span>
+    <span class="k">while</span> <span class="p">(</span><span class="n">infile</span> <span class="o">&gt;&gt;</span> <span class="n">tmp</span><span class="p">)</span>
+        <span class="n">outfile</span> <span class="o">&lt;&lt;</span> <span class="n">tmp</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+
+    <span class="n">infile</span><span class="p">.</span><span class="n">close</span><span class="p">();</span>
+    <span class="n">outfile</span><span class="p">.</span><span class="n">close</span><span class="p">();</span>
+    <span class="k">return</span> <span class="n">EXIT_SUCCESS</span> <span class="p">;</span>
+<span class="p">}</span>
+</pre></div></div></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_nacini_otvaranja_datoteke">Načini otvaranja datoteke</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Kada otvaramo neku datoteku za čitanje ili pisanje automatski se postavljaju neke zastavice
+u ovisnosti o tipu streama. Popis tih zastavica dan je u sljedećoj tabeli.</p></div>
+<div class="tableblock">
+<table rules="all" style="margin-left:auto; margin-right:auto;" width="100%" frame="border" cellspacing="0" cellpadding="4">
+<colgroup><col width="50%">
+<col width="50%">
+</colgroup><thead>
+<tr>
+<th align="left" valign="top"> Zastavica </th>
+<th align="left" valign="top"> Značenje</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left" valign="top"><p class="table"><code>in</code></p></td>
+<td align="left" valign="top"><p class="table">Otvori za čitanje</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>out</code></p></td>
+<td align="left" valign="top"><p class="table">Otvori za pisanje</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>app</code></p></td>
+<td align="left" valign="top"><p class="table">Prije svakog pisanja idi na kraj datoteka</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>ate</code></p></td>
+<td align="left" valign="top"><p class="table">Idi na kraj datoteke odmah nakon otvaranja</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>trunc</code></p></td>
+<td align="left" valign="top"><p class="table">"truncate" postojeći stream pri otvaranju</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>binary</code></p></td>
+<td align="left" valign="top"><p class="table">Operacije vrši binarno</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="paragraph"><p>Nisu sve zastavice kompatibilne sa svakim streamom. Na primjer, <code>in</code> zastavica se može postaviti samo na
+ulaznom streamu, ali tamo je postavljena implicitno tako da ju ne moramo sami postavljati. Slično je i s
+<code>out</code> zastavicom.
+Korisna može biti <code>app</code> zastavica koju možemo postaviti na izlaznom streamu. Ako želimo pisati u datoteku koja nije
+prazna ona će biti prije prvog pisanja obrisana (<code>trunc</code> je implicitno postavljen). Ako želimo nadopisivati
+u datoteku treba postaviti <code>app</code> zastavicu kao u ovom primjeru:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">ofstream</span> <span class="n">out</span><span class="p">;</span>
+<span class="n">out</span><span class="p">.</span><span class="n">open</span><span class="p">(</span> <span class="s">"A.txt"</span> <span class="p">);</span>
+<span class="n">out</span> <span class="o">&lt;&lt;</span>  <span class="s">"Linija 1   </span><span class="se">\n</span><span class="s">"</span> <span class="p">;</span>
+<span class="n">out</span><span class="p">.</span><span class="n">close</span><span class="p">();</span>
+<span class="n">std</span><span class="o">::</span><span class="n">ofstream</span> <span class="n">out1</span><span class="p">;</span>
+<span class="c1">// Ako otvorimo bez zastavice app file će biti obrisan.</span>
+<span class="n">out1</span><span class="p">.</span><span class="n">open</span><span class="p">(</span> <span class="s">"A.txt"</span> <span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">ofstream</span><span class="o">::</span><span class="n">app</span><span class="p">);</span>
+<span class="n">out1</span> <span class="o">&lt;&lt;</span>  <span class="s">"Linija 2   </span><span class="se">\n</span><span class="s">"</span> <span class="p">;</span>
+<span class="n">out1</span><span class="p">.</span><span class="n">close</span><span class="p">();</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Datoteku je moguće otvoriti i u binarnom modu i tada za ulaz i izlaz treba koristiti posebne funkcije.
+Korištenjem <code>fstream</code>-a moguće je datoteku otvoriti za istovremeno pisanje i čitanje.</p></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_formatiranje_ulaza_izlaza">Formatiranje ulaza/izlaza</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_stanje_streama_i_manipulatori">Stanje streama i manipulatori</h3>
+<div class="paragraph"><p>Ulazno-izlazni streamovi pamte određen broj parametara koji određuju način formatiranja
+ispisa, odnosno format ulaznih podataka.</p></div>
+<div class="paragraph"><p>Korisnik može mijenjati te unutarnje parametre streamova pomoću <em>manipulatora</em>.
+Manipulatori su objekti ili funkcije koji se mogu koristiti kao operandi
+ulaznog/izlaznog streama s ciljem da promjene njegovo stanje. Oni vraćaju stream objekt
+tako da se mogu ubacivati u niz čitanja i pisanja.</p></div>
+<div class="paragraph"><p>Jedan primjer manipulatora je <code>endl</code>. Kada ispiše u izlazni stream</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+</pre></div></div></div>
+<div class="paragraph"><p>On ispiše
+znak za prijelaz u novi red i šalje međuspremnik streama na izlaz. Na sličan način funkcioniraju i
+drugi manipulatori. Oni se prividno ispisuju i učitavaju, dok ustvari vrše neke druge operacije
+na streamu.</p></div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_format_logickog_tipa">Format logičkog tipa</h2>
+<div class="sectionbody">
+<div class="paragraph"><p><code>bool</code> varijabla se po defaultu ispisuje kao 0 ili 1. true i false dobivamo primjenom <em>boolalpha</em>
+manipulatora. To ilustrira ovaj program:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;cstdlib&gt;</span><span class="cp"></span>
+
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="p">;</span>
+
+<span class="kt">int</span> <span class="nf">main</span> <span class="p">(</span> <span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">*</span><span class="n">argv</span><span class="p">[]</span> <span class="p">)</span>
+<span class="p">{</span>
+ <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"defaultni ispisbool vrijednosti: "</span>
+      <span class="o">&lt;&lt;</span> <span class="nb">true</span> <span class="o">&lt;&lt;</span> <span class="s">" "</span> <span class="o">&lt;&lt;</span> <span class="nb">false</span>
+      <span class="o">&lt;&lt;</span> <span class="s">" </span><span class="se">\n</span><span class="s"> Nakon boolalpha: "</span>
+      <span class="o">&lt;&lt;</span> <span class="n">boolalpha</span>
+      <span class="o">&lt;&lt;</span> <span class="nb">true</span> <span class="o">&lt;&lt;</span> <span class="s">" "</span> <span class="o">&lt;&lt;</span> <span class="nb">false</span>
+      <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+
+ <span class="k">return</span> <span class="n">EXIT_SUCCESS</span> <span class="p">;</span>
+<span class="p">}</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Izlaz programa je ovaj:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="n">defaultni</span> <span class="n">ispis</span>  <span class="kt">bool</span> <span class="nl">vrijednosti</span><span class="p">:</span> <span class="mi">1</span> <span class="mi">0</span>
+<span class="n">Nakon</span> <span class="nl">boolalpha</span><span class="p">:</span> <span class="nb">true</span> <span class="nb">false</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Nakon što smo "ispisali" <code>boolalpha</code> svako daljnje ispisivanje logičkih vrijednosti
+koristi <code>true</code> i <code>false</code>. To ponašanje poništavamo s <code>noboolalpha</code>:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span>     <span class="kt">bool</span> <span class="n">x</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+     <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Ispis nakon boolalpha: x = "</span> <span class="o">&lt;&lt;</span> <span class="n">x</span>
+          <span class="o">&lt;&lt;</span> <span class="n">noboolalpha</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span>
+          <span class="o">&lt;&lt;</span> <span class="s">"Ispis nakon noboolalpha: x = "</span> <span class="o">&lt;&lt;</span> <span class="n">x</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Nakon <code>noboolalpha</code>,  <code>true</code> i <code>false</code> se ponovo ispisuju kao 1 i 0.</p></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_baza_cjelobrojnih_tipova">Baza cjelobrojnih tipova</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Svi se cijeli brojevi ispisuju u bazi 10. To se mijenja pomoću manipulatora
+<code>hex</code>, <code>oct</code> i <code>dec</code>. <code>hex</code> daje heksadecimalni ispis, <code>oct</code> oktalni,
+a <code>dec</code> služi za povratak na
+decimalni.</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="k">const</span> <span class="kt">int</span> <span class="n">val</span> <span class="o">=</span> <span class="mi">15</span><span class="p">;</span>
+<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"defaultni ispis: val = "</span> <span class="o">&lt;&lt;</span> <span class="n">val</span>  <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"oktalno:         val = "</span> <span class="o">&lt;&lt;</span> <span class="n">oct</span> <span class="o">&lt;&lt;</span> <span class="n">val</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"heksadecimalno:  val = "</span> <span class="o">&lt;&lt;</span> <span class="n">hex</span> <span class="o">&lt;&lt;</span> <span class="n">val</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"decimalno:       val = "</span> <span class="o">&lt;&lt;</span> <span class="n">dec</span> <span class="o">&lt;&lt;</span> <span class="n">val</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Ispis:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="n">defaultni</span> <span class="nl">ispis</span><span class="p">:</span> <span class="n">val</span> <span class="o">=</span> <span class="mi">15</span>
+<span class="nl">oktalno</span><span class="p">:</span>         <span class="n">val</span> <span class="o">=</span> <span class="mi">17</span>
+<span class="nl">heksadecimalno</span><span class="p">:</span>  <span class="n">val</span> <span class="o">=</span> <span class="n">f</span>
+<span class="nl">decimalno</span><span class="p">:</span>       <span class="n">val</span> <span class="o">=</span> <span class="mi">15</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Promjena koju vrše ovi manipulatori je <strong>trajna</strong>.</p></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_oznaka_baze_na_izlazu">Oznaka baze na izlazu</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Općenito se ne ispisuje. To se mijenja s manipulatorima <code>showbase</code> i <code>noshowbase</code>.
+Pri tome u ispisu imamo sljedeće pravilo:</p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+Vodeći    <code>0x</code> indicira heksadecimalan broj;
+</p>
+</li>
+<li>
+<p>
+Vodeća    <code>0</code> indicira oktalan broj;
+</p>
+</li>
+<li>
+<p>
+Odsutnost oznake indicira decimalan broj.
+</p>
+</li>
+</ul></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="k">const</span> <span class="kt">int</span> <span class="n">val</span> <span class="o">=</span> <span class="mi">15</span><span class="p">;</span>
+<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">showbase</span><span class="p">;</span>  <span class="c1">// Prikaži bazu</span>
+<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"defaultni ispis: val = "</span> <span class="o">&lt;&lt;</span> <span class="n">val</span>  <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"oktalno:         val = "</span> <span class="o">&lt;&lt;</span> <span class="n">oct</span> <span class="o">&lt;&lt;</span> <span class="n">val</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"heksadecimalno:  val = "</span> <span class="o">&lt;&lt;</span> <span class="n">hex</span> <span class="o">&lt;&lt;</span> <span class="n">val</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"decimalno:       val = "</span> <span class="o">&lt;&lt;</span> <span class="n">dec</span> <span class="o">&lt;&lt;</span> <span class="n">val</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">noshowbase</span><span class="p">;</span>  <span class="c1">// Vrati staro stanje</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Ispis:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="n">defaultni</span> <span class="nl">ispis</span><span class="p">:</span> <span class="n">val</span> <span class="o">=</span> <span class="mi">15</span>
+<span class="nl">oktalno</span><span class="p">:</span>         <span class="n">val</span> <span class="o">=</span> <span class="mo">017</span>
+<span class="nl">heksadecimalno</span><span class="p">:</span>  <span class="n">val</span> <span class="o">=</span> <span class="mh">0xf</span>
+<span class="nl">decimalno</span><span class="p">:</span>       <span class="n">val</span> <span class="o">=</span> <span class="mi">15</span>
+</pre></div></div></div>
+<div class="paragraph"><p><code>noshowbase</code> manipulator poništava <code>showbase</code>.</p></div>
+<div class="paragraph"><p>Heksadecimalni brojevi se ispisuju s malim slovima. Želimo li velika slova koristimo <code>uppercase</code>/<code>nouppercase</code>:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span>     <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">uppercase</span> <span class="o">&lt;&lt;</span> <span class="n">showbase</span> <span class="o">&lt;&lt;</span> <span class="n">hex</span>
+         <span class="o">&lt;&lt;</span> <span class="s">"Hexadecimalno:   val = "</span> <span class="o">&lt;&lt;</span> <span class="n">val</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Ispis:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="nl">Hexadecimalno</span><span class="p">:</span>   <span class="n">val</span> <span class="o">=</span> <span class="mi">0</span><span class="n">XF</span>
+</pre></div></div></div>
+<div class="paragraph"><p><code>nouppercase</code> manipulator poništava akciju <code>uppercase</code> manipulatora.</p></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_kontrola_ispisa_fp_brojeva">Kontrola ispisa fp-brojeva</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Sljedeći su aspekti formatiranja fp-brojeva:</p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+Preciznost: broj ispisanih znamenaka;
+</p>
+</li>
+<li>
+<p>
+Notacija: s eksponentom ili bez njega;
+</p>
+</li>
+<li>
+<p>
+Decimalna točka kod cjelobrojnih vrijednosti.
+</p>
+</li>
+</ul></div>
+<div class="paragraph"><p>Normalno se koristi 6 znamenki u ispisu. Ako je broj cijeli ne ispisuje se decimalna točka.
+Hoće li biti ispisan s eksponentom ili ne ovisi o veličini broja.</p></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_promjena_preciznosti">Promjena preciznosti</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Preciznost ispisa (broj znamenki u ispisu) postavlja se pomoću funkcije <code>precision</code>
+ili pomoću <code>setprecision</code> manipulatora.
+Funkcija <code>precision</code> uzima nula ili jedan argument. Kad uzima argument onda
+<em>postavlja</em> preciznost, dok bez argumenta vraća trenutnu preciznost. Manipulator <code>setprecision</code>
+uzima jedan argument i postavlja preciznost.</p></div>
+<div class="paragraph"><p>Primjer:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;iomanip&gt;</span><span class="cp"></span>
+<span class="c1">// cout.precision daje trenutnu preciznost</span>
+<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Preciznost:  "</span>  <span class="o">&lt;&lt;</span> <span class="n">cout</span><span class="p">.</span><span class="n">precision</span><span class="p">()</span>
+     <span class="o">&lt;&lt;</span> <span class="s">", Vrijednost: "</span> <span class="o">&lt;&lt;</span> <span class="n">sqrt</span><span class="p">(</span><span class="mf">2.0</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+<span class="c1">// cout.precision(12) postavlja preciznost na 12  znamenaka</span>
+<span class="n">cout</span><span class="p">.</span><span class="n">precision</span><span class="p">(</span><span class="mi">12</span><span class="p">);</span>
+<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Preciznost: "</span>   <span class="o">&lt;&lt;</span> <span class="n">cout</span><span class="p">.</span><span class="n">precision</span><span class="p">()</span>
+     <span class="o">&lt;&lt;</span> <span class="s">", Vrijednost: "</span> <span class="o">&lt;&lt;</span> <span class="n">sqrt</span><span class="p">(</span><span class="mf">2.0</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+<span class="c1">// možemo upotrijebiti i setprecision manipulator</span>
+<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">setprecision</span><span class="p">(</span><span class="mi">4</span><span class="p">);</span>
+<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Preciznost:  "</span>  <span class="o">&lt;&lt;</span> <span class="n">cout</span><span class="p">.</span><span class="n">precision</span><span class="p">()</span>
+     <span class="o">&lt;&lt;</span> <span class="s">", Vrijednost: "</span> <span class="o">&lt;&lt;</span> <span class="n">sqrt</span><span class="p">(</span><span class="mf">2.0</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Ispis:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="nl">Preciznost</span><span class="p">:</span>  <span class="mi">6</span><span class="p">,</span> <span class="nl">Vrijednost</span><span class="p">:</span> <span class="mf">1.41421</span>
+<span class="nl">Preciznost</span><span class="p">:</span> <span class="mi">12</span><span class="p">,</span> <span class="nl">Vrijednost</span><span class="p">:</span> <span class="mf">1.41421356237</span>
+<span class="nl">Preciznost</span><span class="p">:</span>  <span class="mi">4</span><span class="p">,</span> <span class="nl">Vrijednost</span><span class="p">:</span> <span class="mf">1.414</span>
+</pre></div></div></div>
+<div class="paragraph"><p><code>setprecision</code> manipulatori i drugi manipulatori koji uzimaju argumente  definirani su u
+<strong>iomanip</strong> headeru.</p></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_eksponencijalni_ili_pozicijski_ispis">Eksponencijalni ili pozicijski ispis</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Ovdje su nam na raspolaganju manipulatori <code>scientific</code> i <code>fixed</code>.
+Oni trajno mijenjaju formatiranje fp-brojeva, ali ne postoje
+negativni manipulatori koji bi vratili prethodno stanje.
+Zato smo dužni manipulirati sa zastavicama, što opisujemo niže, odnosno, u ovom slučaju
+je dovoljno zvati  <code>unsetf</code> metodu kojoj dajemo vrijednost iz biblioteke
+nazvanu <code>ios::floatfield</code>:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="c1">// postavi defaulne vrijednosti - poništi eventualne prethodne promjene</span>
+<span class="n">cout</span><span class="p">.</span><span class="n">unsetf</span><span class="p">(</span><span class="n">ios</span><span class="o">::</span><span class="n">floatfield</span><span class="p">);</span>
+<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"</span><span class="se">\n</span><span class="s">Defaultni prikaz: "</span> <span class="o">&lt;&lt;</span> <span class="mi">100</span><span class="o">*</span><span class="n">sqrt</span><span class="p">(</span><span class="mf">2.0</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Eksponencijalni prikaz: "</span> <span class="o">&lt;&lt;</span> <span class="n">scientific</span> <span class="o">&lt;&lt;</span> <span class="mi">100</span><span class="o">*</span><span class="n">sqrt</span><span class="p">(</span><span class="mf">2.0</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="s">"</span><span class="se">\n</span><span class="s">"</span>
+     <span class="o">&lt;&lt;</span> <span class="s">"Pozicijski prikaz: "</span> <span class="o">&lt;&lt;</span> <span class="n">fixed</span> <span class="o">&lt;&lt;</span> <span class="mi">100</span><span class="o">*</span><span class="n">sqrt</span><span class="p">(</span><span class="mf">2.0</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+<span class="c1">// vrati defaultne vrijednosti</span>
+<span class="n">cout</span><span class="p">.</span><span class="n">unsetf</span><span class="p">(</span><span class="n">ios</span><span class="o">::</span><span class="n">floatfield</span><span class="p">);</span>
+<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Nakon brisanja zastavica: "</span> <span class="o">&lt;&lt;</span> <span class="mi">100</span><span class="o">*</span><span class="n">sqrt</span><span class="p">(</span><span class="mf">2.0</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Ispis:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="n">Defaultni</span> <span class="nl">prikaz</span><span class="p">:</span> <span class="mf">141.421</span>
+<span class="n">Eksponencijalni</span> <span class="nl">prikaz</span><span class="p">:</span> <span class="mf">1.414214e+02</span>
+<span class="n">Pozicijski</span> <span class="nl">prikaz</span><span class="p">:</span> <span class="mf">141.421356</span>
+<span class="n">Nakon</span> <span class="n">brisanja</span> <span class="nl">zastavica</span><span class="p">:</span> <span class="mf">141.421</span>
+</pre></div></div></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_ispis_decimalne_tocke">Ispis decimalne točke</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Manipulatori <code>showpoint</code> i <code>noshowpoint</code> kontroliraju ispis decimalne
+točke kod cjelobrojnih floating point brojeva. Po defaultu točka se ne ispisuje-</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span>     <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="mf">10.0</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>        <span class="c1">// ispisuje 10</span>
+     <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">showpoint</span> <span class="o">&lt;&lt;</span> <span class="mf">10.0</span>    <span class="c1">// ispisuje 10.0000</span>
+          <span class="o">&lt;&lt;</span> <span class="n">noshowpoint</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span> <span class="c1">// povrat na defaultnu vrijednost</span>
+</pre></div></div></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_kontrola_dopunjavanja_bjelinama_em_padding_em">Kontrola dopunjavanja bjelinama (<em>padding</em>)</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Imamo ove manipulatore:</p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+<code>setw</code> postavlja minimalnu širinu za sljedeći numerički ili znakovni podatak;
+</p>
+</li>
+<li>
+<p>
+<code>left</code> lijevo pozicionira  izlaz;
+</p>
+</li>
+<li>
+<p>
+<code>right</code> desno pozicionira  izlaz (default);
+</p>
+</li>
+<li>
+<p>
+<code>internal</code> kontrolira predznak kod negativnog broja. Znak stavi lijevo, a vrijednost desno;
+</p>
+</li>
+<li>
+<p>
+<code>setfill</code> specificira alternativan znak za popunjavanje (umjesto bjeline).
+</p>
+</li>
+</ul></div>
+<div class="paragraph"><p><code>setw</code>, kao <code>endl</code>, ne mijenja stanje streama, i vrijedi samo za sljedeći ispis.
+<code>setw</code> predstavlja samo minimalni broj znakova, što znači da će podatak biti ispisan s
+većim brojem znakova ako je to potrebno.</p></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_primjer_3">Primjer</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="c1">// minimum 12 znakova za izlaz</span>
+<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"1 i: "</span> <span class="o">&lt;&lt;</span> <span class="n">setw</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">i</span> <span class="o">&lt;&lt;</span> <span class="s">"::"</span> <span class="o">&lt;&lt;</span> <span class="sc">'\n'</span>
+     <span class="o">&lt;&lt;</span> <span class="s">"1 d: "</span> <span class="o">&lt;&lt;</span> <span class="n">setw</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">d</span> <span class="o">&lt;&lt;</span> <span class="s">"::"</span> <span class="o">&lt;&lt;</span> <span class="sc">'\n'</span><span class="p">;</span>
+<span class="c1">// pozicioniraj lijevo</span>
+<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">left</span>
+     <span class="o">&lt;&lt;</span> <span class="s">"2 i: "</span> <span class="o">&lt;&lt;</span> <span class="n">setw</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">i</span> <span class="o">&lt;&lt;</span> <span class="s">"::"</span> <span class="o">&lt;&lt;</span> <span class="sc">'\n'</span>
+     <span class="o">&lt;&lt;</span> <span class="s">"2 d: "</span> <span class="o">&lt;&lt;</span> <span class="n">setw</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">d</span> <span class="o">&lt;&lt;</span> <span class="s">"::"</span> <span class="o">&lt;&lt;</span> <span class="sc">'\n'</span><span class="p">;</span>
+<span class="c1">// vrati desno pozicioniranje</span>
+<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">right</span>
+     <span class="o">&lt;&lt;</span> <span class="s">"3 i: "</span> <span class="o">&lt;&lt;</span> <span class="n">setw</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">i</span> <span class="o">&lt;&lt;</span> <span class="s">"::"</span> <span class="o">&lt;&lt;</span> <span class="sc">'\n'</span>
+     <span class="o">&lt;&lt;</span> <span class="s">"3 d: "</span> <span class="o">&lt;&lt;</span> <span class="n">setw</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">d</span> <span class="o">&lt;&lt;</span> <span class="s">"::"</span> <span class="o">&lt;&lt;</span> <span class="sc">'\n'</span><span class="p">;</span>
+<span class="c1">// unutrašnje pozicioniranje; prikaži pozitivan broj sa znakom +</span>
+<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">internal</span> <span class="o">&lt;&lt;</span> <span class="n">showpos</span>
+     <span class="o">&lt;&lt;</span> <span class="s">"4 i: "</span> <span class="o">&lt;&lt;</span> <span class="n">setw</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">i</span> <span class="o">&lt;&lt;</span> <span class="s">"::"</span> <span class="o">&lt;&lt;</span> <span class="sc">'\n'</span>
+     <span class="o">&lt;&lt;</span> <span class="s">"4 d: "</span> <span class="o">&lt;&lt;</span> <span class="n">setw</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">d</span> <span class="o">&lt;&lt;</span> <span class="s">"::"</span> <span class="o">&lt;&lt;</span> <span class="sc">'\n'</span><span class="p">;</span>
+<span class="c1">// promijeni znak za popunjavanje u _</span>
+<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">setfill</span><span class="p">(</span><span class="sc">'_'</span><span class="p">)</span>
+     <span class="o">&lt;&lt;</span> <span class="s">"5 i: "</span> <span class="o">&lt;&lt;</span> <span class="n">setw</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">i</span> <span class="o">&lt;&lt;</span> <span class="s">"::"</span> <span class="o">&lt;&lt;</span> <span class="sc">'\n'</span>
+     <span class="o">&lt;&lt;</span> <span class="s">"5 d: "</span> <span class="o">&lt;&lt;</span> <span class="n">setw</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">d</span> <span class="o">&lt;&lt;</span> <span class="s">"::"</span> <span class="o">&lt;&lt;</span> <span class="sc">'\n'</span>
+     <span class="o">&lt;&lt;</span> <span class="n">setfill</span><span class="p">(</span><span class="sc">' '</span><span class="p">)</span> <span class="c1">// vrati bjelinu kao znak za popunjavanje</span>
+     <span class="o">&lt;&lt;</span> <span class="n">right</span>       <span class="c1">// vrati defaultno pozicioniranje</span>
+     <span class="o">&lt;&lt;</span> <span class="n">noshowpos</span><span class="p">;</span>  <span class="c1">// ne prikazuj + kod nenegativnog broja (default))</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Ispis:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="mi">1</span> <span class="nl">i</span><span class="p">:</span>        <span class="o">-</span><span class="mi">1024</span><span class="o">::</span>
+<span class="mi">1</span> <span class="nl">d</span><span class="p">:</span>      <span class="mf">3.14159</span><span class="o">::</span>
+<span class="mi">2</span> <span class="nl">i</span><span class="p">:</span> <span class="o">-</span><span class="mi">1024</span>       <span class="o">::</span>
+<span class="mi">2</span> <span class="nl">d</span><span class="p">:</span> <span class="mf">3.14159</span>     <span class="o">::</span>
+<span class="mi">3</span> <span class="nl">i</span><span class="p">:</span>        <span class="o">-</span><span class="mi">1024</span><span class="o">::</span>
+<span class="mi">3</span> <span class="nl">d</span><span class="p">:</span>      <span class="mf">3.14159</span><span class="o">::</span>
+<span class="mi">4</span> <span class="nl">i</span><span class="p">:</span> <span class="o">-</span>       <span class="mi">1024</span><span class="o">::</span>
+<span class="mi">4</span> <span class="nl">d</span><span class="p">:</span> <span class="o">+</span>    <span class="mf">3.14159</span><span class="o">::</span>
+<span class="mi">5</span> <span class="nl">i</span><span class="p">:</span> <span class="o">-</span><span class="n">_______1024</span><span class="o">::</span>
+<span class="mi">5</span> <span class="nl">d</span><span class="p">:</span> <span class="o">+</span><span class="n">____3</span><span class="mf">.14159</span><span class="o">::</span>
+</pre></div></div></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_kontrola_ulaznog_formatiranja">Kontrola ulaznog formatiranja</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Standardno ulazna operacija ignorira bjeline
+(<code>blank</code>, <code>tab</code>, <code>newline</code>, <code>formfeed</code>,  <code>carriage return</code>).
+Na primjer, petlja:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="kt">char</span> <span class="n">ch</span><span class="p">;</span>
+<span class="k">while</span> <span class="p">(</span><span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">ch</span> <span class="o">&amp;&amp;</span> <span class="n">ch</span> <span class="o">!=</span> <span class="sc">'x'</span><span class="p">)</span>
+     <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">ch</span><span class="p">;</span>
+<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</pre></div></div></div>
+<div class="paragraph"><p>na podacima</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="n">w</span> <span class="n">e</span> <span class="n">rx</span>
+</pre></div></div></div>
+<div class="paragraph"><p>izvrši se 3 puta čitajući svaki znak posebno, preskakanjem bjelina (bjelina je delimiter).
+Izlaz programa je:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="n">wer</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Manipulator <code>noskipws</code> čini da ulazni operator čita i bjeline, umjesto da ih preskače.
+Pomoću <code>skipws</code> manipulatora vraćamo se na normalno učitavanje s preskakanjem bjelina.</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">noskipws</span><span class="p">;</span>   <span class="c1">// neka cin ne preskače bjeline</span>
+<span class="k">while</span> <span class="p">(</span><span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">ch</span> <span class="o">&amp;&amp;</span> <span class="n">ch</span> <span class="o">!=</span> <span class="sc">'x'</span><span class="p">)</span>
+     <span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">ch</span><span class="p">;</span>
+<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+<span class="n">cin</span> <span class="o">&gt;&gt;</span> <span class="n">skipws</span><span class="p">;</span>     <span class="c1">// vrati staro stanje</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Zadamo li ulaz:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="n">e</span> <span class="n">r</span> <span class="n">t</span> <span class="n">zx</span>
+</pre></div></div></div>
+<div class="literalblock">
+<div class="content">
+<pre><code>dobivamo izlaz</code></pre>
+</div></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="n">e</span> <span class="n">r</span> <span class="n">t</span> <span class="n">z</span>
+</pre></div></div></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_mijenjanje_stanja_streama_pomocu_zastavica">Mijenjanje stanja streama pomoću zastavica</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Formatiranje ulaza i izlaza pomoću manipulatora je vrlo praktično, no postoji i drugi način da se
+postignu isti efekti.
+Način formatiranja ulaza/izlaza određen je varijablama u klasi <code>ios</code>, tipa
+<code>ios::fmtflags</code>, koje nazivamo zastavicama (flags) i koje određuju način ispisa
+cijelih brojeva, bool vrijednosti, floating-point brojeva itd.</p></div>
+<div class="paragraph"><p>Postavljanje pojedine zastavice odgovara primjeni ogovarajućeg manipulatora, dok
+brisanje zastavice odgovara primjeni suprotnog (poništavajućeg) manipulatora.</p></div>
+<div class="paragraph"><p>Neke od zastavica tvore grupe
+i posebne <em>maske</em> su definirane da olakšaju rad s njima. Funkcije koje manipuliraju sa
+zastavicama dane su u sljedećoj tabeli.</p></div>
+<div class="tableblock">
+<table rules="all" style="margin-left:auto; margin-right:auto;" width="100%" frame="border" cellspacing="0" cellpadding="4">
+<colgroup><col width="50%">
+<col width="50%">
+</colgroup><thead>
+<tr>
+<th align="left" valign="top"> Funkcija </th>
+<th align="left" valign="top"> Značenje</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left" valign="top"><p class="table"><code>setf(flags)</code></p></td>
+<td align="left" valign="top"><p class="table">Postavi <code>flags</code> kao dodatnu zastavicu i vrati prethodno stanje svih zastavica</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>setf(flags, mask)</code></p></td>
+<td align="left" valign="top"><p class="table">Postavi <code>flags</code> kao novu zastavicu grupe identificirane pomoću <code>mask</code> i vrati prethodno stanje svih zastavica</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>unsetf(flags)</code></p></td>
+<td align="left" valign="top"><p class="table">Obriši sve zastavice formatiranja</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>flags()</code></p></td>
+<td align="left" valign="top"><p class="table">Vrati skup zastavica formatiranja</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>flags(flags)</code></p></td>
+<td align="left" valign="top"><p class="table">Postavi zatavice formatiranja na vrijednost flags i vrati prethodno stanje zastavica formatiranja</p></td>
+</tr>
+<tr>
+<td align="left" valign="top"><p class="table"><code>copyfmt(stream)</code></p></td>
+<td align="left" valign="top"><p class="table">Kopiraj sve zastavice formatiranja od <code>stream</code>-a</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_vracanje_pocetnog_stanja_pomocu_zastavica">Vraćanje početnog stanja pomoću zastavica</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Metoda <code>flags()</code> omogućava da uzmemo stanje streama prije
+primjene manipulatora i da ga vrtimo kad smo gotovi.  Imamo dvije preopterećene
+verzije:</p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+<code>flags()</code> bez argumenata vraća tekuće stanje formatiranja streama.
+    Vrijednost je tipa <code>fmtflags</code>.
+</p>
+</li>
+<li>
+<p>
+<code>flags(arg)</code> uzima  <code>fmtflags</code> argument i postavlja stanje stream
+    na ono indicirano argumentom.
+</p>
+</li>
+</ul></div>
+<div class="paragraph"><p>Na primjer,</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="kt">void</span> <span class="nf">display</span><span class="p">(</span><span class="n">ostream</span> <span class="o">&amp;</span> <span class="n">os</span><span class="p">)</span>
+<span class="p">{</span>
+     <span class="c1">// Zapamti trenutno stanje streama</span>
+     <span class="n">ostream</span><span class="o">::</span><span class="n">fmtflags</span> <span class="n">curr_fmt</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">flags</span><span class="p">();</span>
+     <span class="c1">// Rad sa streamom ... manipulacije</span>
+     <span class="n">os</span><span class="p">.</span><span class="n">flags</span><span class="p">(</span><span class="n">curr_fmt</span><span class="p">);</span>      <span class="c1">// vrati originalno stanje</span>
+<span class="p">}</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Funkcije
+<code>setf()</code> i <code>unsetf()</code>
+postavljaju ili uklanjaju jednu ili više zastavica.
+Pri tome je moguće manipulirati s više zastavica kombiniranjem njihovih simboličkih imena pomoću
+operatora binarno ili (|).
+Funkcija <code>setf()</code> može uzeti drugi argument kako bi uklonila sve zastavice iz grupe određene drugim
+argumentom prije no što postavi zastavice određene prvim argumentom, koje moraju pripadati istoj grupi.
+Na primjer,</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="c1">// postavi zastavice showpos, showbase i uppercase što je ekvivalentno upotrebi istih manipulatora</span>
+<span class="n">cout</span><span class="p">.</span><span class="n">setf</span><span class="p">(</span><span class="n">ios</span><span class="o">::</span><span class="n">showpos</span> <span class="o">|</span> <span class="n">ios</span><span class="o">::</span><span class="n">showbase</span> <span class="o">|</span> <span class="n">ios</span><span class="o">::</span><span class="n">uppercase</span><span class="p">);</span>
+<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">hex</span> <span class="o">&lt;&lt;</span> <span class="mi">11</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+<span class="c1">// Postavi samo zastavicu hex u grupi basefield (koja sadrži hex, oct, dec)</span>
+<span class="n">cout</span><span class="p">.</span><span class="n">setf</span><span class="p">(</span><span class="n">ios</span><span class="o">::</span><span class="n">hex</span><span class="p">,</span> <span class="n">ios</span><span class="o">::</span><span class="n">basefield</span><span class="p">);</span>
+<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="mi">12</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+<span class="c1">// očisti zastavicu uppercase</span>
+<span class="n">cout</span><span class="p">.</span><span class="n">unsetf</span><span class="p">(</span><span class="n">ios</span><span class="o">::</span><span class="n">uppercase</span><span class="p">);</span>
+<span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="mi">12</span> <span class="o">&lt;&lt;</span> <span class="n">endl</span><span class="p">;</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Ispis:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="mi">0</span><span class="n">XB</span>
+<span class="mi">0</span><span class="n">XC</span>
+<span class="mh">0xc</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Funkcijom  <code>copyfmt()</code> možemo kopirati informacije o formatu iz jednog streama u drugi.</p></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_io_klase">IO klase</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Sljedeća slika pokazuje lanac nasljeđivanja za klase streamova.</p></div>
+<div class="imageblock">
+<div class="content">
+<img alt="io_stream_class_diagram.png" src="data:image/png;base64,%0A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%0ATPa/IGxvOp2Kti4AAAAASUVORK5CYII=">
+</div>
+</div>
+<div class="paragraph"><p>Prikazane klase su ustvari aliasi za parametrizirane klase koje u svom imenu imaju "basic_", a
+parametrizirane su tipom znaka na kojem je string sagrađen. Na primjer,</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="k">typedef</span> <span class="n">basic_ios</span><span class="o">&lt;</span><span class="kt">char</span><span class="o">&gt;</span>                <span class="n">ios</span><span class="p">;</span>
+<span class="k">typedef</span> <span class="n">basic_istream</span><span class="o">&lt;</span><span class="kt">char</span><span class="o">&gt;</span>         <span class="n">istream</span><span class="p">;</span>
+<span class="k">typedef</span> <span class="n">basic_ostream</span><span class="o">&lt;</span><span class="kt">char</span><span class="o">&gt;</span>         <span class="n">ostream</span><span class="p">;</span>
+<span class="k">typedef</span> <span class="n">basic_iostream</span><span class="o">&lt;</span><span class="kt">char</span><span class="o">&gt;</span>       <span class="n">iostream</span><span class="p">;</span>
+<span class="k">typedef</span> <span class="n">basic_ifstream</span><span class="o">&lt;</span><span class="kt">char</span><span class="o">&gt;</span>       <span class="n">ifstream</span><span class="p">;</span>
+<span class="k">typedef</span> <span class="n">basic_ofstream</span><span class="o">&lt;</span><span class="kt">char</span><span class="o">&gt;</span>       <span class="n">ofstream</span><span class="p">;</span>
+<span class="k">typedef</span> <span class="n">basic_fstream</span><span class="o">&lt;</span><span class="kt">char</span><span class="o">&gt;</span>         <span class="n">fstream</span><span class="p">;</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Kada se za template parametar uzme široki znak (tip <code>wchar_t</code>) dobiva se posve isti  sustav klasa
+čijim imenima prethodi znak "w". Na primjer</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="k">typedef</span> <span class="n">basic_ios</span><span class="o">&lt;</span><span class="kt">wchar_t</span><span class="o">&gt;</span>            <span class="n">wios</span><span class="p">;</span>
+<span class="k">typedef</span> <span class="n">basic_istream</span><span class="o">&lt;</span><span class="kt">wchar_t</span><span class="o">&gt;</span>     <span class="n">wistream</span><span class="p">;</span>
+<span class="k">typedef</span> <span class="n">basic_ostream</span><span class="o">&lt;</span><span class="kt">wchar_t</span><span class="o">&gt;</span>     <span class="n">wostream</span><span class="p">;</span>
+<span class="k">typedef</span> <span class="n">basic_iostream</span><span class="o">&lt;</span><span class="kt">wchar_t</span><span class="o">&gt;</span>   <span class="n">wiostream</span><span class="p">;</span>
+<span class="k">typedef</span> <span class="n">basic_ifstream</span><span class="o">&lt;</span><span class="kt">wchar_t</span><span class="o">&gt;</span>   <span class="n">wifstream</span><span class="p">;</span>
+<span class="k">typedef</span> <span class="n">basic_ofstream</span><span class="o">&lt;</span><span class="kt">wchar_t</span><span class="o">&gt;</span>   <span class="n">wofstream</span><span class="p">;</span>
+<span class="k">typedef</span> <span class="n">basic_fstream</span><span class="o">&lt;</span><span class="kt">wchar_t</span><span class="o">&gt;</span>     <span class="n">wfstream</span><span class="p">;</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Uočimo da klasa <code>ios_base</code> nije parametrizirana jer sadrži samo dio sustava vezan uz formatiranje
+i stanje izlazno ulaznih tokova. Pored ovih klasa  sustav čini još i parametrizirana klasa
+<code>basic_streambuf&lt;&gt;</code> koja vrši stvarni transfer podataka između programa i ulaza/izlaza. Sve klase
+koju proširuju <code>ios_base</code> vrše samo formatiranje podataka. Kao i kod ostalih klasa imamo dva
+simbolička imena:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="k">typedef</span> <span class="n">basic_streambuf</span><span class="o">&lt;</span><span class="kt">char</span><span class="o">&gt;</span>         <span class="n">streambuf</span><span class="p">;</span>
+<span class="k">typedef</span> <span class="n">basic_streambuf</span><span class="o">&lt;</span><span class="kt">wchar_t</span><span class="o">&gt;</span>     <span class="n">wstreambuf</span><span class="p">;</span>
+</pre></div></div></div>
+</div>
+</div>
+</div>
+
+<div id="footer">
+<div id="footer-text">
+Version 1.0<br>
+Zadnja izmjena
+ 2019-05-14 19:36:19 CEST
+</div>
+</div>
+
+
+</body></html>

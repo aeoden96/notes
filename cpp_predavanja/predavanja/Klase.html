@@ -1,0 +1,2472 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<!-- saved from url=(0089)https://web.math.pmf.unizg.hr/nastava/opepp/Slides/Predavanja/html-noslides/slides-2.html -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="hr"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="generator" content="AsciiDoc 8.6.9">
+<title>Klase</title>
+<style type="text/css">
+/* Shared CSS for AsciiDoc xhtml11 and html5 backends */
+
+/* Default font. */
+body {
+  font-family: Georgia,serif;
+}
+
+/* Title font. */
+h1, h2, h3, h4, h5, h6,
+div.title, caption.title,
+thead, p.table.header,
+#toctitle,
+#author, #revnumber, #revdate, #revremark,
+#footer {
+  font-family: Arial,Helvetica,sans-serif;
+}
+
+body {
+  margin: 1em 5% 1em 5%;
+}
+
+a {
+  color: blue;
+  text-decoration: underline;
+}
+a:visited {
+  color: fuchsia;
+}
+
+em {
+  font-style: italic;
+  color: navy;
+}
+
+strong {
+  font-weight: bold;
+  color: #083194;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #527bbd;
+  margin-top: 1.2em;
+  margin-bottom: 0.5em;
+  line-height: 1.3;
+}
+
+h1, h2, h3 {
+  border-bottom: 2px solid silver;
+}
+h2 {
+  padding-top: 0.5em;
+}
+h3 {
+  float: left;
+}
+h3 + * {
+  clear: left;
+}
+h5 {
+  font-size: 1.0em;
+}
+
+div.sectionbody {
+  margin-left: 0;
+}
+
+hr {
+  border: 1px solid silver;
+}
+
+p {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+ul, ol, li > p {
+  margin-top: 0;
+}
+ul > li     { color: #aaa; }
+ul > li > * { color: black; }
+
+.monospaced, code, pre {
+  font-family: "Courier New", Courier, monospace;
+  font-size: inherit;
+  color: navy;
+  padding: 0;
+  margin: 0;
+}
+pre {
+  white-space: pre-wrap;
+}
+
+#author {
+  color: #527bbd;
+  font-weight: bold;
+  font-size: 1.1em;
+}
+#email {
+}
+#revnumber, #revdate, #revremark {
+}
+
+#footer {
+  font-size: small;
+  border-top: 2px solid silver;
+  padding-top: 0.5em;
+  margin-top: 4.0em;
+}
+#footer-text {
+  float: left;
+  padding-bottom: 0.5em;
+}
+#footer-badges {
+  float: right;
+  padding-bottom: 0.5em;
+}
+
+#preamble {
+  margin-top: 1.5em;
+  margin-bottom: 1.5em;
+}
+div.imageblock, div.exampleblock, div.verseblock,
+div.quoteblock, div.literalblock, div.listingblock, div.sidebarblock,
+div.admonitionblock {
+  margin-top: 1.0em;
+  margin-bottom: 1.5em;
+}
+div.admonitionblock {
+  margin-top: 2.0em;
+  margin-bottom: 2.0em;
+  margin-right: 10%;
+  color: #606060;
+}
+
+div.content { /* Block element content. */
+  padding: 0;
+}
+
+/* Block element titles. */
+div.title, caption.title {
+  color: #527bbd;
+  font-weight: bold;
+  text-align: left;
+  margin-top: 1.0em;
+  margin-bottom: 0.5em;
+}
+div.title + * {
+  margin-top: 0;
+}
+
+td div.title:first-child {
+  margin-top: 0.0em;
+}
+div.content div.title:first-child {
+  margin-top: 0.0em;
+}
+div.content + div.title {
+  margin-top: 0.0em;
+}
+
+div.sidebarblock > div.content {
+  background: #ffffee;
+  border: 1px solid #dddddd;
+  border-left: 4px solid #f0f0f0;
+  padding: 0.5em;
+}
+
+div.listingblock > div.content {
+  border: 1px solid #dddddd;
+  border-left: 5px solid #f0f0f0;
+  background: #f8f8f8;
+  padding: 0.5em;
+}
+
+div.quoteblock, div.verseblock {
+  padding-left: 1.0em;
+  margin-left: 1.0em;
+  margin-right: 10%;
+  border-left: 5px solid #f0f0f0;
+  color: #888;
+}
+
+div.quoteblock > div.attribution {
+  padding-top: 0.5em;
+  text-align: right;
+}
+
+div.verseblock > pre.content {
+  font-family: inherit;
+  font-size: inherit;
+}
+div.verseblock > div.attribution {
+  padding-top: 0.75em;
+  text-align: left;
+}
+/* DEPRECATED: Pre version 8.2.7 verse style literal block. */
+div.verseblock + div.attribution {
+  text-align: left;
+}
+
+div.admonitionblock .icon {
+  vertical-align: top;
+  font-size: 1.1em;
+  font-weight: bold;
+  text-decoration: underline;
+  color: #527bbd;
+  padding-right: 0.5em;
+}
+div.admonitionblock td.content {
+  padding-left: 0.5em;
+  border-left: 3px solid #dddddd;
+}
+
+div.exampleblock > div.content {
+  border-left: 3px solid #dddddd;
+  padding-left: 0.5em;
+}
+
+div.imageblock div.content { padding-left: 0; }
+span.image img { border-style: none; vertical-align: text-bottom; }
+a.image:visited { color: white; }
+
+dl {
+  margin-top: 0.8em;
+  margin-bottom: 0.8em;
+}
+dt {
+  margin-top: 0.5em;
+  margin-bottom: 0;
+  font-style: normal;
+  color: navy;
+}
+dd > *:first-child {
+  margin-top: 0.1em;
+}
+
+ul, ol {
+    list-style-position: outside;
+}
+ol.arabic {
+  list-style-type: decimal;
+}
+ol.loweralpha {
+  list-style-type: lower-alpha;
+}
+ol.upperalpha {
+  list-style-type: upper-alpha;
+}
+ol.lowerroman {
+  list-style-type: lower-roman;
+}
+ol.upperroman {
+  list-style-type: upper-roman;
+}
+
+div.compact ul, div.compact ol,
+div.compact p, div.compact p,
+div.compact div, div.compact div {
+  margin-top: 0.1em;
+  margin-bottom: 0.1em;
+}
+
+tfoot {
+  font-weight: bold;
+}
+td > div.verse {
+  white-space: pre;
+}
+
+div.hdlist {
+  margin-top: 0.8em;
+  margin-bottom: 0.8em;
+}
+div.hdlist tr {
+  padding-bottom: 15px;
+}
+dt.hdlist1.strong, td.hdlist1.strong {
+  font-weight: bold;
+}
+td.hdlist1 {
+  vertical-align: top;
+  font-style: normal;
+  padding-right: 0.8em;
+  color: navy;
+}
+td.hdlist2 {
+  vertical-align: top;
+}
+div.hdlist.compact tr {
+  margin: 0;
+  padding-bottom: 0;
+}
+
+.comment {
+  background: yellow;
+}
+
+.footnote, .footnoteref {
+  font-size: 0.8em;
+}
+
+span.footnote, span.footnoteref {
+  vertical-align: super;
+}
+
+#footnotes {
+  margin: 20px 0 20px 0;
+  padding: 7px 0 0 0;
+}
+
+#footnotes div.footnote {
+  margin: 0 0 5px 0;
+}
+
+#footnotes hr {
+  border: none;
+  border-top: 1px solid silver;
+  height: 1px;
+  text-align: left;
+  margin-left: 0;
+  width: 20%;
+  min-width: 100px;
+}
+
+div.colist td {
+  padding-right: 0.5em;
+  padding-bottom: 0.3em;
+  vertical-align: top;
+}
+div.colist td img {
+  margin-top: 0.3em;
+}
+
+@media print {
+  #footer-badges { display: none; }
+}
+
+#toc {
+  margin-bottom: 2.5em;
+}
+
+#toctitle {
+  color: #527bbd;
+  font-size: 1.1em;
+  font-weight: bold;
+  margin-top: 1.0em;
+  margin-bottom: 0.1em;
+}
+
+div.toclevel0, div.toclevel1, div.toclevel2, div.toclevel3, div.toclevel4 {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+div.toclevel2 {
+  margin-left: 2em;
+  font-size: 0.9em;
+}
+div.toclevel3 {
+  margin-left: 4em;
+  font-size: 0.9em;
+}
+div.toclevel4 {
+  margin-left: 6em;
+  font-size: 0.9em;
+}
+
+span.aqua { color: aqua; }
+span.black { color: black; }
+span.blue { color: blue; }
+span.fuchsia { color: fuchsia; }
+span.gray { color: gray; }
+span.green { color: green; }
+span.lime { color: lime; }
+span.maroon { color: maroon; }
+span.navy { color: navy; }
+span.olive { color: olive; }
+span.purple { color: purple; }
+span.red { color: red; }
+span.silver { color: silver; }
+span.teal { color: teal; }
+span.white { color: white; }
+span.yellow { color: yellow; }
+
+span.aqua-background { background: aqua; }
+span.black-background { background: black; }
+span.blue-background { background: blue; }
+span.fuchsia-background { background: fuchsia; }
+span.gray-background { background: gray; }
+span.green-background { background: green; }
+span.lime-background { background: lime; }
+span.maroon-background { background: maroon; }
+span.navy-background { background: navy; }
+span.olive-background { background: olive; }
+span.purple-background { background: purple; }
+span.red-background { background: red; }
+span.silver-background { background: silver; }
+span.teal-background { background: teal; }
+span.white-background { background: white; }
+span.yellow-background { background: yellow; }
+
+span.big { font-size: 2em; }
+span.small { font-size: 0.6em; }
+
+span.underline { text-decoration: underline; }
+span.overline { text-decoration: overline; }
+span.line-through { text-decoration: line-through; }
+
+div.unbreakable { page-break-inside: avoid; }
+
+
+/*
+ * xhtml11 specific
+ *
+ * */
+
+div.tableblock {
+  margin-top: 1.0em;
+  margin-bottom: 1.5em;
+}
+div.tableblock > table {
+  border: 3px solid #527bbd;
+}
+thead, p.table.header {
+  font-weight: bold;
+  color: #527bbd;
+}
+p.table {
+  margin-top: 0;
+}
+/* Because the table frame attribute is overriden by CSS in most browsers. */
+div.tableblock > table[frame="void"] {
+  border-style: none;
+}
+div.tableblock > table[frame="hsides"] {
+  border-left-style: none;
+  border-right-style: none;
+}
+div.tableblock > table[frame="vsides"] {
+  border-top-style: none;
+  border-bottom-style: none;
+}
+
+
+/*
+ * html5 specific
+ *
+ * */
+
+table.tableblock {
+  margin-top: 1.0em;
+  margin-bottom: 1.5em;
+}
+thead, p.tableblock.header {
+  font-weight: bold;
+  color: #527bbd;
+}
+p.tableblock {
+  margin-top: 0;
+}
+table.tableblock {
+  border-width: 3px;
+  border-spacing: 0px;
+  border-style: solid;
+  border-color: #527bbd;
+  border-collapse: collapse;
+}
+th.tableblock, td.tableblock {
+  border-width: 1px;
+  padding: 4px;
+  border-style: solid;
+  border-color: #527bbd;
+}
+
+table.tableblock.frame-topbot {
+  border-left-style: hidden;
+  border-right-style: hidden;
+}
+table.tableblock.frame-sides {
+  border-top-style: hidden;
+  border-bottom-style: hidden;
+}
+table.tableblock.frame-none {
+  border-style: hidden;
+}
+
+th.tableblock.halign-left, td.tableblock.halign-left {
+  text-align: left;
+}
+th.tableblock.halign-center, td.tableblock.halign-center {
+  text-align: center;
+}
+th.tableblock.halign-right, td.tableblock.halign-right {
+  text-align: right;
+}
+
+th.tableblock.valign-top, td.tableblock.valign-top {
+  vertical-align: top;
+}
+th.tableblock.valign-middle, td.tableblock.valign-middle {
+  vertical-align: middle;
+}
+th.tableblock.valign-bottom, td.tableblock.valign-bottom {
+  vertical-align: bottom;
+}
+
+
+/*
+ * manpage specific
+ *
+ * */
+
+body.manpage h1 {
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+  border-top: 2px solid silver;
+  border-bottom: 2px solid silver;
+}
+body.manpage h2 {
+  border-style: none;
+}
+body.manpage div.sectionbody {
+  margin-left: 3em;
+}
+
+@media print {
+  body.manpage div#toc { display: none; }
+}
+.highlight .hll { background-color: #ffffcc }
+.highlight  { background: #f8f8f8; }
+.highlight .c { color: #408080; font-style: italic } /* Comment */
+.highlight .err { border: 1px solid #FF0000 } /* Error */
+.highlight .k { color: #008000; font-weight: bold } /* Keyword */
+.highlight .o { color: #666666 } /* Operator */
+.highlight .cm { color: #408080; font-style: italic } /* Comment.Multiline */
+.highlight .cp { color: #BC7A00 } /* Comment.Preproc */
+.highlight .c1 { color: #408080; font-style: italic } /* Comment.Single */
+.highlight .cs { color: #408080; font-style: italic } /* Comment.Special */
+.highlight .gd { color: #A00000 } /* Generic.Deleted */
+.highlight .ge { font-style: italic } /* Generic.Emph */
+.highlight .gr { color: #FF0000 } /* Generic.Error */
+.highlight .gh { color: #000080; font-weight: bold } /* Generic.Heading */
+.highlight .gi { color: #00A000 } /* Generic.Inserted */
+.highlight .go { color: #808080 } /* Generic.Output */
+.highlight .gp { color: #000080; font-weight: bold } /* Generic.Prompt */
+.highlight .gs { font-weight: bold } /* Generic.Strong */
+.highlight .gu { color: #800080; font-weight: bold } /* Generic.Subheading */
+.highlight .gt { color: #0040D0 } /* Generic.Traceback */
+.highlight .kc { color: #008000; font-weight: bold } /* Keyword.Constant */
+.highlight .kd { color: #008000; font-weight: bold } /* Keyword.Declaration */
+.highlight .kn { color: #008000; font-weight: bold } /* Keyword.Namespace */
+.highlight .kp { color: #008000 } /* Keyword.Pseudo */
+.highlight .kr { color: #008000; font-weight: bold } /* Keyword.Reserved */
+.highlight .kt { color: #B00040 } /* Keyword.Type */
+.highlight .m { color: #666666 } /* Literal.Number */
+.highlight .s { color: #BA2121 } /* Literal.String */
+.highlight .na { color: #7D9029 } /* Name.Attribute */
+.highlight .nb { color: #008000 } /* Name.Builtin */
+.highlight .nc { color: #0000FF; font-weight: bold } /* Name.Class */
+.highlight .no { color: #880000 } /* Name.Constant */
+.highlight .nd { color: #AA22FF } /* Name.Decorator */
+.highlight .ni { color: #999999; font-weight: bold } /* Name.Entity */
+.highlight .ne { color: #D2413A; font-weight: bold } /* Name.Exception */
+.highlight .nf { color: #0000FF } /* Name.Function */
+.highlight .nl { color: #A0A000 } /* Name.Label */
+.highlight .nn { color: #0000FF; font-weight: bold } /* Name.Namespace */
+.highlight .nt { color: #008000; font-weight: bold } /* Name.Tag */
+.highlight .nv { color: #19177C } /* Name.Variable */
+.highlight .ow { color: #AA22FF; font-weight: bold } /* Operator.Word */
+.highlight .w { color: #bbbbbb } /* Text.Whitespace */
+.highlight .mf { color: #666666 } /* Literal.Number.Float */
+.highlight .mh { color: #666666 } /* Literal.Number.Hex */
+.highlight .mi { color: #666666 } /* Literal.Number.Integer */
+.highlight .mo { color: #666666 } /* Literal.Number.Oct */
+.highlight .sb { color: #BA2121 } /* Literal.String.Backtick */
+.highlight .sc { color: #BA2121 } /* Literal.String.Char */
+.highlight .sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
+.highlight .s2 { color: #BA2121 } /* Literal.String.Double */
+.highlight .se { color: #BB6622; font-weight: bold } /* Literal.String.Escape */
+.highlight .sh { color: #BA2121 } /* Literal.String.Heredoc */
+.highlight .si { color: #BB6688; font-weight: bold } /* Literal.String.Interpol */
+.highlight .sx { color: #008000 } /* Literal.String.Other */
+.highlight .sr { color: #BB6688 } /* Literal.String.Regex */
+.highlight .s1 { color: #BA2121 } /* Literal.String.Single */
+.highlight .ss { color: #19177C } /* Literal.String.Symbol */
+.highlight .bp { color: #008000 } /* Name.Builtin.Pseudo */
+.highlight .vc { color: #19177C } /* Name.Variable.Class */
+.highlight .vg { color: #19177C } /* Name.Variable.Global */
+.highlight .vi { color: #19177C } /* Name.Variable.Instance */
+.highlight .il { color: #666666 } /* Literal.Number.Integer.Long */
+
+
+</style>
+<script type="text/javascript">
+/*<![CDATA[*/
+var asciidoc = {  // Namespace.
+
+/////////////////////////////////////////////////////////////////////
+// Table Of Contents generator
+/////////////////////////////////////////////////////////////////////
+
+/* Author: Mihai Bazon, September 2002
+ * http://students.infoiasi.ro/~mishoo
+ *
+ * Table Of Content generator
+ * Version: 0.4
+ *
+ * Feel free to use this script under the terms of the GNU General Public
+ * License, as long as you do not remove or alter this notice.
+ */
+
+ /* modified by Troy D. Hanson, September 2006. License: GPL */
+ /* modified by Stuart Rackham, 2006, 2009. License: GPL */
+
+// toclevels = 1..4.
+toc: function (toclevels) {
+
+  function getText(el) {
+    var text = "";
+    for (var i = el.firstChild; i != null; i = i.nextSibling) {
+      if (i.nodeType == 3 /* Node.TEXT_NODE */) // IE doesn't speak constants.
+        text += i.data;
+      else if (i.firstChild != null)
+        text += getText(i);
+    }
+    return text;
+  }
+
+  function TocEntry(el, text, toclevel) {
+    this.element = el;
+    this.text = text;
+    this.toclevel = toclevel;
+  }
+
+  function tocEntries(el, toclevels) {
+    var result = new Array;
+    var re = new RegExp('[hH]([1-'+(toclevels+1)+'])');
+    // Function that scans the DOM tree for header elements (the DOM2
+    // nodeIterator API would be a better technique but not supported by all
+    // browsers).
+    var iterate = function (el) {
+      for (var i = el.firstChild; i != null; i = i.nextSibling) {
+        if (i.nodeType == 1 /* Node.ELEMENT_NODE */) {
+          var mo = re.exec(i.tagName);
+          if (mo && (i.getAttribute("class") || i.getAttribute("className")) != "float") {
+            result[result.length] = new TocEntry(i, getText(i), mo[1]-1);
+          }
+          iterate(i);
+        }
+      }
+    }
+    iterate(el);
+    return result;
+  }
+
+  var toc = document.getElementById("toc");
+  if (!toc) {
+    return;
+  }
+
+  // Delete existing TOC entries in case we're reloading the TOC.
+  var tocEntriesToRemove = [];
+  var i;
+  for (i = 0; i < toc.childNodes.length; i++) {
+    var entry = toc.childNodes[i];
+    if (entry.nodeName.toLowerCase() == 'div'
+     && entry.getAttribute("class")
+     && entry.getAttribute("class").match(/^toclevel/))
+      tocEntriesToRemove.push(entry);
+  }
+  for (i = 0; i < tocEntriesToRemove.length; i++) {
+    toc.removeChild(tocEntriesToRemove[i]);
+  }
+
+  // Rebuild TOC entries.
+  var entries = tocEntries(document.getElementById("content"), toclevels);
+  for (var i = 0; i < entries.length; ++i) {
+    var entry = entries[i];
+    if (entry.element.id == "")
+      entry.element.id = "_toc_" + i;
+    var a = document.createElement("a");
+    a.href = "#" + entry.element.id;
+    a.appendChild(document.createTextNode(entry.text));
+    var div = document.createElement("div");
+    div.appendChild(a);
+    div.className = "toclevel" + entry.toclevel;
+    toc.appendChild(div);
+  }
+  if (entries.length == 0)
+    toc.parentNode.removeChild(toc);
+},
+
+
+/////////////////////////////////////////////////////////////////////
+// Footnotes generator
+/////////////////////////////////////////////////////////////////////
+
+/* Based on footnote generation code from:
+ * http://www.brandspankingnew.net/archive/2005/07/format_footnote.html
+ */
+
+footnotes: function () {
+  // Delete existing footnote entries in case we're reloading the footnodes.
+  var i;
+  var noteholder = document.getElementById("footnotes");
+  if (!noteholder) {
+    return;
+  }
+  var entriesToRemove = [];
+  for (i = 0; i < noteholder.childNodes.length; i++) {
+    var entry = noteholder.childNodes[i];
+    if (entry.nodeName.toLowerCase() == 'div' && entry.getAttribute("class") == "footnote")
+      entriesToRemove.push(entry);
+  }
+  for (i = 0; i < entriesToRemove.length; i++) {
+    noteholder.removeChild(entriesToRemove[i]);
+  }
+
+  // Rebuild footnote entries.
+  var cont = document.getElementById("content");
+  var spans = cont.getElementsByTagName("span");
+  var refs = {};
+  var n = 0;
+  for (i=0; i<spans.length; i++) {
+    if (spans[i].className == "footnote") {
+      n++;
+      var note = spans[i].getAttribute("data-note");
+      if (!note) {
+        // Use [\s\S] in place of . so multi-line matches work.
+        // Because JavaScript has no s (dotall) regex flag.
+        note = spans[i].innerHTML.match(/\s*\[([\s\S]*)]\s*/)[1];
+        spans[i].innerHTML =
+          "[<a id='_footnoteref_" + n + "' href='#_footnote_" + n +
+          "' title='View footnote' class='footnote'>" + n + "</a>]";
+        spans[i].setAttribute("data-note", note);
+      }
+      noteholder.innerHTML +=
+        "<div class='footnote' id='_footnote_" + n + "'>" +
+        "<a href='#_footnoteref_" + n + "' title='Return to text'>" +
+        n + "</a>. " + note + "</div>";
+      var id =spans[i].getAttribute("id");
+      if (id != null) refs["#"+id] = n;
+    }
+  }
+  if (n == 0)
+    noteholder.parentNode.removeChild(noteholder);
+  else {
+    // Process footnoterefs.
+    for (i=0; i<spans.length; i++) {
+      if (spans[i].className == "footnoteref") {
+        var href = spans[i].getElementsByTagName("a")[0].getAttribute("href");
+        href = href.match(/#.*/)[0];  // Because IE return full URL.
+        n = refs[href];
+        spans[i].innerHTML =
+          "[<a href='#_footnote_" + n +
+          "' title='View footnote' class='footnote'>" + n + "</a>]";
+      }
+    }
+  }
+},
+
+install: function(toclevels) {
+  var timerId;
+
+  function reinstall() {
+    asciidoc.footnotes();
+    if (toclevels) {
+      asciidoc.toc(toclevels);
+    }
+  }
+
+  function reinstallAndRemoveTimer() {
+    clearInterval(timerId);
+    reinstall();
+  }
+
+  timerId = setInterval(reinstall, 500);
+  if (document.addEventListener)
+    document.addEventListener("DOMContentLoaded", reinstallAndRemoveTimer, false);
+  else
+    window.onload = reinstallAndRemoveTimer;
+}
+
+}
+asciidoc.install();
+/*]]>*/
+</script>
+</head>
+<body class="article">
+<div id="header">
+<h1>Klase</h1>
+<span id="author">Mladen Jurak</span><br>
+<span id="revnumber">version 1.1,</span>
+<span id="revdate">2019-03</span>
+</div>
+<div id="content">
+<div class="sect1">
+<h2 id="_klase">Klase</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_sto_je_klasa">Što je klasa?</h3>
+<div class="ulist"><ul>
+<li>
+<p>
+Svaka klasa u C++-u predstavlja novi tip podatka u programu.
+</p>
+</li>
+<li>
+<p>
+Instancu klase nazivamo <strong>objekt</strong>. Program se konstruira kao niz interakcija među objektima.
+</p>
+</li>
+<li>
+<p>
+Na razini sintakse klasa je proširenje strukture iz jezika C. U osnovi klasa je
+struktura koja pored varijabli članica može sadržavati i funkcije članice.
+</p>
+</li>
+<li>
+<p>
+Klasama implementiramo <strong>korisničke tipove podataka</strong> koji modeliraju objekte iz aplikacijske domene.
+</p>
+</li>
+</ul></div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_klase_prvi_primjer">Klase: Prvi primjer</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Klasa koja modelira točku u trodimenzionalnom prostoru (datoteka zaglavlja <em>point3D.h</em>).</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="c1">// Datoteka point3D.h</span>
+<span class="cp">#ifndef  POINT3D_H_IS_INCLUDED</span>
+<span class="cp">#define  POINT3D_H_IS_INCLUDED</span>
+
+<span class="k">class</span> <span class="nc">Point3D</span>
+<span class="p">{</span>
+    <span class="k">public</span><span class="o">:</span>
+        <span class="n">Point3D</span><span class="p">(</span><span class="kt">double</span> <span class="n">x</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="kt">double</span> <span class="n">y</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="kt">double</span> <span class="n">z</span><span class="o">=</span><span class="mf">0.0</span><span class="p">);</span>
+        <span class="kt">double</span> <span class="nf">get</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="p">)</span> <span class="k">const</span> <span class="p">{</span> <span class="k">return</span> <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">];</span> <span class="p">}</span>
+        <span class="kt">void</span>   <span class="nf">set</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="p">,</span> <span class="n">doubl</span> <span class="n">val</span><span class="p">)</span> <span class="p">{</span> <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">val</span><span class="p">;</span> <span class="p">}</span>
+        <span class="kt">void</span>   <span class="nf">print</span><span class="p">();</span>
+    <span class="k">private</span><span class="o">:</span>
+        <span class="kt">double</span> <span class="n">data</span><span class="p">[</span><span class="mi">3</span><span class="p">];</span>
+<span class="p">};</span>
+<span class="cp">#endif</span>
+</pre></div></div></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_implementacija_funkcija_clanica">Implementacija funkcija članica</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Definicija klase se stavlja u datoteku zaglavlja koja se uključuje u svaku
+izvornu datoteku koja klasu koristi. Neke su funkcije članice klase implementirane
+u samoj klasi, dok su druge samo deklarirane.  Njih  definiramo u zasebnoj izvornoj datoteci:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="c1">// Datoteka point3D.cc</span>
+<span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">"point3D.h"</span><span class="cp"></span>
+
+<span class="c1">// Konstruktor klase Point3D</span>
+<span class="n">Point3D</span><span class="o">::</span><span class="n">Point3D</span><span class="p">(</span><span class="kt">double</span> <span class="n">x</span><span class="p">,</span> <span class="kt">double</span> <span class="n">y</span><span class="p">,</span> <span class="kt">double</span> <span class="n">z</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">=</span><span class="n">x</span><span class="p">;</span>
+    <span class="n">data</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">=</span><span class="n">y</span><span class="p">;</span>
+    <span class="n">data</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">=</span><span class="n">z</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// Metoda print klase Point3D</span>
+<span class="kt">void</span> <span class="n">Point3D</span><span class="o">::</span><span class="n">print</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"("</span><span class="o">&lt;&lt;</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">&lt;&lt;</span><span class="s">","</span><span class="o">&lt;&lt;</span><span class="n">data</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">&lt;&lt;</span><span class="s">","</span><span class="o">&lt;&lt;</span><span class="n">data</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">&lt;&lt;</span><span class="s">")"</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div></div></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_objekti_instance_klasa">Objekti  (instance klasa)</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">"point3D.h"</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">Point3D</span> <span class="n">A</span><span class="p">;</span>                     <span class="c1">// Točka s koordinatama (0,0,0)</span>
+    <span class="n">Point3D</span> <span class="n">B</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">),</span> <span class="n">C</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>  <span class="c1">// B=(1,1,0) i C=(1,0,1)</span>
+
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"A= "</span><span class="p">;</span> <span class="n">A</span><span class="p">.</span><span class="n">print</span><span class="p">();</span> <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"B= "</span><span class="p">;</span> <span class="n">B</span><span class="p">.</span><span class="n">print</span><span class="p">();</span> <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"C= "</span><span class="p">;</span> <span class="n">C</span><span class="p">.</span><span class="n">print</span><span class="p">();</span> <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+
+    <span class="k">return</span> <span class="n">EXIT_SUCCESS</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div></div></div>
+<div class="paragraph"><p><em>Point3D</em> funkcionira kao novi <em>tip</em> u programu. Varijable
+<code>A</code> <code>B</code> i <code>C</code> su tipa <em>Point3D</em> i na njima možemo pozivati javne
+(public) funkcije iz klase <em>Point3D</em> pomoću <em>operatora točka</em> (<strong>.</strong>),
+pomoću kojeg dohvaćamo i varijable članice (sintaksa preuzeta od strukture).</p></div>
+<div class="paragraph"><p>Za varijable <code>A</code> <code>B</code> i <code>C</code> kažemo da su <em>instance</em> klase <code>Point3D</code>
+   i one predstavljaju <em>objekte</em> tipa <code>Point3D</code>.</p></div>
+<div class="paragraph"><p><strong>Zadatak 1</strong>. Dodajte klasi <em>Point3D</em> funkciju članicu <code>distance</code> koja računa
+   udaljenost točke do ishodišta. Korigirajte funkcije <code>set</code> i <code>get</code>
+   tako da provjeravaju da li je indeks unutar dozvoljenih granica, ali samo ako je program
+   kompiliran u <em>debug</em> modu.</p></div>
+<div class="paragraph"><p><strong>Zadatak 2</strong>.
+- Napišite klasu <em>Point2D</em> koja reprezentira točku u ravnini na isti način
+kao što <em>Point3D</em> reprezentira točku u prostoru.
+(Kasnije ćemo vidjeti kako izbjeći multipliciranje istog koda.)
+- Napišite funkciju koja uzima tri argumenta: broj točaka <code>n</code>, radijus kružnice <code>R</code> i bazno ime
+datoteke <code>ime</code>, te generira  <code>n</code> jednoliko raspoređenih točaka na kružnici
+radijusa <code>R</code> koje zatim upisuje u datoteku s imenom <code>ime</code> i ekstenzijom <em>pts</em>.
+- Napišite drugu funkciju koja čita točke iz datoteke i nalazi radijus kružnice na kojoj se
+točke nalaze. Pri tome funkcija ima predefiniranu toleranciju s kojom određuje jesu li sve točke na
+jednoj kružnici. Obratite pažnju na preciznost zapisivanja u datoteku. Funkcija vraća nađeni radijus
+ili -1 ako točke nisu na kružnici. Pročitane točke se spremaju u vektor točaka koji je argument funkcije.</p></div>
+<div class="paragraph"><p>Za spremanje niza točaka koristiti <code>std::vector&lt;Point2D&gt;</code>. Ispravnost čitanja i pisanja
+testirati ispisivanjem točaka na ekran.</p></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_osnovni_elementi_klase">Osnovni elementi klase</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Klasa sadrži četiri vrste članova:</p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+Varijable članice
+</p>
+</li>
+<li>
+<p>
+Funkcije članice
+</p>
+</li>
+<li>
+<p>
+Tipove
+</p>
+</li>
+<li>
+<p>
+Druge klase (tj. ugnježdene klase)
+</p>
+</li>
+</ul></div>
+<div class="paragraph"><p><em>Funkcije</em>  članice se dijele na 4 vrste:</p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+Obične funkcije članice
+</p>
+</li>
+<li>
+<p>
+Konstruktori — imaju isto ime kao i klasa i nemaju povratni tip.  Konstruiraju objekt tipa klase.
+</p>
+</li>
+<li>
+<p>
+Destruktori — imaju isto ime kao i klasa s tildom ispred imena i
+           nemaju povratni tip. Pozivaju se kod destrukcije objekta tipa klase.
+</p>
+</li>
+<li>
+<p>
+Operatori
+</p>
+</li>
+</ul></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_tipovi_unutar_klase">Tipovi unutar klase</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Pomoću  <strong>using</strong> (ili <em>typedef</em>) klase često definiraju svoja lokalna imena za
+   <em>tipove</em>. Na primjer:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="c1">// Datoteka point3D.h</span>
+<span class="cp">#ifndef  POINT3D_H_IS_INCLUDED</span>
+<span class="cp">#define  POINT3D_H_IS_INCLUDED</span>
+
+<span class="k">class</span> <span class="nc">Point3D</span>
+<span class="p">{</span>
+    <span class="k">public</span><span class="o">:</span>
+        <span class="k">using</span> <span class="n">Real</span> <span class="o">=</span> <span class="kt">double</span><span class="p">;</span> <span class="c1">// ILI typedef double Real;</span>
+        <span class="n">Point3D</span><span class="p">(</span><span class="n">Real</span> <span class="n">x</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">Real</span> <span class="n">y</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">Real</span> <span class="n">z</span><span class="o">=</span><span class="mf">0.0</span><span class="p">);</span>
+        <span class="n">Real</span>  <span class="nf">get</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="p">)</span> <span class="k">const</span> <span class="p">{</span> <span class="k">return</span> <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">];</span> <span class="p">}</span>
+        <span class="kt">void</span>  <span class="nf">set</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="p">,</span> <span class="n">Real</span> <span class="n">val</span><span class="p">)</span> <span class="p">{</span> <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">val</span><span class="p">;</span> <span class="p">}</span>
+        <span class="kt">void</span>  <span class="nf">print</span><span class="p">();</span>
+    <span class="k">private</span><span class="o">:</span>
+        <span class="n">Real</span> <span class="n">data</span><span class="p">[</span><span class="mi">3</span><span class="p">];</span>
+<span class="p">};</span>
+<span class="cp">#endif</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Tu je uvedeno novo ime <code>Real</code> za tip <code>double</code>. U aplikacijskom kodu bismo pisali:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span>    <span class="n">Point3D</span> <span class="nf">B</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">),</span> <span class="n">C</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>  <span class="c1">// B=(1,1,0) i C=(1,0,1)</span>
+
+    <span class="n">Point3D</span><span class="o">::</span><span class="n">Real</span> <span class="n">sum</span><span class="o">=</span><span class="mf">0.0</span><span class="p">;</span>
+    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="n">sum</span> <span class="o">+=</span> <span class="n">C</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"C: sum = "</span> <span class="o">&lt;&lt;</span> <span class="n">sum</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+</pre></div></div></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_public_private_protected">Public, private, protected</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Labele pristupa, <em>public</em>, <em>private</em> i <em>protected</em>
+   definiraju prava pristupa unutar klase i nameću enkapsulaciju. Klasa može imati
+   jednu ili više tih labela, a značenje im je sljedeće:</p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+Članovi koji su definirani iza <em>public</em> labele dohvatljivi su u
+             svim dijelovima programa. Oni čine <em>javno sučelje</em>.
+</p>
+</li>
+<li>
+<p>
+Članovi koji su definirani iza <em>private</em> labele nisu dohvatljivi
+             kodu izvan klase. To je dio koda koji predstavlja <em>implementaciju</em> i
+             koji je skriven (enkapsuliran) od koda koji koristi tip definiran klasom.
+</p>
+</li>
+<li>
+<p>
+Labela <em>protected</em> vezana je uz naslijeđivanje klasa i o njoj
+             će biti više riječi kasnije.
+</p>
+</li>
+</ul></div>
+<div class="paragraph"><p>U primjeru klase <em>Point3D</em>  podaci su smješteni u privatnu sekciju klase.
+   To je redovito dobra odluka. Izbor tipova podataka koje koristimo   stvar je
+   implementacije. Korisniku nudimo samo sučelje za pristup podacima koje ne
+   otkriva kako su podaci implementirani.</p></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_preopterecenje_em_overloading_em_funkcija_clanica">Preopterećenje (<em>overloading</em>) funkcija članica</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Funkcije članice mogu biti preopterećene (više funkcija istog imena ali različitih parametara).
+Članica klase može preopteretiti samo drugu članicu. <strong>Primjer</strong>:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="c1">// Datoteka point3D.h</span>
+<span class="cp">#ifndef  POINT3D_H_IS_INCLUDED</span>
+<span class="cp">#define  POINT3D_H_IS_INCLUDED</span>
+
+<span class="k">class</span> <span class="nc">Point3D</span>
+<span class="p">{</span>
+    <span class="k">public</span><span class="o">:</span>
+        <span class="k">typedef</span> <span class="kt">double</span> <span class="n">Real</span><span class="p">;</span>
+        <span class="n">Point3D</span><span class="p">(</span><span class="n">Real</span> <span class="n">x</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">Real</span> <span class="n">y</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">Real</span> <span class="n">z</span><span class="o">=</span><span class="mf">0.0</span><span class="p">);</span>
+        <span class="n">Real</span>  <span class="nf">get</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="p">)</span> <span class="k">const</span> <span class="p">{</span> <span class="k">return</span> <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">];</span> <span class="p">}</span>
+        <span class="kt">void</span>  <span class="nf">set</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="p">,</span>  <span class="n">Real</span> <span class="n">val</span><span class="p">)</span> <span class="p">{</span> <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">val</span><span class="p">;</span> <span class="p">}</span>
+        <span class="kt">void</span>  <span class="nf">print</span><span class="p">();</span>
+        <span class="kt">void</span> <span class="nf">translate</span><span class="p">(</span><span class="k">const</span> <span class="n">Point3D</span><span class="o">&amp;</span> <span class="n">dir</span><span class="p">);</span>
+        <span class="c1">// Rotacija oko ishodišta za Eulerove kuteve phi psi i theta</span>
+        <span class="kt">void</span> <span class="nf">rotate</span><span class="p">(</span><span class="n">Real</span> <span class="n">phi</span><span class="p">,</span> <span class="n">Real</span> <span class="n">psi</span><span class="p">,</span> <span class="n">Real</span> <span class="n">theta</span><span class="p">);</span>
+        <span class="c1">// Rotacija oko točke centar za Eulerove kuteve phi, psi i theta</span>
+        <span class="kt">void</span> <span class="nf">rotate</span><span class="p">(</span><span class="k">const</span> <span class="n">Point3D</span><span class="o">&amp;</span> <span class="n">centar</span><span class="p">,</span> <span class="n">Real</span> <span class="n">phi</span><span class="p">,</span> <span class="n">Real</span> <span class="n">psi</span><span class="p">,</span> <span class="n">Real</span> <span class="n">theta</span><span class="p">);</span>
+    <span class="k">private</span><span class="o">:</span>
+        <span class="n">Real</span> <span class="n">data</span><span class="p">[</span><span class="mi">3</span><span class="p">];</span>
+<span class="p">};</span>
+<span class="cp">#endif</span>
+</pre></div></div></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_umetnute_em_inline_em_funkcije">Umetnute (<em>inline</em>) funkcije</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Labela inline koja se stavlja na početak deklaracije funkcije predstavlja
+    zahtjev prevodiocu da ne generira funkcijski poziv kad naiđe na funkciju,
+    već da njen kod ekspandira na tom mjestu, slično kao što to radi
+    preprocesor s funkcijskim makroima.  Na primjer,</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span> <span class="kr">inline</span> <span class="kt">int</span> <span class="nf">Max</span><span class="p">(</span><span class="kt">int</span> <span class="n">a</span><span class="p">,</span> <span class="kt">int</span> <span class="n">b</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="p">(</span><span class="n">a</span><span class="o">&lt;</span><span class="n">b</span><span class="p">)</span> <span class="o">?</span> <span class="nl">b</span> <span class="p">:</span> <span class="n">a</span><span class="p">;}</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Prevodilac će u ovom primjeru na mjestu gdje se pojavljuje poziv
+    funkcije <code>Max</code> ubaciti kod</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">a</span><span class="o">&lt;</span><span class="n">b</span><span class="p">)</span> <span class="o">?</span> <span class="nl">b</span> <span class="p">:</span> <span class="n">a</span><span class="p">;</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Na mjestu poziva inline funkcije prevodiocu mora biti vidljiva definicija funkcije,
+   a ne samo njena deklaracija (prototip).</p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+Stoga vrijedi pravilo da se definicija inline funkcije stavlja u datoteku zaglavlja u kojoj je i deklarirana.
+</p>
+</li>
+<li>
+<p>
+Funkcije članice definirane unutar klase automatski se tretiraju kao <em>inline</em>.
+</p>
+</li>
+</ul></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_primjer">Primjer:</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="c1">// Datoteka point3D.h</span>
+<span class="cp">#ifndef  POINT3D_H_IS_INCLUDED</span>
+<span class="cp">#define  POINT3D_H_IS_INCLUDED</span>
+
+<span class="k">class</span> <span class="nc">Point3D</span>
+<span class="p">{</span>
+    <span class="k">public</span><span class="o">:</span>
+        <span class="k">typedef</span> <span class="kt">double</span> <span class="n">Real</span><span class="p">;</span>
+        <span class="n">Point3D</span><span class="p">(</span><span class="n">Real</span> <span class="n">x</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">Real</span> <span class="n">y</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">Real</span> <span class="n">z</span><span class="o">=</span><span class="mf">0.0</span><span class="p">);</span>
+        <span class="n">Real</span>  <span class="nf">get</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="p">)</span> <span class="k">const</span> <span class="p">{</span> <span class="k">return</span> <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">];</span> <span class="p">}</span>
+        <span class="kt">void</span>  <span class="nf">set</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="p">,</span>  <span class="n">Real</span> <span class="n">val</span><span class="p">)</span> <span class="p">{</span> <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">val</span><span class="p">;</span> <span class="p">}</span>
+        <span class="kr">inline</span> <span class="kt">void</span>  <span class="nf">print</span><span class="p">();</span>
+        <span class="kt">void</span> <span class="nf">translate</span><span class="p">(</span><span class="k">const</span> <span class="n">Point3D</span><span class="o">&amp;</span> <span class="n">dir</span><span class="p">);</span>
+        <span class="c1">// Rotacija oko ishodišta za Eulerove kuteve phi psi i theta</span>
+        <span class="kt">void</span> <span class="nf">rotate</span><span class="p">(</span><span class="n">Real</span> <span class="n">phi</span><span class="p">,</span> <span class="n">Real</span> <span class="n">psi</span><span class="p">,</span> <span class="n">Real</span> <span class="n">theta</span><span class="p">);</span>
+        <span class="c1">// Rotacija oko točke centar za Eulerove kuteve phi, psi i theta</span>
+        <span class="kt">void</span> <span class="nf">rotate</span><span class="p">(</span><span class="k">const</span> <span class="n">Point3D</span><span class="o">&amp;</span> <span class="n">centar</span><span class="p">,</span> <span class="n">Real</span> <span class="n">phi</span><span class="p">,</span> <span class="n">Real</span> <span class="n">psi</span><span class="p">,</span> <span class="n">Real</span> <span class="n">theta</span><span class="p">);</span>
+    <span class="k">private</span><span class="o">:</span>
+        <span class="n">Real</span> <span class="n">data</span><span class="p">[</span><span class="mi">3</span><span class="p">];</span>
+<span class="p">};</span>
+<span class="cp">#endif</span>
+</pre></div></div></div>
+<div class="paragraph"><p><code>get</code>, <code>set</code> i <code>print</code> su deklarirane <code>inline</code>.</p></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_operatori">Operatori</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>C++ nam dozvoljava propterećenje operatora za korisničke tipove. U C++-u
+operator je funkcija sa specijalnom sintaksom.</p></div>
+<div class="paragraph"><p>U klasi <code>Point3D</code> prirodno je definirati operator <strong>dohvata</strong> <code>[]</code> koji će nam omogućiti
+sljedeću sintaksu:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="n">Point3D</span> <span class="n">a</span><span class="p">;</span>
+<span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mf">1.2</span><span class="p">;</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Signatura operatora je sljedeća:</p></div>
+<div class="paragraph"><p><em>povratna_vrijednost</em> <strong>operator</strong> <em>simbol_operatora</em> <strong>(</strong> <em>argumenti</em> <strong>)</strong>;</p></div>
+<div class="paragraph"><p>U klasi <code>Point3D</code> definiramo konstantnu verziju operatora dohvata koja vraća kopiju koordinate i
+nekonstantnu verziju koja vraća referencu na koordinatu.</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="c1">// Datoteka point3D.h</span>
+<span class="cp">#ifndef  POINT3D_H_IS_INCLUDED</span>
+<span class="cp">#define  POINT3D_H_IS_INCLUDED</span>
+
+<span class="k">class</span> <span class="nc">Point3D</span>
+<span class="p">{</span>
+    <span class="k">public</span><span class="o">:</span>
+        <span class="k">using</span> <span class="n">Real</span> <span class="o">=</span> <span class="kt">double</span><span class="p">;</span>
+        <span class="n">Point3D</span><span class="p">(</span><span class="n">Real</span> <span class="n">x</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">Real</span> <span class="n">y</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">Real</span> <span class="n">z</span><span class="o">=</span><span class="mf">0.0</span><span class="p">);</span>
+        <span class="n">Real</span>  <span class="k">operator</span><span class="p">[](</span><span class="kt">int</span> <span class="n">i</span><span class="p">)</span> <span class="k">const</span><span class="p">{</span> <span class="k">return</span> <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">];</span> <span class="p">}</span>
+        <span class="n">Real</span><span class="o">&amp;</span> <span class="k">operator</span><span class="p">[](</span><span class="kt">int</span> <span class="n">i</span><span class="p">)</span>      <span class="p">{</span> <span class="k">return</span> <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">];</span> <span class="p">}</span>
+        <span class="kt">void</span>  <span class="n">print</span><span class="p">();</span>
+    <span class="k">private</span><span class="o">:</span>
+        <span class="n">Real</span> <span class="n">data</span><span class="p">[</span><span class="mi">3</span><span class="p">];</span>
+<span class="p">};</span>
+<span class="cp">#endif</span>
+</pre></div></div></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_operator_ispisa">Operator ispisa</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Za klasu  <code>Point3D</code> definiramo operator ispisa <code>&lt;&lt;</code> na izlazni stream. Taj operator ne može
+biti članica klase već se definira kao globalna funkcija:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="n">ostream</span> <span class="o">&amp;</span> <span class="k">operator</span><span class="o">&lt;&lt;</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">ostream</span> <span class="o">&amp;</span> <span class="n">out</span><span class="p">,</span> <span class="n">Point3D</span> <span class="k">const</span> <span class="o">&amp;</span> <span class="n">p</span><span class="p">){</span>
+  <span class="n">out</span> <span class="o">&lt;&lt;</span> <span class="s">"["</span><span class="o">&lt;&lt;</span> <span class="n">p</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;&lt;</span><span class="s">","</span> <span class="o">&lt;&lt;</span> <span class="n">p</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="s">","</span> <span class="o">&lt;&lt;</span> <span class="n">p</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="s">"]"</span><span class="p">;</span>
+  <span class="k">return</span> <span class="n">out</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Kako se streamovi ne mogu kopirati uzimamo i vraćamo referencu na <code>ostream</code>.</p></div>
+<div class="admonitionblock">
+<table><tbody><tr>
+<td class="icon">
+<div class="title">Napomena</div>
+</td>
+<td class="content">Kod operatora koji uzimaju dva argumenta prvi argument je lijevi operand, a drugi je
+desni operand. Ako je operator član klase onda je lijevi operand objekt na kome se
+operator poziva.</td>
+</tr></tbody></table>
+</div>
+<div class="paragraph"><p>Definicija klase bi izledala ovako:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="c1">// Datoteka point3D.h</span>
+<span class="cp">#ifndef  POINT3D_H_IS_INCLUDED</span>
+<span class="cp">#define  POINT3D_H_IS_INCLUDED</span>
+
+<span class="k">class</span> <span class="nc">Point3D</span>
+<span class="p">{</span>
+    <span class="k">public</span><span class="o">:</span>
+        <span class="k">using</span> <span class="n">Real</span> <span class="o">=</span> <span class="kt">double</span><span class="p">;</span>
+        <span class="n">Point3D</span><span class="p">(</span><span class="n">Real</span> <span class="n">x</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">Real</span> <span class="n">y</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">Real</span> <span class="n">z</span><span class="o">=</span><span class="mf">0.0</span><span class="p">);</span>
+        <span class="n">Real</span>  <span class="k">operator</span><span class="p">[](</span><span class="kt">int</span> <span class="n">i</span><span class="p">)</span> <span class="k">const</span><span class="p">{</span> <span class="k">return</span> <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">];</span> <span class="p">}</span>
+        <span class="n">Real</span><span class="o">&amp;</span> <span class="k">operator</span><span class="p">[](</span><span class="kt">int</span> <span class="n">i</span><span class="p">)</span>      <span class="p">{</span> <span class="k">return</span> <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">];</span> <span class="p">}</span>
+    <span class="k">private</span><span class="o">:</span>
+        <span class="n">Real</span> <span class="n">data</span><span class="p">[</span><span class="mi">3</span><span class="p">];</span>
+<span class="p">};</span>
+
+<span class="n">std</span><span class="o">::</span><span class="n">ostream</span> <span class="o">&amp;</span> <span class="k">operator</span><span class="o">&lt;&lt;</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">ostream</span> <span class="o">&amp;</span> <span class="n">out</span><span class="p">,</span> <span class="n">Point3D</span> <span class="k">const</span> <span class="o">&amp;</span> <span class="n">p</span><span class="p">){</span>
+  <span class="n">out</span> <span class="o">&lt;&lt;</span> <span class="s">"["</span><span class="o">&lt;&lt;</span> <span class="n">p</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;&lt;</span><span class="s">","</span> <span class="o">&lt;&lt;</span> <span class="n">p</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="s">","</span> <span class="o">&lt;&lt;</span> <span class="n">p</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="s">"]"</span><span class="p">;</span>
+  <span class="k">return</span> <span class="n">out</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="cp">#endif</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Sada možemo pisati:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="n">Point3D</span> <span class="n">a</span><span class="p">;</span>
+<span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mf">2.0</span><span class="p">;</span>
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">a</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>  <span class="c1">// ispisuje [0,2,0]</span>
+</pre></div></div></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_predlozak_klase_em_class_template_em">Predložak klase (<em>class template</em>)</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Klasu kao i funkciju možemo parametrizirati nekim tipom ili cjelobrojnom konstantom.
+Osnovna razlika u odnosu na predložak funkcije je taj što se kod predloška klase parametri se
+predloška moraju eksplicitno zadati.</p></div>
+<div class="paragraph"><p>Kao i predložak funkcije, predložak klase stavlja se u datoteku zaglavlja zajedno sa
+definicijama svojih metoda članica.</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="c1">// Datoteka point3D.h</span>
+<span class="cp">#ifndef  POINT3D_H_IS_INCLUDED</span>
+<span class="cp">#define  POINT3D_H_IS_INCLUDED</span>
+
+<span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+<span class="k">class</span> <span class="nc">Point3D</span>
+<span class="p">{</span>
+    <span class="k">public</span><span class="o">:</span>
+        <span class="n">Point3D</span><span class="p">(</span><span class="n">T</span> <span class="n">x</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">T</span> <span class="n">y</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">T</span> <span class="n">z</span><span class="o">=</span><span class="mf">0.0</span><span class="p">);</span>
+        <span class="n">T</span>  <span class="k">operator</span><span class="p">[](</span><span class="kt">int</span> <span class="n">i</span><span class="p">)</span> <span class="k">const</span><span class="p">{</span> <span class="k">return</span> <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">];</span> <span class="p">}</span>
+        <span class="n">T</span><span class="o">&amp;</span> <span class="k">operator</span><span class="p">[](</span><span class="kt">int</span> <span class="n">i</span><span class="p">){</span> <span class="k">return</span> <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">];</span> <span class="p">}</span>
+    <span class="k">private</span><span class="o">:</span>
+        <span class="n">T</span> <span class="n">data</span><span class="p">[</span><span class="mi">3</span><span class="p">];</span>
+<span class="p">};</span>
+
+<span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+<span class="n">Point3D</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;::</span><span class="n">Point3D</span><span class="p">(</span><span class="n">T</span> <span class="n">x</span><span class="p">,</span> <span class="n">T</span> <span class="n">y</span><span class="p">,</span> <span class="n">T</span> <span class="n">z</span><span class="p">){</span>
+  <span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span><span class="p">;</span>
+  <span class="n">data</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">y</span><span class="p">;</span>
+  <span class="n">data</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">z</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+<span class="n">std</span><span class="o">::</span><span class="n">ostream</span> <span class="o">&amp;</span> <span class="k">operator</span><span class="o">&lt;&lt;</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">ostream</span> <span class="o">&amp;</span> <span class="n">out</span><span class="p">,</span> <span class="n">Point3D</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="k">const</span> <span class="o">&amp;</span> <span class="n">p</span><span class="p">){</span>
+  <span class="n">out</span> <span class="o">&lt;&lt;</span> <span class="s">"["</span><span class="o">&lt;&lt;</span> <span class="n">p</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;&lt;</span><span class="s">","</span> <span class="o">&lt;&lt;</span> <span class="n">p</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="s">","</span> <span class="o">&lt;&lt;</span> <span class="n">p</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="s">"]"</span><span class="p">;</span>
+  <span class="k">return</span> <span class="n">out</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="cp">#endif</span>
+</pre></div></div></div>
+<div class="paragraph"><p>U glavnom programu bismo imali:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="n">Point3D</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span> <span class="n">a</span><span class="p">;</span>
+<span class="n">a</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="mf">2.0</span><span class="p">;</span>
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">a</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>  <span class="c1">// ispisuje [0,2,0]</span>
+</pre></div></div></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_definicija_i_deklaracija">Definicija i deklaracija</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Klasa je definirana nakon zatvaranja vitičaste zagrade. Tada je poznata
+dimenzija objekta tipa klase u memoriji. U svakoj izvornoj
+datoteci klasa treba biti definirana samo jednom i definicije u različitim
+datotekama moraju biti identične. To postižemo stavljanjem definicije
+klase u datoteku zaglavlja te korištenjem osigurača protiv višestrukog
+uključivanja.</p></div>
+<div class="paragraph"><p>Deklaracija bez definicije (<em>forward declaration</em>):</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Matrica</span><span class="p">;</span>
+</pre></div></div></div>
+<div class="paragraph"><p><code>Matrica</code> ovdje
+predstavlja <em>nepotpun tip</em> i može se koristiti tek za deklaraciju
+pokazivača i referenci tipa <code>Matrica</code>.</p></div>
+<div class="paragraph"><p>Kod definicije klase ona je <em>deklarirana</em> nakon
+što se njezino ime pojavilo iza  ključne riječi
+<strong>class</strong>, tako da ga možemo koristiti unutar
+klase za definiciju pokazivača i referenci:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">ListElm</span> <span class="p">{</span>
+      <span class="kt">double</span> <span class="n">data</span><span class="p">;</span>
+      <span class="n">ListElm</span> <span class="o">*</span><span class="n">next</span><span class="p">;</span>
+      <span class="n">ListElm</span> <span class="o">*</span><span class="n">prev</span><span class="p">;</span>
+<span class="p">};</span>
+</pre></div></div></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_klasa_i_struktura">Klasa i struktura</h2>
+<div class="sectionbody">
+<div class="paragraph"><p><code>struct</code> u C++-u uvodi deklaraciju klase isto kao i ključna riječ <code>class</code>
+s razlikom u predodređenim (defaultnim) pravima pristupa.</p></div>
+<div class="paragraph"><p>Ako je klasa deklarirana pomoću ključne riječi <code>class</code>,
+  onda su sve varijable čija prava pristupa nisu dana eksplicitno <em>privatne</em>.
+  Na primjer:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">A</span><span class="p">{</span>
+    <span class="kt">int</span> <span class="n">x</span><span class="p">;</span>             <span class="c1">// privatna varijabla po defaultu</span>
+    <span class="kt">double</span> <span class="nf">f</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">);</span>   <span class="c1">// privatna metoda po defaultu</span>
+<span class="k">public</span><span class="o">:</span>
+    <span class="kt">int</span> <span class="n">y</span><span class="p">;</span>
+<span class="p">};</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Ako klasu definiramo pomoću ključne riječi <code>struct</code> onda su sve varijable i metode
+bez eksplicitnog prava pristupa javne.</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="k">struct</span> <span class="n">B</span><span class="p">{</span>
+    <span class="kt">int</span> <span class="n">x</span><span class="p">;</span>             <span class="c1">// javna varijabla po defaultu</span>
+    <span class="kt">double</span> <span class="nf">f</span><span class="p">(</span><span class="kt">int</span> <span class="n">x</span><span class="p">);</span>   <span class="c1">// javna metoda po defaultu</span>
+<span class="k">public</span><span class="o">:</span>
+    <span class="kt">int</span> <span class="n">y</span><span class="p">;</span>
+<span class="p">};</span>
+</pre></div></div></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_graficko_prikazivanje_klasa_8201_8212_8201_uml">Grafičko prikazivanje klasa — UML</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Grafičko prikazivanje klasa i njihovih međusobnih odnosa je vrlo korisno pa se
+na toj ideji razvio cijeli jedan jezik dijagrama (grafičkih elemenata) koji se naziva
+<strong>Unified Modelling Language</strong> (kratko <strong>UML</strong>).</p></div>
+<div class="paragraph"><p>UML predstavlja notacijski sustav za specifikaciju, vizualizaciju i dokumentiranje modela
+objektno orijentiranih softverskih sustava.</p></div>
+<div class="paragraph"><p>UML može predstaviti različite aspekte softverskog sustava koristeći različite vrste dijagrama, no
+nas će u ovom trenutku zanimati samo <strong>dijagrami klasa</strong> (<em>class diagrams</em>) koji prikazuju klase i
+odnose među njima. Na primjer,</p></div>
+<div class="paragraph"><p><span class="image">
+<img alt="Point3D.png" width="55%" src="data:image/png;base64,%0A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%0AQmCC">
+</span></p></div>
+<div class="paragraph"><p>Sintaksa deklaracija atributa (varijabli) je oblika</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="nl">ime_varijable</span> <span class="p">:</span> <span class="n">tip_varijable</span>
+</pre></div></div></div>
+<div class="sect2">
+<h3 id="_uml_oznake">UML - oznake</h3>
+<div class="paragraph"><p>Nadalje, svakom atributu ili operaciji može prethoditi znak <code>+</code>, <code>-</code> ili <code>#</code> koji ima
+ sljedeće značenje:</p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+<code>+</code> označava javni atribut/operaciju
+</p>
+</li>
+<li>
+<p>
+<code>-</code> označava privatni atribut/operaciju
+</p>
+</li>
+<li>
+<p>
+<code>#</code> označava <em>protected</em> atribut/operaciju
+</p>
+</li>
+</ul></div>
+<div class="paragraph"><p>Grafički prikaz klasa pomoću dijagrama često se pojednostavljuje radi preglednosti:</p></div>
+<div class="imageblock" style="text-align:center;">
+<div class="content">
+<img alt="Point3D-1.png" height="100%" src="data:image/png;base64,%0A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%0A/g8MoY8nlyafiwAAAABJRU5ErkJggg==">
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_doseg_scope">Doseg (scope)</h2>
+<div class="sectionbody">
+<div class="paragraph"><p><strong>Doseg</strong> nekog identifikatora je dio programa u kojem je on vidljiv.</p></div>
+<div class="paragraph"><p>Vrijede pravila iz C-a:</p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+Lokalni objekti imaju doseg bloka u kome su definirani i skrivaju
+     objekte istog imena definirane izvan bloka (koji imaju širi doseg).
+</p>
+</li>
+<li>
+<p>
+Formalni argumenti
+     funkcije u njenoj <em>definiciji</em> imaju doseg tijela funkcije, isto kao i
+     lokalne
+     varijable definirane unutar tijela.
+</p>
+</li>
+<li>
+<p>
+Formalni argumenti
+     u <em>prototipu</em> funkcije (deklaraciji bez definicije) imaju doseg prototipa
+     i stoga se mogu ispustiti.
+</p>
+</li>
+<li>
+<p>
+Globalna varijabla ima globalni doseg ako nije
+     deklarirana <code>static</code>, kada dobiva doseg datoteke.
+</p>
+</li>
+</ul></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_doseg_klase">Doseg klase</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>C++
+   dodaje još dvije vrste dosega: doseg klase (<em>class scope</em>) i doseg
+   imenika (<em>namespace scope</em>).</p></div>
+<div class="paragraph"><p><em>Svaka klasa definira svoj vlastiti doseg</em>. Sve članice klase, varijable i funkcije,
+    su u tom dosegu. Članice različitih klasa mogu imati ista imena upravo stoga
+    što se pripadanjem različitim klasama nalaze u različitim dosezima.</p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+Unutar klase nalazimo se u dosegu klase i tamo su vidljiva sva imena varijabli
+    i funkcija članica.
+</p>
+</li>
+<li>
+<p>
+Kada neku funkciju članicu definiramo izvan klase,
+    onda se njeno tijelo nalazi u dosegu klase i sva imena  članica klase
+    su vidljiva.
+</p>
+</li>
+</ul></div>
+<div class="sect2">
+<h3 id="_doseg_imenika">Doseg imenika</h3>
+<div class="ulist"><ul>
+<li>
+<p>
+Svaki imenik (<em>namespace</em>) je jedan doseg.
+</p>
+</li>
+<li>
+<p>
+Ime deklarirano i imeniku se izvan tog imenika kvalificira imenom imenika.
+</p>
+</li>
+</ul></div>
+<div class="paragraph"><p><strong>Primjer</strong>.  <code>cout</code> je definirano u imeniku <code>std</code>.
+Stoga ga izvan imenika <code>std</code> pišemo kao <code>std::cout</code>.</p></div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_primjer_definicija_funkcije_clanice_izvan_klase">Primjer: definicija funkcije članice izvan klase</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="c1">// Datoteka point3D.cc</span>
+<span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;cmath&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">"point3D.h"</span><span class="cp"></span>
+
+<span class="kt">void</span> <span class="n">Point3D</span><span class="o">::</span><span class="n">rotate</span><span class="p">(</span><span class="n">Real</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">Real</span> <span class="n">beta</span><span class="p">,</span> <span class="n">Real</span> <span class="n">gamma</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">Real</span> <span class="n">x1</span> <span class="o">=</span>  <span class="n">std</span><span class="o">::</span><span class="n">cos</span><span class="p">(</span><span class="n">alpha</span><span class="p">)</span> <span class="o">*</span> <span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">std</span><span class="o">::</span><span class="n">sin</span><span class="p">(</span><span class="n">alpha</span><span class="p">)</span> <span class="o">*</span> <span class="n">data</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
+    <span class="n">Real</span> <span class="n">y1</span> <span class="o">=</span> <span class="o">-</span><span class="n">std</span><span class="o">::</span><span class="n">sin</span><span class="p">(</span><span class="n">alpha</span><span class="p">)</span> <span class="o">*</span> <span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">std</span><span class="o">::</span><span class="n">cos</span><span class="p">(</span><span class="n">alpha</span><span class="p">)</span> <span class="o">*</span> <span class="n">data</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
+    <span class="n">Real</span> <span class="n">z1</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span>
+
+    <span class="n">Real</span> <span class="n">x2</span> <span class="o">=</span>  <span class="n">x1</span><span class="p">;</span>
+    <span class="n">Real</span> <span class="n">y2</span> <span class="o">=</span>  <span class="n">std</span><span class="o">::</span><span class="n">cos</span><span class="p">(</span><span class="n">beta</span><span class="p">)</span> <span class="o">*</span> <span class="n">y1</span> <span class="o">+</span> <span class="n">std</span><span class="o">::</span><span class="n">sin</span><span class="p">(</span><span class="n">beta</span><span class="p">)</span> <span class="o">*</span> <span class="n">z1</span><span class="p">;</span>
+    <span class="n">Real</span> <span class="n">z2</span> <span class="o">=</span> <span class="o">-</span><span class="n">std</span><span class="o">::</span><span class="n">sin</span><span class="p">(</span><span class="n">beta</span><span class="p">)</span> <span class="o">*</span> <span class="n">y1</span> <span class="o">+</span> <span class="n">std</span><span class="o">::</span><span class="n">cos</span><span class="p">(</span><span class="n">beta</span><span class="p">)</span> <span class="o">*</span> <span class="n">z1</span><span class="p">;</span>
+
+    <span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span>  <span class="n">std</span><span class="o">::</span><span class="n">cos</span><span class="p">(</span><span class="n">gamma</span><span class="p">)</span> <span class="o">*</span> <span class="n">x2</span> <span class="o">+</span> <span class="n">std</span><span class="o">::</span><span class="n">sin</span><span class="p">(</span><span class="n">gamma</span><span class="p">)</span> <span class="o">*</span> <span class="n">y2</span><span class="p">;</span>
+    <span class="n">data</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="n">std</span><span class="o">::</span><span class="n">sin</span><span class="p">(</span><span class="n">gamma</span><span class="p">)</span> <span class="o">*</span> <span class="n">x2</span> <span class="o">+</span> <span class="n">std</span><span class="o">::</span><span class="n">cos</span><span class="p">(</span><span class="n">gamma</span><span class="p">)</span> <span class="o">*</span> <span class="n">y2</span><span class="p">;</span>
+    <span class="n">data</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span>  <span class="n">z2</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Nakon što je viđeno <code>Point3D::rotate</code> nalazimo se u dosegu klase <code>Point3D</code>
+i zato možemo dohvatiti privatnu varijablu članicu <code>data</code>.</p></div>
+<div class="sect2">
+<h3 id="_povratna_vrijednost">Povratna vrijednost</h3>
+<div class="paragraph"><p>Povratna vrijednost funkcije članice nije u dosegu klase, ukoliko je ova
+definirana izvan klase. Da smo htjeli funkciju <code>get(int i)</code>
+definirati izvan klase morali bismo pisati:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="n">Point3D</span><span class="o">::</span><span class="n">Real</span>  <span class="n">Point3D</span><span class="o">::</span><span class="n">get</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="p">)</span> <span class="k">const</span> <span class="p">{</span> <span class="k">return</span> <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">];</span> <span class="p">}</span>
+</pre></div></div></div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_izvan_dosega_klase">Izvan dosega klase</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Izvan dosega klase <strong>javne</strong> varijable članice i funkcije članice (koje nisu statičke) možemo dohvatiti
+samo kroz neki objekt tipa klase pomoću operatora točka (<strong>.</strong>) i strelica
+(<strong>→</strong>).  Na primjer,</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="n">Point3D</span> <span class="nf">D</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mf">1.2</span><span class="p">,</span><span class="mi">3</span><span class="p">);</span>
+<span class="n">Point3D</span><span class="o">*</span> <span class="n">pD</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">D</span><span class="p">;</span>    <span class="c1">// pokazivač na Point3D</span>
+<span class="n">Point3D</span><span class="o">&amp;</span> <span class="n">rD</span> <span class="o">=</span> <span class="n">D</span><span class="p">;</span>     <span class="c1">// referenca na Point3D</span>
+
+<span class="n">pD</span><span class="o">-&gt;</span><span class="n">set</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mf">2.9</span><span class="p">);</span>
+<span class="n">rD</span><span class="p">.</span><span class="n">set</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mf">1.1</span><span class="p">);</span>
+<span class="n">D</span><span class="p">.</span><span class="n">set</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mf">0.9</span><span class="p">);</span>
+
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">D</span><span class="p">.</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span> <span class="c1">// Greška, data je privatna varijabla klase</span>
+</pre></div></div></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_nalazenje_imena_em_name_lookup_em">Nalaženje imena (<em>name lookup</em>)</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Proces nalaženja deklaracije koja odgovara nekom imenu izgleda ovako:</p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+Kada se naiđe na prvu upotrebu nekog imena njegova se deklaracija potraži
+          u istom dosegu (bloku), ali samo prije mjesta na kojem je prvi put upotrebljeno.
+</p>
+</li>
+<li>
+<p>
+Ako deklaracija nije nađena, onda se pretražuje doseg okružujućeg bloka i tako dalje,
+          no uvijek samo u onom dijelu dosega koji prethodi prvoj upotrebi imena.
+</p>
+</li>
+</ul></div>
+<div class="paragraph"><p>Ako deklaracija nije nađena niti u jednom dosegu imamo grešku pri kompilaciji.
+ Ova pravila osiguravaju da se svako ime mora deklarirati prije  prve upotrebe.</p></div>
+<div class="paragraph"><p>Kod nalaženja imena funkcija imamo dodatno pravilo:</p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+Ime funkcije se traži u trenutnom i okružujućem dosegu, ali i u imenicima u kojima su deklarirani
+   njeni parametri <strong>(argument dependent lookup</strong>).
+</p>
+</li>
+</ul></div>
+<div class="paragraph"><p><strong>Primjer</strong>: <code>std::cout &lt;&lt; std::endl;</code></p></div>
+<div class="paragraph"><p>Taj kod je ekvivalentan s <code>operator&lt;&lt;()(std::cout, std::endl);</code> i bez ADL-a operator &lt;&lt;
+ ne bio nikad pronađen.</p></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_nalazenje_imena_unutar_klase">Nalaženje imena unutar klase</h2>
+<div class="sectionbody">
+<div class="ulist"><ul>
+<li>
+<p>
+Prvo se kompiliraju sve deklaraciju u klasi.
+</p>
+</li>
+<li>
+<p>
+Tek nakon toga se kompiliraju definicije članica.
+</p>
+</li>
+</ul></div>
+<div class="paragraph"><p>Pri kompilaciji <em>definicija</em> <em>funkcija članica klase</em> postupa se ovako:
+- Deklaracija imena koje se koristi u tijelu funkcije članice prvo se traži u dosegu funkcije
+               (tijelo + formalni argumenti).</p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+Ako deklaracija imena nije nađena u dosegu funkcije pretražuju se sve deklaracije
+             unutar klase (klasa je prvi širi doseg).
+</p>
+</li>
+<li>
+<p>
+Ako deklaracija nije nađena u klasi pretražuje se doseg prije mjesta definicije
+              funkcije. Ako je funkcija definirana u klasi, onda se pretražuje doseg koji prethodi
+              definiciji klase. Ako je pak, funkcija definirana izvan klase, onda se pretražuje
+              okružujući doseg
+              prije definicije funkcije.
+</p>
+</li>
+</ul></div>
+<div class="paragraph"><p><strong>Posljedica</strong>: U tijelu funkcije članice klase možemo koristiti sva imena deklarirana u klasi, čak i ona koja
+ su deklarirana iza tijela funkcije.</p></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_em_this_em_pokazivac"><em>this</em> pokazivač</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_kako_se_poziva_funkcija_clanica_klase">Kako se poziva funkcija članica klase?</h3>
+<div class="paragraph"><p>Na primjer,</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="n">Point3D</span> <span class="nf">x</span><span class="p">(</span><span class="mf">4.0</span> <span class="p">);</span>
+<span class="n">x</span><span class="p">.</span><span class="n">set</span><span class="p">(</span><span class="mi">2</span> <span class="p">,</span><span class="mf">8.0</span> <span class="p">);</span> <span class="c1">// Postavi z-koordinatu na 8.0</span>
+</pre></div></div></div>
+<div class="ulist"><ul>
+<li>
+<p>
+Objekti koji su instanca dane klase sadrže u
+  sebi samo varijable članice. Metode definirane u klasi ne povećavaju veličinu objekata.
+  S druge strane, funkcije definirane u klasi imaju jedan skriveni
+  parametar koji je <em>pokazivač na objekt na kojem je funkcija pozvana</em>. Taj se pokazivač
+  naziva <em>this</em> i može se eksplicitno dohvatiti pomoću ključne riječi <code>this</code>.
+</p>
+</li>
+</ul></div>
+<div class="paragraph"><p>Gornji poziv izgleda, ustvari, ovako:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="n">set</span><span class="p">(</span><span class="o">&amp;</span><span class="n">x</span><span class="p">,</span><span class="mi">2</span> <span class="p">,</span><span class="mf">8.0</span> <span class="p">);</span>
+</pre></div></div></div>
+<div class="paragraph"><p><strong>Napomena</strong>: Virtualne funkcije se implementiraju, kao što ćemo vidjeti, na složeniji način.</p></div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_eksplicitna_uptreba_em_this_em_pokazivaca">Eksplicitna uptreba <em>this</em> pokazivača</h2>
+<div class="sectionbody">
+<div class="ulist"><ul>
+<li>
+<p>
+Ponekad je korisno eksplicitno koristiti taj skriveni argument kroz ključnu riječ <code>this</code>.
+</p>
+</li>
+<li>
+<p>
+<code>this</code> je <strong>konstantan pokazivač</strong> na objekt tipa klase.
+</p>
+</li>
+</ul></div>
+<div class="paragraph"><p>Primjer:</p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+<code>this</code> koristimo da bismo vratili referencu na objekt na kome je metoda pozvana.
+</p>
+</li>
+</ul></div>
+<div class="paragraph"><p>Modificiramo klasu <code>Point3D&lt;T&gt;</code>:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+<span class="k">class</span> <span class="nc">Point3D</span>
+<span class="p">{</span>
+    <span class="k">public</span><span class="o">:</span>
+        <span class="n">Point3D</span><span class="p">(</span><span class="n">T</span> <span class="n">x</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">T</span> <span class="n">y</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">T</span> <span class="n">z</span><span class="o">=</span><span class="mf">0.0</span><span class="p">);</span>
+        <span class="n">T</span>  <span class="k">operator</span><span class="p">[](</span><span class="kt">int</span> <span class="n">i</span><span class="p">)</span> <span class="k">const</span><span class="p">{</span> <span class="k">return</span> <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">];</span> <span class="p">}</span>
+        <span class="n">T</span><span class="o">&amp;</span> <span class="k">operator</span><span class="p">[](</span><span class="kt">int</span> <span class="n">i</span><span class="p">)</span>      <span class="p">{</span> <span class="k">return</span> <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">];</span> <span class="p">}</span>
+        <span class="c1">// Skaliranje točke množenjem sa skalarom t</span>
+        <span class="n">Point3D</span> <span class="o">&amp;</span> <span class="n">scale</span><span class="p">(</span><span class="n">T</span> <span class="n">t</span><span class="p">);</span>
+        <span class="n">Point3D</span> <span class="o">&amp;</span> <span class="n">translate</span><span class="p">(</span><span class="k">const</span> <span class="n">Point3D</span><span class="o">&amp;</span> <span class="n">dir</span><span class="p">);</span>
+        <span class="c1">// Rotacija oko ishodišta za Eulerove kuteve phi psi i theta</span>
+        <span class="n">Point3D</span> <span class="o">&amp;</span> <span class="n">rotate</span><span class="p">(</span><span class="n">T</span> <span class="n">phi</span><span class="p">,</span> <span class="n">T</span> <span class="n">psi</span><span class="p">,</span> <span class="n">T</span> <span class="n">theta</span><span class="p">);</span>
+        <span class="c1">// Rotacija oko točke centar za Eulerove kuteve phi, psi i theta</span>
+        <span class="n">Point3D</span> <span class="o">&amp;</span> <span class="n">rotate</span><span class="p">(</span><span class="k">const</span> <span class="n">Point3D</span><span class="o">&amp;</span> <span class="n">centar</span><span class="p">,</span> <span class="n">T</span> <span class="n">phi</span><span class="p">,</span> <span class="n">T</span> <span class="n">psi</span><span class="p">,</span> <span class="n">T</span> <span class="n">theta</span><span class="p">);</span>
+
+    <span class="k">private</span><span class="o">:</span>
+        <span class="n">T</span> <span class="n">data</span><span class="p">[</span><span class="mi">3</span><span class="p">];</span>
+<span class="p">};</span>
+
+<span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+<span class="n">std</span><span class="o">::</span><span class="n">ostream</span> <span class="o">&amp;</span> <span class="k">operator</span><span class="o">&lt;&lt;</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">ostream</span> <span class="o">&amp;</span> <span class="n">out</span><span class="p">,</span> <span class="n">Point3D</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="k">const</span> <span class="o">&amp;</span> <span class="n">p</span><span class="p">){</span>
+  <span class="n">out</span> <span class="o">&lt;&lt;</span> <span class="s">"["</span><span class="o">&lt;&lt;</span> <span class="n">p</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;&lt;</span><span class="s">","</span> <span class="o">&lt;&lt;</span> <span class="n">p</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="s">","</span> <span class="o">&lt;&lt;</span> <span class="n">p</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="s">"]"</span><span class="p">;</span>
+  <span class="k">return</span> <span class="n">out</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div></div></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_implementacija">Implementacija:</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+<span class="n">Point3D</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;&amp;</span> <span class="n">Point3D</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;::</span><span class="n">rotate</span><span class="p">(</span><span class="n">T</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">T</span> <span class="n">beta</span><span class="p">,</span> <span class="n">T</span> <span class="n">gamma</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">T</span> <span class="n">x1</span> <span class="o">=</span>  <span class="n">std</span><span class="o">::</span><span class="n">cos</span><span class="p">(</span><span class="n">alpha</span><span class="p">)</span> <span class="o">*</span> <span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">std</span><span class="o">::</span><span class="n">sin</span><span class="p">(</span><span class="n">alpha</span><span class="p">)</span> <span class="o">*</span> <span class="n">data</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
+    <span class="n">T</span> <span class="n">y1</span> <span class="o">=</span> <span class="o">-</span><span class="n">std</span><span class="o">::</span><span class="n">sin</span><span class="p">(</span><span class="n">alpha</span><span class="p">)</span> <span class="o">*</span> <span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">std</span><span class="o">::</span><span class="n">cos</span><span class="p">(</span><span class="n">alpha</span><span class="p">)</span> <span class="o">*</span> <span class="n">data</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
+    <span class="n">T</span> <span class="n">z1</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span>
+
+    <span class="n">T</span> <span class="n">x2</span> <span class="o">=</span>  <span class="n">x1</span><span class="p">;</span>
+    <span class="n">T</span> <span class="n">y2</span> <span class="o">=</span>  <span class="n">std</span><span class="o">::</span><span class="n">cos</span><span class="p">(</span><span class="n">beta</span><span class="p">)</span> <span class="o">*</span> <span class="n">y1</span> <span class="o">+</span> <span class="n">std</span><span class="o">::</span><span class="n">sin</span><span class="p">(</span><span class="n">beta</span><span class="p">)</span> <span class="o">*</span> <span class="n">z1</span><span class="p">;</span>
+    <span class="n">T</span> <span class="n">z2</span> <span class="o">=</span> <span class="o">-</span><span class="n">std</span><span class="o">::</span><span class="n">sin</span><span class="p">(</span><span class="n">beta</span><span class="p">)</span> <span class="o">*</span> <span class="n">y1</span> <span class="o">+</span> <span class="n">std</span><span class="o">::</span><span class="n">cos</span><span class="p">(</span><span class="n">beta</span><span class="p">)</span> <span class="o">*</span> <span class="n">z1</span><span class="p">;</span>
+
+    <span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span>  <span class="n">std</span><span class="o">::</span><span class="n">cos</span><span class="p">(</span><span class="n">gamma</span><span class="p">)</span> <span class="o">*</span> <span class="n">x2</span> <span class="o">+</span> <span class="n">std</span><span class="o">::</span><span class="n">sin</span><span class="p">(</span><span class="n">gamma</span><span class="p">)</span> <span class="o">*</span> <span class="n">y2</span><span class="p">;</span>
+    <span class="n">data</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="n">std</span><span class="o">::</span><span class="n">sin</span><span class="p">(</span><span class="n">gamma</span><span class="p">)</span> <span class="o">*</span> <span class="n">x2</span> <span class="o">+</span> <span class="n">std</span><span class="o">::</span><span class="n">cos</span><span class="p">(</span><span class="n">gamma</span><span class="p">)</span> <span class="o">*</span> <span class="n">y2</span><span class="p">;</span>
+    <span class="n">data</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span>  <span class="n">z2</span><span class="p">;</span>
+
+    <span class="k">return</span> <span class="o">*</span><span class="k">this</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Primjena:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">Point3D</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="n">A</span><span class="p">;</span>                     <span class="c1">// Točka s koordinatama (0,0,0)</span>
+    <span class="n">Point3D</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span> <span class="n">B</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">),</span> <span class="n">C</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">);</span>  <span class="c1">// B=(1,1,0) i C=(1,0,1)</span>
+
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"A= "</span><span class="p">;</span> <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">A</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"B= "</span><span class="p">;</span> <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">B</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"C= "</span><span class="p">;</span> <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">C</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+
+    <span class="n">B</span><span class="p">.</span><span class="n">rotate</span><span class="p">(</span><span class="mf">0.8</span><span class="p">,</span><span class="mf">0.7</span><span class="p">,</span><span class="mf">1.6</span><span class="p">).</span><span class="n">translate</span><span class="p">(</span><span class="n">C</span><span class="p">);</span> <span class="c1">// rotiraj pa translatiraj</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"B= "</span><span class="p">;</span> <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">B</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+    <span class="n">C</span><span class="p">.</span><span class="n">scale</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+    <span class="n">B</span><span class="p">.</span><span class="n">translate</span><span class="p">(</span><span class="n">C</span><span class="p">).</span><span class="n">rotate</span><span class="p">(</span><span class="o">-</span><span class="mf">1.6</span><span class="p">,</span><span class="o">-</span><span class="mf">0.7</span><span class="p">,</span><span class="o">-</span><span class="mf">0.8</span><span class="p">);</span> <span class="c1">// vrati u početni položaj</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"B= "</span><span class="p">;</span> <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">B</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div></div></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_razlika_izmeu_konstantnog_i_nekonstantnog_objekta">Razlika između konstantnog i nekonstantnog objekta</h2>
+<div class="sectionbody">
+<div class="ulist"><ul>
+<li>
+<p>
+<code>this</code> vraća pokazivač na nekonstantan objekt u nekonstantnoj funkciji i pokazivač na
+     konstantan objekt u konstantnoj funkciji. Pointer je uvijek konstantan, tj. adresa u njemu se ne može mijenjati.
+     Stoga se funkcije koje vraćaju referencu na objekt često javljaju u dvije preopterećene
+     varijante: jedna konstantna i jedna nekonstantna. Prevodilac će selektirati konstantnu funkciju
+     na konstantnom objektu, a nekonstantnu na nekonstantnom.
+</p>
+</li>
+</ul></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="k">struct</span> <span class="n">X</span><span class="p">{</span>
+  <span class="n">X</span> <span class="k">const</span> <span class="o">&amp;</span> <span class="n">getX</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span> <span class="k">return</span> <span class="o">*</span><span class="k">this</span><span class="p">;</span> <span class="p">}</span> <span class="c1">// this je tipa: X const * const</span>
+  <span class="n">X</span> <span class="o">&amp;</span> <span class="n">getX</span><span class="p">()</span>       <span class="p">{</span> <span class="k">return</span> <span class="o">*</span><span class="k">this</span><span class="p">;</span> <span class="p">}</span>       <span class="c1">// this je tipa: X * const</span>
+<span class="p">};</span>
+</pre></div></div></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_konstantna_funkcija_clanica">Konstantna funkcija članica</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Funkcija članica koja nije deklarirana kao konstantna ne može biti pozvana na konstantnom objektu
+čak i onda kada ne mijenja objekt. Samo konstantna funkcija članica  može biti pozvana na konstantnom objektu.</p></div>
+<div class="sect2">
+<h3 id="_sto_znaci_da_je_objekt_konstantan">Što znači da je objekt konstantan?</h3>
+<div class="paragraph"><p>U C++-u konstantnost objekta je  <em>bit-po-bit konstantnost</em> i stoga konstantna funkcija ne može
+promijeniti niti jednu varijablu članicu objekta. To se ne odnosi na statičke varijable članice,
+kao što ćemo vidjeti kasnije.</p></div>
+</div>
+<div class="sect2">
+<h3 id="_bit_po_bit_konstantnost_nije_nuzno_uvijek_prirodna">bit-po-bit konstantnost nije nužno uvijek prirodna</h3>
+<div class="paragraph"><p>Primjer:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">A</span><span class="p">{</span>
+<span class="k">private</span> <span class="o">:</span>
+    <span class="kt">char</span> <span class="o">*</span> <span class="n">text</span><span class="p">;</span><span class="c1">// Konstruktor alocira polje dinamički</span>
+<span class="k">public</span> <span class="o">:</span>
+    <span class="n">A</span><span class="p">(</span><span class="k">const</span> <span class="kt">char</span> <span class="o">*</span> <span class="n">string</span><span class="p">);</span>
+    <span class="kt">char</span> <span class="o">&amp;</span> <span class="n">get</span><span class="p">(</span><span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">i</span><span class="p">)</span> <span class="k">const</span> <span class="p">{</span> <span class="k">return</span> <span class="n">text</span><span class="p">[</span><span class="n">i</span><span class="p">];</span> <span class="p">}</span><span class="c1">// Konstantna f.č.</span>
+    <span class="c1">// ...</span>
+<span class="p">};</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+   <span class="k">const</span> <span class="n">A</span> <span class="n">a</span><span class="p">(</span><span class="s">""</span><span class="p">);</span> <span class="c1">// Konstantan objekt</span>
+   <span class="n">a</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="o">=</span> <span class="sc">'Z'</span> <span class="p">;</span> <span class="c1">// Mijenjam string a.text !</span>
+<span class="p">}</span>
+</pre></div></div></div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_lijeno_izracunavanje">Lijeno izračunavanje</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Objekt može <strong>logički ostati konstantan</strong> premda je neka od njegovih varijabli izmijenjena.</p></div>
+<div class="paragraph"><p>Takva je situacija česta kod <em>lijenog izračunavanja</em>..</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">A</span><span class="p">{</span>
+<span class="k">private</span> <span class="o">:</span>
+    <span class="kt">char</span> <span class="o">*</span> <span class="n">text</span><span class="p">;</span>
+    <span class="k">mutable</span> <span class="kt">bool</span> <span class="n">lengthValid</span><span class="p">;</span><span class="c1">// zastavica</span>
+    <span class="k">mutable</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">text_size</span><span class="p">;</span><span class="c1">// duljina stringa</span>
+<span class="k">public</span> <span class="o">:</span>
+    <span class="n">A</span><span class="p">(</span><span class="k">const</span> <span class="kt">char</span> <span class="o">*</span> <span class="n">string</span><span class="p">);</span>
+    <span class="kt">char</span> <span class="o">&amp;</span> <span class="n">get</span><span class="p">(</span><span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">i</span><span class="p">)</span> <span class="k">const</span> <span class="p">{</span> <span class="k">return</span> <span class="n">text</span><span class="p">[</span><span class="n">i</span><span class="p">];</span> <span class="p">}</span><span class="c1">// Konstantna f.č.</span>
+    <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">size</span><span class="p">()</span> <span class="k">const</span> <span class="p">;</span>
+    <span class="c1">// ...</span>
+<span class="p">};</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Funkcija <code>size</code> je prirodno konstantna jer samo izračunava duljinu stringa. Implementacija je jednostavna:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="n">std</span><span class="o">::</span><span class="kt">size_t</span> <span class="n">A</span><span class="o">::</span><span class="n">size</span><span class="p">()</span> <span class="k">const</span>
+<span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">lengthValid</span><span class="p">){</span>
+        <span class="n">text_size</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">strlen</span><span class="p">(</span><span class="n">text</span><span class="p">);</span>
+        <span class="n">lengthValid</span> <span class="o">=</span> <span class="nb">true</span> <span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">text_size</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div></div></div>
+<div class="sect2">
+<h3 id="_mutable">mutable</h3>
+<div class="paragraph"><p>Varijabla članica deklarirana <strong>mutable</strong>  može se mijenjati i u konstantnom objektu, tj. može ju
+    mijenjati i konstantna funkcija.</p></div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_konstruktori">Konstruktori</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_sintaksa_konstruktora">Sintaksa konstruktora</h3>
+<div class="ulist"><ul>
+<li>
+<p>
+Konstruktor je vrlo posebna funkcija članica klase zadužena za konstrukciju objekta.
+</p>
+</li>
+<li>
+<p>
+Konstruktor ima tijelo kao i svaka druga funkcija, ali za razliku od njih ima
+    <em>inicijalizacijsku listu</em> u kojoj će biti inicijalizirana većina varijabli.
+    -Konstruktor <em>ne deklarira povratni tip</em> i <em>ima isto ime kao i klasa</em>.
+</p>
+</li>
+<li>
+<p>
+Konstruktor može uzimati različite argumente i vrlo je česta situacija da klasa
+    ima više preopterećenih konstruktora.
+</p>
+</li>
+</ul></div>
+<div class="paragraph"><p>Primjer:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="cp">#include</span>  <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+<span class="cp">#include</span>  <span class="cpf">&lt;ctime&gt;</span><span class="cp"></span>
+
+<span class="k">class</span> <span class="nc">Time</span><span class="p">{</span>
+<span class="k">public</span> <span class="o">:</span>
+    <span class="n">Time</span><span class="p">(</span><span class="kt">int</span> <span class="n">s</span><span class="o">=</span><span class="mi">0</span> <span class="p">,</span> <span class="kt">int</span> <span class="n">min</span><span class="o">=</span><span class="mi">0</span> <span class="p">,</span> <span class="kt">int</span> <span class="n">sec</span><span class="o">=</span><span class="mi">0</span> <span class="p">);</span>
+    <span class="kt">int</span> <span class="nf">getSat</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span> <span class="k">return</span> <span class="n">sat</span><span class="p">;</span> <span class="p">}</span>
+    <span class="kt">int</span> <span class="nf">getMinuta</span><span class="p">()</span><span class="k">const</span> <span class="p">{</span> <span class="k">return</span> <span class="n">minuta</span><span class="p">;}</span>
+    <span class="kt">int</span> <span class="nf">getSekunda</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span> <span class="k">return</span> <span class="n">sekunda</span><span class="p">;</span> <span class="p">}</span>
+    <span class="kt">void</span> <span class="nf">setTrenutno</span><span class="p">();</span>
+    <span class="kt">void</span> <span class="nf">printStandard</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">ostream</span><span class="o">&amp;</span><span class="p">)</span> <span class="k">const</span> <span class="p">;</span>
+<span class="k">private</span> <span class="o">:</span>
+    <span class="kt">int</span> <span class="n">sat</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">minuta</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">sekunda</span><span class="p">;</span>
+<span class="p">};</span>
+</pre></div></div></div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_implementacija_konstruktora">Implementacija konstruktora</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="n">Time</span><span class="o">::</span><span class="n">Time</span><span class="p">(</span><span class="kt">int</span> <span class="n">s</span><span class="p">,</span> <span class="kt">int</span> <span class="n">min</span><span class="p">,</span> <span class="kt">int</span> <span class="n">sec</span><span class="p">)</span> <span class="o">:</span> <span class="n">sat</span><span class="p">(</span><span class="n">s</span><span class="p">),</span> <span class="n">minuta</span><span class="p">(</span><span class="n">min</span><span class="p">),</span> <span class="n">sekunda</span><span class="p">(</span><span class="n">sec</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">sat</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="o">||</span> <span class="n">sat</span> <span class="o">&gt;</span> <span class="mi">23</span> <span class="p">)</span> <span class="n">sat</span> <span class="o">=</span> <span class="mi">0</span> <span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">minuta</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="o">||</span> <span class="n">minuta</span><span class="o">&gt;</span> <span class="mi">59</span> <span class="p">)</span> <span class="n">minuta</span> <span class="o">=</span> <span class="mi">0</span> <span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">sekunda</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="o">||</span> <span class="n">sekunda</span><span class="o">&gt;</span> <span class="mi">59</span> <span class="p">)</span> <span class="n">sekunda</span> <span class="o">=</span> <span class="mi">0</span> <span class="p">;</span>
+<span class="p">}</span>
+</pre></div></div></div>
+<div class="sect2">
+<h3 id="_pozivanje_konstruktora">Pozivanje konstruktora</h3>
+<div class="paragraph"><p>Konstruktor se poziva <em>automatski</em> u svim slučajevima kad se objekt klase
+ konstruira. Kako preopterećenih konstruktora može biti više, koji će od njih
+ biti pozvan ovisi o argumenima danim pri pozivu. Na primjer,</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="n">Time</span> <span class="n">t1</span><span class="p">;</span>
+<span class="n">Time</span> <span class="nf">t2</span><span class="p">(</span><span class="mi">12</span> <span class="p">,</span><span class="mi">30</span> <span class="p">,</span><span class="mi">0</span> <span class="p">);</span>
+<span class="n">Time</span><span class="o">*</span> <span class="n">t3</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Time</span><span class="p">(</span><span class="mi">13</span> <span class="p">,</span><span class="mi">13</span> <span class="p">);</span>
+</pre></div></div></div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_inicijalizacijska_lista">Inicijalizacijska lista</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Konstrukcija objekta se koncepcijski dešava u dvije faze:</p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+Inicijalizacijska faza:  u njoj se sve varijable inicijaliziraju,
+</p>
+</li>
+<li>
+<p>
+Računska faza: u njoj se izvršavaju dodatne operacije potrebne
+    za potpunu inicijalizaciju objekta.
+</p>
+</li>
+</ul></div>
+<div class="paragraph"><p>Inicijalizacija ide u inicijalizacijsku listu dok preostalo ide u
+    tijelo konstruktora.</p></div>
+<div class="paragraph"><p>Inicijalizacija varijable uslijedit će prije izvršavanje tijela konstruktora i
+    onda kada varijablu ne stavimo direktno u inicijalizacijsku listu. Prevodilac će takve varijable
+    inicijalizirati prema sljedećim pravilima:</p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+Varijabla tipa klase inicijalizira se pozivom konstruktora koji ne uzima argumente.
+</p>
+</li>
+<li>
+<p>
+Varijable ugrađenih tipova (<em>built-in  types</em>) i složenih (<em>compound types</em>) tipova inicijaliziraju se na nulu
+                 ako je objekt u globalnom dosegu i ne inicijalizaraju se kad je objekt u lokalnom dosegu.
+</p>
+</li>
+</ul></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_kad_je_inicijalizacija_u_inicijalizacijskoj_listi_nuzna">Kad je inicijalizacija u inicijalizacijskoj listi nužna?</h2>
+<div class="sectionbody">
+<div class="ulist"><ul>
+<li>
+<p>
+Ako klasa ima varijablu članicu koja je tipa neke klase koja nema
+  konstruktor koji ne uzima argumente, onda ju moramo <em>eksplicitno</em> inicijalizirati u inicijalizacijskoj listi.
+</p>
+</li>
+<li>
+<p>
+<strong>Konstantne</strong> varijable članice i varijable članice tipa <strong>reference</strong> na bilo koji tip
+  moraju biti <em>eksplicitno</em> inicijalizirane u inicijalizacijskoj listi.
+</p>
+</li>
+</ul></div>
+<div class="sect2">
+<h3 id="_redosljed_inicijalizacije">Redosljed inicijalizacije</h3>
+<div class="ulist"><ul>
+<li>
+<p>
+Redosljed kojim se vrši inicijalizacija varijabli određen je
+  redosljedom kojim su varijable članice deklarirane u klasi
+</p>
+</li>
+</ul></div>
+<div class="paragraph"><p>Ta činjenica postaje važna kada jednu članicu inicijaliziramo pomoću druge, već inicijalizirane.</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">X</span> <span class="p">{</span>
+    <span class="kt">int</span> <span class="n">i</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">j</span><span class="p">;</span>
+<span class="k">public</span> <span class="o">:</span>
+    <span class="n">X</span><span class="p">(</span><span class="kt">int</span> <span class="n">val</span><span class="p">)</span> <span class="o">:</span> <span class="n">j</span><span class="p">(</span><span class="n">val</span><span class="p">),</span> <span class="n">i</span><span class="p">(</span><span class="n">j</span><span class="p">)</span> <span class="p">{}</span>
+<span class="p">};</span>
+</pre></div></div></div>
+<div class="paragraph"><p>U ovom će primjeru varijabla <code>i</code> ostati neinicijalizirana i nikakva greška pri kompilaciji neće se desiti.</p></div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_dodijeljeni_em_default_em_konstruktor">Dodijeljeni (<em>default</em>) konstruktor</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Dodijeljeni konstruktor je onaj konstruktor koji ne uzima parametare. Konstruktor
+ koji za sve svoje parametre ima dodijeljene vrijednosti također je dodijeljeni konstruktor.</p></div>
+<div class="paragraph"><p><strong>Ako klasa ne definira niti jedan konstruktor prevodilac će sintetizirati
+konstruktor bez parametara</strong>. Sintetizirani dodijeljeni konstruktor
+inicijalizira objekt na sljedeći način:</p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+Varijable članice tipa klase inicijaliziraju se pozivanjem njihovog dodijeljenog konstruktora;
+</p>
+</li>
+<li>
+<p>
+Varijable članice ugrađenih tipova (int, double, …) te polja i pokazivači,
+      inicijaliziraju se (nulama) samo ako je objekt u globalnom dosegu. U lokalnom dosegu ostaju
+      neinicijalizirane.
+</p>
+</li>
+</ul></div>
+<div class="paragraph"><p>U osnovi svaka klasa <em>treba imati  konstruktor bez parametara</em>, definiran unutar klase
+  ili sintetiziran (kod vrlo jednostavnih klasa).</p></div>
+<div class="sect2">
+<h3 id="_nedostaci_klase_koja_nema_dodijeljeni_konstruktor">Nedostaci klase koja nema dodijeljeni konstruktor</h3>
+<div class="ulist"><ul>
+<li>
+<p>
+Objekt takve klase uvijek mora  biti eksplicitno inicijaliziran. Svaka klasa koja
+ sadrži takav objekt mora deklarirati konstruktor koji će eksplicitno inicijalizirati objekt.
+</p>
+</li>
+<li>
+<p>
+Nije moguće imati dinamički alocirano polje objekta koji nemaju dodijeljenog konstruktora.
+</p>
+</li>
+<li>
+<p>
+Statički alocirana polja u tom slučaju moraju eksplicitno inicijalizirati članove.
+</p>
+</li>
+<li>
+<p>
+Spremnici  kao što je <code>vector&lt;&gt;</code>       ne mogu koristiti
+             konstruktor koji uzima samo dimenziju, budući da on na svakom elementu poziva njegov
+             dodijeljeni konstruktor.
+</p>
+</li>
+</ul></div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_primjer_klase_koja_nema_dodijeljeni_konstruktor">Primjer klase koja nema dodijeljeni konstruktor</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="cp">#include</span>  <span class="cpf">&lt;vector&gt;</span><span class="cp"></span>
+
+<span class="c1">// Klasa bez dodijeljenog konstruktora</span>
+<span class="k">class</span> <span class="nc">X</span> <span class="p">{</span>
+<span class="k">public</span> <span class="o">:</span>
+    <span class="n">X</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="p">)</span> <span class="o">:</span> <span class="n">data</span><span class="p">(</span><span class="n">i</span><span class="p">){}</span>
+<span class="k">private</span> <span class="o">:</span>
+    <span class="kt">int</span> <span class="n">data</span><span class="p">;</span>
+<span class="p">};</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">X</span> <span class="n">x</span><span class="p">;</span> <span class="c1">// Greška, nema konstruktora koji ne uzima parametre</span>
+    <span class="n">X</span><span class="o">*</span> <span class="n">px</span> <span class="o">=</span> <span class="k">new</span> <span class="n">X</span><span class="p">[</span><span class="mi">5</span><span class="p">];</span><span class="c1">// Greška, na svakom od 5 X-ova želi se pozvati dodijelejeni konstruktor</span>
+
+    <span class="n">X</span> <span class="n">arrayA</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span> <span class="p">,</span><span class="mi">2</span> <span class="p">,</span><span class="mi">3</span> <span class="p">,</span><span class="mi">4</span> <span class="p">,</span><span class="mi">5</span> <span class="p">};</span> <span class="c1">// ok</span>
+    <span class="n">X</span> <span class="n">arrayB</span><span class="p">[</span><span class="mi">5</span><span class="p">];</span><span class="c1">// Greška, nema dodijeljenog konstruktora</span>
+
+    <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">X</span><span class="o">&gt;</span><span class="n">vecA</span><span class="p">(</span><span class="mi">5</span> <span class="p">,</span><span class="mi">1</span><span class="p">);</span> <span class="c1">// ok. Poziva konstruktor</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">X</span><span class="o">&gt;</span><span class="n">vecB</span><span class="p">(</span><span class="mi">5</span><span class="p">);</span>    <span class="c1">// Greška, nema defaultnog konstruktora</span>
+
+    <span class="k">return</span> <span class="mi">0</span> <span class="p">;</span>
+<span class="p">}</span>
+</pre></div></div></div>
+<div class="sect2">
+<h3 id="_default">default</h3>
+<div class="paragraph"><p>Ako klasa ima barem jedan konstruktor prevodilac neće sintetizirati dodijeljeni konstruktor.
+  U takvoj situaciji možemo zatražiti sintetiziranje konstruktora pomoću
+  ključne riječi <code>default</code> (C++11):</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="cp">#include</span>  <span class="cpf">&lt;vector&gt;</span><span class="cp"></span>
+
+<span class="c1">// Klasa bez dodijeljenog konstruktora</span>
+<span class="k">class</span> <span class="nc">X</span> <span class="p">{</span>
+<span class="k">public</span> <span class="o">:</span>
+    <span class="n">X</span><span class="p">()</span> <span class="o">=</span> <span class="k">default</span><span class="p">;</span>
+    <span class="n">X</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span><span class="p">)</span> <span class="o">:</span> <span class="n">data</span><span class="p">(</span><span class="n">i</span><span class="p">){}</span>
+<span class="k">private</span> <span class="o">:</span>
+    <span class="kt">int</span> <span class="n">data</span><span class="p">;</span>
+<span class="p">};</span>
+</pre></div></div></div>
+<div class="paragraph"><p><strong>Zadatak</strong>.
+Implementirati metode klase <code>Time</code>. Tu je jedina netrivijalna metoda
+<code>setTrenutno</code> koju treba implementirati koristeći ANSI C standardnu biblioteku. Potrebno je u program
+uključiti  zaglavlje <code>&lt;time.h&gt;</code>, no  u C++-u standardna C- zaglavlja
+imenujemo s "c" ispred imena i bez ekstenzije ".h": dakle, uključujemo zaglavlje <code>&lt;ctime&gt;</code>.</p></div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_delegirajuci_konstruktor_c_11">Delegirajući konstruktor (C++11)</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>C++11 dozvoljava da konstruktor bude implementiran tako da poziva drugi konstruktor.
+Poziv drugom konstruktoru se nalazi u inicijalizacijskoj listi koja ne smije sadžavati ništa osim
+poziva konstruktoru. Eventualni preostali dio inicijalizacije  obavlja se u tijelu konstruktora.
+Takav konstruktor se naziva delegirajući (<em>delegating constructor</em>).</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;ctime&gt;</span><span class="cp"></span>
+<span class="cp">#include</span> <span class="cpf">&lt;string&gt;</span><span class="cp"></span>
+
+<span class="k">class</span> <span class="nc">Time</span><span class="p">{</span>
+    <span class="k">public</span><span class="o">:</span>
+        <span class="c1">// Općeniti konstruktor -- implementiran u drugoj datoteci</span>
+        <span class="n">Time</span><span class="p">(</span><span class="kt">int</span> <span class="n">s</span><span class="p">,</span> <span class="kt">int</span> <span class="n">min</span><span class="p">,</span> <span class="kt">int</span> <span class="n">sec</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">name</span><span class="p">);</span>
+        <span class="c1">// Delegirajući konstruktori</span>
+        <span class="n">Time</span><span class="p">()</span> <span class="o">:</span> <span class="n">Time</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="s">""</span><span class="p">)</span> <span class="p">{}</span>
+        <span class="n">Time</span><span class="p">(</span><span class="kt">int</span> <span class="n">s</span><span class="p">)</span> <span class="o">:</span> <span class="n">Time</span><span class="p">(</span><span class="n">s</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="s">""</span><span class="p">)</span> <span class="p">{}</span>
+        <span class="n">Time</span><span class="p">(</span><span class="kt">int</span> <span class="n">s</span><span class="p">,</span> <span class="kt">int</span> <span class="n">min</span><span class="p">)</span> <span class="o">:</span> <span class="n">Time</span><span class="p">(</span><span class="n">s</span><span class="p">,</span><span class="n">min</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="s">""</span><span class="p">)</span> <span class="p">{}</span>
+        <span class="n">Time</span><span class="p">(</span><span class="kt">int</span> <span class="n">s</span><span class="p">,</span> <span class="kt">int</span> <span class="n">min</span><span class="p">,</span> <span class="kt">int</span> <span class="n">sec</span><span class="p">)</span> <span class="o">:</span> <span class="n">Time</span><span class="p">(</span><span class="n">s</span><span class="p">,</span><span class="n">min</span><span class="p">,</span><span class="n">sec</span><span class="p">,</span><span class="s">""</span><span class="p">)</span> <span class="p">{}</span>
+        <span class="n">Time</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">name</span><span class="p">)</span> <span class="o">:</span> <span class="n">Time</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="n">name</span><span class="p">)</span> <span class="p">{}</span>
+
+        <span class="kt">int</span> <span class="n">getSat</span><span class="p">()</span>     <span class="k">const</span> <span class="p">{</span> <span class="k">return</span> <span class="n">sat</span><span class="p">;</span>     <span class="p">}</span>
+        <span class="kt">int</span> <span class="n">getMinuta</span><span class="p">()</span>  <span class="k">const</span> <span class="p">{</span> <span class="k">return</span> <span class="n">minuta</span><span class="p">;</span>  <span class="p">}</span>
+        <span class="kt">int</span> <span class="n">getSekunda</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span> <span class="k">return</span> <span class="n">sekunda</span><span class="p">;</span> <span class="p">}</span>
+        <span class="kt">void</span> <span class="n">setTrenutno</span><span class="p">();</span>
+        <span class="kt">void</span> <span class="nf">printStandard</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">ostream</span><span class="o">&amp;</span><span class="p">)</span> <span class="k">const</span><span class="p">;</span>
+    <span class="k">private</span><span class="o">:</span>
+        <span class="kt">int</span> <span class="n">sat</span><span class="p">;</span>
+        <span class="kt">int</span> <span class="n">minuta</span><span class="p">;</span>
+        <span class="kt">int</span> <span class="n">sekunda</span><span class="p">;</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">ime</span><span class="p">;</span>
+<span class="p">};</span>
+</pre></div></div></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_implicitne_konverzije">Implicitne konverzije</h2>
+<div class="sectionbody">
+<div class="ulist"><ul>
+<li>
+<p>
+Konverziju objekta klase <em>X</em> u neki drugi tip  vrši poseban operator
+              konverzije koji će biti uveden kasnije.
+</p>
+</li>
+<li>
+<p>
+Konverziju objekta nekog drugog tipa u tip klase <em>X</em>     vrši konstruktor
+              klase <em>X</em> koji može biti pozvan sa samo jednim argumentom.  Ta će konverzija biti
+primijenjena u svim situacijama u kojima se primijenjuju implicitne konverzije
+</p>
+</li>
+</ul></div>
+<div class="paragraph"><p>Klasa <em>Time</em> ima jedan konstruktor koji može uzeti samo jedan parametar:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="kt">void</span> <span class="nf">f</span><span class="p">(</span><span class="n">Time</span> <span class="n">t</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">t</span><span class="p">.</span><span class="n">getMinuta</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">Time</span> <span class="n">t</span><span class="p">(</span><span class="mi">12</span> <span class="p">,</span><span class="mi">30</span> <span class="p">,</span><span class="mi">0</span> <span class="p">);</span>
+    <span class="n">f</span><span class="p">(</span><span class="n">t</span><span class="p">);</span> <span class="c1">// ok. Uzima Time.</span>
+    <span class="n">f</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span> <span class="c1">// implicitna konverzija. Kreira privremeni objekt</span>
+
+    <span class="k">return</span> <span class="mi">0</span> <span class="p">;</span>
+<span class="p">}</span>
+</pre></div></div></div>
+<div class="paragraph"><p><strong>Zadatak</strong>. Što će se desiti ako funkciju f deklariramo na sljedeći način:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="kt">void</span> <span class="nf">f</span><span class="p">(</span><span class="n">Time</span> <span class="o">&amp;</span> <span class="n">t</span><span class="p">);</span>
+<span class="kt">void</span> <span class="nf">f</span><span class="p">(</span><span class="n">Time</span> <span class="k">const</span> <span class="o">&amp;</span> <span class="n">t</span><span class="p">);</span>
+</pre></div></div></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_explicit">explicit</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Implicitna konverzija je nepoželjna uvijek kada nije intuitivna i kada je programer ne očekuje.
+Stoga nam jezik omogućava njeno dokidanje tako što ćemo konstruktor deklarirati
+<em>explicit</em>:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Time</span><span class="p">{</span>
+<span class="k">public</span> <span class="o">:</span>
+<span class="c1">// explicit onemogućava implicitne konverzije pomoću konstruktora</span>
+    <span class="k">explicit</span> <span class="n">Time</span><span class="p">(</span><span class="kt">int</span> <span class="n">s</span><span class="o">=</span><span class="mi">0</span> <span class="p">,</span> <span class="kt">int</span> <span class="n">min</span><span class="o">=</span><span class="mi">0</span> <span class="p">,</span> <span class="kt">int</span> <span class="n">sec</span><span class="o">=</span><span class="mi">0</span> <span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">name</span><span class="o">=&amp;</span><span class="n">quot</span><span class="p">;</span><span class="o">&amp;</span><span class="n">quot</span><span class="p">;</span> <span class="p">);</span>
+    <span class="kt">int</span> <span class="nf">getSat</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span> <span class="k">return</span> <span class="n">sat</span><span class="p">;</span> <span class="p">}</span>
+    <span class="kt">int</span> <span class="nf">getMinuta</span><span class="p">()</span><span class="k">const</span> <span class="p">{</span> <span class="k">return</span> <span class="n">minuta</span><span class="p">;}</span>
+    <span class="kt">int</span> <span class="nf">getSekunda</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span> <span class="k">return</span> <span class="n">sekunda</span><span class="p">;</span> <span class="p">}</span>
+    <span class="kt">void</span> <span class="nf">setTrenutno</span><span class="p">();</span>
+    <span class="kt">void</span> <span class="nf">printStandard</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">ostream</span><span class="o">&amp;</span><span class="p">)</span> <span class="k">const</span> <span class="p">;</span>
+<span class="k">private</span> <span class="o">:</span>
+    <span class="kt">int</span> <span class="n">sat</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">minuta</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">sekunda</span><span class="p">;</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">ime</span><span class="p">;</span>
+<span class="p">};</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Sad prevodilac neće dozvoliti implicitnu konverziju, no eksplicitna je dozvoljena:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span> <span class="n">f</span><span class="p">(</span><span class="n">Time</span><span class="p">(</span><span class="mi">3</span><span class="p">));</span> <span class="c1">// implicitna konverzija nije dozvoljena ali možemo koristiti eksplicitnu</span>
+</pre></div></div></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_direktna_inicijalizacija_nestatickih_varijabli_unutar_klase_c_11">Direktna inicijalizacija nestatičkih  varijabli unutar klase (C++11)</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Prema novom standardu nestatičke varijable članice klase možemo inicijalizirati na mjestu
+  deklaracije. Sintetizirani defaultni konstruktor poštuje takvu inicijalizaciju,
+  ali vrijednosti navedene u inicijalizacijskoj listi konstruktora imaju prednost.</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+
+<span class="k">class</span> <span class="nc">X</span><span class="p">{</span>
+  <span class="c1">// Direktna inicijalizacija nestatičkih varijabli</span>
+  <span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">50</span><span class="p">;</span>
+  <span class="kt">int</span> <span class="n">j</span><span class="p">{</span><span class="mi">75</span><span class="p">};</span>
+<span class="k">public</span><span class="o">:</span>
+  <span class="n">X</span><span class="p">()</span> <span class="o">=</span> <span class="k">default</span><span class="p">;</span>
+  <span class="n">X</span><span class="p">(</span><span class="kt">int</span> <span class="n">_i</span><span class="p">)</span> <span class="o">:</span> <span class="n">i</span><span class="p">(</span><span class="n">_i</span><span class="p">)</span> <span class="p">{}</span>
+  <span class="n">X</span><span class="p">(</span><span class="kt">int</span> <span class="n">_i</span><span class="p">,</span> <span class="kt">int</span> <span class="n">_j</span><span class="p">)</span> <span class="o">:</span> <span class="n">i</span><span class="p">(</span><span class="n">_i</span><span class="p">),</span> <span class="n">j</span><span class="p">(</span><span class="n">_j</span><span class="p">)</span> <span class="p">{}</span>
+  <span class="kt">void</span> <span class="n">print</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span> <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">i</span> <span class="o">&lt;&lt;</span> <span class="s">", "</span> <span class="o">&lt;&lt;</span> <span class="n">j</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span> <span class="p">}</span>
+<span class="p">};</span>
+
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+   <span class="n">X</span> <span class="n">x</span><span class="p">;</span>  <span class="c1">// default Ctor</span>
+   <span class="n">x</span><span class="p">.</span><span class="n">print</span><span class="p">();</span> <span class="c1">// 50, 75</span>
+   <span class="n">X</span> <span class="n">y</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+   <span class="n">y</span><span class="p">.</span><span class="n">print</span><span class="p">();</span> <span class="c1">// 3, 75</span>
+   <span class="n">X</span> <span class="n">z</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">);</span>
+   <span class="n">z</span><span class="p">.</span><span class="n">print</span><span class="p">();</span>  <span class="c1">// 3, 4</span>
+
+   <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div></div></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_staticki_clanovi_klase">Statički članovi klase</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_staticke_varijable">Statičke varijable</h3>
+<div class="ulist"><ul>
+<li>
+<p>
+Statičke varijable članice se deklariraju pomoću ključne riječi <em>static</em>.
+</p>
+</li>
+<li>
+<p>
+Statičke varijable nisu pridružene instanci klase već samoj klasi.
+</p>
+</li>
+</ul></div>
+<div class="paragraph"><p>Statička varijabla je zamjena za globalnu varijablu i nudi ove prednosti prednosti pred globalnom varijablom:</p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+Nalazi se u dosegu
+  klase i stoga ne dolazi do kolizija s varijablama istog imena u drugim dosezima.
+</p>
+</li>
+<li>
+<p>
+Na nju djeluju ograničenja pristupa kao i na bilo koju drugu varijablu članicu, pa ju
+  možemo deklarirati <em>private</em> i tako zaštiti od koda izvan klase.
+</p>
+</li>
+</ul></div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_primjer_2">Primjer</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Ovdje imamo  klasu <code>Point3D</code>  modificiranu tako da pamti
+ ukupan broj instanciranih točaka.</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+<span class="k">class</span> <span class="nc">Point3D</span>
+<span class="p">{</span>
+    <span class="k">public</span><span class="o">:</span>
+        <span class="n">Point3D</span><span class="p">(</span><span class="n">T</span> <span class="n">x</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">T</span> <span class="n">y</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">T</span> <span class="n">z</span><span class="o">=</span><span class="mf">0.0</span><span class="p">);</span>
+        <span class="n">T</span>  <span class="k">operator</span><span class="p">[](</span><span class="kt">int</span> <span class="n">i</span><span class="p">)</span> <span class="k">const</span><span class="p">{</span> <span class="k">return</span> <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">];</span> <span class="p">}</span>
+        <span class="n">T</span><span class="o">&amp;</span> <span class="k">operator</span><span class="p">[](</span><span class="kt">int</span> <span class="n">i</span><span class="p">){</span> <span class="k">return</span> <span class="n">data</span><span class="p">[</span><span class="n">i</span><span class="p">];</span> <span class="p">}</span>
+        <span class="c1">// Skaliranje točke množenjem sa skalarom t</span>
+        <span class="n">Point3D</span> <span class="o">&amp;</span> <span class="n">scale</span><span class="p">(</span><span class="n">T</span> <span class="n">t</span><span class="p">);</span>
+        <span class="n">Point3D</span> <span class="o">&amp;</span> <span class="n">translate</span><span class="p">(</span><span class="k">const</span> <span class="n">Point3D</span><span class="o">&amp;</span> <span class="n">dir</span><span class="p">);</span>
+        <span class="c1">// Rotacija oko ishodišta za Eulerove kuteve phi psi i theta</span>
+        <span class="n">Point3D</span> <span class="o">&amp;</span> <span class="n">rotate</span><span class="p">(</span><span class="n">T</span> <span class="n">phi</span><span class="p">,</span> <span class="n">T</span> <span class="n">psi</span><span class="p">,</span> <span class="n">T</span> <span class="n">theta</span><span class="p">);</span>
+        <span class="c1">// Rotacija oko točke centar za Eulerove kuteve phi, psi i theta</span>
+        <span class="n">Point3D</span> <span class="o">&amp;</span> <span class="n">rotate</span><span class="p">(</span><span class="k">const</span> <span class="n">Point3D</span><span class="o">&amp;</span> <span class="n">centar</span><span class="p">,</span> <span class="n">T</span> <span class="n">phi</span><span class="p">,</span> <span class="n">T</span> <span class="n">psi</span><span class="p">,</span> <span class="n">T</span> <span class="n">theta</span><span class="p">);</span>
+    <span class="c1">// Broj alociranih točaka</span>
+        <span class="k">static</span> <span class="kt">int</span> <span class="nf">print_cnt</span><span class="p">()</span> <span class="p">{</span><span class="k">return</span> <span class="n">cnt</span><span class="p">;}</span>
+
+    <span class="k">private</span><span class="o">:</span>
+        <span class="n">T</span> <span class="n">data</span><span class="p">[</span><span class="mi">3</span><span class="p">];</span>
+        <span class="k">static</span> <span class="kt">int</span> <span class="n">cnt</span><span class="p">;</span>
+<span class="p">};</span>
+</pre></div></div></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_definicija_staticke_varijable">Definicija statičke varijable</h2>
+<div class="sectionbody">
+<div class="ulist"><ul>
+<li>
+<p>
+Statička varijabla članica mora biti <strong>definirana</strong>  izvan klase i to samo jednom.
+  Za razliku od nestatičkih članica ne može se inicijalizirati u konstruktoru (tj. u
+ njegovoj inicijalizacijskoj listi) pa se prirodno inicijalizira na mjestu definicije.
+</p>
+</li>
+<li>
+<p>
+Kako definicija statičke članice mora biti viđena samo jednom, ona ne ide u
+datoteku zaglavlja već se stavlja zajedno s ostalim definicijama metoda koje nisu <em>inline</em>.
+Uočimo još da se ključna riječ <em>static</em> koristi samo u deklaraciji, a ne i u
+definiciji članice.
+</p>
+</li>
+<li>
+<p>
+U slučaju <em>predloška klase</em> statička varijabla se definira u datoteci zaglavlja.
+Svakoj instancijaciji predloška pridružena je posebna statička varijabla.
+</p>
+</li>
+</ul></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="c1">// Definicija statičke varijable iz predloška klase.</span>
+<span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+<span class="kt">int</span> <span class="n">Point3D</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;::</span><span class="n">cnt</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+<span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="n">T</span><span class="o">&gt;</span>
+<span class="n">Point3D</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;::</span><span class="n">Point3D</span><span class="p">(</span><span class="n">T</span> <span class="n">x</span><span class="p">,</span> <span class="n">T</span> <span class="n">y</span><span class="p">,</span> <span class="n">T</span> <span class="n">z</span><span class="p">){</span>
+  <span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">x</span><span class="p">;</span>
+  <span class="n">data</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">y</span><span class="p">;</span>
+  <span class="n">data</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="n">z</span><span class="p">;</span>
+  <span class="o">++</span><span class="n">cnt</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div></div></div>
+<div class="sect2">
+<h3 id="_dvije_iznimke">Dvije iznimke</h3>
+<div class="ulist"><ul>
+<li>
+<p>
+Konstantne integralne statičke varijable mogu biti definirane unutar klase
+</p>
+</li>
+<li>
+<p>
+U standardu C++-17 varijable mogu biti deklarirane <code>inline</code>. Statička <code>inline</code> varijabla može biti
+inicijalizirana unutar klase i ne treba definiciju izvan datoteke zaglavlja.
+</p>
+</li>
+</ul></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="k">struct</span> <span class="n">X</span><span class="p">{</span>
+  <span class="k">static</span> <span class="k">const</span> <span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+  <span class="kr">inline</span> <span class="k">static</span> <span class="kt">double</span> <span class="n">y</span> <span class="o">=</span> <span class="mf">6.14</span><span class="p">;</span> <span class="c1">// C++17</span>
+<span class="p">};</span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">X</span><span class="o">::</span><span class="n">x</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span> <span class="c1">// 3</span>
+  <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">X</span><span class="o">::</span><span class="n">y</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span> <span class="c1">// 6.14</span>
+  <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div></div></div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_staticke_funkcije">Statičke funkcije</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Funkcije članice klase mogu isto biti deklarirane <em>static</em>. One tada ne dobivaju <em>this</em>
+pokazivač i ne mogu dohvatiti nestatičke varijable članice. One mogu djelovati samo na statičkim
+varijablama klase. Mogu se dohvatiti kao i nestatičke metode putem instance klase ili pomoću
+operatora dosega <strong>::</strong>.</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="c1">// Broj alociranih objekata</span>
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">Point3D</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;::</span><span class="n">print_cnt</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+</pre></div></div></div>
+<div class="paragraph"><p><strong>Napomena</strong>: Statička funkcija ne može biti <em>const</em>, jer ionako ne može
+promijeniti objekt (što je smisao metoda tipa const), niti može biti <code>virtual</code>.</p></div>
+<div class="paragraph"><p>Javne statičke varijable mogu se dohvatiti pomoću operatora dosega <strong>::</strong>,
+jednako kao i javne statičke metode.</p></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_prijatelji_klase">Prijatelji klase</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>U nekim je klasama  zgodno dopustiti pristup privatnim podacima
+nekim funkcijama koje nisu članice klase. To se čini tako što se funkcija
+kojoj se dozvoljava pristup deklarira kao <code>friend</code> funkcija unutar klase.
+Sa <code>friend</code> se može deklarirati:</p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+globalna funkcija,
+</p>
+</li>
+<li>
+<p>
+funkcija članica neke druge klase,
+</p>
+</li>
+<li>
+<p>
+čitava klasa (sa značenjem da su tada sve funkcije članice prijatelji).
+</p>
+</li>
+</ul></div>
+<div class="paragraph"><p>Deklaracija prijatelja klase počinje ključnom riječju <em>friend</em> i može se nalaziti
+   bilo gdje unutar klase; <code>public</code>, <code>private</code> i <code>protected</code>
+   deklaracije nemaju utjecaja na
+   njih.  Prijatelji nisu članice klase premda su deklarirani unutar klase.
+   Oni samo imaju pristup privatnom dijelu klase.</p></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_primjer_3">Primjer</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Zamislimo klasu <code>A</code> koja reprezentira točku na ekranu, ima get-metode
+   za dohvat koordinata, ali nema javne set-metode.
+   Metoda <em>swap</em> koja zamijenjuje dva objekta klase <code>A</code> prirodno nije
+   članica klase.  Stoga je u ovom primjeru <code>swap</code> kandidat za
+   <em>friend</em> funkciju.</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">A</span>
+<span class="p">{</span>
+<span class="k">public</span> <span class="o">:</span>
+    <span class="k">explicit</span> <span class="n">A</span><span class="p">(</span><span class="kt">int</span> <span class="n">x_</span><span class="o">=</span><span class="mi">0</span> <span class="p">,</span> <span class="kt">int</span> <span class="n">y_</span><span class="o">=</span><span class="mi">0</span> <span class="p">)</span><span class="o">:</span> <span class="n">x</span><span class="p">(</span><span class="n">x_</span><span class="p">),</span> <span class="n">y</span><span class="p">(</span><span class="n">y_</span><span class="p">)</span> <span class="p">{}</span>
+    <span class="c1">// get metode, ali nemamo set metoda</span>
+    <span class="kt">int</span> <span class="n">width</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span> <span class="k">return</span> <span class="n">x</span><span class="p">;}</span>
+    <span class="kt">int</span> <span class="n">height</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span> <span class="k">return</span> <span class="n">y</span><span class="p">;}</span>
+    <span class="kt">void</span> <span class="n">translate</span><span class="p">(</span><span class="n">A</span><span class="o">&amp;</span> <span class="n">a</span><span class="p">);</span>
+    <span class="kt">void</span> <span class="nf">rotate</span><span class="p">(</span><span class="kt">double</span> <span class="n">phi</span><span class="p">);</span>
+    <span class="k">friend</span> <span class="kt">void</span> <span class="nf">swap</span><span class="p">(</span><span class="n">A</span><span class="o">&amp;</span> <span class="n">a</span><span class="p">,</span> <span class="n">A</span><span class="o">&amp;</span> <span class="n">b</span><span class="p">);</span>
+<span class="k">private</span> <span class="o">:</span>
+    <span class="kt">int</span> <span class="n">x</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">y</span><span class="p">;</span>
+<span class="p">};</span>
+</pre></div></div></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="kt">void</span> <span class="nf">swap</span><span class="p">(</span><span class="n">A</span><span class="o">&amp;</span> <span class="n">a</span><span class="p">,</span> <span class="n">A</span><span class="o">&amp;</span> <span class="n">b</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="n">a</span><span class="p">.</span><span class="n">x</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">y</span> <span class="o">=</span> <span class="n">a</span><span class="p">.</span><span class="n">y</span><span class="p">;</span>
+    <span class="n">a</span><span class="p">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">b</span><span class="p">.</span><span class="n">x</span><span class="p">;</span>
+    <span class="n">a</span><span class="p">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">b</span><span class="p">.</span><span class="n">y</span><span class="p">;</span>
+    <span class="n">b</span><span class="p">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="p">;</span>
+    <span class="n">b</span><span class="p">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">y</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Taj bi kod bio neispravan da <code>swap</code> nije deklarirana kao prijatelj klase <code>A</code>.</p></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_pokazivac_na_metodu_clanicu_klase">Pokazivač na metodu članicu klase</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Pogledajmo sada kako bismo kroz pokazivač dohvatili nestatičku metodu članicu klase.
+  Uzmimo stoga jednostavan primjer klase:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Functions</span><span class="p">{</span>
+<span class="k">public</span> <span class="o">:</span>
+ <span class="kt">double</span> <span class="n">f</span><span class="p">(</span><span class="kt">double</span> <span class="n">x</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="n">x</span><span class="o">*</span><span class="n">x</span><span class="p">;</span> <span class="p">}</span>
+ <span class="kt">double</span> <span class="n">g</span><span class="p">(</span><span class="kt">double</span> <span class="n">x</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="n">x</span><span class="o">*</span><span class="n">x</span><span class="o">*</span><span class="n">x</span><span class="p">;</span> <span class="p">}</span>
+<span class="p">};</span>
+</pre></div></div></div>
+<div class="sect2">
+<h3 id="_1_deklaracija_pokazivaca">1. Deklaracija pokazivača</h3>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="kt">double</span> <span class="p">(</span><span class="n">Functions</span><span class="o">::*</span><span class="n">pFunc</span><span class="p">)(</span><span class="kt">double</span> <span class="p">);</span>
+</pre></div></div></div>
+<div class="paragraph"><p>ili</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="c1">// typedef double (Functions::*PFUN)(double );  -- stara sintaksa</span>
+<span class="k">using</span> <span class="n">PFUN</span> <span class="o">=</span>  <span class="kt">double</span> <span class="p">(</span><span class="n">Functions</span><span class="o">::*</span><span class="p">)(</span><span class="kt">double</span> <span class="p">);</span>
+<span class="n">PFUN</span> <span class="n">pFunc</span><span class="p">;</span>
+</pre></div></div></div>
+</div>
+<div class="sect2">
+<h3 id="_2_inicijalizacija_pokazivaca">2. Inicijalizacija pokazivača</h3>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="n">PFUN</span> <span class="n">pFunc</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">Functions</span><span class="o">::</span><span class="n">g</span><span class="p">;</span>
+</pre></div></div></div>
+</div>
+<div class="sect2">
+<h3 id="_3_poziv_funkcije_kroz_pokazivac">3. Poziv funkcije kroz pokazivač</h3>
+<div class="paragraph"><p>Poziv (nestatičke) funkcije kroz pokazivač može se izvršiti samo na nekoj instanci klase,
+  dakle na objektu.</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="n">pFunc</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">Functions</span><span class="o">::</span><span class="n">f</span><span class="p">;</span>
+<span class="n">Functions</span> <span class="n">FF</span><span class="p">;</span>
+<span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span>  <span class="p">(</span><span class="n">FF</span><span class="p">.</span><span class="o">*</span><span class="n">pFunc</span><span class="p">)(</span><span class="mf">2.0</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Sintaksa je vrlo prirodna. Moramo dereferencirati pokazivač da bismo na njega mogli primijeniti
+operator točka (.) kako bismo pozvali funkciju.</p></div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="footer">
+<div id="footer-text">
+Version 1.1<br>
+Zadnja izmjena
+ 2019-05-14 10:57:07 CEST
+</div>
+</div>
+
+
+</body></html>
