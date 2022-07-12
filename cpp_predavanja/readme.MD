@@ -39,3 +39,31 @@
  
  
  # Vježbe
+ 
+[Git](https://htmlpreview.github.io/?https://github.com/aeoden96/notes/blob/main/cpp_predavanja/vjezbe/Git.html)
+
+[Osnove CMake sustava](https://htmlpreview.github.io/?https://github.com/aeoden96/notes/blob/main/cpp_predavanja/vjezbe/CMake.html)
+
+[Slučajni brojevi](https://htmlpreview.github.io/?https://github.com/aeoden96/notes/blob/main/cpp_predavanja/vjezbe/Slu%C4%8Dani%20brojevi.html)
+
+[Assert macro](https://htmlpreview.github.io/?https://github.com/aeoden96/notes/blob/main/cpp_predavanja/vjezbe/Assert.html)
+
+[Standardna biblioteka (pregled)](https://htmlpreview.github.io/?https://github.com/aeoden96/notes/blob/main/cpp_predavanja/vjezbe/Standardna%20biblioteka%20(pregled).html)
+
+[Pomoćna sredstva](https://htmlpreview.github.io/?https://github.com/aeoden96/notes/blob/main/cpp_predavanja/vjezbe/pomoc.html)
+
+[Ulazno izlazna biblioteka](https://htmlpreview.github.io/?https://github.com/aeoden96/notes/blob/main/cpp_predavanja/vjezbe/Ulaz%2C%20izlaz.html)
+
+[Stringovi](https://htmlpreview.github.io/?https://github.com/aeoden96/notes/blob/main/cpp_predavanja/vjezbe/Stringovi.html)
+
+[Sekvencijalni spremnici](https://htmlpreview.github.io/?https://github.com/aeoden96/notes/blob/main/cpp_predavanja/vjezbe/Sekvencijalni%20spremnici.html)
+
+[Asocijativni spremnici](https://htmlpreview.github.io/?https://github.com/aeoden96/notes/blob/main/cpp_predavanja/vjezbe/Asocijativni%20spremnici.html)
+
+[Iteratori](https://htmlpreview.github.io/?https://github.com/aeoden96/notes/blob/main/cpp_predavanja/vjezbe/Iteratori.html)
+
+[Algoritmi](https://htmlpreview.github.io/?https://github.com/aeoden96/notes/blob/main/cpp_predavanja/vjezbe/Algoritmi.html)
+
+[Programiranje s dretvama](https://htmlpreview.github.io/?https://github.com/aeoden96/notes/blob/main/cpp_predavanja/vjezbe/Vi%C5%A1edretveno%20programiranje.html)
+
+[Cxx17](https://htmlpreview.github.io/?https://github.com/aeoden96/notes/blob/main/cpp_predavanja/vjezbe/C%2B%2B17%20.html)
