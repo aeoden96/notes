@@ -132,7 +132,7 @@ return 0;
 2. transforms the 2D coordinates into actual colored pixels
 
 
-![Data image](shader_image.png)
+![Data image](opengl_shader_image.png)
 
 set of 3D coords -> graphics pipeline -> colored 2D pixels
 
