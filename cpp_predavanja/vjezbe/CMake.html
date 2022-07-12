@@ -1,0 +1,1503 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<!-- saved from url=(0093)https://web.math.pmf.unizg.hr/nastava/opepp/old/Slides/Vjezbe/html-noslides/vjezbe-cmake.html -->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="hr"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="generator" content="AsciiDoc 9.0.0rc1">
+<title>Osnove CMake sustava</title>
+<style type="text/css">
+/* Shared CSS for AsciiDoc xhtml11 and html5 backends */
+
+/* Default font. */
+body {
+  font-family: Georgia,serif;
+}
+
+/* Title font. */
+h1, h2, h3, h4, h5, h6,
+div.title, caption.title,
+thead, p.table.header,
+#toctitle,
+#author, #revnumber, #revdate, #revremark,
+#footer {
+  font-family: Arial,Helvetica,sans-serif;
+}
+
+body {
+  margin: 1em 5% 1em 5%;
+}
+
+a {
+  color: blue;
+  text-decoration: underline;
+}
+a:visited {
+  color: fuchsia;
+}
+
+em {
+  font-style: italic;
+  color: navy;
+}
+
+strong {
+  font-weight: bold;
+  color: #083194;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  color: #527bbd;
+  margin-top: 1.2em;
+  margin-bottom: 0.5em;
+  line-height: 1.3;
+}
+
+h1, h2, h3 {
+  border-bottom: 2px solid silver;
+}
+h2 {
+  padding-top: 0.5em;
+}
+h3 {
+  float: left;
+}
+h3 + * {
+  clear: left;
+}
+h5 {
+  font-size: 1.0em;
+}
+
+div.sectionbody {
+  margin-left: 0;
+}
+
+hr {
+  border: 1px solid silver;
+}
+
+p {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+ul, ol, li > p {
+  margin-top: 0;
+}
+ul > li     { color: #aaa; }
+ul > li > * { color: black; }
+
+.monospaced, code, pre {
+  font-family: "Courier New", Courier, monospace;
+  font-size: inherit;
+  color: navy;
+  padding: 0;
+  margin: 0;
+}
+pre {
+  white-space: pre-wrap;
+}
+
+#author {
+  color: #527bbd;
+  font-weight: bold;
+  font-size: 1.1em;
+}
+#email {
+}
+#revnumber, #revdate, #revremark {
+}
+
+#footer {
+  font-size: small;
+  border-top: 2px solid silver;
+  padding-top: 0.5em;
+  margin-top: 4.0em;
+}
+#footer-text {
+  float: left;
+  padding-bottom: 0.5em;
+}
+#footer-badges {
+  float: right;
+  padding-bottom: 0.5em;
+}
+
+#preamble {
+  margin-top: 1.5em;
+  margin-bottom: 1.5em;
+}
+div.imageblock, div.exampleblock, div.verseblock,
+div.quoteblock, div.literalblock, div.listingblock, div.sidebarblock,
+div.admonitionblock {
+  margin-top: 1.0em;
+  margin-bottom: 1.5em;
+}
+div.admonitionblock {
+  margin-top: 2.0em;
+  margin-bottom: 2.0em;
+  margin-right: 10%;
+  color: #606060;
+}
+
+div.content { /* Block element content. */
+  padding: 0;
+}
+
+/* Block element titles. */
+div.title, caption.title {
+  color: #527bbd;
+  font-weight: bold;
+  text-align: left;
+  margin-top: 1.0em;
+  margin-bottom: 0.5em;
+}
+div.title + * {
+  margin-top: 0;
+}
+
+td div.title:first-child {
+  margin-top: 0.0em;
+}
+div.content div.title:first-child {
+  margin-top: 0.0em;
+}
+div.content + div.title {
+  margin-top: 0.0em;
+}
+
+div.sidebarblock > div.content {
+  background: #ffffee;
+  border: 1px solid #dddddd;
+  border-left: 4px solid #f0f0f0;
+  padding: 0.5em;
+}
+
+div.listingblock > div.content {
+  border: 1px solid #dddddd;
+  border-left: 5px solid #f0f0f0;
+  background: #f8f8f8;
+  padding: 0.5em;
+}
+
+div.quoteblock, div.verseblock {
+  padding-left: 1.0em;
+  margin-left: 1.0em;
+  margin-right: 10%;
+  border-left: 5px solid #f0f0f0;
+  color: #888;
+}
+
+div.quoteblock > div.attribution {
+  padding-top: 0.5em;
+  text-align: right;
+}
+
+div.verseblock > pre.content {
+  font-family: inherit;
+  font-size: inherit;
+}
+div.verseblock > div.attribution {
+  padding-top: 0.75em;
+  text-align: left;
+}
+/* DEPRECATED: Pre version 8.2.7 verse style literal block. */
+div.verseblock + div.attribution {
+  text-align: left;
+}
+
+div.admonitionblock .icon {
+  vertical-align: top;
+  font-size: 1.1em;
+  font-weight: bold;
+  text-decoration: underline;
+  color: #527bbd;
+  padding-right: 0.5em;
+}
+div.admonitionblock td.content {
+  padding-left: 0.5em;
+  border-left: 3px solid #dddddd;
+}
+
+div.exampleblock > div.content {
+  border-left: 3px solid #dddddd;
+  padding-left: 0.5em;
+}
+
+div.imageblock div.content { padding-left: 0; }
+span.image img { border-style: none; vertical-align: text-bottom; }
+a.image:visited { color: white; }
+
+dl {
+  margin-top: 0.8em;
+  margin-bottom: 0.8em;
+}
+dt {
+  margin-top: 0.5em;
+  margin-bottom: 0;
+  font-style: normal;
+  color: navy;
+}
+dd > *:first-child {
+  margin-top: 0.1em;
+}
+
+ul, ol {
+    list-style-position: outside;
+}
+ol.arabic {
+  list-style-type: decimal;
+}
+ol.loweralpha {
+  list-style-type: lower-alpha;
+}
+ol.upperalpha {
+  list-style-type: upper-alpha;
+}
+ol.lowerroman {
+  list-style-type: lower-roman;
+}
+ol.upperroman {
+  list-style-type: upper-roman;
+}
+
+div.compact ul, div.compact ol,
+div.compact p, div.compact p,
+div.compact div, div.compact div {
+  margin-top: 0.1em;
+  margin-bottom: 0.1em;
+}
+
+tfoot {
+  font-weight: bold;
+}
+td > div.verse {
+  white-space: pre;
+}
+
+div.hdlist {
+  margin-top: 0.8em;
+  margin-bottom: 0.8em;
+}
+div.hdlist tr {
+  padding-bottom: 15px;
+}
+dt.hdlist1.strong, td.hdlist1.strong {
+  font-weight: bold;
+}
+td.hdlist1 {
+  vertical-align: top;
+  font-style: normal;
+  padding-right: 0.8em;
+  color: navy;
+}
+td.hdlist2 {
+  vertical-align: top;
+}
+div.hdlist.compact tr {
+  margin: 0;
+  padding-bottom: 0;
+}
+
+.comment {
+  background: yellow;
+}
+
+.footnote, .footnoteref {
+  font-size: 0.8em;
+}
+
+span.footnote, span.footnoteref {
+  vertical-align: super;
+}
+
+#footnotes {
+  margin: 20px 0 20px 0;
+  padding: 7px 0 0 0;
+}
+
+#footnotes div.footnote {
+  margin: 0 0 5px 0;
+}
+
+#footnotes hr {
+  border: none;
+  border-top: 1px solid silver;
+  height: 1px;
+  text-align: left;
+  margin-left: 0;
+  width: 20%;
+  min-width: 100px;
+}
+
+div.colist td {
+  padding-right: 0.5em;
+  padding-bottom: 0.3em;
+  vertical-align: top;
+}
+div.colist td img {
+  margin-top: 0.3em;
+}
+
+@media print {
+  #footer-badges { display: none; }
+}
+
+#toc {
+  margin-bottom: 2.5em;
+}
+
+#toctitle {
+  color: #527bbd;
+  font-size: 1.1em;
+  font-weight: bold;
+  margin-top: 1.0em;
+  margin-bottom: 0.1em;
+}
+
+div.toclevel0, div.toclevel1, div.toclevel2, div.toclevel3, div.toclevel4 {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+div.toclevel2 {
+  margin-left: 2em;
+  font-size: 0.9em;
+}
+div.toclevel3 {
+  margin-left: 4em;
+  font-size: 0.9em;
+}
+div.toclevel4 {
+  margin-left: 6em;
+  font-size: 0.9em;
+}
+
+span.aqua { color: aqua; }
+span.black { color: black; }
+span.blue { color: blue; }
+span.fuchsia { color: fuchsia; }
+span.gray { color: gray; }
+span.green { color: green; }
+span.lime { color: lime; }
+span.maroon { color: maroon; }
+span.navy { color: navy; }
+span.olive { color: olive; }
+span.purple { color: purple; }
+span.red { color: red; }
+span.silver { color: silver; }
+span.teal { color: teal; }
+span.white { color: white; }
+span.yellow { color: yellow; }
+
+span.aqua-background { background: aqua; }
+span.black-background { background: black; }
+span.blue-background { background: blue; }
+span.fuchsia-background { background: fuchsia; }
+span.gray-background { background: gray; }
+span.green-background { background: green; }
+span.lime-background { background: lime; }
+span.maroon-background { background: maroon; }
+span.navy-background { background: navy; }
+span.olive-background { background: olive; }
+span.purple-background { background: purple; }
+span.red-background { background: red; }
+span.silver-background { background: silver; }
+span.teal-background { background: teal; }
+span.white-background { background: white; }
+span.yellow-background { background: yellow; }
+
+span.big { font-size: 2em; }
+span.small { font-size: 0.6em; }
+
+span.underline { text-decoration: underline; }
+span.overline { text-decoration: overline; }
+span.line-through { text-decoration: line-through; }
+
+div.unbreakable { page-break-inside: avoid; }
+
+
+/*
+ * xhtml11 specific
+ *
+ * */
+
+div.tableblock {
+  margin-top: 1.0em;
+  margin-bottom: 1.5em;
+}
+div.tableblock > table {
+  border: 3px solid #527bbd;
+}
+thead, p.table.header {
+  font-weight: bold;
+  color: #527bbd;
+}
+p.table {
+  margin-top: 0;
+}
+/* Because the table frame attribute is overridden by CSS in most browsers. */
+div.tableblock > table[frame="void"] {
+  border-style: none;
+}
+div.tableblock > table[frame="hsides"] {
+  border-left-style: none;
+  border-right-style: none;
+}
+div.tableblock > table[frame="vsides"] {
+  border-top-style: none;
+  border-bottom-style: none;
+}
+
+
+/*
+ * html5 specific
+ *
+ * */
+
+table.tableblock {
+  margin-top: 1.0em;
+  margin-bottom: 1.5em;
+}
+thead, p.tableblock.header {
+  font-weight: bold;
+  color: #527bbd;
+}
+p.tableblock {
+  margin-top: 0;
+}
+table.tableblock {
+  border-width: 3px;
+  border-spacing: 0px;
+  border-style: solid;
+  border-color: #527bbd;
+  border-collapse: collapse;
+}
+th.tableblock, td.tableblock {
+  border-width: 1px;
+  padding: 4px;
+  border-style: solid;
+  border-color: #527bbd;
+}
+
+table.tableblock.frame-topbot {
+  border-left-style: hidden;
+  border-right-style: hidden;
+}
+table.tableblock.frame-sides {
+  border-top-style: hidden;
+  border-bottom-style: hidden;
+}
+table.tableblock.frame-none {
+  border-style: hidden;
+}
+
+th.tableblock.halign-left, td.tableblock.halign-left {
+  text-align: left;
+}
+th.tableblock.halign-center, td.tableblock.halign-center {
+  text-align: center;
+}
+th.tableblock.halign-right, td.tableblock.halign-right {
+  text-align: right;
+}
+
+th.tableblock.valign-top, td.tableblock.valign-top {
+  vertical-align: top;
+}
+th.tableblock.valign-middle, td.tableblock.valign-middle {
+  vertical-align: middle;
+}
+th.tableblock.valign-bottom, td.tableblock.valign-bottom {
+  vertical-align: bottom;
+}
+
+
+/*
+ * manpage specific
+ *
+ * */
+
+body.manpage h1 {
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+  border-top: 2px solid silver;
+  border-bottom: 2px solid silver;
+}
+body.manpage h2 {
+  border-style: none;
+}
+body.manpage div.sectionbody {
+  margin-left: 3em;
+}
+
+@media print {
+  body.manpage div#toc { display: none; }
+}
+.highlight .hll { background-color: #ffffcc }
+.highlight  { background: #f8f8f8; }
+.highlight .c { color: #408080; font-style: italic } /* Comment */
+.highlight .err { border: 1px solid #FF0000 } /* Error */
+.highlight .k { color: #008000; font-weight: bold } /* Keyword */
+.highlight .o { color: #666666 } /* Operator */
+.highlight .cm { color: #408080; font-style: italic } /* Comment.Multiline */
+.highlight .cp { color: #BC7A00 } /* Comment.Preproc */
+.highlight .c1 { color: #408080; font-style: italic } /* Comment.Single */
+.highlight .cs { color: #408080; font-style: italic } /* Comment.Special */
+.highlight .gd { color: #A00000 } /* Generic.Deleted */
+.highlight .ge { font-style: italic } /* Generic.Emph */
+.highlight .gr { color: #FF0000 } /* Generic.Error */
+.highlight .gh { color: #000080; font-weight: bold } /* Generic.Heading */
+.highlight .gi { color: #00A000 } /* Generic.Inserted */
+.highlight .go { color: #808080 } /* Generic.Output */
+.highlight .gp { color: #000080; font-weight: bold } /* Generic.Prompt */
+.highlight .gs { font-weight: bold } /* Generic.Strong */
+.highlight .gu { color: #800080; font-weight: bold } /* Generic.Subheading */
+.highlight .gt { color: #0040D0 } /* Generic.Traceback */
+.highlight .kc { color: #008000; font-weight: bold } /* Keyword.Constant */
+.highlight .kd { color: #008000; font-weight: bold } /* Keyword.Declaration */
+.highlight .kn { color: #008000; font-weight: bold } /* Keyword.Namespace */
+.highlight .kp { color: #008000 } /* Keyword.Pseudo */
+.highlight .kr { color: #008000; font-weight: bold } /* Keyword.Reserved */
+.highlight .kt { color: #B00040 } /* Keyword.Type */
+.highlight .m { color: #666666 } /* Literal.Number */
+.highlight .s { color: #BA2121 } /* Literal.String */
+.highlight .na { color: #7D9029 } /* Name.Attribute */
+.highlight .nb { color: #008000 } /* Name.Builtin */
+.highlight .nc { color: #0000FF; font-weight: bold } /* Name.Class */
+.highlight .no { color: #880000 } /* Name.Constant */
+.highlight .nd { color: #AA22FF } /* Name.Decorator */
+.highlight .ni { color: #999999; font-weight: bold } /* Name.Entity */
+.highlight .ne { color: #D2413A; font-weight: bold } /* Name.Exception */
+.highlight .nf { color: #0000FF } /* Name.Function */
+.highlight .nl { color: #A0A000 } /* Name.Label */
+.highlight .nn { color: #0000FF; font-weight: bold } /* Name.Namespace */
+.highlight .nt { color: #008000; font-weight: bold } /* Name.Tag */
+.highlight .nv { color: #19177C } /* Name.Variable */
+.highlight .ow { color: #AA22FF; font-weight: bold } /* Operator.Word */
+.highlight .w { color: #bbbbbb } /* Text.Whitespace */
+.highlight .mf { color: #666666 } /* Literal.Number.Float */
+.highlight .mh { color: #666666 } /* Literal.Number.Hex */
+.highlight .mi { color: #666666 } /* Literal.Number.Integer */
+.highlight .mo { color: #666666 } /* Literal.Number.Oct */
+.highlight .sb { color: #BA2121 } /* Literal.String.Backtick */
+.highlight .sc { color: #BA2121 } /* Literal.String.Char */
+.highlight .sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
+.highlight .s2 { color: #BA2121 } /* Literal.String.Double */
+.highlight .se { color: #BB6622; font-weight: bold } /* Literal.String.Escape */
+.highlight .sh { color: #BA2121 } /* Literal.String.Heredoc */
+.highlight .si { color: #BB6688; font-weight: bold } /* Literal.String.Interpol */
+.highlight .sx { color: #008000 } /* Literal.String.Other */
+.highlight .sr { color: #BB6688 } /* Literal.String.Regex */
+.highlight .s1 { color: #BA2121 } /* Literal.String.Single */
+.highlight .ss { color: #19177C } /* Literal.String.Symbol */
+.highlight .bp { color: #008000 } /* Name.Builtin.Pseudo */
+.highlight .vc { color: #19177C } /* Name.Variable.Class */
+.highlight .vg { color: #19177C } /* Name.Variable.Global */
+.highlight .vi { color: #19177C } /* Name.Variable.Instance */
+.highlight .il { color: #666666 } /* Literal.Number.Integer.Long */
+
+
+</style>
+<script type="text/javascript">
+/*<![CDATA[*/
+var asciidoc = {  // Namespace.
+
+/////////////////////////////////////////////////////////////////////
+// Table Of Contents generator
+/////////////////////////////////////////////////////////////////////
+
+/* Author: Mihai Bazon, September 2002
+ * http://students.infoiasi.ro/~mishoo
+ *
+ * Table Of Content generator
+ * Version: 0.4
+ *
+ * Feel free to use this script under the terms of the GNU General Public
+ * License, as long as you do not remove or alter this notice.
+ */
+
+ /* modified by Troy D. Hanson, September 2006. License: GPL */
+ /* modified by Stuart Rackham, 2006, 2009. License: GPL */
+
+// toclevels = 1..4.
+toc: function (toclevels) {
+
+  function getText(el) {
+    var text = "";
+    for (var i = el.firstChild; i != null; i = i.nextSibling) {
+      if (i.nodeType == 3 /* Node.TEXT_NODE */) // IE doesn't speak constants.
+        text += i.data;
+      else if (i.firstChild != null)
+        text += getText(i);
+    }
+    return text;
+  }
+
+  function TocEntry(el, text, toclevel) {
+    this.element = el;
+    this.text = text;
+    this.toclevel = toclevel;
+  }
+
+  function tocEntries(el, toclevels) {
+    var result = new Array;
+    var re = new RegExp('[hH]([1-'+(toclevels+1)+'])');
+    // Function that scans the DOM tree for header elements (the DOM2
+    // nodeIterator API would be a better technique but not supported by all
+    // browsers).
+    var iterate = function (el) {
+      for (var i = el.firstChild; i != null; i = i.nextSibling) {
+        if (i.nodeType == 1 /* Node.ELEMENT_NODE */) {
+          var mo = re.exec(i.tagName);
+          if (mo && (i.getAttribute("class") || i.getAttribute("className")) != "float") {
+            result[result.length] = new TocEntry(i, getText(i), mo[1]-1);
+          }
+          iterate(i);
+        }
+      }
+    }
+    iterate(el);
+    return result;
+  }
+
+  var toc = document.getElementById("toc");
+  if (!toc) {
+    return;
+  }
+
+  // Delete existing TOC entries in case we're reloading the TOC.
+  var tocEntriesToRemove = [];
+  var i;
+  for (i = 0; i < toc.childNodes.length; i++) {
+    var entry = toc.childNodes[i];
+    if (entry.nodeName.toLowerCase() == 'div'
+     && entry.getAttribute("class")
+     && entry.getAttribute("class").match(/^toclevel/))
+      tocEntriesToRemove.push(entry);
+  }
+  for (i = 0; i < tocEntriesToRemove.length; i++) {
+    toc.removeChild(tocEntriesToRemove[i]);
+  }
+
+  // Rebuild TOC entries.
+  var entries = tocEntries(document.getElementById("content"), toclevels);
+  for (var i = 0; i < entries.length; ++i) {
+    var entry = entries[i];
+    if (entry.element.id == "")
+      entry.element.id = "_toc_" + i;
+    var a = document.createElement("a");
+    a.href = "#" + entry.element.id;
+    a.appendChild(document.createTextNode(entry.text));
+    var div = document.createElement("div");
+    div.appendChild(a);
+    div.className = "toclevel" + entry.toclevel;
+    toc.appendChild(div);
+  }
+  if (entries.length == 0)
+    toc.parentNode.removeChild(toc);
+},
+
+
+/////////////////////////////////////////////////////////////////////
+// Footnotes generator
+/////////////////////////////////////////////////////////////////////
+
+/* Based on footnote generation code from:
+ * http://www.brandspankingnew.net/archive/2005/07/format_footnote.html
+ */
+
+footnotes: function () {
+  // Delete existing footnote entries in case we're reloading the footnodes.
+  var i;
+  var noteholder = document.getElementById("footnotes");
+  if (!noteholder) {
+    return;
+  }
+  var entriesToRemove = [];
+  for (i = 0; i < noteholder.childNodes.length; i++) {
+    var entry = noteholder.childNodes[i];
+    if (entry.nodeName.toLowerCase() == 'div' && entry.getAttribute("class") == "footnote")
+      entriesToRemove.push(entry);
+  }
+  for (i = 0; i < entriesToRemove.length; i++) {
+    noteholder.removeChild(entriesToRemove[i]);
+  }
+
+  // Rebuild footnote entries.
+  var cont = document.getElementById("content");
+  var spans = cont.getElementsByTagName("span");
+  var refs = {};
+  var n = 0;
+  for (i=0; i<spans.length; i++) {
+    if (spans[i].className == "footnote") {
+      n++;
+      var note = spans[i].getAttribute("data-note");
+      if (!note) {
+        // Use [\s\S] in place of . so multi-line matches work.
+        // Because JavaScript has no s (dotall) regex flag.
+        note = spans[i].innerHTML.match(/\s*\[([\s\S]*)]\s*/)[1];
+        spans[i].innerHTML =
+          "[<a id='_footnoteref_" + n + "' href='#_footnote_" + n +
+          "' title='View footnote' class='footnote'>" + n + "</a>]";
+        spans[i].setAttribute("data-note", note);
+      }
+      noteholder.innerHTML +=
+        "<div class='footnote' id='_footnote_" + n + "'>" +
+        "<a href='#_footnoteref_" + n + "' title='Return to text'>" +
+        n + "</a>. " + note + "</div>";
+      var id =spans[i].getAttribute("id");
+      if (id != null) refs["#"+id] = n;
+    }
+  }
+  if (n == 0)
+    noteholder.parentNode.removeChild(noteholder);
+  else {
+    // Process footnoterefs.
+    for (i=0; i<spans.length; i++) {
+      if (spans[i].className == "footnoteref") {
+        var href = spans[i].getElementsByTagName("a")[0].getAttribute("href");
+        href = href.match(/#.*/)[0];  // Because IE return full URL.
+        n = refs[href];
+        spans[i].innerHTML =
+          "[<a href='#_footnote_" + n +
+          "' title='View footnote' class='footnote'>" + n + "</a>]";
+      }
+    }
+  }
+},
+
+install: function(toclevels) {
+  var timerId;
+
+  function reinstall() {
+    asciidoc.footnotes();
+    if (toclevels) {
+      asciidoc.toc(toclevels);
+    }
+  }
+
+  function reinstallAndRemoveTimer() {
+    clearInterval(timerId);
+    reinstall();
+  }
+
+  timerId = setInterval(reinstall, 500);
+  if (document.addEventListener)
+    document.addEventListener("DOMContentLoaded", reinstallAndRemoveTimer, false);
+  else
+    window.onload = reinstallAndRemoveTimer;
+}
+
+}
+asciidoc.install();
+/*]]>*/
+</script>
+</head>
+<body class="article">
+<div id="header">
+<h1>Osnove CMake sustava</h1>
+<span id="author">Mladen Jurak</span><br>
+<span id="revnumber">version 1.1,</span>
+<span id="revdate">2020-01</span>
+</div>
+<div id="content">
+<div class="sect1">
+<h2 id="_sto_je_cmake">Što je CMake</h2>
+<div class="sectionbody">
+<div class="paragraph"><p><em>CMake</em> je alat za izgradnju, testiranje i pakiranje softvera.
+CMake kontrolira kompilaciju softvera i povezivanje s potrebnim bibliotekama.
+Njegova osnovna značajka je neovisnost o platformi (operacijskom sustavu) što znači da se
+izvorni kod softvera razvijenog na jednoj platformi (na primjer na Linux-u) može premjestiti na drugu
+platformu (na primjer na Window sustav) i tamo kompilirati.
+CMake će prilikom pokretanja ispitati svojstva platforme, pronaći potrebne biblioteke i datoteke zaglavlja,
+odrediti opcije koje treba predati prevodiocu i linkeru i generirati datoteke potrebne za kompilaciju.</p></div>
+<div class="paragraph"><p>Bazični CMake tutorijal se može naći na stranici <a href="https://cmake.org/cmake-tutorial/">https://cmake.org/cmake-tutorial/</a>.</p></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_prvi_primjer">Prvi primjer</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>U direktoriju <code>ex1</code> imamo C++ program u datoteci <code>main.cpp</code>.
+Ako želimo taj program kompilirati pomoću <code>CMake</code> sustava trebamo u direktoriju <code>ex1</code> kreirati datoteku
+<code>CMakeLists.txt</code> sljedećeg sadržaja:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="nb">cmake_minimum_required</span><span class="p">(</span><span class="s">VERSION</span> <span class="s">3.2</span><span class="p">)</span>
+<span class="nb">project</span><span class="p">(</span><span class="s">ex1_project</span><span class="p">)</span>
+<span class="nb">add_executable</span><span class="p">(</span><span class="s">ex1prog</span> <span class="s">main.cpp</span><span class="p">)</span>
+</pre></div></div></div>
+<div class="paragraph"><p><code>CMake</code> je kontroliran pomoću datoteke <code>CMakeLists.txt</code> čije ime je zadano i ne može se mijenjati.
+Datoteka  <code>CMakeLists.txt</code> informira <code>CMake</code> koje programe i biblioteke treba izgraditi.</p></div>
+<div class="paragraph"><p>U ovom primjeru imamo minimalnu  <code>CMakeLists.txt</code> datoteku. Prva linija u njoj je <strong>uvijek</strong>
+ <code>cmake_minimum_required()</code>
+naredba koja daje minimalnu verziju <code>CMake</code> programa koja će biti korištena. Ukoliko na sustavu nije
+instaliran <code>cmake</code> te verzije ili noviji pri pokretanju <code>cmake</code>-a bit će javljena greška.</p></div>
+<div class="paragraph"><p>Druga naredba u svakoj  <code>CMakeLists.txt</code> datoteci je <code>project()</code> naredba kojom se daje ime projekta, u našem
+slučaju <code>ex1_project</code>. Ova je naredba obavezna kao i <code>cmake_minimum_required()</code> naredba.</p></div>
+<div class="paragraph"><p>Treća naredba u  <code>CMakeLists.txt</code> datoteci je <code>add_executable()</code> koja kaže koji program treba izraditi.
+Oblik narebe <code>add_executable()</code> je sljedeći:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="nb">add_executable</span><span class="p">(</span><span class="s">program</span> <span class="s">izvornaDatoteka1</span> <span class="s">[izvornaDatoteka2</span> <span class="s">...]</span><span class="p">)</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Prvi argument koji se predaje naredbi <code>add_executable()</code> je ime programa koji treba izgraditi. Preostali
+argumenti su imena izvornih datoteka koje sudjeluju u izgradnji programa, odvojeni bjelinama.</p></div>
+<div class="paragraph"><p><strong>Napomena</strong>: Argumenti svih CMake naredbi  odvajaju se bjelinama, što uključuje i prijelaz u novi red.
+      Naredbe se mogu pisati i velikim i malim slovima, ali se velika i mala slova razlikuju u argumentima naredbi.</p></div>
+<div class="paragraph"><p>U našem slučaju program se zove <code>ex1prog</code> i u njegovoj izgradnji sudjeluje samo jedna izvorna datoteka:
+<code>main.cpp</code>.</p></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_izgradnja_programa">Izgradnja programa</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Naša trenutna struktura direktorija na disku je sljedeća: imamo direktorij <code>CMake</code> unutar kojeg se
+nalazi direktorij <code>ex1</code> koji sadrži izvorni kod našeg programa i  <code>CMakeLists.txt</code> datoteku.</p></div>
+<div class="paragraph"><p>Program bismo mogli kompilirati unutar direktorija  <code>ex1</code> (<em>in source build</em>) no tu mogućnost ne koristimo jer
+bismo tada pomiješali izvorne datoteke s datotekama koje generira <code>CMake</code>, što otežava održavanje koda.
+Stoga je uobičajena praksa generirati kod izvan direktorija izvornog koda. Na primjer, napravit ćemo novi direktorij
+<code>build-ex1</code> paralelan s direktorijem   <code>ex1</code> i generirat ćemo kod u njemu (<em>out of source build</em>).</p></div>
+<div class="paragraph"><p>Da bismo izgradili program ulazimo u direktorij <code>build-ex1</code> i pozivamo <code>cmake</code> na sljedeći način:</p></div>
+<div class="listingblock">
+<div class="content">
+<pre><code>cmake ../ex1</code></pre>
+</div></div>
+<div class="paragraph"><p>Tu smo programu <code>cmake</code> predali (relativnu) stazu do direktorija s izvornim kodom (<code>../ex1</code>). Nakon toga
+će <code>cmake</code>  ispisati niz poruka i završiti porukama:</p></div>
+<div class="listingblock">
+<div class="content">
+<pre><code>-- Configuring done
+-- Generating done
+-- Build files have been written to: .../CMake/build-ex1</code></pre>
+</div></div>
+<div class="paragraph"><p>Sam <code>cmake</code> ne kompilira program već generira sustav za kompilaciju programa. Da bismo konačno kompilirali
+naš program trebamo u  <code>build-ex1</code> otipkati</p></div>
+<div class="listingblock">
+<div class="content">
+<pre><code>cmake --build .</code></pre>
+</div></div>
+<div class="paragraph"><p>U ovoj naredbi <code>.</code> predstavlja direktorij u kojem se nalazimo. Da smo naredbu  <code>cmake</code> pozvali iz direktorija <code>CMake</code>
+pisali bismo:</p></div>
+<div class="listingblock">
+<div class="content">
+<pre><code>cmake --build build-ex1/</code></pre>
+</div></div>
+<div class="paragraph"><p>Nakon toga u <code>build-ex1/</code> nalazimo naš program <code>ex1prog</code>.</p></div>
+<div class="paragraph"><p>Time smo opisali način korištenja <code>CMake</code> sustava u najjednostavnijem slučaju kompilacije jednog programa koji ne treba
+povezivanje s vanjskim bibliotekama. Pored toga smo upoznali tri osnovne <code>CMake</code> naredbe o kojima ćemo
+sada reći nešto više.</p></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_verzija_cmake_sustava">Verzija CMake sustava</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Prva naredba u  <code>CMakeLists.txt</code> datoteci mora biti  <code>cmake_minimum_required()</code> u kojoj postavljamo verziju
+<code>CMake</code> sustava s kojom ćemo raditi. Taj korak je vrlo važan jer je  <code>CMake</code> prilično evoluirao tijekom svog razvoja.
+Najveće promjene su se desile na kraju verzije 2 i pri prijelazu na verziju 3.
+Pri tom prijelazu od verzije 2 na verziju
+3 desila se i promjena načina korištenja <code>CMake</code> sustava, tako da su neke konstrukcije i
+tehnike danas zastarjele i ne treba ih koristiti.
+Najnovija verzija  <code>CMake</code> sustava je trenutno 3.16.</p></div>
+<div class="paragraph"><p>Svi novi projekti bi trebali koristiti najnoviju verziju ukoliko je prisutna na sustavu. Kada je važna prenosivost
+programa na druge operacijske sustave potrebno je uzeti onu verziju <code>CMake</code> sustava koja je prisutna na svim operacijskim
+sustavima od interesa. To u principu znači smanjiti verziju, no kod novih projekta bi odabrana verzija trebala biti barem verzija <strong>3.2</strong>.</p></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_code_project_code_naredba"><code>project()</code> naredba</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Ova naredba dolazi odmah nakom  <code>cmake_minimum_required()</code> naredbe i daje ime projektu koje ima
+svoje značenje u dokumentiranju i pakiranju koda. Pored imena projekta ova naredba postavlja i programske
+jezike koji se koriste u kodu. Na primjer, možemo pisati</p></div>
+<div class="listingblock">
+<div class="content">
+<pre><code>project(ex1_project C CXX)</code></pre>
+</div></div>
+<div class="paragraph"><p>Ta naredba kaže da se u projektu čije je ime <code>ex1_project</code> koriste programski jezici C i C++. To u našoj
+<code>CMakeLists.txt</code> datoteci nismo trebali pisati jer se ta dva jezika podrazumijevaju ako ne navedemo niti jedan jezik.
+<code>CMake</code> verzije 3.0 i veće uveo je malo prirodniju sintaksu za zadavanje jezika uvodeći ključnu riječ LANGUAGES.
+Tako bismo da je projekt <code>ex1_project</code> pisan u Javi pisali:</p></div>
+<div class="listingblock">
+<div class="content">
+<pre><code>project(ex1_project LANGUAGES Java)</code></pre>
+</div></div>
+<div class="paragraph"><p>no prihvatljivo je i</p></div>
+<div class="listingblock">
+<div class="content">
+<pre><code>project(ex1_project Java)</code></pre>
+</div></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_generatori">Generatori</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Da bismo kompilirali naš program trebali smo izvršiti dvije naredbe u direktoriju <code>build-ex1</code>:</p></div>
+<div class="listingblock">
+<div class="content">
+<pre><code>cmake ../ex1
+cmake --build .</code></pre>
+</div></div>
+<div class="paragraph"><p>Prva naredba generira sustav za izgradnju programa, a druga pokreće samu izgradnju. Važno je uočiti da izgradnju
+programa ne vrši sam <code>CMake</code>. Uloga  <code>CMake</code> sustava je samo da pripremi program za kompilaciju pomoću nekog
+<strong>generatora</strong> (sustava za izgradnju) koji je prisutan na sustavu. U naredbi <code>cmake --build .</code>, <code>cmake</code> samo poziva generator koji
+kompilira program.</p></div>
+<div class="paragraph"><p><strong>Generator</strong> mora biti prisutan na sustavu da bi <code>CMake</code> mogao odraditi svoj dio posla. Na Unix i Linux sustavima
+generator je <code>make</code> program, te <code>CMake</code> samo generira odgovarajuće <code>Makefile</code> datoteke koje  <code>make</code> naredbi govore
+koje programe treba izgraditi i kako. Stoga na Unix i Linux sustavima naredbu  <code>cmake --build .</code> možemo zamijeniti
+naredbom <code>make all</code>.</p></div>
+<div class="paragraph"><p>Na MS Windows sustavu  <code>CMake</code> će generirati ulazne datoteke za odgovarajuću verziju  <code>Visual Studio</code>
+integrirane okoline,
+dok će na Mac sustavima generirati ulazne datoteke za <code>Xcode</code>. Kako na istom sustavu može postojati više različitih
+sustava za izgradnju <code>cmake</code> uzima kao argument generator koji želimo koristiti. Generator ne moramo eksplicitno
+zadavati ako smo zadovoljni s implicitno određenim generatorom za dani sustav.</p></div>
+<div class="paragraph"><p>Na primjer, na Linux sustavu
+uvijek imamo <code>make</code> program, no pored njega možemo imati instaliran <code>Ninja</code> sustav za izgradnju. Kako je  <code>make</code>
+implicitno određen sustav za izgradnju, poziv <code>cmake</code> naredbi oblika</p></div>
+<div class="listingblock">
+<div class="content">
+<pre><code>cmake ../ex1</code></pre>
+</div></div>
+<div class="paragraph"><p>generira datoteke potrebne za pokretanje  <code>make</code> programa. Ako želimo koristiti <code>Ninja</code> sustav za izgradnju moramo to
+eksplicitno reći  pomoću opcije <code>-G</code> i imena generatora:</p></div>
+<div class="listingblock">
+<div class="content">
+<pre><code>cmake -G Ninja ../ex1</code></pre>
+</div></div>
+<div class="paragraph"><p>Sada će biti generirane datoteke za Ninja sustav za izgradnju.</p></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_konfiguracija_i_generiranje_datoteka">Konfiguracija i generiranje datoteka</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Naredba</p></div>
+<div class="listingblock">
+<div class="content">
+<pre><code>cmake ../ex1</code></pre>
+</div></div>
+<div class="paragraph"><p>odvija se <strong>u dvije faze</strong>. U prvoj se čita <code>CMakeLists.txt</code> datoteka i konfigurira se projekt u memoriji računala.
+U toj fazi <code>cmake</code> naredba ispisuje najveći dio svojih poruka i završava s porukom:</p></div>
+<div class="listingblock">
+<div class="content">
+<pre><code>-- Configuring done</code></pre>
+</div></div>
+<div class="paragraph"><p>Nakon toga počinje faza generiranja datoteka za selektirani generator i u toj fazi obično nema novih poruka na
+ekranu, tek</p></div>
+<div class="listingblock">
+<div class="content">
+<pre><code>-- Generating done</code></pre>
+</div></div>
+<div class="paragraph"><p>kada je generiranje završilo.</p></div>
+<div class="paragraph"><p>Jedna od važnih datoteka koja se generira u drugoj fazi je <code>CMakeCache.txt</code>. U toj datoteci se pamte podaci iz
+faze konfiguracije kako ne bi bilo potrebno ponovo raditi konfiguraciju ukoliko smo mijenjali izvorne datoteke
+i trebamo ponovo kompilirati program. U tom slučaju je dovoljno izvršiti samo naredbu</p></div>
+<div class="listingblock">
+<div class="content">
+<pre><code>cmake --build .</code></pre>
+</div></div>
+<div class="paragraph"><p>Nova konfiguracija je potrebna samo ako se mijenjaju <code>CMakeLists.txt</code> datoteke.</p></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_tip_izgradnje_programa">Tip izgradnje programa</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Postoje različiti tipovi izgradnje programa: osnovni su izgradnja optimizirane verzije programa (eng. <em>Release mode</em>)
+i izgradnja verzije za traženje grešaka (eng. <em>Debug mode</em>). Programer je onaj koji odlučuje koju će verziju izgraditi
+u kojem trenutku te hoće li svaka verzija biti u svom zasebnom direktoriju.</p></div>
+<div class="paragraph"><p>Trenutni tip izgradnje se pamti u jednoj varijabli koja se zove <code>CMAKE_BUILD_TYPE</code> i koja se čuva u  <code>CMakeCache.txt</code>
+datoteci (u <em>cache</em> -u). To znači da se treba postaviti samo jednom prilikom konfiguracije. Varijabla
+<code>CMAKE_BUILD_TYPE</code> ima vrijednost <code>Release</code> ako se radi o optimiziranoj izgradnji, ili <code>Debug</code> ako se radi o
+izgradnji za traženje grešaka. Kada želimo postaviti jedan od ta dva tipa izgradnje trebamo pomoću opcije <code>-D</code> definirati
+varijablu <code>CMAKE_BUILD_TYPE</code> prilikom poziva naredbe  <code>cmake</code>. Na primjer,</p></div>
+<div class="listingblock">
+<div class="content">
+<pre><code>cmake -DCMAKE_BUILD_TYPE=Debug ../ex1</code></pre>
+</div></div>
+<div class="paragraph"><p>konfigurira sustav izgradnje za traženje grešaka. Program neće biti optimiziran i imat će u sebi simbole nužne programu
+za traženje grešaka (eng. <em>debugger</em>). Kada želimo promijeniti tip izgradnje trebamo rekonfigurirati projekt naredbom</p></div>
+<div class="listingblock">
+<div class="content">
+<pre><code>cmake -DCMAKE_BUILD_TYPE=Release ../ex1</code></pre>
+</div></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_poddirektoriji">Poddirektoriji</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Vrlo se rijetko  čitav kod nalazi u jednom direktoriju. Ako imamo C++   kod onda je prirodno
+izvorne datoteke staviti u poddirektorij <code>src</code>, datoteke zaglavlja u <code>include</code>, dokumentaciju
+u <code>doc</code> i slično.</p></div>
+<div class="paragraph"><p>Datoteka <code>CMakeLists.txt</code> uvijek se nalazi u korijenskom direktoriju projekta. Ukoliko
+želimo u projekt uvesti poddirektorij kao dio projekta onda trebamo učiniti dvije stvari:</p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+U <code>CMakeLists.txt</code> datoteku staviti poziv <code>add_subdirectory()</code> naredbi;
+</p>
+</li>
+<li>
+<p>
+U novom poddirektoriju kreirati (moguće i praznu) <code>CMakeLists.txt</code> datoteku.
+</p>
+</li>
+</ul></div>
+<div class="paragraph"><p>U direktoriju <code>ex2</code> ćemo korigirati naš prvi primjer iz <code>ex1</code> tako što ćemo kod smjestiti u <code>src</code> direktorij.</p></div>
+<div class="paragraph"><p>Datoteka <code>CMakeLists.txt</code> u korijenskom direktoriju imat će samo tri naredbe:</p></div>
+<div class="listingblock">
+<div class="title">ex2/CMakeLists.txt</div>
+<div class="content"><div class="highlight"><pre><span></span><span class="nb">cmake_minimum_required</span><span class="p">(</span><span class="s">VERSION</span> <span class="s">3.2</span><span class="p">)</span>
+<span class="nb">project</span><span class="p">(</span><span class="s">ex2_project</span><span class="p">)</span>
+<span class="nb">add_subdirectory</span><span class="p">(</span><span class="s">src</span><span class="p">)</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Program će biti izgrađen u <code>src</code> direktoriju i stoga je <code>add_executable</code> naredba prebačena tamo:</p></div>
+<div class="listingblock">
+<div class="title">ex2/src/CMakeLists.txt</div>
+<div class="content"><div class="highlight"><pre><span></span><span class="nb">add_executable</span><span class="p">(</span><span class="s">ex2prog</span> <span class="s">main.cpp</span><span class="p">)</span>
+</pre></div></div></div>
+<div class="paragraph"><p>S druge strane, <code>cmake</code> program će izgraditi direktorij s izvršnim kodom posve iste strukture koju
+ima izvorni kod. Recimo da se direktorij s izvršnim kodom zove <code>build-ex2</code> i da je na istoj
+razini kao i izvorni direktorij <code>ex2</code>.
+Tada direktorij  <code>build-ex2</code> ima poddirektorij <code>src</code> i program <code>ex2prog</code> se nalazi u njemu.
+Svaki direktorij u izvornom kodu sa  <code>CMakeLists.txt</code> datotekom generirat će isti takav
+direktorij u izvršnim kodu. Cilj će biti generiran u onom direktoriju u kojem se nalazi
+<code>add_executable()</code> naredba.</p></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_izgradnja_biblioteka">Izgradnja biblioteka</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Ponekad umjesto programa želimo izgraditi biblioteku ili dio modula koji čine program
+želimo kompilirati kao biblioteku s  kojom ćemo povezati glavni program. Naš prethodni primjer ćemo
+modificirati tako funkciju <code>sqrt()</code> iz standardne biblioteke zamijenimo vlastitom implementacijom
+koju ćemo nazvati <code>Sqrt()</code>. Novu verziju funkcije ćemo izgraditi kao biblioteku s kojom će
+glavni program biti povezan.</p></div>
+<div class="paragraph"><p>Izmijenjeni glavni program će biti u <code>ex3/src/main.cpp</code>.
+Funkcija  <code>Sqrt()</code> je deklarirana u zaglavlju <code>ex3/include/sqrt.h</code>,
+a implementacija funkcije je dana u <code>ex3/src/sqrt.cpp</code>:</p></div>
+<div class="paragraph"><p>Za kompilaciju ovog programa trebaju nam dvije nove CMake naredbe: <code>add_library()</code>
+koja je slična kao <code>add_executable()</code>, ali izgrađuje biblioteku umjesto izvršnog
+programa, i <code>target_link_libraries()</code> koja povezuje program s potrebnim bibliotekama.
+Datoteka <code>ex3/src/CMakeLists.txt</code> je dana ovdje:</p></div>
+<div class="listingblock">
+<div class="title">ex3/src/CMakeLists.txt</div>
+<div class="content"><div class="highlight"><pre><span></span><span class="nb">add_library</span><span class="p">(</span><span class="s">Sqrt</span> <span class="s">STATIC</span> <span class="s">sqrt.cpp</span> <span class="s">../include/sqrt.h</span><span class="p">)</span>
+<span class="nb">add_executable</span><span class="p">(</span><span class="s">ex3prog</span> <span class="s">main.cpp</span><span class="p">)</span>
+<span class="nb">target_link_libraries</span><span class="p">(</span><span class="s">ex3prog</span> <span class="s">Sqrt</span><span class="p">)</span>
+</pre></div></div></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_naredba_code_add_library_code">Naredba <code>add_library()</code></h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Ova naredba dodaje biblioteku kao cilj koji treba izgraditi.
+Njena signatura je sljedeća:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="nb">add_library</span><span class="p">(</span><span class="s">targetName</span> <span class="s">[STATIC</span> <span class="s">|</span> <span class="s">SHARED</span> <span class="s">|</span> <span class="s">MODULE]</span>
+            <span class="s">source1</span> <span class="s">[source2</span> <span class="s">...]</span>
+<span class="p">)</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Ovdje je <code>targetName</code> ime biblioteke koju izgrađujemo, a <code>source1</code>, <code>source2</code> itd. su
+izvorne datoteke koje koristimo za izgradnju biblioteke. Parametri u uglatim zagradama
+se mogu pojaviti ali nisu obavezni. Vertikalna crta ima značenje "ili".</p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+Biblioteku možemo izgraditi kao <strong>statičku</strong> biranjem parametra <code>STATIC</code>.
+To su biblioteke s ekstenzijom <code>.a</code> pod linuxom ili <code>.lib</code> pod window sustavom.
+</p>
+</li>
+<li>
+<p>
+Biranjem parametra <code>SHARED</code> kreiramo <strong>dinamičku</strong> biblioteku (ekstenzija <code>.so</code> pod linuxom ili
+<code>.dll</code> pod window sustavom).
+</p>
+</li>
+<li>
+<p>
+Pomoću parametra <code>MODULE</code> dobivamo dinamičku biblioteku koja
+se ne povezuje s programom za vrijeme kompilacije  već se po potrebi može uključiti
+u program za vrijeme izvršavanja.
+</p>
+</li>
+</ul></div>
+<div class="paragraph"><p>Parametar  <code>STATIC</code>,  <code>SHARED</code> ili <code>MODULE</code> ne mora biti zadan. Tada <code>CMake</code> bira tip
+biblioteke koji će izgraditi (statičku pod Linuxom). Programer može za vrijeme
+poziva <code>cmake</code> komande odrediti tip biblioteke pomoću varijable <code>BUILD_SHARED_LIBS</code>,
+ čija vrijednost može biti <code>YES</code> ili <code>NO</code>, na sljedeći način:</p></div>
+<div class="listingblock">
+<div class="content">
+<pre><code>cmake  -DBUILD_SHARED_LIBS=YES ../ex3</code></pre>
+</div></div>
+<div class="paragraph"><p>Ova naredba izgrađuje dinamičku biblioteku. Ako se <code>YES</code> zamjeni sa <code>NO</code> izgradit će se
+statička biblioteka. Ako parametar  <code>STATIC</code>,  <code>SHARED</code> ili <code>MODULE</code>  zadamo u <code>add_library()</code>
+naredbi varijabla  <code>BUILD_SHARED_LIBS</code> će biti ignorirana.</p></div>
+<div class="paragraph"><p>Najfleksibilniji način izgradnje biblioteke je onaj u kojem  u <code>add_library()</code>
+ne navodimo tip biblioteke već ostavljamo programeru da bira za vrijeme konfiguracije kakvu će
+biblioteku izgraditi.</p></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_naredba_code_target_link_libraries_code">Naredba  <code>target_link_libraries()</code></h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Ova naredba povezuje program s bibliotekom. Najjednostavniji joj je oblik</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="nb">target_link_libraries</span><span class="p">(</span><span class="s">targetName</span>  <span class="s">biblioteka1</span> <span class="s">...</span><span class="p">)</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Ime <code>targetName</code> mora biti ime programa (ili biblioteke) koji se izgrađuje u tekućem direktoriju
+pomoću <code>add_executable()</code> ili <code>add_libraries()</code>.
+Ostali argumenti <code>target_link_libraries()</code> su imena biblioteka s kojima treba povezati program;
+tih biblioteka može biti više.</p></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_svojstva_ciljeva">Svojstva ciljeva</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Naš prethodni projekt koristi jezik C++   koji se u posljednje vrijeme razvija vrlo brzo
+što je rezultiralo s više novih standarda: C++-11, C++-17 i C++-20. Ukoliko želimo specificirati
+standard prilikom kompilacije trebamo koristi <strong>svojstva</strong> ciljeva.</p></div>
+<div class="paragraph"><p>Svaki cilj ima pridružen niz svojstava (eng. <em>properties</em>). Radi se o nizu varijabli pridruženih cilju
+čije vrijednosti možemo mijenjati  <code>set_target_properties()</code> naredbom. Kada se radi o postavljanju standarda
+imamo tri svojstva koja ga kontroliraju:  <code>CXX_STANDARD</code>,  <code>CXX_EXTENSIONS</code> i  <code>CXX_STANDARD_REQUIRED</code>.
+Na primjer, u <code>CMakeLists.txt</code> datoteku možemo ubaciti naredbu:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="nb">set_target_properties</span><span class="p">(</span><span class="s">ex2prog</span>
+  <span class="s">PROPERTIES</span>
+    <span class="s">CXX_STANDARD</span> <span class="s">17</span>
+    <span class="s">CXX_EXTENSIONS</span> <span class="s">OFF</span>
+    <span class="s">CXX_STANDARD_REQUIRED</span> <span class="s">ON</span>
+  <span class="p">)</span>
+</pre></div></div></div>
+<div class="ulist"><ul>
+<li>
+<p>
+<code>CXX_STANDARD</code> određuje standard koji treba koristiti (98, 11, 14, 17 ili 20)
+</p>
+</li>
+<li>
+<p>
+<code>CXX_EXTENSIONS</code> određuje treba li koristiti ekstenzije prevodioca koji se koristi (<code>ON</code>) ili ne (<code>OFF</code>).
+</p>
+</li>
+<li>
+<p>
+<code>CXX_STANDARD_REQUIRED</code> određuje je li standard specificiran u <code>CXX_STANDARD</code> nužan (<code>ON</code>) ili nije (<code>OFF</code>).
+Ako je nužan, a prevodilac ga ne podržava <code>CMake</code> će zaustaviti konfiguraciju
+s greškom.  Ako je svojstvo stavljeno na <code>OFF</code> a prevodilac ne podržava standard,
+<code>CMake</code> će specificirati najnoviji dostupni standard.
+</p>
+</li>
+</ul></div>
+<div class="paragraph"><p>Naredba <code>set_target_properties()</code> općenito ima sljedeću formu:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="nb">set_target_properties</span><span class="p">(</span><span class="s">target1</span> <span class="s">[target2...]</span>
+                      <span class="s">PROPERTIES</span>
+                      <span class="s">propertyName1</span> <span class="s">value1</span>
+                     <span class="s">[propertyName2</span> <span class="s">value2]</span> <span class="s">...</span> <span class="p">)</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Svojstva se mogu shvatiti kao uređeni parovi imena svojstva i vrijednosti.</p></div>
+<div class="paragraph"><p>Neka svojstva cilja su ključna za izgradnju cilja, što znači za kompilaciju programa ili biblioteke.
+To su sljedeća svojstva:</p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+<code>INCLUDE_DIRECTORIES</code> - Lista direktorija s potrebnim datotekama zaglavlja; staze moraju biti apsolutne.
+</p>
+</li>
+<li>
+<p>
+<code>COMPILE_DEFINITIONS</code> - Lista definicija koje će biti prisutne na komandnoj liniji pri kompilaciji.
+</p>
+</li>
+<li>
+<p>
+<code>COMPILE_OPTIONS</code> - Lista zastavica pri kompilaciji koje ne ulaze u prve dvije kategorije.
+</p>
+</li>
+<li>
+<p>
+<code>LINK_LIBRARIES</code> - Lista biblioteka s kojima se cilj mora povezati. To su apsolutne staze do biblioteka
+ili samo imena biblioteka bez prefikasa i sufikasa koje biblioteke dobivaju na pojedinim platformama.
+</p>
+</li>
+</ul></div>
+<div class="paragraph"><p>Detalji se mogu vidjeti na primjer u knjizi <strong>Profesional CMake</strong>, <a href="https://crascit.com/professional-cmake/">https://crascit.com/professional-cmake/</a>.
+Mi se više nećemo baviti svojstvima ciljeva.</p></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_nalazenje_stvari_u_datotecnom_sustavu">Nalaženje stvari u datotečnom sustavu</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Projekti općenito ovise o vanjskim bibliotekama, programima, datotekama zaglavlja i slično.
+CMake ima niz naredbi za nalaženje svih tih stavaka u datotečnom sustavu.
+To su sljedeće naredbe:</p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+<code>find_file</code> — nađi punu stazu do datoteke (obično datoteke zaglavlja);
+</p>
+</li>
+<li>
+<p>
+<code>find_library</code> — nađi biblioteku;
+</p>
+</li>
+<li>
+<p>
+<code>find_path</code> — nađi direktorij koji sadrži zadanu datoteku;
+</p>
+</li>
+<li>
+<p>
+<code>find_program</code> — nađi program.
+</p>
+</li>
+<li>
+<p>
+<code>find_package</code> — nađi i učitaj postavke vanjskog projekta;             `
+</p>
+</li>
+</ul></div>
+<div class="paragraph"><p>Prve četiri naredbe predstavljaju naredbe niske razine i namijenjene su pisanju <code>cmake</code> skripti
+(modula) za nalaženje vanjskih biblioteka. Za nalaženje biblioteke s kojom trebamo povezati naš
+program koristimo   <code>find_package()</code> naredbu.</p></div>
+<div class="paragraph"><p>Kada se program mora povezati s nekom bibliotekom nije dovoljno naći samo stazu do te
+biblioteke (odnosno koristiti samo  <code>find_library()</code>). Potrebno je locirati i datoteke zaglavlja,
+naći eventualne definicije i opcije prevodioca koje su nužne za kompilaciju, a moguće je da
+povezivanje s bibliotekom zahtijeva i povezivanje s nekim drugim bibliotekama.</p></div>
+<div class="paragraph"><p>Naredba  <code>find_package()</code> ima ulogu naći sve potrebne informacije, odnosno tretira biblioteku
+kao <em>instalacijski paket</em>, odakle naziv naredbe.  Pojednostavljena verzija naredbe ima ovaj
+oblik:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="nb">find_package</span><span class="p">(</span><span class="s">packageName</span> <span class="s">[version</span> <span class="s">[EXACT]]</span> <span class="s">[REQUIRED]</span><span class="p">)</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Možemo tražiti paket određene verzije i ako nije zadana opcija <code>EXACT</code> svaka novija
+verzija će biti prihvaćena. Ako je zadana opcija <code>REQUIRED</code> cmake će se zaustaviti ako ne nađe
+paket.</p></div>
+<div class="paragraph"><p>Naredba  <code>find_package()</code> funkcionira tako da potraži modul za nalaženje paketa. Modul je kod
+pisan u <code>CMake</code> jeziku koji pronalazi paket i kao rezultat postavlja neke varijable i/ili
+eksportira neke ciljeve što daje sve potrebne informacije o lokaciji biblioteke i datateka
+zaglavlja te opcijama prevodioca i linkera. Što je točno rezultat rada modula treba vidjeti
+u njegovoj dokumentaciji jer <code>CMake</code> daje samo smjernice kako moduli trebaju raditi.</p></div>
+<div class="paragraph"><p>Naredba  <code>find_package()</code> koja traži paket imena <code>packageName</code> potražit će modul imena
+<code>Find&lt;packageName&gt;.cmake</code> i izvršiti kod u njemu. <code>CMake</code> sustav dolazi sa nizom takvih modula za
+nalaženje često korištenih biblioteka. Opis svakog modula može se naći u CMake dokumentaciji
+u sekciji <code>cmake-modules</code>. Alternativno, na komandnoj liniji možemo dobiti informaciju o modulu
+naredbom:</p></div>
+<div class="listingblock">
+<div class="content">
+<pre><code>cmake  --help-module ImeModula</code></pre>
+</div></div>
+<div class="paragraph"><p>Lista svih modula dobiva se naredbom</p></div>
+<div class="listingblock">
+<div class="content">
+<pre><code>cmake --help-module-list</code></pre>
+</div></div>
+<div class="paragraph"><p>Modul za nalaženje biblioteke ne pišu kreatori biblioteke već korisnici. Jedan dio modula je
+već ugrađen u CMake, a druge možemo preuzeti na web-u ili ih napisati sami. Takve dodatne module
+stavljamo u neki direktorij (često naziva <code>cmake/modules</code>) i <code>CMake</code> -u trebamo reći da pretraži
+i taj direktorij u potrazi za modulima. To se čini tako da se definira
+varijabla <code>CMAKE_MODULE_PATH</code> u koju se stavlja lista direktorija koje treba pretražiti prije
+no što se modul potraži na standardnim mjestima unutar <code>CMake</code> sustava.</p></div>
+<div class="paragraph"><p>Kada se biblioteka razvija pod <code>CMake</code> sustavom, onda razvijatelj obično eksportira konfiguracijske
+detalje koji omogućavaju "automatsko" povezivanje s bibliotekom.  Ti se detalji zadaju u datoteci
+imena <code>&lt;packageName&gt;Config.cmake</code> (ili rijeđe <code>&lt;lowercasePackageName&gt;-config.cmake</code>). U tom
+slučaju modul za nalaženje nije potreban i <code>find_package</code> će naći sve potrebne informacije u
+config-datoteci. Taj se način preferira jer je robusniji i omogućava puno jednostavije povezivanje
+s bibliotekom, ali veliki broj biblioteka nije razvijen korištenjem CMake sustava i stoga ih moramo
+tražiti pomoći modula za traženje. Kako traženje funkcionira najbolje je pokazati na primjeru.</p></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_nalazenje_boost_biblioteka">Nalaženje Boost biblioteka</h2>
+<div class="sectionbody">
+<div class="paragraph"><p><strong>Boost</strong> je niz C++ biblioteka opće namjene koje često daju funkcionalnost koja će u nekoj
+sljedećoj standardizaciji C++ jezika ući u standardnu biblioteku STL. Stoga su mnoge Boost biblioteke
+korištene u brojnim C++ projektima.</p></div>
+<div class="paragraph"><p>Boost promatramo kao jednu biblioteku, a svaku biblioteku unutar nje kao <strong>komponentu</strong>. U takvim situacijama
+koristimo malo proširenu verziju   <code>find_package()</code> naredbe u kojoj se navodi komponenta ili komponente
+koje se zahtijevaju:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="nb">find_package</span><span class="p">(</span><span class="s">packageName</span> <span class="s">[version</span> <span class="s">[EXACT]]</span> <span class="s">[REQUIRED]</span> <span class="s">[[COMPONENTS]</span> <span class="s">component1</span> <span class="s">[component2...]]</span><span class="p">)</span>
+</pre></div></div></div>
+<div class="paragraph"><p>U našem slučaju mi ćemo iz <code>Boost</code> biblioteke tražiti komponetu <code>filesystem</code>:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="nb">find_package</span><span class="p">(</span><span class="s">Boost</span> <span class="s">1.54</span> <span class="s">REQUIRED</span> <span class="s">COMPONENTS</span> <span class="s">filesystem</span><span class="p">)</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Pogledajmo jedan primjer. Imamo program  <em>CMake/ex4/main.cpp</em>
+i sljedeću <code>CMakeLists.txt</code> datoteku:</p></div>
+<div class="listingblock">
+<div class="title">ex4/CMakeLists.txt</div>
+<div class="content"><div class="highlight"><pre><span></span><span class="nb">cmake_minimum_required</span><span class="p">(</span><span class="s">VERSION</span> <span class="s">3.2</span><span class="p">)</span>
+<span class="nb">project</span><span class="p">(</span><span class="s">ex4_project</span><span class="p">)</span>
+<span class="nb">find_package</span><span class="p">(</span><span class="s">Boost</span> <span class="s">1.54</span> <span class="s">REQUIRED</span> <span class="s">COMPONENTS</span> <span class="s">filesystem</span><span class="p">)</span>
+<span class="nb">add_executable</span><span class="p">(</span><span class="s">ex4prog</span> <span class="s">main.cpp</span><span class="p">)</span>
+<span class="nb">target_link_libraries</span><span class="p">(</span><span class="s">ex4prog</span>  <span class="s">Boost::filesystem</span><span class="p">)</span>
+
+<span class="nb">set_target_properties</span><span class="p">(</span><span class="s">ex4prog</span>
+  <span class="s">PROPERTIES</span>
+    <span class="s">CXX_STANDARD</span> <span class="s">14</span>
+    <span class="s">CXX_EXTENSIONS</span> <span class="s">OFF</span>
+    <span class="s">CXX_STANDARD_REQUIRED</span> <span class="s">ON</span>
+  <span class="p">)</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Ova je  <code>CMakeLists.txt</code> datoteka izuzetno jednostavna što je posljedica načina na koji je konstruiran modul
+<code>FindBoost.cmake</code> čiju dokumentaciju možete vidjeti naredbom</p></div>
+<div class="listingblock">
+<div class="content">
+<pre><code>cmake --help-module FindBoost</code></pre>
+</div></div>
+<div class="paragraph"><p>Naime, ovaj modul, osim što postavlja različite varijable, eksportira i ciljeve. Jedan takav cilj je
+<code>Boost::filesystem</code> koji smo iskoristili u <code>target_link_libraries()</code>. Takav cilj sa sobom donosi sve informacije
+potrebne za kompilaciju programa i njegovo povezivanje s bibliotekom. To se vidi kada program kompiliramo
+s opcijom <code>VERBOSE=1</code> (na Linuxu):</p></div>
+<div class="listingblock">
+<div class="content">
+<pre><code>cmake --build  . --VERBOSE=1</code></pre>
+</div></div>
+<div class="paragraph"><p>Kompilacijska linija (na Linux sustavu) izgleda ovako (staza do izvornog koda je zamijenjena s <code>/path</code>):</p></div>
+<div class="listingblock">
+<div class="content">
+<pre><code>/usr/bin/c++     -std=c++11 -o CMakeFiles/path-info.dir/main.cpp.o -c /path/main.cpp</code></pre>
+</div></div>
+<div class="paragraph"><p>Poziv linkera izgleda ovako:</p></div>
+<div class="listingblock">
+<div class="content">
+<pre><code>/usr/bin/c++      CMakeFiles/path-info.dir/main.cpp.o  -o path-info /usr/lib/x86_64-linux-gnu/libboost_filesystem.so
+/usr/lib/x86_64-linux-gnu/libboost_system.so</code></pre>
+</div></div>
+<div class="paragraph"><p>Ovdje vidimo da biblioteka <code>libboost_filesystem</code> ovisi o biblioteci <code>libboost_system</code> te da je ta zavisnost
+dodana automatski bez naše intervencije.</p></div>
+<div class="paragraph"><p>Napomenimo još da modul koji eksportira ciljeve čini to u "imeniku" koji ima ime paketa.
+U ovom slučaju to je <code>Boost</code> te se ciljevi zovu <code>Boost::filesystem</code> i slično. To je konvencija koju
+slijede praktički svi moduli koji eksportiraju ciljeve.</p></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_testovi">Testovi</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Za testiranje koristimo <code>googletest</code> kao submodul u našem Git repozitoriju (vidjeti <a href="https://github.com/PMF-MO-OPCPP/Git">https://github.com/PMF-MO-OPCPP/Git</a>).
+U svim našim primjerima koji koriste <code>googletest</code> biblioteka će se nalaziti  u direktoriju <em>external/googletest</em>.
+Sami testovi će se nalaziti u direktoriju <em>test</em>.
+Naša <code>CMakeLists.txt</code> datoteka u korijenskom direktoriju će omogućiti tetstiranje (<code>enable_testing()</code> naredba) i
+uključiti <code>googletest</code> biblioteku:</p></div>
+<div class="listingblock">
+<div class="title">ex5/CMakeLists.txt</div>
+<div class="content"><div class="highlight"><pre><span></span><span class="nb">cmake_minimum_required</span><span class="p">(</span><span class="s">VERSION</span> <span class="s">3.1</span><span class="p">)</span>
+
+<span class="nb">project</span><span class="p">(</span><span class="s">ex5_project</span> <span class="s">CXX</span><span class="p">)</span>
+<span class="nb">enable_testing</span><span class="p">()</span>
+
+<span class="c"># Compilation of googletest library #####</span>
+<span class="nb">set</span><span class="p">(</span><span class="s">GOOGLETEST_ROOT</span> <span class="s">external/googletest/googletest</span> <span class="s">CACHE</span> <span class="s">STRING</span> <span class="s2">"Google Test source root"</span><span class="p">)</span>
+
+<span class="nb">include_directories</span><span class="p">(</span>
+    <span class="o">${</span><span class="nv">PROJECT_SOURCE_DIR</span><span class="o">}</span><span class="s">/</span><span class="o">${</span><span class="nv">GOOGLETEST_ROOT</span><span class="o">}</span>
+    <span class="o">${</span><span class="nv">PROJECT_SOURCE_DIR</span><span class="o">}</span><span class="s">/</span><span class="o">${</span><span class="nv">GOOGLETEST_ROOT</span><span class="o">}</span><span class="s">/include</span>
+    <span class="p">)</span>
+
+<span class="nb">set</span><span class="p">(</span><span class="s">GOOGLETEST_SOURCES</span>
+    <span class="o">${</span><span class="nv">PROJECT_SOURCE_DIR</span><span class="o">}</span><span class="s">/</span><span class="o">${</span><span class="nv">GOOGLETEST_ROOT</span><span class="o">}</span><span class="s">/src/gtest-all.cc</span>
+    <span class="o">${</span><span class="nv">PROJECT_SOURCE_DIR</span><span class="o">}</span><span class="s">/</span><span class="o">${</span><span class="nv">GOOGLETEST_ROOT</span><span class="o">}</span><span class="s">/src/gtest_main.cc</span>
+    <span class="p">)</span>
+
+<span class="nb">foreach</span><span class="p">(</span><span class="s">_source</span> <span class="o">${</span><span class="nv">GOOGLETEST_SOURCES</span><span class="o">}</span><span class="p">)</span>
+    <span class="nb">set_source_files_properties</span><span class="p">(</span><span class="o">${</span><span class="nv">_source</span><span class="o">}</span> <span class="s">PROPERTIES</span> <span class="s">GENERATED</span> <span class="s">1</span><span class="p">)</span>
+<span class="nb">endforeach</span><span class="p">()</span>
+
+<span class="nb">add_library</span><span class="p">(</span><span class="s">googletest</span> <span class="o">${</span><span class="nv">GOOGLETEST_SOURCES</span><span class="o">}</span><span class="p">)</span>
+
+<span class="nb">add_subdirectory</span><span class="p">(</span><span class="s2">"src"</span><span class="p">)</span>
+<span class="nb">add_subdirectory</span><span class="p">(</span><span class="s2">"test"</span><span class="p">)</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Uočimo da ne uključujemo direktorij <code>external</code> u kojem je  <code>googletest</code> jer sam  <code>googletest</code> nije
+dio našeg projekta — on je submodul (vidi <a href="https://github.com/PMF-MO-OPCPP/Git">https://github.com/PMF-MO-OPCPP/Git</a>).</p></div>
+<div class="paragraph"><p>Program se nalazi u direktoriju <code>src</code> i sastoji se od datoteka <code>data.h</code>, <code>data.cpp</code> i <code>main.cpp</code>.
+Testovi se nalaze u direktoriju <code>test</code> u datoteci <code>test.cpp</code>.</p></div>
+<div class="paragraph"><p>Datoteka <code>CMakeLists.txt</code> u <code>test</code> direktoriju ima sljedeći sadržaj:</p></div>
+<div class="listingblock">
+<div class="title">ex5/test/CMakeLists.txt</div>
+<div class="content"><div class="highlight"><pre><span></span><span class="nb">add_executable</span><span class="p">(</span><span class="s2">"testData"</span> <span class="s">test.cpp</span> <span class="s">../src/data.cpp</span><span class="p">)</span>
+<span class="nb">target_link_libraries</span><span class="p">(</span><span class="s2">"testData"</span>  <span class="s">googletest</span> <span class="s">pthread</span><span class="p">)</span>
+
+<span class="nb">add_test</span><span class="p">(</span><span class="s">NAME</span> <span class="s">testData</span> <span class="s">COMMAND</span> <span class="s">testData</span><span class="p">)</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Prve dvije naredbe kompiliraju test program i povezuju ga sa <code>googletest</code> bibliotekom (i <code>pthread</code>  bibliotekom).
+Zadnja naredba ima oblik</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="nb">add_test</span><span class="p">(</span><span class="s">NAME</span> <span class="s">testName</span> <span class="s">COMMAND</span> <span class="s">command</span> <span class="s">[arg...]</span><span class="p">)</span>
+</pre></div></div></div>
+<div class="paragraph"><p>i ona dodaje test. Sve tako definirane testove izvršavamo tako što i izvršnom poddirektoriju
+otipkamo</p></div>
+<div class="listingblock">
+<div class="content">
+<pre><code>ctest -V</code></pre>
+</div></div>
+<div class="paragraph"><p>Izlaz može biti sljedeći:</p></div>
+<div class="listingblock">
+<div class="content">
+<pre><code>   Start 1: testData
+
+1: Test command: /home/jurak/mytext/Teaching/C++/GitHub/CMake/ex5/build/test/testData
+1: Test timeout computed to be: 9.99988e+06
+1: [==========] Running 2 tests from 1 test suite.
+1: [----------] Global test environment set-up.
+1: [----------] 2 tests from Data
+1: [ RUN      ] Data.size
+1: [       OK ] Data.size (0 ms)
+1: [ RUN      ] Data.sort
+1: [       OK ] Data.sort (0 ms)
+1: [----------] 2 tests from Data (0 ms total)
+1:
+1: [----------] Global test environment tear-down
+1: [==========] 2 tests from 1 test suite ran. (0 ms total)
+1: [  PASSED  ] 2 tests.
+1/1 Test #1: testData .........................   Passed    0.00 sec
+
+100% tests passed, 0 tests failed out of 1
+
+Total Test time (real) =   0.00 sec</code></pre>
+</div></div>
+<div class="paragraph"><p>Za detalje o konstrukciji testova vidjeti</p></div>
+<div class="ulist"><ul>
+<li>
+<p>
+<a href="https://github.com/google/googletest/blob/master/googletest/docs/primer.md">https://github.com/google/googletest/blob/master/googletest/docs/primer.md</a>.
+</p>
+</li>
+</ul></div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_kopiranje_datoteka">Kopiranje datoteka</h2>
+<div class="sectionbody">
+<div class="paragraph"><p>Često smo u situaciji da izvršni program treba pročitati neku datoteku
+koju čuvamo u izvornom kodu. Tada nakon kompilacije programa datoteku treba kopirati
+iz direktorija izvornog koda u direktorij izvršnog koda.</p></div>
+<div class="paragraph"><p>Tu nam pomaže naredba <code>configure_file()</code> koja kopira datoteke i vrši supstituciju
+varijabli u izvornoj datoteci.  Pojednostavljena signatura funkcije je sljedeća:</p></div>
+<div class="listingblock">
+<div class="content"><div class="highlight"><pre><span></span><span class="nb">configure_file</span><span class="p">(</span><span class="s">source</span> <span class="s">destination</span> <span class="s">[COPYONLY]</span><span class="p">)</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Datoteka <code>source</code> je dana relativno u odnosu na <code>CMAKE_CURRENT_SOURCE_DIR</code>, to znači
+relativno u odnosu na direktorij u kojem se nalazi trenutna <code>CMakeLists.txt</code> datoteka.
+Datoteka <code>destination</code> je dana relativno u odnosu na <code>CMAKE_CURRENT_BINARY_DIR</code>,
+dakle u odnosu na sliku izvornog direktorija u izvršnom direktoriju.
+Naredba će kopirati <code>source</code> na  <code>destination</code>. <code>COPYONLY</code> koristimo kada ne vršimo nikakve
+supstitucije varijabli (samo kopiranje).</p></div>
+<div class="paragraph"><p>Na primjer u direktoriju <code>ex6</code> imamo poddirektorij <code>src</code> sa <code>CMakeLists.txt</code> datotekom</p></div>
+<div class="listingblock">
+<div class="title">ex6/src/CMakeLists.txt</div>
+<div class="content"><div class="highlight"><pre><span></span><span class="nb">add_executable</span><span class="p">(</span><span class="s">ex6prog</span> <span class="s">main.cpp</span><span class="p">)</span>
+<span class="nb">configure_file</span><span class="p">(</span><span class="s">text.txt</span> <span class="s">text.txt</span> <span class="s">COPYONLY</span><span class="p">)</span>
+</pre></div></div></div>
+<div class="paragraph"><p>Ako je izvršni kod u <code>ex6/build/</code>, onda se <code>ex6/src/text.txt</code> kopira u <code>ex6/build/src/text.txt</code>.</p></div>
+</div>
+</div>
+</div>
+
+<div id="footer">
+<div id="footer-text">
+Version 1.1<br>
+Zadnja izmjena
+ 2020-02-16 22:06:01 CET
+</div>
+</div>
+
+
+</body></html>
